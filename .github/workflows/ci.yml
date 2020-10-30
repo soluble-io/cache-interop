@@ -63,9 +63,9 @@ jobs:
         env:
           CI: true
 
-      #- name: Send coverage to codecov.io
-      #  working-directory: .
-      #  run: |
-      #    npm install -g codecov
-      #    CODECOV_TOKEN=${{ secrets.CODECOV_TOKEN }} yarn coverage:publish
+      - name: Send coverage to codecov.io
+        working-directory: .
+        run: |
+          npm install -g codecov
+          CODECOV_TOKEN=${{ secrets.CODECOV_TOKEN }} yarn coverage:publish
 
