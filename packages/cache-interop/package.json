@@ -1,0 +1,62 @@
+{
+  "name": "@soluble/cache-interop",
+  "description": "Async cache interop contracts",
+  "version": "0.0.1",
+  "license": "MIT",
+  "homepage": "https://github.com/soluble-io/tci",
+  "repository": "soluble-io/tci",
+  "author": {
+    "name": "Vanvelthem Sébastien",
+    "url": "https://github.com/belgattitude"
+  },
+  "keywords": [
+    "cache",
+    "interop",
+    "contract"
+  ],
+  "main": "dist/index.js",
+  "umd:main": "dist/cache-interop.umd.production.js",
+  "module": "dist/cache-interop.esm.js",
+  "typings": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "sideEffects": false,
+  "scripts": {
+    "start": "cross-env NODE_ENV=development tsdx watch",
+    "build": "cross-env NODE_ENV=production tsdx build --tsconfig tsconfig.build.json --format=cjs,esm,umd",
+    "build:microbundle": "microbundle --tsconfig tsconfig.build.json",
+    "clean": "rimraf --no-glob ./dist ./build ./coverage",
+    "test": "run-p test:*",
+    "test:unit": "jest --config jest.config.js --color",
+    "test:unit:coverage": "jest --config jest.config.js --color --coverage",
+    "typecheck": "tsc --project tsconfig.build.json --noEmit",
+    "lint": "run-p lint:code",
+    "lint:code": "eslint . --ext .ts,.tsx,.js,.jsx",
+    "fix:staged": "lint-staged --allow-empty",
+    "fix:all": "run-p fix:all:*",
+    "fix:all:code": "eslint . --ext .ts,.tsx,.js,.jsx --fix",
+    "coverage:publish": "codecov --root=../../ -F result",
+    "deps:check": "npx npm-check-updates --dep prod,dev,optional",
+    "deps:update": "npx npm-check-updates --dep prod,dev,optional -u"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "prettier --write",
+      "eslint --fix"
+    ],
+    "*.{yaml,json,md,html}": [
+      "prettier --write"
+    ]
+  },
+  "peerDependencies": {
+    "ioredis": "^4.18.0"
+  },
+  "devDependencies": {
+    "@types/ioredis": "^4.17.6",
+    "ioredis": "^4.19.1"
+  },
+  "engines": {
+    "node": ">=10.13"
+  }
+}

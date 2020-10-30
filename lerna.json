@@ -1,0 +1,28 @@
+{
+  "version": "independent",
+  "npmClient": "yarn",
+  "useWorkspaces": true,
+  "packages": [
+    "packages/*"
+  ],
+  "command": {
+    "version": {
+      "exact": true
+    },
+    "bootstrap": {
+      "npmClient": "yarn"
+    },
+    "run": {
+      "npmClient": "yarn"
+    },
+    "publish": {
+      "npmClient": "npm",
+      "access": "public",
+      "allowBranch": [
+        "main",
+        "canary"
+      ],
+      "registry": "https://registry.npmjs.org/"
+    }
+  }
+}

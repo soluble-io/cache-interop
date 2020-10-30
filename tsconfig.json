@@ -1,0 +1,13 @@
+{
+  "extends": "./tsconfig.build",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@soluble/cache-interop": ["./packages/cache-interop/src"]
+    }
+  },
+  "exclude": [
+    "**/dist/",
+    "docs"
+  ]
+}
