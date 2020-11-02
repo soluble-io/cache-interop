@@ -1,7 +1,7 @@
 {
   "name": "@soluble/cache-interop",
   "description": "Async cache interop contracts",
-  "version": "0.0.6",
+  "version": "0.0.7-canary.0",
   "license": "MIT",
   "homepage": "https://github.com/soluble-io/tci",
   "repository": "https://github.com/soluble-io/tci",
@@ -60,6 +60,5 @@
   },
   "engines": {
     "node": ">=10.13"
-  },
-  "gitHead": "869b86e1ddb2c34474d1c8cecbb657f3c59c67ef"
+  }
 }

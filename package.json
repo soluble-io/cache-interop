@@ -16,8 +16,6 @@
     "test": "lerna run test",
     "test:unit:coverage": "lerna run test:unit:coverage",
     "prepublish": "lerna run build",
-    "publish-canary": "lerna version prerelease --preid canary --force-publish",
-    "publish-stable": "lerna version --force-publish",
     "changeset": "changeset",
     "version-packages": "changeset version",
     "release": "yarn build && changeset publish",

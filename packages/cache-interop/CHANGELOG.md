@@ -1,5 +1,11 @@
 # @soluble/cache-interop
 
+## 0.0.7-canary.0
+
+### Patch Changes
+
+- remove githead
+
 ## 0.0.6
 
 ### Patch Changes
