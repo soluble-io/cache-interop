@@ -4,7 +4,7 @@
 
 ### Patch Changes
 
-- testing changet publication
+- testing changeset publication
 
 ## 0.0.5
 
