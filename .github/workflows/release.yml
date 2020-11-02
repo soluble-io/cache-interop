@@ -45,13 +45,16 @@ jobs:
           echo "@soluble:registry=http://registry.npmjs.org/" > .npmrc
           echo "registry=http://registry.npmjs.org/" >> .npmrc
           echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> .npmrc
-          npm whoami
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Cat token
         run: |
           - cat .npmrc
+
+      - name: Whoami
+        run: |
+          - npm whoami
 
       - name: Potentially publish canary to npm
         run: |
