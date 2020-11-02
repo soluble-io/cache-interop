@@ -1,20 +1,20 @@
 name: release
-
 on:
   push:
     branches:
       - main
-
+      - next
 jobs:
   build:
     runs-on: ubuntu-latest
     if: github.repository == 'soluble-io/tci'
-    name: build, test, publish
     steps:
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0
-      - uses: actions/setup-node@v1
+
+      - name: Use NodeJs 12.x
+        uses: actions/setup-node@v1
         with:
           node-version: 12
 
@@ -47,10 +47,6 @@ jobs:
           echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> .npmrc
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-
-      - name: Cat token
-        run: |
-          - cat .npmrc
 
       - name: Whoami
         run: |
