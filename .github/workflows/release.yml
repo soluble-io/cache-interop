@@ -41,16 +41,11 @@ jobs:
 
       - name: Authenticate with Registry
         run: |
-          yarn logout
           echo "@soluble:registry=http://registry.npmjs.org/" > .npmrc
           echo "registry=http://registry.npmjs.org/" >> .npmrc
           echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> .npmrc
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-
-      - name: Whoami
-        run: |
-          - npm whoami
 
       - name: Potentially publish canary to npm
         run: |

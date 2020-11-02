@@ -19,6 +19,9 @@
     "prepublish": "lerna run build",
     "publish-canary": "lerna version prerelease --preid canary --force-publish",
     "publish-stable": "lerna version --force-publish",
+    "changeset": "changeset",
+    "version-packages": "changeset version",
+    "release": "yarn build && changeset publish",
     "typecheck": "lerna run typecheck --stream --parallel",
     "lint": "lerna run lint --stream",
     "fix:staged": "lerna run fix:staged",
@@ -28,7 +31,7 @@
     "deps:check": "npx npm-check-updates@^9.1 && lerna exec -- yarn deps:check",
     "deps:update": "npx npm-check-updates@9.1 -u && lerna exec -- yarn deps:update"
   },
-  "devDependencies": {
+  "dependencies": {
     "@changesets/changelog-github": "^0.2.7",
     "@changesets/cli": "^2.11.2",
     "@types/jest": "^26.0.15",
