@@ -3,73 +3,30 @@ on:
   push:
     branches:
       - main
-      - next
 jobs:
-  build:
+  release:
+    name: Release
     runs-on: ubuntu-latest
-    if: github.repository == 'soluble-io/tci'
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout Repo
+        uses: actions/checkout@v2
         with:
+          # This makes Actions fetch all Git history so that Changesets can generate changelogs with the correct commits
           fetch-depth: 0
 
-      - name: Use NodeJs 12.x
-        uses: actions/setup-node@v1
+      - name: Setup Node.js 12.x
+        uses: actions/setup-node@master
         with:
-          node-version: 12
+          node-version: 12.x
 
-      - name: Install dependencies
-        run: |
-          yarn install --frozen-lockfile
+      - name: Install Dependencies
+        run: yarn
 
-      - name: Check yarn.lock
-        run: sh ./scripts/check-git-pristine-yarn-lock.sh
-
-      - name: Typecheck
-        run: |
-          yarn typecheck
-
-      - name: Tests
-        run: |
-          yarn test
+      - name: Create Release Pull Request or Publish to npm
+        id: changesets
+        uses: changesets/action@master
+        with:
+          publish: yarn release
         env:
-          CI: true
-
-      #- name: Potentially save npm token
-      #  run: |
-      #    ([[ ! -z ${{ secrets.NPM_TOKEN }} ]] && echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" >> ~/.npmrc) || echo "Did not write npm token"
-
-      - name: Authenticate with Registry
-        run: |
-          echo "@soluble:registry=http://registry.npmjs.org/" > .npmrc
-          echo "registry=http://registry.npmjs.org/" >> .npmrc
-          echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> .npmrc
-        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-
-      - name: Potentially publish canary to npm
-        run: |
-          if \
-            ls ~/.npmrc >/dev/null 2>&1 && \
-            [[ $(git describe --exact-match 2> /dev/null || :) =~ -canary ]]; \
-          then
-            yarn run lerna publish from-git --npm-tag canary --yes
-          else
-            echo "Did not publish canary"
-          fi
-        env:
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-          HUSKY_BYPASS: true
-      - name: Potentially publish stable to npm
-        run: |
-          if \
-            ls ~/.npmrc >/dev/null 2>&1 && \
-            [[ ! $(git describe --exact-match 2> /dev/null || :) =~ -canary ]]; \
-          then
-            yarn run lerna publish from-git --yes
-          else
-            echo "Did not publish"
-          fi
-        env:
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-          HUSKY_BYPASS: true
