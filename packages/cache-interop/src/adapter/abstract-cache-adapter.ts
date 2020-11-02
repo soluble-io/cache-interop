@@ -8,10 +8,9 @@ import {
   TrueOrFalseOrUndefined,
 } from '../cache.interface';
 import { CacheItemInterface } from '../cache-item.interface';
-import { executeValueProviderFn } from '../utils/value-provider';
+import { executeValueProviderFn, isCacheValueProviderFn } from '../utils';
 import { CacheItem } from '../cache-item';
 import { CacheException } from '../exceptions';
-import { isCacheValueProviderFn } from '../utils/typeguards';
 
 export abstract class AbstractCacheAdapter<TBase = string> implements CacheInterface<TBase> {
   abstract async set<T = TBase>(
