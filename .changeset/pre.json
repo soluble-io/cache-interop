@@ -1,0 +1,10 @@
+{
+  "mode": "pre",
+  "tag": "canary",
+  "initialVersions": {
+    "@soluble/cache-interop": "0.0.6"
+  },
+  "changesets": [
+    "plenty-jobs-know"
+  ]
+}
