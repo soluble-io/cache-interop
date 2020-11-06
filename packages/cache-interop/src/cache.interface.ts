@@ -37,13 +37,16 @@ export interface CacheInterface<TBase = string> {
 
   /**
    * @return True if the item exists in the cache and was removed, false otherwise.
-   *         When undefined is returned
+   *         Undefined is used to determine if the operation was successful
    */
   has(key: CacheKey): Promise<TrueOrFalseOrUndefined>;
 
   getMultiple<T = TBase, K = Readonly<CacheKey[]>>(keys: K): Promise<Array<CacheItemInterface<T>>>;
   setMultiple<T = TBase>(keys: Map<CacheKey, T>): Promise<Map<CacheKey, TrueOrCacheException>>;
   deleteMultiple(keys: CacheKey[]): Promise<Map<CacheKey, TrueOrCacheException>>;
+
+  clear(): Promise<TrueOrFalseOrUndefined>;
+
   getOrSet<T = TBase>(
     key: CacheKey,
     value: T | CacheValueProviderFn<T>,
