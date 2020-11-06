@@ -1,4 +1,4 @@
-import { DateProvider } from '../../src/date/date-provider.interface';
+import { DateProvider } from '../../src/expiry/date-provider.interface';
 
 export class ConstantDateProvider implements DateProvider {
   constructor(private date: Date) {}
