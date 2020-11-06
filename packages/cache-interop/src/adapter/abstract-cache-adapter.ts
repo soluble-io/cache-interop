@@ -13,18 +13,20 @@ import { CacheItem } from '../cache-item';
 import { CacheException } from '../exceptions';
 
 export abstract class AbstractCacheAdapter<TBase = string> implements CacheInterface<TBase> {
-  abstract async set<T = TBase>(
+  abstract set<T = TBase>(
     key: CacheKey,
     value: T | CacheValueProviderFn<T>,
     options?: SetOptions
   ): Promise<TrueOrCacheException>;
-  abstract async get<T = TBase>(key: CacheKey): Promise<CacheItemInterface<T>>;
-  abstract async has(key: CacheKey): Promise<TrueOrFalseOrUndefined>;
+  abstract get<T = TBase>(key: CacheKey): Promise<CacheItemInterface<T>>;
+  abstract has(key: CacheKey): Promise<TrueOrFalseOrUndefined>;
 
-  abstract async delete(key: CacheKey): Promise<TrueOrCacheException>;
-  abstract async getMultiple<T = TBase, K = Readonly<CacheKey[]>>(keys: K): Promise<Array<CacheItemInterface<T>>>;
-  abstract async setMultiple<T = TBase>(keys: Map<CacheKey, T>): Promise<Map<CacheKey, TrueOrCacheException>>;
-  abstract async deleteMultiple(keys: CacheKey[]): Promise<Map<CacheKey, TrueOrCacheException>>;
+  abstract delete(key: CacheKey): Promise<TrueOrCacheException>;
+  abstract getMultiple<T = TBase, K = Readonly<CacheKey[]>>(keys: K): Promise<Array<CacheItemInterface<T>>>;
+  abstract setMultiple<T = TBase>(keys: Map<CacheKey, T>): Promise<Map<CacheKey, TrueOrCacheException>>;
+  abstract deleteMultiple(keys: CacheKey[]): Promise<Map<CacheKey, TrueOrCacheException>>;
+
+  abstract clear(): Promise<boolean>;
 
   getOrSet = async <T = TBase>(
     key: CacheKey,

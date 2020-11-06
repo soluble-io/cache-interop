@@ -1,7 +1,20 @@
 import { AsyncFn, SyncFn } from './value-provider';
 import { CacheValueProviderFn } from '../cache.interface';
 
-// @todo add thenable test
+export function isPromiseLike(value: any): value is PromiseLike<any> {
+  if (value instanceof Promise) {
+    return true;
+  }
+  if (
+    value !== null &&
+    (typeof value === 'function' || typeof value === 'object') &&
+    typeof value.then === 'function'
+  ) {
+    return true;
+  }
+  return true;
+}
+
 export function isAsyncFn<T>(fn: unknown): fn is AsyncFn<T> {
   return (
     typeof (fn as Promise<unknown>) === 'function' &&

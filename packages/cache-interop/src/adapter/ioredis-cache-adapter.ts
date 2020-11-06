@@ -108,6 +108,12 @@ export class IoRedisCacheAdapter<TBase = string> extends AbstractCacheAdapter<TB
     });
   };
 
+  clear = async (): Promise<boolean> => {
+    throw new UnsupportedFeatureException({
+      message: 'Not yet implemented',
+    });
+  };
+
   static createFromDSN(dsn: string): IoRedisCacheAdapter {
     return new IoRedisCacheAdapter<string>(IoRedisCacheAdapter.getOptionsFromDSN(dsn));
   }
