@@ -38,12 +38,26 @@ describe('MapCacheAdapter.set()', () => {
 
 describe('MapCacheAdapter.get()', () => {
   describe('when value is not in cache', () => {
-    it('should return false', async () => {
+    it('should return empty non-error cacheitem', async () => {
       const cache = new MapCacheAdapter();
       expect(await cache.get('k')).toMatchObject({
         key: 'k',
         hit: false,
         error: false,
+        data: null,
+      });
+      cache.clear();
+    });
+  });
+  describe('when value is in cache', () => {
+    it('should return cacheitem with data', async () => {
+      const cache = new MapCacheAdapter();
+      await cache.set('k', 'set');
+      expect(await cache.get('k')).toMatchObject({
+        key: 'k',
+        hit: true,
+        error: false,
+        data: 'hello world',
       });
       cache.clear();
     });

@@ -1,0 +1,44 @@
+{
+  "name": "@soluble/cache-e2e-tests",
+  "private": true,
+  "description": "E2E tests for cache-interop",
+  "version": "0.0.7-canary.0",
+  "license": "MIT",
+  "homepage": "https://github.com/soluble-io/tci",
+  "repository": "https://github.com/soluble-io/tci",
+  "author": {
+    "name": "Vanvelthem Sébastien",
+    "url": "https://github.com/belgattitude"
+  },
+  "scripts": {
+    "clean": "rimraf --no-glob ./dist ./build ./coverage",
+    "test": "run-p test:*",
+    "test:unit": "jest --config jest.config.js --color",
+    "test:unit:coverage": "jest --config jest.config.js --color --coverage",
+    "typecheck": "tsc --noEmit",
+    "typecheck:build": "tsc --project tsconfig.build.json --noEmit",
+    "lint": "run-p lint:code",
+    "lint:code": "eslint . --ext .ts,.tsx,.js,.jsx",
+    "fix:staged": "lint-staged --allow-empty",
+    "fix:all": "run-p fix:all:*",
+    "fix:all:code": "eslint . --ext .ts,.tsx,.js,.jsx --fix",
+    "deps:check": "npx npm-check-updates --dep prod,dev,optional",
+    "deps:update": "npx npm-check-updates --dep prod,dev,optional -u"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "prettier --write",
+      "eslint --fix"
+    ],
+    "*.{yaml,json,md,html}": [
+      "prettier --write"
+    ]
+  },
+  "devDependencies": {
+    "@types/ioredis": "^4.17.7",
+    "ioredis": "^4.19.2"
+  },
+  "engines": {
+    "node": ">=10.13"
+  }
+}
