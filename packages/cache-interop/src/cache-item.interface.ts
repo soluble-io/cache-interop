@@ -24,7 +24,7 @@ export type CacheItemStats = {
 
 export interface CacheItemInterface<T> {
   readonly hit: boolean;
-  readonly data: T | null;
+  readonly value: T | null;
   readonly metadata?: CacheItemMetadata;
   readonly key: CacheKey;
   readonly error: CacheException | false;

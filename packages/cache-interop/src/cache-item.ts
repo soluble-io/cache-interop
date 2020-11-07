@@ -13,7 +13,7 @@ type CacheItemProps<T> = {
 
 export class CacheItem<T> implements CacheItemInterface<T> {
   public readonly hit: boolean;
-  public get data(): T | null {
+  public get value(): T | null {
     return this.hit ? this._value : null;
   }
   public readonly metadata: CacheItemMetadata;
