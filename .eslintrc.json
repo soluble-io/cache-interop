@@ -52,24 +52,26 @@
   },
   "overrides": [
     {
-      "files": ["*.tsx"],
-      "rules": {
-        "sonarjs/cognitive-complexity": ["error", 20],
-        "sonarjs/no-duplicate-string": "off",
-        "sonarjs/no-identical-functions": "off"
-      }
-    },
-    {
-      "files": ["**/example/*.tsx"],
-      "rules": {
-        "@typescript-eslint/ban-ts-ignore": "off",
-        "@typescript-eslint/ban-ts-comment": "off"
-      }
-    },
-    {
       "files": ["*.d.ts"],
       "rules": {
         "@typescript-eslint/no-explicit-any": "off"
+      }
+    },
+    {
+      "files": ["jest.config.js"],
+      "rules": {
+        "sonarjs/no-identical-expressions": "off",
+        "sonarjs/no-identical-functions": "off",
+        "sonarjs/no-duplicate-string": "off",
+        "sonarjs/cognitive-complexity": "off",
+        "sonarjs/no-useless-catch": "off",
+        "@typescript-eslint/no-explicit-any": "off",
+        "@typescript-eslint/no-non-null-assertion": "off",
+        "@typescript-eslint/no-object-literal-type-assertion": "off",
+        "@typescript-eslint/no-empty-function": "off",
+        "@typescript-eslint/no-var-requires": "off",
+        "@typescript-eslint/ban-ts-ignore": "off",
+        "@typescript-eslint/ban-ts-comment": "off"
       }
     },
     {
