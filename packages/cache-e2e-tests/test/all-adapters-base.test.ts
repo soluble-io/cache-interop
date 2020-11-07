@@ -57,9 +57,8 @@ describe.each(adapters)('Adapter: %s', (name, adapterFactory) => {
           key: 'k',
           hit: false,
           error: false,
-          data: null,
+          value: null,
         });
-        cache.clear();
       });
     });
     describe('when value is in cache', () => {
@@ -69,9 +68,21 @@ describe.each(adapters)('Adapter: %s', (name, adapterFactory) => {
           key: 'k',
           hit: true,
           error: false,
-          data: 'hello world',
+          value: 'hello world',
         });
-        cache.clear();
+      });
+    });
+  });
+
+  describe('Adapter::getOrSet', () => {
+    describe('when value is not in cache', () => {
+      it('should return and set the value', async () => {
+        expect(await cache.getOrSet('k', async () => 'hello')).toMatchObject({
+          key: 'k',
+          hit: true,
+          error: false,
+          value: 'hello',
+        });
       });
     });
   });
