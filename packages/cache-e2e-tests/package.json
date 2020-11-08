@@ -1,5 +1,5 @@
 {
-  "name": "@soluble/cache-e2e",
+  "name": "@soluble/cache-e2e-tests",
   "private": true,
   "description": "E2E tests for cache-interop",
   "version": "0.0.7-canary.0",
