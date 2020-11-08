@@ -73,5 +73,5 @@ jobs:
         working-directory: .
         run: |
           npm install -g codecov
-          CODECOV_TOKEN=${{ secrets.CODECOV_TOKEN }} yarn coverage:publish
+          yarn coverage:publish
 

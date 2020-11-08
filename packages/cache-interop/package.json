@@ -38,9 +38,9 @@
     "fix:staged": "lint-staged --allow-empty",
     "fix:all": "run-p fix:all:*",
     "fix:all:code": "eslint . --ext .ts,.tsx,.js,.jsx --fix",
-    "coverage:publish": "codecov --root=../../ -F result",
     "deps:check": "npx npm-check-updates --dep prod,dev,optional",
-    "deps:update": "npx npm-check-updates --dep prod,dev,optional -u"
+    "deps:update": "npx npm-check-updates --dep prod,dev,optional -u",
+    "coverage:publish": "codecov --root=../../ -F cacheInterop"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
