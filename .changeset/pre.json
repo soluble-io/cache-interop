@@ -2,9 +2,13 @@
   "mode": "pre",
   "tag": "canary",
   "initialVersions": {
-    "@soluble/cache-interop": "0.0.6"
+    "@soluble/cache-interop": "0.0.6",
+    "@soluble/cache-e2e-tests": "0.0.7-canary.0"
   },
   "changesets": [
-    "plenty-jobs-know"
+    "dull-fishes-beg",
+    "fluffy-maps-tie",
+    "plenty-jobs-know",
+    "proud-dancers-kick"
   ]
 }
