@@ -30,7 +30,7 @@ const config = {
     '^@soluble/cache\\-interop/(.*)$': '<rootDir>/cache-interop/src/$1',
   },
   */
-  collectCoverageFrom: ['<rootDir>/cache-interop/src/**/*.{ts,js}'],
+  collectCoverageFrom: ['<rootDir>/cache-interop/src/**/*.{ts,js}', '!**/*.test.ts'],
   coverageDirectory: '<rootDir>/cache-e2e-tests/coverage',
   globals: {
     'ts-jest': {
