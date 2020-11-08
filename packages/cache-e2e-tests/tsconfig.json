@@ -8,10 +8,13 @@
     "noEmit": true,
     "noUnusedLocals": false,
     "noUnusedParameters": false,
-    "baseUrl": ".",
+    "rootDir": ".",
+    "baseUrl": "..",
     "paths": {
-      "@soluble/cache-interop": ["../../packages/cache-interop/src"]
+      "@soluble/cache-interop": ["cache-interop/src"],
+      "@soluble/cache-interop/*": ["cache-interop/src/*"]
     }
   },
+  "include": ["test"],
   "exclude": ["node_modules"]
 }

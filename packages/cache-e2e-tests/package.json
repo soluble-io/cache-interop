@@ -1,5 +1,5 @@
 {
-  "name": "@soluble/cache-e2e-tests",
+  "name": "@soluble/cache-e2e",
   "private": true,
   "description": "E2E tests for cache-interop",
   "version": "0.0.7-canary.0",
@@ -12,11 +12,9 @@
   },
   "scripts": {
     "clean": "rimraf --no-glob ./dist ./build ./coverage",
-    "test": "run-p test:*",
-    "test:unit": "jest --config jest.config.js --color",
-    "test:unit:coverage": "jest --config jest.config.js --color --coverage",
-    "typecheck": "tsc --noEmit",
-    "typecheck:build": "tsc --project tsconfig.build.json --noEmit",
+    "test": "@test:e2e",
+    "test:e2e": "jest --config jest.config.js --color --coverage",
+    "typecheck": "tsc --project tsconfig.json --noEmit",
     "lint": "run-p lint:code",
     "lint:code": "eslint . --ext .ts,.tsx,.js,.jsx",
     "fix:staged": "lint-staged --allow-empty",

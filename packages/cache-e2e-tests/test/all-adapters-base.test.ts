@@ -1,5 +1,4 @@
-import { CacheInterface, IoRedisCacheAdapter, MapCacheAdapter } from '@soluble/cache-interop';
-import { CacheException } from '@soluble/cache-interop';
+import { CacheException, CacheInterface, IoRedisCacheAdapter, MapCacheAdapter } from '@soluble/cache-interop';
 
 const adapters = [
   ['MapCacheAdapter', () => new MapCacheAdapter()],

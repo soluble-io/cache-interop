@@ -7,11 +7,11 @@ coverage:
         target: 1%
         flags:
           - cacheInterop
-
 flags:
   cacheInterop:
     paths:
       - packages/cache-interop
+      - packages/cache-e2e-tests
 
 ignore:
   - "scripts/**/*"
