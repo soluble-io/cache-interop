@@ -8,10 +8,12 @@ coverage:
         flags:
           - cacheInterop
 flags:
+  e2e:
+    paths:
+      - packages/cache-e2e-tests
   cacheInterop:
     paths:
       - packages/cache-interop
-      - packages/cache-e2e-tests
 
 ignore:
   - "scripts/**/*"
