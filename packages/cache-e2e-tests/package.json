@@ -13,7 +13,7 @@
   "scripts": {
     "clean": "rimraf --no-glob ./dist ./build ./coverage",
     "test": "@test:e2e",
-    "test:e2e": "jest --config jest.config.js --color --coverage",
+    "test:e2e": "jest --config jest.config.js --color $@",
     "typecheck": "tsc --project tsconfig.json --noEmit",
     "lint": "run-p lint:code",
     "lint:code": "eslint . --ext .ts,.tsx,.js,.jsx",

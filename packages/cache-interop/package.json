@@ -21,14 +21,16 @@
   "main": "dist/cache-interop.js",
   "umd:main": "dist/cache-interop.umd.js",
   "typings": "dist/index.d.ts",
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "sideEffects": false,
   "scripts": {
     "start": "cross-env NODE_ENV=development tsdx watch",
     "build": "cross-env NODE_ENV=production microbundle --tsconfig tsconfig.build.json --target node",
     "clean": "rimraf --no-glob ./dist ./build ./coverage",
     "test": "@test:unit",
-    "test:unit": "jest --config jest.config.js --color --coverage",
+    "test:unit": "jest --config jest.config.js --color $@",
     "typecheck": "tsc --noEmit",
     "typecheck:build": "tsc --project tsconfig.build.json --noEmit",
     "lint": "run-p lint:code",

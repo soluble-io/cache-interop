@@ -59,13 +59,13 @@ jobs:
 
       - name: Unit tests
         run: |
-          yarn test:unit
+          yarn test:unit --coverage
         env:
           CI: true
 
       - name: E2E tests
         run: |
-          yarn test:e2e
+          yarn test:e2e --coverage
         env:
           CI: true
 
