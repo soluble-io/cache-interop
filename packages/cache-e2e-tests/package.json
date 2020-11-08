@@ -1,6 +1,7 @@
 {
-  "name": "@soluble/cache-interop",
-  "description": "Async cache interop contracts",
+  "name": "@soluble/cache-e2e",
+  "private": true,
+  "description": "E2E tests for cache-interop",
   "version": "0.0.7-canary.0",
   "license": "MIT",
   "homepage": "https://github.com/soluble-io/tci",
@@ -9,30 +10,11 @@
     "name": "Vanvelthem Sébastien",
     "url": "https://github.com/belgattitude"
   },
-  "keywords": [
-    "cache",
-    "interop",
-    "contract"
-  ],
-  "jsnext:main": "dist/cache-interop.es.js",
-  "source": "src/index.ts",
-  "module": "dist/cache-interop.es.js",
-  "esmodules": "dist/cache-interop.modern.js",
-  "main": "dist/cache-interop.js",
-  "umd:main": "dist/cache-interop.umd.js",
-  "typings": "dist/index.d.ts",
-  "files": [
-    "dist"
-  ],
-  "sideEffects": false,
   "scripts": {
-    "start": "cross-env NODE_ENV=development tsdx watch",
-    "build": "cross-env NODE_ENV=production microbundle --tsconfig tsconfig.build.json --target node",
     "clean": "rimraf --no-glob ./dist ./build ./coverage",
-    "test": "@test:unit",
-    "test:unit": "jest --config jest.config.js --color --coverage",
-    "typecheck": "tsc --noEmit",
-    "typecheck:build": "tsc --project tsconfig.build.json --noEmit",
+    "test": "@test:e2e",
+    "test:e2e": "jest --config jest.config.js --color --coverage",
+    "typecheck": "tsc --project tsconfig.json --noEmit",
     "lint": "run-p lint:code",
     "lint:code": "eslint . --ext .ts,.tsx,.js,.jsx",
     "fix:staged": "lint-staged --allow-empty",
@@ -40,7 +22,7 @@
     "fix:all:code": "eslint . --ext .ts,.tsx,.js,.jsx --fix",
     "deps:check": "npx npm-check-updates --dep prod,dev,optional",
     "deps:update": "npx npm-check-updates --dep prod,dev,optional -u",
-    "coverage:publish": "codecov --root=../../ -F cacheInterop"
+    "coverage:publish": "codecov --root=../../ -F e2e"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
@@ -50,9 +32,6 @@
     "*.{yaml,json,md,html}": [
       "prettier --write"
     ]
-  },
-  "peerDependencies": {
-    "ioredis": "^4.18.0"
   },
   "devDependencies": {
     "@types/ioredis": "^4.17.7",

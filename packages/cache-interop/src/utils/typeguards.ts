@@ -1,14 +1,14 @@
 import { AsyncFn, SyncFn } from './value-provider';
 import { CacheValueProviderFn } from '../cache.interface';
 
-export function isPromiseLike(value: any): value is PromiseLike<any> {
+export function isPromiseLike<T>(value: unknown): value is PromiseLike<T> {
   if (value instanceof Promise) {
     return true;
   }
   if (
     value !== null &&
     (typeof value === 'function' || typeof value === 'object') &&
-    typeof value.then === 'function'
+    typeof (value as Promise<unknown>).then === 'function'
   ) {
     return true;
   }
