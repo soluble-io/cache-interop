@@ -50,7 +50,7 @@ jobs:
         run: sh ./scripts/check-git-pristine-yarn-lock.sh
 
       - name: Check packages duplicates
-        run: yarn-deduplicate --list --fail
+        run: yarn deduplicate --list --fail
 
       - name: Linting
         run: |
