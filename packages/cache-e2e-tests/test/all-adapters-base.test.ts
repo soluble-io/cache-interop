@@ -21,7 +21,7 @@ describe.each(adapters)('Adapter: %s', (name, adapterFactory) => {
     switch (name) {
       case 'IoRedisCacheAdapter':
         console.log('Starting redis container....');
-        container = await new GenericContainer('redis').withExposedPorts(6379).start();
+        container = await new GenericContainer('redis', '5-alpine').withExposedPorts(6379).start();
         const options = {
           dsn: `redis://${container.getHost()}:${container.getMappedPort(6379)}`,
         };
