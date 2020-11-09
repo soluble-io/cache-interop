@@ -94,4 +94,7 @@ export class MapCacheAdapter<TBase = string> extends AbstractCacheAdapter<TBase>
       message: 'Not yet implemented',
     });
   };
+  getStorage(): Map<CacheKey, { expiresAt: number; data: unknown }> {
+    return this.map;
+  }
 }

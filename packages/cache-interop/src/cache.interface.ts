@@ -52,4 +52,6 @@ export interface CacheInterface<TBase = string> {
     value: T | CacheValueProviderFn<T>,
     options?: GetOrSetOptions
   ): Promise<CacheItemInterface<T>>;
+
+  getStorage(): unknown;
 }

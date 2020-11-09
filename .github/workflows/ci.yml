@@ -7,6 +7,7 @@ on:
       - main
     paths-ignore:
       - "docs/**"
+      - ".changeset/**"
 
   pull_request:
     types:
@@ -15,6 +16,7 @@ on:
       - reopened
     paths-ignore:
       - "docs/**"
+      - ".changeset/**"
 
 jobs:
   test:

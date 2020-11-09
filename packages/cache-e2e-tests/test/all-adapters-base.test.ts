@@ -1,19 +1,50 @@
 import { CacheException, CacheInterface, IoRedisCacheAdapter, MapCacheAdapter } from '@soluble/cache-interop';
+import { GenericContainer } from 'testcontainers';
+import { StartedTestContainer } from 'testcontainers/dist/test-container';
 
 const adapters = [
   ['MapCacheAdapter', () => new MapCacheAdapter()],
-  ['MapCacheAdapter2', () => new MapCacheAdapter()],
-  //['IoRedisCacheAdapter', () => IoRedisCacheAdapter.createFromDSN()],
-] as [string, () => CacheInterface][];
+  //['MapCacheAdapter', () => new MapCacheAdapter()],
+  [
+    'IoRedisCacheAdapter',
+    (options) => {
+      return IoRedisCacheAdapter.createFromDSN(options!.dsn);
+    },
+  ],
+] as [name: string, factory: (options?: Record<string, any>) => CacheInterface][];
 
 describe.each(adapters)('Adapter: %s', (name, adapterFactory) => {
-  let cache: CacheInterface = adapterFactory();
+  let container: StartedTestContainer;
+  let cache: CacheInterface;
+
+  beforeAll(async () => {
+    switch (name) {
+      case 'IoRedisCacheAdapter':
+        console.log('Starting redis container....');
+        container = await new GenericContainer('redis', '5-alpine').withExposedPorts(6379).start();
+        const options = {
+          dsn: `redis://${container.getHost()}:${container.getMappedPort(6379)}`,
+        };
+        cache = adapterFactory(options);
+        break;
+      default:
+        cache = adapterFactory();
+    }
+  });
+  afterAll(async () => {
+    switch (name) {
+      case 'IoRedisCacheAdapter':
+        console.log('Stopping redis container...');
+        await (cache as IoRedisCacheAdapter).getStorage().quit();
+        await container.stop();
+        break;
+      default:
+    }
+  });
 
   afterEach(() => {
     cache.clear();
-    cache = adapterFactory();
   });
-
   describe('Adapter.set()', () => {
     describe('when value is a string', () => {
       it('should return true', async () => {
