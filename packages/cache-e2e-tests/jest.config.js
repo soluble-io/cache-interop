@@ -2,14 +2,13 @@ const { pathsToModuleNameMapper } = require('ts-jest/utils');
 const { defaults: tsjPreset } = require('ts-jest/presets');
 const { compilerOptions } = require('./tsconfig');
 
-console.log('cool', tsjPreset.transform);
-console.log('cool', pathsToModuleNameMapper(compilerOptions.paths, { prefix: '<rootDir>/' }));
-
 /** @typedef {import('ts-jest')} */
 /** @type {import('@jest/types').Config.InitialOptions} */
 const config = {
   name: 'e2e',
   displayName: 'e2e',
+  testRunner: 'jest-circus/runner',
+  setupFilesAfterEnv: ['<rootDir>/cache-e2e-tests/jest.setup.js'],
   verbose: true,
   /*
   transform: {
@@ -20,7 +19,7 @@ const config = {
   },
   transformIgnorePatterns: ['[/\\\\]node_modules[/\\\\].+\\.(js|jsx|ts|tsx)$'],
   rootDir: '../',
-  testMatch: ['<rootDir>/cache-e2e-tests/**/*.test.ts', '**/*.test.ts'],
+  testMatch: ['<rootDir>/cache-e2e-tests/**/*.test.ts'],
   testEnvironment: 'node',
   moduleNameMapper: pathsToModuleNameMapper(compilerOptions.paths, { prefix: '<rootDir>/' }),
   /*
