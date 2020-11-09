@@ -1,5 +1,11 @@
 # @soluble/cache-interop
 
+## 0.0.7-canary.2
+
+### Patch Changes
+
+- [`3fc6340`](https://github.com/soluble-io/tci/commit/3fc6340fd8ced1e0b9981b5a8b3b362d032182e4) [#9](https://github.com/soluble-io/tci/pull/9) Thanks [@belgattitude](https://github.com/belgattitude)! - fix IORedisCacheAdapter set method when value is null
+
 ## 0.0.7-canary.1
 
 ### Patch Changes
