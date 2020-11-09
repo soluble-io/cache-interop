@@ -109,10 +109,13 @@ export class IoRedisCacheAdapter<TBase = string> extends AbstractCacheAdapter<TB
   };
 
   clear = async (): Promise<boolean> => {
-    throw new UnsupportedFeatureException({
-      message: 'Not yet implemented',
-    });
+    const ret = await this.redis.flushdb();
+    return ret === 'OK';
   };
+
+  getStorage(): IORedis.Redis {
+    return this.redis;
+  }
 
   static createFromDSN(dsn: string): IoRedisCacheAdapter {
     return new IoRedisCacheAdapter<string>(IoRedisCacheAdapter.getOptionsFromDSN(dsn));
@@ -122,7 +125,7 @@ export class IoRedisCacheAdapter<TBase = string> extends AbstractCacheAdapter<TB
    * Cause the ioredis one is buggy... with some characters
    */
   static getOptionsFromDSN(dsn: string): IORedis.RedisOptions {
-    const regexp = /^redis:\/\/(?<username>.*)?:(?<password>.*)@(?<host>.*):(?<port>.*)\/(?<db>\d)$/;
+    const regexp = /^redis:\/\/((?<username>.*)?:(?<password>.*)@)?(?<host>.*):(?<port>[0-9]{2,5})(\/(?<db>\d))?$/;
     const matches = dsn.match(regexp);
     if (matches === null || matches.length < 2 || !matches.groups) {
       throw new Error('Invalid IORedis DSN');

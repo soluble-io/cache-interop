@@ -28,6 +28,8 @@ export abstract class AbstractCacheAdapter<TBase = string> implements CacheInter
 
   abstract clear(): Promise<boolean>;
 
+  abstract getStorage(): unknown;
+
   getOrSet = async <T = TBase>(
     key: CacheKey,
     value: T | CacheValueProviderFn<T>,
