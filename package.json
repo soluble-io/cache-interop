@@ -22,7 +22,7 @@
     "test:e2e": "lerna run test:e2e -- $@",
     "changeset": "changeset",
     "version-packages": "changeset version",
-    "release": "@build && changeset publish",
+    "release": "yarn build && changeset publish",
     "typecheck": "lerna run typecheck --stream --parallel",
     "lint": "yarn workspaces run lint",
     "fix:staged": "yarn workspaces run fix:staged",
