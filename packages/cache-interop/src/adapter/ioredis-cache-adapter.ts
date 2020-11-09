@@ -59,9 +59,20 @@ export class IoRedisCacheAdapter<TBase = string> extends AbstractCacheAdapter<TB
   ): Promise<TrueOrCacheException> => {
     let v = value;
     if (isCacheValueProviderFn(value)) {
-      v = await executeValueProviderFn<T>(value);
+      try {
+        v = await executeValueProviderFn<T>(value);
+      } catch (e) {
+        // @todo decide what to do, a cache miss ?
+        return new CacheException({
+          previousError: e,
+          message: "Can't fetch the provided function",
+        });
+      }
     }
     return new Promise((resolve, reject) => {
+      if (v === null) {
+        resolve(true);
+      }
       if (!isNonEmptyString(v)) {
         throw new Error('IORedisCacheAdapter currently support only string values');
       }
