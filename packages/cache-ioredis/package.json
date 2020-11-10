@@ -1,0 +1,66 @@
+{
+  "name": "@soluble/cache-ioredis",
+  "description": "IORedis cache interop adapter",
+  "version": "0.0.7-canary.2",
+  "license": "MIT",
+  "homepage": "https://github.com/soluble-io/tci/",
+  "repository": "https://github.com/soluble-io/tci",
+  "author": {
+    "name": "Vanvelthem Sébastien",
+    "url": "https://github.com/belgattitude"
+  },
+  "keywords": [
+    "cache",
+    "interop",
+    "ioredis"
+  ],
+  "jsnext:main": "dist/cache-ioredis.es.js",
+  "source": "src/index.ts",
+  "module": "dist/cache-ioredis.es.js",
+  "esmodules": "dist/cache-ioredis.modern.js",
+  "main": "dist/cache-ioredis.js",
+  "umd:main": "dist/cache-ioredis.umd.js",
+  "typings": "dist/index.d.ts",
+  "files": ["dist"],
+  "sideEffects": false,
+  "scripts": {
+    "start": "cross-env NODE_ENV=development tsdx watch",
+    "build": "cross-env NODE_ENV=production microbundle --tsconfig tsconfig.build.json --target node",
+    "clean": "rimraf --no-glob ./dist ./build ./coverage",
+    "test": "@test:unit",
+    "test:unit": "jest --config jest.config.js --color $@",
+    "typecheck": "tsc --noEmit",
+    "typecheck:build": "tsc --project tsconfig.build.json --noEmit",
+    "lint": "run-p lint:code",
+    "lint:code": "eslint . --ext .ts,.tsx,.js,.jsx",
+    "fix:staged": "lint-staged --allow-empty",
+    "fix:all": "run-p fix:all:*",
+    "fix:all:code": "eslint . --ext .ts,.tsx,.js,.jsx --fix",
+    "deps:check": "npx npm-check-updates --dep prod,dev,optional",
+    "deps:update": "npx npm-check-updates --dep prod,dev,optional -u",
+    "coverage:publish": "codecov --root=../../ -F cacheIORedis"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "prettier --write",
+      "eslint --fix"
+    ],
+    "*.{yaml,json,md,html}": [
+      "prettier --write"
+    ]
+  },
+  "dependencies": {
+    "@soluble/cache-interop": "^0.0.7-canary.2"
+  },
+  "devDependencies": {
+    "@types/ioredis": "^4.17.7",
+    "ioredis": "^4.19.2"
+  },
+  "peerDependencies": {
+    "@types/ioredis": ">=4.0",
+    "ioredis": ">=4.0"
+  },
+  "engines": {
+    "node": ">=10.13"
+  }
+}
