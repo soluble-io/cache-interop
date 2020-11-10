@@ -17,7 +17,7 @@ const config = {
   transform: {
     '^.+\\.tsx?$': 'ts-jest',
   },
-  transformIgnorePatterns: ['[/\\\\]node_modules[/\\\\].+\\.(js|jsx|ts|tsx)$'],
+  transformIgnorePatterns: ['[/\\\\]node_modules[/\\\\].+\\.(js|ts)$'],
   rootDir: '../',
   testMatch: ['<rootDir>/cache-e2e-tests/**/*.test.ts'],
   testEnvironment: 'node',
@@ -29,8 +29,12 @@ const config = {
     '^@soluble/cache\\-interop/(.*)$': '<rootDir>/cache-interop/src/$1',
   },
   */
-  collectCoverageFrom: ['<rootDir>/cache-interop/src/**/*.{ts,js}', '!**/*.test.ts'],
   coverageDirectory: '<rootDir>/cache-e2e-tests/coverage',
+  collectCoverageFrom: [
+    '<rootDir>/cache-interop/src/**/*.{ts,js}',
+    '<rootDir>/cache-ioredis/src/**/*.{ts,js}',
+    '!**/*.test.ts',
+  ],
   globals: {
     'ts-jest': {
       diagnostics: true,
