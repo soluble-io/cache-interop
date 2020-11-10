@@ -10672,6 +10672,14 @@ sprintf-js@~1.0.2:
   resolved "https://registry.yarnpkg.com/sprintf-js/-/sprintf-js-1.0.3.tgz#04e6926f662895354f3dd015203633b857297e2c"
   integrity sha1-BOaSb2YolTVPPdAVIDYzuFcpfiw=
 
+ssh-remote-port-forward@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/ssh-remote-port-forward/-/ssh-remote-port-forward-1.0.3.tgz#074cebed6d54a42ce4659d6aa24987e433ff5fef"
+  integrity sha512-PJ6qGFmB6n0iMCQIp+qzx8qVUE5cgacopvEh63t3NJjEQHOaza/JT9zywmmVlaol/eGtCmpvBXx2A03ih1Y+xg==
+  dependencies:
+    "@types/ssh2" "^0.5.45"
+    ssh2 "^0.8.9"
+
 ssh2-streams@~0.4.10:
   version "0.4.10"
   resolved "https://registry.yarnpkg.com/ssh2-streams/-/ssh2-streams-0.4.10.tgz#48ef7e8a0e39d8f2921c30521d56dacb31d23a34"
@@ -11171,13 +11179,12 @@ test-exclude@^6.0.0:
     glob "^7.1.4"
     minimatch "^3.0.4"
 
-testcontainers@^6.1.0:
-  version "6.1.0"
-  resolved "https://registry.yarnpkg.com/testcontainers/-/testcontainers-6.1.0.tgz#b9007d3cc3d6c16da86178402d393cfe5771d69a"
-  integrity sha512-8k3O4HjmCWm47ZurG5m42Pu5k56r3LwxSkMxDCqwoiekOUOaP9IiIoX+S0G/sKHEEXzqkMZ1PlZd2Go1oTXEcA==
+testcontainers@^6.1.1:
+  version "6.1.1"
+  resolved "https://registry.yarnpkg.com/testcontainers/-/testcontainers-6.1.1.tgz#df48783bc76455a51255f1e9f5d095f98b32a726"
+  integrity sha512-M4b71wVTqOqRsEYf4iC5MTWnnN2NEv7jFaGyE24htWEUVEL5SbAUqA1ul19aBzBACbYAjO6+WDetcoY2Vngdkg==
   dependencies:
     "@types/dockerode" "^2.5.34"
-    "@types/ssh2" "^0.5.45"
     byline "^5.0.0"
     debug "^4.1.1"
     docker-compose "^0.23.5"
@@ -11185,7 +11192,7 @@ testcontainers@^6.1.0:
     get-port "^5.1.1"
     glob "^7.1.6"
     slash "^3.0.0"
-    ssh2 "^0.8.9"
+    ssh-remote-port-forward "^1.0.3"
     stream-to-array "^2.3.0"
     tar-fs "^2.1.0"
 
