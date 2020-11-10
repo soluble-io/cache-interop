@@ -1,19 +1,32 @@
 {
-  "extends": "./tsconfig.build",
+  "extends": "./tsconfig.base",
   "compilerOptions": {
-    "skipLibCheck": true,
-    "skipDefaultLibCheck": true,
-    "moduleResolution": "node",
     "rootDir": ".",
     "baseUrl": ".",
     "paths": {
       "@soluble/cache-interop": ["./packages/cache-interop/src"],
       "@soluble/cache-interop/*": ["./packages/cache-interop/src/*"],
-      "@soluble/cache-ioredis": ["./packages/cache-ioredis/src"]
+      "@soluble/cache-ioredis": ["./packages/cache-ioredis/src"],
+      "@soluble/cache-ioredis/*": ["./packages/cache-ioredis/src/*"]
     }
   },
+  "files": [],
+  "references": [
+    {
+      "path": "packages/cache-interop"
+    },
+    {
+      "path": "packages/cache-ioredis"
+    }
+  ],
   "exclude": [
-    "**/dist/",
-    "docs"
+    "**/node_modules",
+    "**/dist",
+    "**/build",
+    "**/test",
+    "**/spec",
+    "**/scripts",
+    "**/*.test.ts",
+    "**/*.spec.ts"
   ]
 }
