@@ -1,34 +1,30 @@
 const { pathsToModuleNameMapper } = require('ts-jest/utils');
 const { defaults: tsjPreset } = require('ts-jest/presets');
-const { compilerOptions } = require('./tsconfig');
+const { compilerOptions } = require('./tsconfig.jest.json');
 
 /** @typedef {import('ts-jest')} */
 /** @type {import('@jest/types').Config.InitialOptions} */
 const config = {
-  name: 'cache-e2e',
-  displayName: 'cache-e2e',
+  name: 'cache-ioredis/unit',
+  displayName: 'cache-ioredis/unit',
   testRunner: 'jest-circus/runner',
   testEnvironment: 'node',
-  setupFilesAfterEnv: ['<rootDir>/cache-e2e-tests/jest.setup.js'],
   verbose: true,
   transform: {
     ...tsjPreset.transform,
   },
-  transformIgnorePatterns: ['[/\\\\]node_modules[/\\\\].+\\.(js|ts)$'],
   rootDir: '../',
-  testMatch: ['<rootDir>/cache-e2e-tests/**/*.test.ts'],
+  transformIgnorePatterns: ['[/\\\\]node_modules[/\\\\].+\\.(js|ts)$'],
+  testMatch: ['<rootDir>/cache-ioredis/src/**/*.test.ts'],
   moduleNameMapper: pathsToModuleNameMapper(compilerOptions.paths, { prefix: '<rootDir>/' }),
-  coverageDirectory: '<rootDir>/cache-e2e-tests/coverage',
-  collectCoverageFrom: [
-    '<rootDir>/cache-interop/src/**/*.{ts,js}',
-    '<rootDir>/cache-ioredis/src/**/*.{ts,js}',
-    '!**/*.test.ts',
-  ],
+  coverageDirectory: '<rootDir>/cache-ioredis/coverage',
+  collectCoverageFrom: ['<rootDir>/cache-ioredis/src/**/*.{ts,js}', '!**/*.test.ts'],
   globals: {
     'ts-jest': {
       diagnostics: true,
-      tsconfig: './tsconfig.json',
+      tsconfig: './tsconfig.jest.json',
     },
   },
 };
+
 module.exports = config;

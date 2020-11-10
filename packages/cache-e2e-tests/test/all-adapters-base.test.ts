@@ -1,4 +1,5 @@
-import { CacheException, CacheInterface, IoRedisCacheAdapter, MapCacheAdapter } from '@soluble/cache-interop';
+import { CacheException, CacheInterface, MapCacheAdapter } from '@soluble/cache-interop';
+import { IoRedisCacheAdapter } from '@soluble/cache-ioredis';
 import { GenericContainer } from 'testcontainers';
 import { StartedTestContainer } from 'testcontainers/dist/test-container';
 

@@ -1,4 +1,5 @@
 export * from './cache.interface';
+export * from './cache-item.interface';
 export * from './cache-item';
 export * from './adapter';
 export * from './exceptions';

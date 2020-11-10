@@ -12,7 +12,7 @@
   },
   "scripts": {
     "clean": "rimraf --no-glob ./dist ./build ./coverage",
-    "test": "@test:e2e",
+    "test": "run-s test:*",
     "test:e2e": "jest --config jest.config.js --color $@",
     "typecheck": "tsc --project tsconfig.json --noEmit",
     "lint": "run-p lint:code",
