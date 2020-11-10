@@ -5,17 +5,13 @@ const { compilerOptions } = require('./tsconfig');
 /** @typedef {import('ts-jest')} */
 /** @type {import('@jest/types').Config.InitialOptions} */
 const config = {
-  name: 'e2e',
-  displayName: 'e2e',
+  name: 'cache-e2e',
+  displayName: 'cache-e2e',
   testRunner: 'jest-circus/runner',
   setupFilesAfterEnv: ['<rootDir>/cache-e2e-tests/jest.setup.js'],
   verbose: true,
-  /*
   transform: {
     ...tsjPreset.transform,
-  },*/
-  transform: {
-    '^.+\\.tsx?$': 'ts-jest',
   },
   transformIgnorePatterns: ['[/\\\\]node_modules[/\\\\].+\\.(js|ts)$'],
   rootDir: '../',
