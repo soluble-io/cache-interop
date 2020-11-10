@@ -16,12 +16,9 @@ module.exports = {
   testMatch: ['<rootDir>/src/**/*.test.ts'],
   testEnvironment: 'node',
   rootDir: '.',
-  //moduleNameMapper: pathsToModuleNameMapper(compilerOptions.paths, { prefix: '<rootDir>/' }),
-  moduleNameMapper: {
-    '^@soluble/cache\\-interop$': '../cache-interop/src',
-  },
+  moduleNameMapper: pathsToModuleNameMapper(compilerOptions.paths, { prefix: '<rootDir>/' }),
   transform: {
-    '^.+\\.(js|ts)$': 'ts-jest',
+    ...tsjPreset.transform,
   },
   transformIgnorePatterns: ['[/\\\\]node_modules[/\\\\].+\\.(js|ts)$'],
   modulePaths: [],
