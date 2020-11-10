@@ -7,10 +7,18 @@ coverage:
         target: 1%
         flags:
           - cacheInterop
+      cacheIORedis:
+        target: 1%
+        flags:
+          - cacheIORedis
+
 flags:
   cacheInterop:
     paths:
       - packages/cache-interop
+  cacheIORedis:
+    paths:
+      - packages/cache-ioredis
   e2e:
     paths:
       - packages/cache-e2e-tests
@@ -18,6 +26,7 @@ flags:
 ignore:
   - "scripts/**/*"
   - "docs/**/*"
+  - "scripts/**/*"
 
 comment:
   layout: "reach,diff,flags,tree"
