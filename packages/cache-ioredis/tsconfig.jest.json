@@ -10,9 +10,10 @@
     "noUnusedParameters": false,
     "isolatedModules": true,
     "rootDir": ".",
+    "baseUrl": "..",
     "paths": {
-      "@soluble/cache-interop": ["../cache-interop/src"],
-      "@soluble/cache-interop/*": ["../cache-interop/src/*"]
+      "@soluble/cache-interop": ["cache-interop/src"],
+      "@soluble/cache-interop/*": ["cache-interop/src/*"]
     }
   }
 }

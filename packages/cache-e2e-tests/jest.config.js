@@ -8,6 +8,7 @@ const config = {
   name: 'cache-e2e',
   displayName: 'cache-e2e',
   testRunner: 'jest-circus/runner',
+  testEnvironment: 'node',
   setupFilesAfterEnv: ['<rootDir>/cache-e2e-tests/jest.setup.js'],
   verbose: true,
   transform: {
@@ -16,15 +17,7 @@ const config = {
   transformIgnorePatterns: ['[/\\\\]node_modules[/\\\\].+\\.(js|ts)$'],
   rootDir: '../',
   testMatch: ['<rootDir>/cache-e2e-tests/**/*.test.ts'],
-  testEnvironment: 'node',
   moduleNameMapper: pathsToModuleNameMapper(compilerOptions.paths, { prefix: '<rootDir>/' }),
-  /*
-  moduleNameMapper: {
-    '../../cache-interop/src': '<rootDir>/cache-interop/src',
-    '^@soluble/cache\\-interop$': '<rootDir>/cache-interop/src',
-    '^@soluble/cache\\-interop/(.*)$': '<rootDir>/cache-interop/src/$1',
-  },
-  */
   coverageDirectory: '<rootDir>/cache-e2e-tests/coverage',
   collectCoverageFrom: [
     '<rootDir>/cache-interop/src/**/*.{ts,js}',
