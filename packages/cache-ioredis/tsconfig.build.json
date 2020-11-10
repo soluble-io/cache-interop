@@ -1,15 +1,13 @@
 {
-  "extends": "../../tsconfig.build.json",
+  "extends": "./tsconfig.json",
   "compilerOptions": {
-    "composite": true,
-    "outDir": "./dist",
-    "rootDir": "./src"
+    "rootDir": "./src",
+    "baseUrl": "./src",
+    "composite": false,
+    "noEmit": false,
+    "declarationMap": false,
+    "declarationDir": "./dist",
+    "outDir": "./dist"
   },
-  "files": [
-    "../cache-interop/dist/src/index.d.ts",
-  ],
-  "include": ["src"],
-  "exclude": [
-    "**/*.test.ts"
-  ]
+  "exclude": ["*.test.ts"]
 }

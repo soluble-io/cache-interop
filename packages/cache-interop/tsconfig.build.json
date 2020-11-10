@@ -9,5 +9,5 @@
     "declarationDir": "./dist",
     "outDir": "./dist"
   },
-  "exclude": ["node_modules", "out", "dist"]
+  "exclude": ["*.test.ts"]
 }

@@ -8,6 +8,11 @@
     "noEmit": true,
     "noUnusedLocals": false,
     "noUnusedParameters": false,
-    "isolatedModules": true
+    "isolatedModules": true,
+    "rootDir": "../",
+    "paths": {
+      "@soluble/cache-interop": ["./cache-interop/src"],
+      "@soluble/cache-interop/*": ["./cache-interop/src/*"]
+    }
   }
 }
