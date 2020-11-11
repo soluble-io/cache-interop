@@ -8,6 +8,10 @@ export class CacheException extends Error {
   public readonly stackTrace: string | null;
   private _previousError!: Error | null;
 
+  get previousError(): Error | null {
+    return this._previousError ?? null;
+  }
+
   set previousError(previousError: Error | null) {
     this._previousError = previousError;
     if (previousError !== null) {
