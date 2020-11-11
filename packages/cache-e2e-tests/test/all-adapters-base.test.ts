@@ -101,28 +101,34 @@ describe.each(adapters)('Adapter: %s %s', (name, image, adapterFactory) => {
         await cache.set('k2', fct);
         expect((await cache.get('k2')).value).toBeNull();
       });
-      it('should return a CacheException when function throws', async () => {
+    });
+    describe('when function throws', () => {
+      it('should return a CacheProviderException when function throws', async () => {
         const fct = jest.fn((_) => {
           throw new Error('error');
         });
         const ret = await cache.set('k', fct);
-        expect(ret).toBeInstanceOf(CacheException);
         expect(fct).toHaveBeenCalledTimes(1);
+        expect(ret).toBeInstanceOf(CacheProviderException);
       });
     });
+
     describe('when value is a native async function', () => {
       it('should call the function with params and return true', async () => {
         const fct = jest.fn(async (_) => 'native');
         expect(await cache.set('k', fct)).toStrictEqual(true);
         expect(fct).toHaveBeenCalledTimes(1);
       });
-      it('should return a CacheException when promise fails', async () => {
+    });
+
+    describe('when value is an async function that throws', () => {
+      it('should return a CacheProviderException when promise fails', async () => {
         const fct = jest.fn(async (_) => {
           throw new Error('fetch-error');
         });
         const ret = await cache.set('k', fct);
-        expect(ret).toBeInstanceOf(CacheException);
         expect(fct).toHaveBeenCalledTimes(1);
+        expect(ret).toBeInstanceOf(CacheException);
       });
     });
   });
