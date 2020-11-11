@@ -11,13 +11,15 @@ import { AbstractCacheAdapter } from './abstract-cache-adapter';
 import { CacheItemInterface } from '../cache-item.interface';
 import { CacheItem } from '../cache-item';
 import { executeValueProviderFn } from '../utils/value-provider';
-import { UnsupportedFeatureException } from '../exceptions/unsupported-feature.exception';
 import { DateProvider } from '../expiry/date-provider.interface';
 import { EsDateProvider } from '../expiry/es-date-provider';
 import { CacheException } from '../exceptions/cache.exception';
+import { UnsupportedFeatureException } from '../exceptions';
 
-export class MapCacheAdapter<TBase = string> extends AbstractCacheAdapter<TBase> implements CacheInterface<TBase> {
-  private map: Map<CacheKey, { expiresAt: number; data: unknown }>;
+export class MapCacheAdapter<TBase = string, KBase = CacheKey>
+  extends AbstractCacheAdapter<TBase, KBase>
+  implements CacheInterface<TBase, KBase> {
+  private map: Map<KBase, { expiresAt: number; data: unknown }>;
   private dateProvider: DateProvider;
   constructor() {
     super();
@@ -25,7 +27,11 @@ export class MapCacheAdapter<TBase = string> extends AbstractCacheAdapter<TBase>
     this.dateProvider = new EsDateProvider();
   }
 
-  get = async <T = TBase>(key: CacheKey): Promise<CacheItemInterface<T>> => {
+  get = async <T = TBase, K extends KBase = KBase>(key: K): Promise<CacheItemInterface<T>> => {
+    if (typeof key !== 'string') {
+      // @todo remove this
+      throw new Error('Error @todo check for possible values');
+    }
     if (this.map.has(key)) {
       const cached = this.map.get(key);
       if (cached !== undefined) {
@@ -42,8 +48,8 @@ export class MapCacheAdapter<TBase = string> extends AbstractCacheAdapter<TBase>
     });
   };
 
-  set = async <T = TBase>(
-    key: CacheKey,
+  set = async <T = TBase, K extends KBase = KBase>(
+    key: K,
     value: T | CacheValueProviderFn<T>,
     options?: SetOptions
   ): Promise<TrueOrCacheException> => {
@@ -64,11 +70,11 @@ export class MapCacheAdapter<TBase = string> extends AbstractCacheAdapter<TBase>
     return true;
   };
 
-  has = async (key: CacheKey): Promise<TrueOrFalseOrUndefined> => {
+  has = async <K extends KBase = KBase>(key: K): Promise<TrueOrFalseOrUndefined> => {
     return this.map.has(key);
   };
 
-  delete = async (key: CacheKey): Promise<TrueOrCacheException> => {
+  delete = async <K extends KBase = KBase>(key: K): Promise<TrueOrCacheException> => {
     // @todo decide to return false when the item does no exists
     this.map.delete(key);
     return true;
@@ -79,18 +85,13 @@ export class MapCacheAdapter<TBase = string> extends AbstractCacheAdapter<TBase>
     return true;
   };
 
-  getMultiple = async <T = TBase, K = Readonly<CacheKey[]>>(keys: K): Promise<Array<CacheItemInterface<T>>> => {
+  deleteMultiple = async <K extends KBase = KBase>(keys: K[]): Promise<Map<K, TrueOrCacheException>> => {
     throw new UnsupportedFeatureException({
       message: 'Not yet implemented',
     });
   };
 
-  deleteMultiple = async (keys: CacheKey[]): Promise<Map<CacheKey, TrueOrCacheException>> => {
-    throw new UnsupportedFeatureException({
-      message: 'Not yet implemented',
-    });
-  };
-  getStorage(): Map<CacheKey, { expiresAt: number; data: unknown }> {
+  getStorage(): Map<KBase, { expiresAt: number; data: unknown }> {
     return this.map;
   }
 }
