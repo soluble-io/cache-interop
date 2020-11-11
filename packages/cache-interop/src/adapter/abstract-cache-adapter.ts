@@ -31,7 +31,7 @@ export abstract class AbstractCacheAdapter<TBase = string, KBase = CacheKey> imp
 
   getMultiple = async <T = TBase, K extends KBase = KBase>(keys: K[]): Promise<Map<K, CacheItemInterface<T>>> => {
     const promises = keys.map((key) => {
-      return this.get(key).then((item): [K, CacheItemInterface<T>] => [key, item]);
+      return this.get<T>(key).then((item): [K, CacheItemInterface<T>] => [key, item]);
     });
     return Promise.all(promises).then((resp) => new Map(resp));
   };
