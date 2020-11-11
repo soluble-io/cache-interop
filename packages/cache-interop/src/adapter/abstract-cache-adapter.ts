@@ -23,8 +23,17 @@ export abstract class AbstractCacheAdapter<TBase = string> implements CacheInter
 
   abstract delete(key: CacheKey): Promise<TrueOrCacheException>;
   abstract getMultiple<T = TBase, K = Readonly<CacheKey[]>>(keys: K): Promise<Array<CacheItemInterface<T>>>;
-  abstract setMultiple<T = TBase>(keys: Map<CacheKey, T>): Promise<Map<CacheKey, TrueOrCacheException>>;
   abstract deleteMultiple(keys: CacheKey[]): Promise<Map<CacheKey, TrueOrCacheException>>;
+
+  setMultiple = async <T = TBase>(
+    keyVals: Readonly<[key: CacheKey, value: T | CacheValueProviderFn<T>][]>
+  ): Promise<Map<CacheKey, TrueOrCacheException>> => {
+    const promises = keyVals.map(([key, value]) => {
+      return this.set(key, value).then((resp) => [key, resp]);
+    });
+    const responses = (await Promise.all(promises)) as [CacheKey, TrueOrCacheException][];
+    return new Map(responses);
+  };
 
   abstract clear(): Promise<boolean>;
 
