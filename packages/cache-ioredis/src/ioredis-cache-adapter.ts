@@ -16,6 +16,7 @@ import {
   isParsableNumeric,
 } from '@soluble/cache-interop';
 import IORedis from 'ioredis';
+import { CacheProviderException } from '../../cache-interop/src/exceptions';
 
 export class IoRedisCacheAdapter<TBase = string, KBase = CacheKey>
   extends AbstractCacheAdapter<TBase, KBase>
@@ -70,7 +71,7 @@ export class IoRedisCacheAdapter<TBase = string, KBase = CacheKey>
         v = await executeValueProviderFn<T>(value);
       } catch (e) {
         // @todo decide what to do, a cache miss ?
-        return new CacheException({
+        return new CacheProviderException({
           previousError: e,
           message: "Can't fetch the provided function",
         });

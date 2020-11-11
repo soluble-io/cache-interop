@@ -14,7 +14,7 @@ import { executeValueProviderFn } from '../utils/value-provider';
 import { DateProvider } from '../expiry/date-provider.interface';
 import { EsDateProvider } from '../expiry/es-date-provider';
 import { CacheException } from '../exceptions/cache.exception';
-import { UnsupportedFeatureException } from '../exceptions';
+import { CacheProviderException, UnsupportedFeatureException } from '../exceptions';
 
 export class MapCacheAdapter<TBase = string, KBase = CacheKey>
   extends AbstractCacheAdapter<TBase, KBase>
@@ -59,7 +59,7 @@ export class MapCacheAdapter<TBase = string, KBase = CacheKey>
         v = await executeValueProviderFn<T>(value);
       } catch (e) {
         // @todo decide what do do, a cache miss ?
-        return new CacheException({
+        return new CacheProviderException({
           previousError: e,
           message: "Can't fetch the provided function",
         });
