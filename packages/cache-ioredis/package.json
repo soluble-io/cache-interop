@@ -21,7 +21,9 @@
   "main": "dist/cache-ioredis.js",
   "umd:main": "dist/cache-ioredis.umd.js",
   "typings": "dist/index.d.ts",
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "sideEffects": false,
   "scripts": {
     "start": "cross-env NODE_ENV=development tsdx watch",
@@ -54,7 +56,10 @@
   },
   "devDependencies": {
     "@types/ioredis": "^4.17.7",
-    "ioredis": "^4.19.2"
+    "ioredis": "^4.19.2",
+    "ts-jest": "^26.4.4",
+    "tslib": "^2.0.3",
+    "typescript": "^4.0.5"
   },
   "peerDependencies": {
     "@types/ioredis": ">=4.0",
