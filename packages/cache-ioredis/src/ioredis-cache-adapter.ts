@@ -111,15 +111,26 @@ export class IoRedisCacheAdapter<TBase = string, KBase = CacheKey>
     return count === 1;
   };
 
-  delete = async <K extends KBase = KBase>(key: K): Promise<true | CacheException> => {
-    throw new UnsupportedFeatureException({
-      message: 'Not yet implemented',
+  delete = async <K extends KBase = KBase>(key: K): Promise<number | CacheException> => {
+    if (!isNonEmptyString(key)) {
+      throw new Error('IORedisCacheAdapter currently support only string keys');
+    }
+    const error: CacheException | null = null;
+    let count = 0;
+    const resp = await this.redis.del(key, (error, delCount) => {
+      if (error !== null) {
+        error = new CacheException({
+          message: error.message,
+          previousError: error,
+        });
+      } else {
+        count = delCount;
+      }
     });
-  };
-  deleteMultiple = async <K extends KBase = KBase>(keys: K[]): Promise<Map<K, true | CacheException>> => {
-    throw new UnsupportedFeatureException({
-      message: 'Not yet implemented',
-    });
+    if (error !== null) {
+      return error;
+    }
+    return count;
   };
 
   clear = async (): Promise<boolean> => {
