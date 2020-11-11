@@ -164,6 +164,27 @@ describe.each(adapters)('Adapter: %s %s', (name, image, adapterFactory) => {
 
   /**
    * ##############################################################
+   * # Adapter::delete() behaviour                                   #
+   * ##############################################################
+   */
+  describe('Adapter::delete()', () => {
+    describe('when value is not in cache', () => {
+      it('should return 0 count', async () => {
+        expect(await cache.delete('no_existsing')).toStrictEqual(0);
+      });
+    });
+    describe('when value is in cache', () => {
+      it('should return 1 and delete the entry', async () => {
+        await cache.set('k', 'cool');
+        expect((await cache.get('k')).value).toStrictEqual('cool');
+        expect(await cache.delete('k')).toStrictEqual(1);
+        expect((await cache.get('k')).value).toStrictEqual(null);
+      });
+    });
+  });
+
+  /**
+   * ##############################################################
    * # Adapter::has() behaviour                                   #
    * ##############################################################
    */
@@ -178,6 +199,25 @@ describe.each(adapters)('Adapter: %s %s', (name, image, adapterFactory) => {
         await cache.set('k', 'cool');
         expect(await cache.has('k')).toStrictEqual(true);
       });
+    });
+  });
+
+  /**
+   * ##############################################################
+   * # Adapter::deleteMultiple() behaviour                                   #
+   * ##############################################################
+   */
+  describe('Adapter::deleteMultiple()', () => {
+    it('should return the delete count for each keys', async () => {
+      await cache.set('key-exists', 'cool');
+      const resp = await cache.deleteMultiple(['key-exists', 'no1', 'no2']);
+      expect(resp).toStrictEqual(
+        new Map([
+          ['key-exists', 1],
+          ['no1', 0],
+          ['no2', 0],
+        ])
+      );
     });
   });
 
