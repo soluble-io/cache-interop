@@ -1,5 +1,11 @@
 # @soluble/cache-e2e-tests
 
+## 0.1.1
+
+### Patch Changes
+
+- [`6fcb178`](https://github.com/soluble-io/tci/commit/6fcb1782f40c38002a442ff0a93e9c9cfd8be99a) [#15](https://github.com/soluble-io/tci/pull/15) Thanks [@belgattitude](https://github.com/belgattitude)! - e2e: extend coverage
+
 ## 0.1.0
 
 ### Minor Changes
