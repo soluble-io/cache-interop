@@ -6,7 +6,6 @@ import {
   CacheException,
   CacheItem,
   executeValueProviderFn,
-  UnsupportedFeatureException,
   CacheValueProviderFn,
   SetOptions,
   TrueOrFalseOrUndefined,
@@ -117,7 +116,7 @@ export class IoRedisCacheAdapter<TBase = string, KBase = CacheKey>
     }
     let error: CacheException | null = null;
     let count = 0;
-    const _void = await this.redis.del(key, (cbError, cbCount) => {
+    const _ = await this.redis.del(key, (cbError, cbCount) => {
       if (cbError !== null) {
         error = new CacheException({
           message: cbError.message,
