@@ -1,4 +1,4 @@
-import { CacheException, CacheInterface, MapCacheAdapter } from '@soluble/cache-interop';
+import { CacheException, CacheInterface, CacheProviderException, MapCacheAdapter } from '@soluble/cache-interop';
 import { IoRedisCacheAdapter } from '@soluble/cache-ioredis';
 import { GenericContainer } from 'testcontainers';
 import { StartedTestContainer } from 'testcontainers/dist/test-container';
@@ -184,13 +184,7 @@ describe.each(adapters)('Adapter: %s %s', (name, image, adapterFactory) => {
     describe('when keyVals are valid', () => {
       it('should return a map with key/true', async () => {
         const fnAsyncOk = jest.fn(async (_) => 'async');
-        const fnAsyncErr = jest.fn(async (_) => {
-          throw new Error('error');
-        });
         const fnOk = jest.fn(() => 'sync');
-        const fnErr = jest.fn(() => {
-          throw new Error('error');
-        });
         const ret = await cache.setMultiple([
           ['k-string', 'hello'],
           ['k-null', null],
@@ -221,8 +215,8 @@ describe.each(adapters)('Adapter: %s %s', (name, image, adapterFactory) => {
           ['k-async-err', fnAsyncErr],
         ]);
         expect(ret.get('k-string')).toStrictEqual(true);
-        expect(ret.get('k-fn-err')).toBeInstanceOf(Error);
-        expect(ret.get('k-async-err')).toBeInstanceOf(Error);
+        expect(ret.get('k-fn-err')).toBeInstanceOf(CacheProviderException);
+        expect(ret.get('k-async-err')).toBeInstanceOf(CacheProviderException);
       });
     });
   });
