@@ -276,6 +276,23 @@ describe.each(adapters)('Adapter: %s %s', (name, image, adapterFactory) => {
 
   /**
    * ##############################################################
+   * # Adapter::getMultiple() behaviour                                   #
+   * ##############################################################
+   */
+  describe('Adapter::getMultiple()', () => {
+    it('should return existing keys', async () => {
+      await cache.set('key1', 'val1');
+      await cache.setMultiple([['key2', 'val2']]);
+      const resp = await cache.getMultiple(['key1', 'key2', 'key-not-exists']);
+      expect(resp.size).toBe(3);
+      expect(resp.get('key1')?.value).toStrictEqual('val1');
+      expect(resp.get('key2')?.value).toStrictEqual('val2');
+      expect(resp.get('key-not-exists')?.value).toBeNull();
+    });
+  });
+
+  /**
+   * ##############################################################
    * # Adapter::getOrSet() behaviour                                   #
    * ##############################################################
    */
