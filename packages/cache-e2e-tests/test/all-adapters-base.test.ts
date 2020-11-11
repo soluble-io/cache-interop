@@ -4,24 +4,24 @@ import { GenericContainer } from 'testcontainers';
 import { StartedTestContainer } from 'testcontainers/dist/test-container';
 
 const adapters = [
-  ['MapCacheAdapter', () => new MapCacheAdapter()],
+  ['MapCacheAdapter', '', () => new MapCacheAdapter()],
   [
     'IoRedisCacheAdapter',
-    (options) => {
-      return IoRedisCacheAdapter.createFromDSN(options!.dsn);
-    },
     'redis:5-alpine',
-  ],
-  [
-    'IoRedisCacheAdapter',
     (options) => {
       return IoRedisCacheAdapter.createFromDSN(options!.dsn);
     },
-    'redis:6-alpine',
   ],
-] as [name: string, factory: (options?: Record<string, any>) => CacheInterface, image?: string][];
+  [
+    'IoRedisCacheAdapter',
+    'redis:6-alpine',
+    (options) => {
+      return IoRedisCacheAdapter.createFromDSN(options!.dsn);
+    },
+  ],
+] as [name: string, image: string, factory: (options?: Record<string, any>) => CacheInterface][];
 
-describe.each(adapters)('Adapter: %s', (name, adapterFactory, image) => {
+describe.each(adapters)('Adapter: %s %s', (name, image, adapterFactory) => {
   let container: StartedTestContainer;
   let cache: CacheInterface;
 
@@ -54,21 +54,59 @@ describe.each(adapters)('Adapter: %s', (name, adapterFactory, image) => {
   afterEach(() => {
     cache.clear();
   });
+  /**
+   * ##############################################################
+   * # Adapter::set() basic behaviour                             #
+   * ##############################################################
+   */
   describe('Adapter.set()', () => {
-    describe('when value is a string', () => {
+    describe('when setting a string value', () => {
       it('should return true', async () => {
         expect(await cache.set('k', 'cool')).toStrictEqual(true);
       });
+      it('should persist the value', async () => {
+        await cache.set('k2', 'cool2');
+        expect((await cache.get('k2')).value).toStrictEqual('cool2');
+      });
     });
-    describe('when value is null', () => {
+    describe('when setting a null value', () => {
       it('should return true', async () => {
         expect(await cache.set('k', null)).toStrictEqual(true);
       });
+      it('should persist the value', async () => {
+        await cache.set('k2', null);
+        expect((await cache.get('k2')).value).toBeNull();
+      });
     });
-    describe('when value is a regular function', () => {
+    describe('when value from a function returning a string', () => {
       it('should call the function and return true', async () => {
         const fct = jest.fn((_) => 'cool');
         expect(await cache.set('k', fct)).toStrictEqual(true);
+        expect(fct).toHaveBeenCalledTimes(1);
+      });
+      it('should persist the value', async () => {
+        const fct = jest.fn((_) => 'cool');
+        await cache.set('k2', fct);
+        expect((await cache.get('k2')).value).toStrictEqual('cool');
+      });
+    });
+    describe('when value from a function returning null', () => {
+      it('should call the function and return true', async () => {
+        const fct = jest.fn((_) => 'cool');
+        expect(await cache.set('k', fct)).toStrictEqual(true);
+        expect(fct).toHaveBeenCalledTimes(1);
+      });
+      it('should persist the value', async () => {
+        const fct = jest.fn((_) => null);
+        await cache.set('k2', fct);
+        expect((await cache.get('k2')).value).toBeNull();
+      });
+      it('should return a CacheException when function throws', async () => {
+        const fct = jest.fn((_) => {
+          throw new Error('error');
+        });
+        const ret = await cache.set('k', fct);
+        expect(ret).toBeInstanceOf(CacheException);
         expect(fct).toHaveBeenCalledTimes(1);
       });
     });
@@ -89,6 +127,11 @@ describe.each(adapters)('Adapter: %s', (name, adapterFactory, image) => {
     });
   });
 
+  /**
+   * ##############################################################
+   * # Adapter::get() behaviour                                   #
+   * ##############################################################
+   */
   describe('Adapter.get()', () => {
     describe('when value is not in cache', () => {
       it('should return empty non-error cacheitem', async () => {
@@ -113,6 +156,11 @@ describe.each(adapters)('Adapter: %s', (name, adapterFactory, image) => {
     });
   });
 
+  /**
+   * ##############################################################
+   * # Adapter::getOrSet() behaviour                                   #
+   * ##############################################################
+   */
   describe('Adapter::getOrSet', () => {
     describe('when value is not in cache', () => {
       it('should return and set the value', async () => {
