@@ -84,11 +84,7 @@ export class MapCacheAdapter<TBase = string> extends AbstractCacheAdapter<TBase>
       message: 'Not yet implemented',
     });
   };
-  setMultiple = async <T = TBase>(keys: Map<CacheKey, T>): Promise<Map<CacheKey, TrueOrCacheException>> => {
-    throw new UnsupportedFeatureException({
-      message: 'Not yet implemented',
-    });
-  };
+
   deleteMultiple = async (keys: CacheKey[]): Promise<Map<CacheKey, TrueOrCacheException>> => {
     throw new UnsupportedFeatureException({
       message: 'Not yet implemented',
