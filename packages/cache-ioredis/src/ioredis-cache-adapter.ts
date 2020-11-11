@@ -9,7 +9,6 @@ import {
   UnsupportedFeatureException,
   CacheValueProviderFn,
   SetOptions,
-  TrueOrCacheException,
   TrueOrFalseOrUndefined,
   isCacheValueProviderFn,
   isNonEmptyString,
@@ -64,7 +63,7 @@ export class IoRedisCacheAdapter<TBase = string, KBase = CacheKey>
     key: K,
     value: T | CacheValueProviderFn<T>,
     options?: SetOptions
-  ): Promise<TrueOrCacheException> => {
+  ): Promise<true | CacheException> => {
     let v = value;
     if (isCacheValueProviderFn(value)) {
       try {
@@ -112,12 +111,12 @@ export class IoRedisCacheAdapter<TBase = string, KBase = CacheKey>
     return count === 1;
   };
 
-  delete = async <K extends KBase = KBase>(key: K): Promise<TrueOrCacheException> => {
+  delete = async <K extends KBase = KBase>(key: K): Promise<true | CacheException> => {
     throw new UnsupportedFeatureException({
       message: 'Not yet implemented',
     });
   };
-  deleteMultiple = async <K extends KBase = KBase>(keys: K[]): Promise<Map<K, TrueOrCacheException>> => {
+  deleteMultiple = async <K extends KBase = KBase>(keys: K[]): Promise<Map<K, true | CacheException>> => {
     throw new UnsupportedFeatureException({
       message: 'Not yet implemented',
     });

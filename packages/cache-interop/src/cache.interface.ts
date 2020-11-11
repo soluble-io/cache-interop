@@ -1,5 +1,6 @@
 import { CacheItemInterface } from './cache-item.interface';
 import { CacheException } from './exceptions/cache.exception';
+import { CacheProviderException } from './exceptions';
 
 export type SetOptions = {
   ttl?: number;
@@ -11,7 +12,6 @@ export type CacheProviderAsyncFn<T> = (params?: CacheValueProviderParams) => Pro
 export type CacheProviderSyncFn<T> = (params?: CacheValueProviderParams) => T;
 export type CacheValueProviderFn<T> = CacheProviderAsyncFn<T> | CacheProviderSyncFn<T>;
 
-export type TrueOrCacheException = true | CacheException;
 export type TrueOrFalseOrUndefined = true | false | undefined;
 
 export type CacheKey = string;
@@ -27,12 +27,12 @@ export interface CacheInterface<TBase = string, KBase = CacheKey> {
     key: K,
     value: T | CacheValueProviderFn<T>,
     options?: SetOptions
-  ): Promise<TrueOrCacheException>;
+  ): Promise<true | CacheException>;
 
   /**
    * @return True if the item was successfully removed. CacheException if there was an error.
    */
-  delete<K extends KBase = KBase>(key: K): Promise<TrueOrCacheException>;
+  delete<K extends KBase = KBase>(key: K): Promise<true | CacheException>;
 
   /**
    * @return True if the item exists in the cache and was removed, false otherwise.
@@ -42,9 +42,9 @@ export interface CacheInterface<TBase = string, KBase = CacheKey> {
 
   getMultiple<T = TBase, K extends KBase = KBase>(keys: K[]): Promise<Map<K, CacheItemInterface<T>>>;
   setMultiple<T = TBase, K extends KBase = KBase>(
-    keyVals: Readonly<[key: K, value: T | CacheValueProviderFn<T>][]>
-  ): Promise<Map<K, TrueOrCacheException>>;
-  deleteMultiple<K extends KBase = KBase>(keys: K[]): Promise<Map<K, TrueOrCacheException>>;
+    keyVals: Readonly<[K, T | CacheValueProviderFn<T>][]>
+  ): Promise<Map<K, true | CacheException>>;
+  deleteMultiple<K extends KBase = KBase>(keys: K[]): Promise<Map<K, true | CacheException>>;
 
   clear(): Promise<TrueOrFalseOrUndefined>;
 
@@ -54,5 +54,5 @@ export interface CacheInterface<TBase = string, KBase = CacheKey> {
     options?: GetOrSetOptions
   ): Promise<CacheItemInterface<T>>;
 
-  getStorage();
+  getStorage(): unknown;
 }

@@ -1,11 +1,4 @@
-import {
-  CacheInterface,
-  CacheKey,
-  CacheValueProviderFn,
-  SetOptions,
-  TrueOrCacheException,
-  TrueOrFalseOrUndefined,
-} from '../cache.interface';
+import { CacheInterface, CacheKey, CacheValueProviderFn, SetOptions, TrueOrFalseOrUndefined } from '../cache.interface';
 import { isCacheValueProviderFn } from '../utils/typeguards';
 import { AbstractCacheAdapter } from './abstract-cache-adapter';
 import { CacheItemInterface } from '../cache-item.interface';
@@ -13,8 +6,7 @@ import { CacheItem } from '../cache-item';
 import { executeValueProviderFn } from '../utils/value-provider';
 import { DateProvider } from '../expiry/date-provider.interface';
 import { EsDateProvider } from '../expiry/es-date-provider';
-import { CacheException } from '../exceptions/cache.exception';
-import { CacheProviderException, UnsupportedFeatureException } from '../exceptions';
+import { CacheException, CacheProviderException, UnsupportedFeatureException } from '../exceptions';
 
 export class MapCacheAdapter<TBase = string, KBase = CacheKey>
   extends AbstractCacheAdapter<TBase, KBase>
@@ -52,7 +44,7 @@ export class MapCacheAdapter<TBase = string, KBase = CacheKey>
     key: K,
     value: T | CacheValueProviderFn<T>,
     options?: SetOptions
-  ): Promise<TrueOrCacheException> => {
+  ): Promise<true | CacheException> => {
     let v = value;
     if (isCacheValueProviderFn(value)) {
       try {
@@ -74,7 +66,7 @@ export class MapCacheAdapter<TBase = string, KBase = CacheKey>
     return this.map.has(key);
   };
 
-  delete = async <K extends KBase = KBase>(key: K): Promise<TrueOrCacheException> => {
+  delete = async <K extends KBase = KBase>(key: K): Promise<true | CacheException> => {
     // @todo decide to return false when the item does no exists
     this.map.delete(key);
     return true;
@@ -85,7 +77,7 @@ export class MapCacheAdapter<TBase = string, KBase = CacheKey>
     return true;
   };
 
-  deleteMultiple = async <K extends KBase = KBase>(keys: K[]): Promise<Map<K, TrueOrCacheException>> => {
+  deleteMultiple = async <K extends KBase = KBase>(keys: K[]): Promise<Map<K, true | CacheException>> => {
     throw new UnsupportedFeatureException({
       message: 'Not yet implemented',
     });
