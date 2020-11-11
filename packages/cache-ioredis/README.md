@@ -1,11 +1,11 @@
-# @soluble/cache-interop
+# @soluble/cache-ioredis
 
-[![Stable Release](https://img.shields.io/npm/v/@soluble/cache-interop.svg)](https://npm.im/@soluble/cache-interop)
+[![stable release](https://img.shields.io/npm/v/@soluble/cache-ioredis.svg)](https://npm.im/@soluble/cache-ioredis)
 [![codecov](https://codecov.io/gh/soluble-io/tci/branch/main/graph/badge.svg)](https://codecov.io/gh/soluble-io/tci)
-![npm](https://img.shields.io/npm/dt/@soluble/cache-interop)
-[![gzip size](https://badgen.net/bundlephobia/minzip/@soluble/cache-interop)](https://bundlephobia.com/result?p=@soluble/cache-interop)
-![NPM](https://img.shields.io/npm/l/@soluble/cache-interop)
+[![npm](https://img.shields.io/npm/dt/@soluble/cache-ioredis)](https://www.npmjs.com/package/@soluble/cache-ioredis)
+[![gzip size](https://badgen.net/bundlephobia/minzip/@soluble/cache-ioredis)](https://bundlephobia.com/result?p=@soluble/cache-ioredis)
+[![license](https://img.shields.io/npm/l/@soluble/cache-ioredis)](https://github.com/soluble-io/tci/blob/main/LICENSE)
 
 ```
-$ yarn add @soluble/cache-interop
+$ yarn add @soluble/cache-ioredis ioredis
 ```
