@@ -42,7 +42,9 @@ export interface CacheInterface<TBase = string> {
   has(key: CacheKey): Promise<TrueOrFalseOrUndefined>;
 
   getMultiple<T = TBase, K = Readonly<CacheKey[]>>(keys: K): Promise<Array<CacheItemInterface<T>>>;
-  setMultiple<T = TBase>(keys: Map<CacheKey, T>): Promise<Map<CacheKey, TrueOrCacheException>>;
+  setMultiple<T = TBase>(
+    keyVals: Readonly<[key: CacheKey, value: T | CacheValueProviderFn<T>][]>
+  ): Promise<Map<CacheKey, TrueOrCacheException>>;
   deleteMultiple(keys: CacheKey[]): Promise<Map<CacheKey, TrueOrCacheException>>;
 
   clear(): Promise<TrueOrFalseOrUndefined>;
