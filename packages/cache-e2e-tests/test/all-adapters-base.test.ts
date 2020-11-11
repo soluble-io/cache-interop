@@ -245,6 +245,10 @@ describe.each(adapters)('Adapter: %s %s', (name, image, adapterFactory) => {
             ['k-async-ok', true],
           ])
         );
+        expect((await cache.get('k-string')).value).toStrictEqual('hello');
+        expect((await cache.get('k-null')).value).toStrictEqual(null);
+        expect((await cache.get('k-fn-ok')).value).toStrictEqual('sync');
+        expect((await cache.get('k-async-ok')).value).toStrictEqual('async');
       });
     });
     describe('when keyVals throws errors', () => {
@@ -263,6 +267,9 @@ describe.each(adapters)('Adapter: %s %s', (name, image, adapterFactory) => {
         expect(ret.get('k-string')).toStrictEqual(true);
         expect(ret.get('k-fn-err')).toBeInstanceOf(CacheProviderException);
         expect(ret.get('k-async-err')).toBeInstanceOf(CacheProviderException);
+        expect((await cache.get('k-string')).value).toStrictEqual('hello');
+        expect((await cache.get('k-fn-err')).value).toStrictEqual(null);
+        expect((await cache.get('k-async-err')).value).toStrictEqual(null);
       });
     });
   });
