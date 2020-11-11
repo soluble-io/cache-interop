@@ -13,9 +13,9 @@ import {
   isCacheValueProviderFn,
   isNonEmptyString,
   isParsableNumeric,
+  CacheProviderException,
 } from '@soluble/cache-interop';
 import IORedis from 'ioredis';
-import { CacheProviderException } from '../../cache-interop/src/exceptions';
 
 export class IoRedisCacheAdapter<TBase = string, KBase = CacheKey>
   extends AbstractCacheAdapter<TBase, KBase>
