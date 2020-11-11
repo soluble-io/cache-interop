@@ -3,7 +3,7 @@
   "description": "Async cache interop contracts",
   "version": "0.1.0",
   "license": "MIT",
-  "homepage": "https://github.com/soluble-io/tci",
+  "homepage": "https://github.com/soluble-io/tci/tree/main/packages/cache-interop",
   "repository": "https://github.com/soluble-io/tci",
   "author": {
     "name": "Vanvelthem Sébastien",
@@ -21,7 +21,9 @@
   "main": "dist/cache-interop.js",
   "umd:main": "dist/cache-interop.umd.js",
   "types": "dist/index.d.ts",
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "sideEffects": false,
   "scripts": {
     "start": "cross-env NODE_ENV=development tsdx watch",

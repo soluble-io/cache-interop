@@ -3,7 +3,7 @@
   "description": "IORedis cache interop adapter",
   "version": "0.1.0",
   "license": "MIT",
-  "homepage": "https://github.com/soluble-io/tci/",
+  "homepage": "https://github.com/soluble-io/tci/tree/main/packages/cache-ioredis",
   "repository": "https://github.com/soluble-io/tci",
   "author": {
     "name": "Vanvelthem Sébastien",
@@ -21,7 +21,9 @@
   "main": "dist/cache-ioredis.js",
   "umd:main": "dist/cache-ioredis.umd.js",
   "typings": "dist/index.d.ts",
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "sideEffects": false,
   "scripts": {
     "start": "cross-env NODE_ENV=development tsdx watch",
