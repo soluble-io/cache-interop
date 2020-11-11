@@ -115,16 +115,16 @@ export class IoRedisCacheAdapter<TBase = string, KBase = CacheKey>
     if (!isNonEmptyString(key)) {
       throw new Error('IORedisCacheAdapter currently support only string keys');
     }
-    const error: CacheException | null = null;
+    let error: CacheException | null = null;
     let count = 0;
-    const resp = await this.redis.del(key, (error, delCount) => {
-      if (error !== null) {
+    const _void = await this.redis.del(key, (cbError, cbCount) => {
+      if (cbError !== null) {
         error = new CacheException({
-          message: error.message,
-          previousError: error,
+          message: cbError.message,
+          previousError: cbError,
         });
       } else {
-        count = delCount;
+        count = cbCount;
       }
     });
     if (error !== null) {
