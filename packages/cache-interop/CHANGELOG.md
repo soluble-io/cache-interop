@@ -1,5 +1,15 @@
 # @soluble/cache-interop
 
+## 0.2.0
+
+### Minor Changes
+
+- [`44138be`](https://github.com/soluble-io/tci/commit/44138be407f9b2b36f6224b2c7004747ece3bb3a) [#15](https://github.com/soluble-io/tci/pull/15) Thanks [@belgattitude](https://github.com/belgattitude)! - refactor cache interface
+
+### Patch Changes
+
+- [`fac0f8f`](https://github.com/soluble-io/tci/commit/fac0f8f3f5bb182f6e598ee78382723a338b5121) [#15](https://github.com/soluble-io/tci/pull/15) Thanks [@belgattitude](https://github.com/belgattitude)! - AbastractCacheAdapter added convenience setMultiple/getMultiple
+
 ## 0.1.0
 
 ### Minor Changes
