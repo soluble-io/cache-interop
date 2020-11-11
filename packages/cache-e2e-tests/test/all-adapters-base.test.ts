@@ -59,7 +59,7 @@ describe.each(adapters)('Adapter: %s %s', (name, image, adapterFactory) => {
    * # Adapter::set() basic behaviour                             #
    * ##############################################################
    */
-  describe('Adapter.set()', () => {
+  describe('Adapter.set() basics', () => {
     describe('when setting a string value', () => {
       it('should return true', async () => {
         expect(await cache.set('k', 'cool')).toStrictEqual(true);
@@ -78,7 +78,7 @@ describe.each(adapters)('Adapter: %s %s', (name, image, adapterFactory) => {
         expect((await cache.get('k2')).value).toBeNull();
       });
     });
-    describe('when value from a function returning a string', () => {
+    describe('when value is a function returning a string', () => {
       it('should call the function and return true', async () => {
         const fct = jest.fn((_) => 'cool');
         expect(await cache.set('k', fct)).toStrictEqual(true);
@@ -90,7 +90,7 @@ describe.each(adapters)('Adapter: %s %s', (name, image, adapterFactory) => {
         expect((await cache.get('k2')).value).toStrictEqual('cool');
       });
     });
-    describe('when value from a function returning null', () => {
+    describe('when value is a function returning null', () => {
       it('should call the function and return true', async () => {
         const fct = jest.fn((_) => 'cool');
         expect(await cache.set('k', fct)).toStrictEqual(true);
@@ -152,6 +152,77 @@ describe.each(adapters)('Adapter: %s %s', (name, image, adapterFactory) => {
           error: false,
           value: 'hello world',
         });
+      });
+    });
+  });
+
+  /**
+   * ##############################################################
+   * # Adapter::has() behaviour                                   #
+   * ##############################################################
+   */
+  describe('Adapter::has()', () => {
+    describe('when value is not in cache', () => {
+      it('should return false', async () => {
+        expect(await cache.has('no_existsing')).toStrictEqual(false);
+      });
+    });
+    describe('when value is in cache', () => {
+      it('should return true', async () => {
+        await cache.set('k', 'cool');
+        expect(await cache.has('k')).toStrictEqual(true);
+      });
+    });
+  });
+
+  /**
+   * ##############################################################
+   * # Adapter::setMultiple() behaviour                                   #
+   * ##############################################################
+   */
+  describe('Adapter::setMultiple()', () => {
+    describe('when keyVals are valid', () => {
+      it('should return a map with key/true', async () => {
+        const fnAsyncOk = jest.fn(async (_) => 'async');
+        const fnAsyncErr = jest.fn(async (_) => {
+          throw new Error('error');
+        });
+        const fnOk = jest.fn(() => 'sync');
+        const fnErr = jest.fn(() => {
+          throw new Error('error');
+        });
+        const ret = await cache.setMultiple([
+          ['k-string', 'hello'],
+          ['k-null', null],
+          ['k-fn-ok', fnOk],
+          ['k-async-ok', fnAsyncOk],
+        ]);
+        expect(ret).toStrictEqual(
+          new Map([
+            ['k-string', true],
+            ['k-null', true],
+            ['k-fn-ok', true],
+            ['k-async-ok', true],
+          ])
+        );
+      });
+    });
+    describe('when keyVals throws errors', () => {
+      it('should return a map with key/CacheException', async () => {
+        const fnAsyncErr = jest.fn(async (_) => {
+          throw new Error('error');
+        });
+        const fnErr = jest.fn(() => {
+          throw new Error('error');
+        });
+        const ret = await cache.setMultiple([
+          ['k-string', 'hello'],
+          ['k-fn-err', fnErr],
+          ['k-async-err', fnAsyncErr],
+        ]);
+        expect(ret.get('k-string')).toStrictEqual(true);
+        expect(ret.get('k-fn-err')).toBeInstanceOf(Error);
+        expect(ret.get('k-async-err')).toBeInstanceOf(Error);
       });
     });
   });
