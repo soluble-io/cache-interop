@@ -5,16 +5,23 @@ import { StartedTestContainer } from 'testcontainers/dist/test-container';
 
 const adapters = [
   ['MapCacheAdapter', () => new MapCacheAdapter()],
-  //['MapCacheAdapter', () => new MapCacheAdapter()],
   [
     'IoRedisCacheAdapter',
     (options) => {
       return IoRedisCacheAdapter.createFromDSN(options!.dsn);
     },
+    'redis:5-alpine',
   ],
-] as [name: string, factory: (options?: Record<string, any>) => CacheInterface][];
+  [
+    'IoRedisCacheAdapter',
+    (options) => {
+      return IoRedisCacheAdapter.createFromDSN(options!.dsn);
+    },
+    'redis:6-alpine',
+  ],
+] as [name: string, factory: (options?: Record<string, any>) => CacheInterface, image?: string][];
 
-describe.each(adapters)('Adapter: %s', (name, adapterFactory) => {
+describe.each(adapters)('Adapter: %s', (name, adapterFactory, image) => {
   let container: StartedTestContainer;
   let cache: CacheInterface;
 
@@ -22,7 +29,8 @@ describe.each(adapters)('Adapter: %s', (name, adapterFactory) => {
     switch (name) {
       case 'IoRedisCacheAdapter':
         console.log('Starting redis container....');
-        container = await new GenericContainer('redis', '5-alpine').withExposedPorts(6379).start();
+        const [imageName, imageTag] = (image ?? '').split(':');
+        container = await new GenericContainer(imageName, imageTag).withExposedPorts(6379).start();
         const options = {
           dsn: `redis://${container.getHost()}:${container.getMappedPort(6379)}`,
         };
