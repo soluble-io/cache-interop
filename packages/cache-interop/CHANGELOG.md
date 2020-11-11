@@ -1,5 +1,13 @@
 # @soluble/cache-interop
 
+## 0.2.1
+
+### Patch Changes
+
+- [`b46e72b`](https://github.com/soluble-io/tci/commit/b46e72b8de732148c37e6ca8bb7cee6b7891884b) [#17](https://github.com/soluble-io/tci/pull/17) Thanks [@belgattitude](https://github.com/belgattitude)! - Refactor has() api, implement method and and e2e
+
+* [`636273c`](https://github.com/soluble-io/tci/commit/636273c82f5af1287a34b4d673fc3fc22fffc922) [#17](https://github.com/soluble-io/tci/pull/17) Thanks [@belgattitude](https://github.com/belgattitude)! - refactor deleteMultiple, getMultiple, deleteMultiple and add default to AbstractCacheAdapter
+
 ## 0.2.0
 
 ### Minor Changes
