@@ -164,6 +164,27 @@ describe.each(adapters)('Adapter: %s %s', (name, image, adapterFactory) => {
 
   /**
    * ##############################################################
+   * # Adapter::delete() behaviour                                   #
+   * ##############################################################
+   */
+  describe('Adapter::delete()', () => {
+    describe('when value is not in cache', () => {
+      it('should return 0 count', async () => {
+        expect(await cache.delete('no_existsing')).toStrictEqual(0);
+      });
+    });
+    describe('when value is in cache', () => {
+      it('should return 1 and delete the entry', async () => {
+        await cache.set('k', 'cool');
+        expect((await cache.get('k')).value).toStrictEqual('cool');
+        expect(await cache.delete('k')).toStrictEqual(1);
+        expect((await cache.get('k')).value).toStrictEqual(null);
+      });
+    });
+  });
+
+  /**
+   * ##############################################################
    * # Adapter::has() behaviour                                   #
    * ##############################################################
    */
@@ -178,6 +199,25 @@ describe.each(adapters)('Adapter: %s %s', (name, image, adapterFactory) => {
         await cache.set('k', 'cool');
         expect(await cache.has('k')).toStrictEqual(true);
       });
+    });
+  });
+
+  /**
+   * ##############################################################
+   * # Adapter::deleteMultiple() behaviour                                   #
+   * ##############################################################
+   */
+  describe('Adapter::deleteMultiple()', () => {
+    it('should return the delete count for each keys', async () => {
+      await cache.set('key-exists', 'cool');
+      const resp = await cache.deleteMultiple(['key-exists', 'no1', 'no2']);
+      expect(resp).toStrictEqual(
+        new Map([
+          ['key-exists', 1],
+          ['no1', 0],
+          ['no2', 0],
+        ])
+      );
     });
   });
 
@@ -205,6 +245,10 @@ describe.each(adapters)('Adapter: %s %s', (name, image, adapterFactory) => {
             ['k-async-ok', true],
           ])
         );
+        expect((await cache.get('k-string')).value).toStrictEqual('hello');
+        expect((await cache.get('k-null')).value).toStrictEqual(null);
+        expect((await cache.get('k-fn-ok')).value).toStrictEqual('sync');
+        expect((await cache.get('k-async-ok')).value).toStrictEqual('async');
       });
     });
     describe('when keyVals throws errors', () => {
@@ -223,7 +267,27 @@ describe.each(adapters)('Adapter: %s %s', (name, image, adapterFactory) => {
         expect(ret.get('k-string')).toStrictEqual(true);
         expect(ret.get('k-fn-err')).toBeInstanceOf(CacheProviderException);
         expect(ret.get('k-async-err')).toBeInstanceOf(CacheProviderException);
+        expect((await cache.get('k-string')).value).toStrictEqual('hello');
+        expect((await cache.get('k-fn-err')).value).toStrictEqual(null);
+        expect((await cache.get('k-async-err')).value).toStrictEqual(null);
       });
+    });
+  });
+
+  /**
+   * ##############################################################
+   * # Adapter::getMultiple() behaviour                                   #
+   * ##############################################################
+   */
+  describe('Adapter::getMultiple()', () => {
+    it('should return existing keys', async () => {
+      await cache.set('key1', 'val1');
+      await cache.setMultiple([['key2', 'val2']]);
+      const resp = await cache.getMultiple(['key1', 'key2', 'key-not-exists']);
+      expect(resp.size).toBe(3);
+      expect(resp.get('key1')?.value).toStrictEqual('val1');
+      expect(resp.get('key2')?.value).toStrictEqual('val2');
+      expect(resp.get('key-not-exists')?.value).toBeNull();
     });
   });
 

@@ -6,7 +6,6 @@ import {
   CacheException,
   CacheItem,
   executeValueProviderFn,
-  UnsupportedFeatureException,
   CacheValueProviderFn,
   SetOptions,
   TrueOrFalseOrUndefined,
@@ -99,27 +98,32 @@ export class IoRedisCacheAdapter<TBase = string, KBase = CacheKey>
   };
 
   has = async <K extends KBase = KBase>(key: K): Promise<TrueOrFalseOrUndefined> => {
-    let count = 0;
-    try {
-      if (!isNonEmptyString(key)) {
-        throw new Error('IORedisCacheAdapter currently support only string keys');
-      }
-      count = await this.redis.exists(key);
-    } catch (e) {
-      return undefined;
+    if (!isNonEmptyString(key)) {
+      throw new Error('IORedisCacheAdapter currently support only string keys');
     }
-    return count === 1;
+    return this.redis.exists(key).then((count) => count === 1);
   };
 
-  delete = async <K extends KBase = KBase>(key: K): Promise<true | CacheException> => {
-    throw new UnsupportedFeatureException({
-      message: 'Not yet implemented',
+  delete = async <K extends KBase = KBase>(key: K): Promise<number | CacheException> => {
+    if (!isNonEmptyString(key)) {
+      throw new Error('IORedisCacheAdapter currently support only string keys');
+    }
+    let error: CacheException | null = null;
+    let count = 0;
+    const _ = await this.redis.del(key, (cbError, cbCount) => {
+      if (cbError !== null) {
+        error = new CacheException({
+          message: cbError.message,
+          previousError: cbError,
+        });
+      } else {
+        count = cbCount;
+      }
     });
-  };
-  deleteMultiple = async <K extends KBase = KBase>(keys: K[]): Promise<Map<K, true | CacheException>> => {
-    throw new UnsupportedFeatureException({
-      message: 'Not yet implemented',
-    });
+    if (error !== null) {
+      return error;
+    }
+    return count;
   };
 
   clear = async (): Promise<boolean> => {

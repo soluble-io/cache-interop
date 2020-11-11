@@ -20,16 +20,20 @@ export abstract class AbstractCacheAdapter<TBase = string, KBase = CacheKey> imp
   abstract get<T = TBase, K extends KBase = KBase>(key: K): Promise<CacheItemInterface<T>>;
   abstract has<K extends KBase = KBase>(key: K): Promise<TrueOrFalseOrUndefined>;
 
-  abstract delete<K extends KBase = KBase>(key: K): Promise<true | CacheException>;
-  abstract deleteMultiple<K extends KBase = KBase>(keys: K[]): Promise<Map<K, true | CacheException>>;
+  abstract delete<K extends KBase = KBase>(key: K): Promise<number | CacheException>;
+
+  deleteMultiple = async <K extends KBase = KBase>(keys: K[]): Promise<Map<K, number | CacheException>> => {
+    const promises = keys.map((key) => {
+      return this.delete(key).then((resp): [K, number | CacheException] => [key, resp]);
+    });
+    return Promise.all(promises).then((resp) => new Map(resp));
+  };
 
   getMultiple = async <T = TBase, K extends KBase = KBase>(keys: K[]): Promise<Map<K, CacheItemInterface<T>>> => {
     const promises = keys.map((key) => {
-      return this.get(key).then((item) => [key, item]);
+      return this.get<T>(key).then((item): [K, CacheItemInterface<T>] => [key, item]);
     });
-    //const responses = (await Promise.all(promises)) as [CacheKey, TrueOrCacheException][];
-
-    return Promise.resolve(new Map([]));
+    return Promise.all(promises).then((resp) => new Map(resp));
   };
 
   setMultiple = async <T = TBase, K extends KBase = KBase>(

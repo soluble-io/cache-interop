@@ -32,7 +32,7 @@ export interface CacheInterface<TBase = string, KBase = CacheKey> {
   /**
    * @return True if the item was successfully removed. CacheException if there was an error.
    */
-  delete<K extends KBase = KBase>(key: K): Promise<true | CacheException>;
+  delete<K extends KBase = KBase>(key: K): Promise<number | CacheException>;
 
   /**
    * @return True if the item exists in the cache and was removed, false otherwise.
@@ -44,8 +44,7 @@ export interface CacheInterface<TBase = string, KBase = CacheKey> {
   setMultiple<T = TBase, K extends KBase = KBase>(
     keyVals: Readonly<[K, T | CacheValueProviderFn<T>][]>
   ): Promise<Map<K, true | CacheException>>;
-  deleteMultiple<K extends KBase = KBase>(keys: K[]): Promise<Map<K, true | CacheException>>;
-
+  deleteMultiple<K extends KBase = KBase>(keys: K[]): Promise<Map<K, number | CacheException>>;
   clear(): Promise<TrueOrFalseOrUndefined>;
 
   getOrSet<T = TBase, K extends KBase = KBase>(

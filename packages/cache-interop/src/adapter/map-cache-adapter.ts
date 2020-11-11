@@ -66,21 +66,15 @@ export class MapCacheAdapter<TBase = string, KBase = CacheKey>
     return this.map.has(key);
   };
 
-  delete = async <K extends KBase = KBase>(key: K): Promise<true | CacheException> => {
-    // @todo decide to return false when the item does no exists
+  delete = async <K extends KBase = KBase>(key: K): Promise<number | CacheException> => {
+    const count = this.map.has(key) === true ? 1 : 0;
     this.map.delete(key);
-    return true;
+    return count;
   };
 
   clear = async (): Promise<boolean> => {
     this.map.clear();
     return true;
-  };
-
-  deleteMultiple = async <K extends KBase = KBase>(keys: K[]): Promise<Map<K, true | CacheException>> => {
-    throw new UnsupportedFeatureException({
-      message: 'Not yet implemented',
-    });
   };
 
   getStorage(): Map<KBase, { expiresAt: number; data: unknown }> {
