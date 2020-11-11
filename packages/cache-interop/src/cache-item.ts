@@ -2,28 +2,28 @@ import { CacheExpiresAt, CacheItemInterface, CacheItemMetadata, CacheItemStats }
 import { CacheException } from './exceptions/cache.exception';
 import { CacheKey } from './cache.interface';
 
-type CacheItemProps<T> = {
+type CacheItemProps<T, K = CacheKey> = {
   hit: boolean;
   value?: T;
   metadata?: CacheItemMetadata;
-  key: CacheKey;
+  key: K;
   error?: CacheException;
   stats: CacheItemStats;
 };
 
-export class CacheItem<T> implements CacheItemInterface<T> {
+export class CacheItem<T, KBase = CacheKey> implements CacheItemInterface<T, KBase> {
   public readonly hit: boolean;
   public get value(): T | null {
     return this.hit ? this._value : null;
   }
   public readonly metadata: CacheItemMetadata;
-  public readonly key: CacheKey;
+  public readonly key: KBase;
   public readonly error: CacheException | false;
   public readonly stats: CacheItemStats;
 
   private _value: T | null;
 
-  constructor(props: CacheItemProps<T>) {
+  constructor(props: CacheItemProps<T, KBase>) {
     const { hit, value = null, metadata = {}, error, key, stats } = props;
     this._value = value;
     this.hit = hit;
@@ -33,13 +33,13 @@ export class CacheItem<T> implements CacheItemInterface<T> {
     this.stats = stats;
   }
 
-  static createFromMiss<T>(props: {
-    key: string;
+  static createFromMiss<T, K extends CacheKey = CacheKey>(props: {
+    key: K;
     expiresAt?: CacheExpiresAt;
     fetched?: boolean;
     error?: CacheException;
-  }): CacheItemInterface<T> {
-    return new CacheItem<null>({
+  }): CacheItemInterface<T, K> {
+    return new CacheItem<null, K>({
       hit: false,
       key: props.key,
       metadata: {
@@ -58,14 +58,14 @@ export class CacheItem<T> implements CacheItemInterface<T> {
     });
   }
 
-  static createFromHit<T>(props: {
-    key: string;
+  static createFromHit<T, K extends CacheKey = CacheKey>(props: {
+    key: K;
     value: T;
     fetched?: boolean;
     persisted?: boolean;
     expiresAt?: CacheExpiresAt;
-  }): CacheItemInterface<T> {
-    return new CacheItem<T>({
+  }): CacheItemInterface<T, K> {
+    return new CacheItem<T, K>({
       hit: true,
       value: props.value,
       key: props.key,
@@ -84,13 +84,13 @@ export class CacheItem<T> implements CacheItemInterface<T> {
     });
   }
 
-  static createFromError<T>(props: {
-    key: string;
+  static createFromError<T, K extends CacheKey = CacheKey>(props: {
+    key: K;
     error: CacheException;
     persisted?: boolean;
     fetched?: boolean;
-  }): CacheItemInterface<T> {
-    return new CacheItem<null>({
+  }): CacheItemInterface<T, K> {
+    return new CacheItem<T, K>({
       hit: false,
       error: props.error,
       key: props.key,

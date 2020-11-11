@@ -22,11 +22,11 @@ export type CacheItemStats = {
   };
 };
 
-export interface CacheItemInterface<T> {
+export interface CacheItemInterface<T, KBase = CacheKey> {
   readonly hit: boolean;
   readonly value: T | null;
   readonly metadata?: CacheItemMetadata;
-  readonly key: CacheKey;
+  readonly key: KBase;
   readonly error: CacheException | false;
   readonly stats: CacheItemStats;
 }

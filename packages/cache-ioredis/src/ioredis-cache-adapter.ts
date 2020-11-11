@@ -9,15 +9,17 @@ import {
   UnsupportedFeatureException,
   CacheValueProviderFn,
   SetOptions,
-  TrueOrCacheException,
   TrueOrFalseOrUndefined,
   isCacheValueProviderFn,
   isNonEmptyString,
   isParsableNumeric,
+  CacheProviderException,
 } from '@soluble/cache-interop';
 import IORedis from 'ioredis';
 
-export class IoRedisCacheAdapter<TBase = string> extends AbstractCacheAdapter<TBase> implements CacheInterface<TBase> {
+export class IoRedisCacheAdapter<TBase = string, KBase = CacheKey>
+  extends AbstractCacheAdapter<TBase, KBase>
+  implements CacheInterface<TBase, KBase> {
   private readonly redis: IORedis.Redis;
 
   public readonly db: number;
@@ -29,8 +31,12 @@ export class IoRedisCacheAdapter<TBase = string> extends AbstractCacheAdapter<TB
     this.redis = new IORedis({ db, ...rest });
   }
 
-  get = async <T = TBase>(key: CacheKey): Promise<CacheItemInterface<T>> => {
+  get = async <T = TBase, K extends KBase = KBase>(key: K): Promise<CacheItemInterface<T>> => {
     let value: T;
+    if (typeof key !== 'string') {
+      // @todo remove this
+      throw new Error('Error @todo check for possible values');
+    }
     try {
       value = ((await this.redis.get(key)) as unknown) as T;
     } catch (e) {
@@ -53,18 +59,18 @@ export class IoRedisCacheAdapter<TBase = string> extends AbstractCacheAdapter<TB
       value,
     });
   };
-  set = async <T = TBase>(
-    key: CacheKey,
+  set = async <T = TBase, K extends KBase = KBase>(
+    key: K,
     value: T | CacheValueProviderFn<T>,
     options?: SetOptions
-  ): Promise<TrueOrCacheException> => {
+  ): Promise<true | CacheException> => {
     let v = value;
     if (isCacheValueProviderFn(value)) {
       try {
         v = await executeValueProviderFn<T>(value);
       } catch (e) {
         // @todo decide what to do, a cache miss ?
-        return new CacheException({
+        return new CacheProviderException({
           previousError: e,
           message: "Can't fetch the provided function",
         });
@@ -76,6 +82,9 @@ export class IoRedisCacheAdapter<TBase = string> extends AbstractCacheAdapter<TB
       }
       if (!isNonEmptyString(v)) {
         throw new Error('IORedisCacheAdapter currently support only string values');
+      }
+      if (!isNonEmptyString(key)) {
+        throw new Error('IORedisCacheAdapter currently support only string keys');
       }
       this.redis.set(key, v).then((response) => {
         resolve(
@@ -89,9 +98,12 @@ export class IoRedisCacheAdapter<TBase = string> extends AbstractCacheAdapter<TB
     });
   };
 
-  has = async (key: CacheKey): Promise<TrueOrFalseOrUndefined> => {
+  has = async <K extends KBase = KBase>(key: K): Promise<TrueOrFalseOrUndefined> => {
     let count = 0;
     try {
+      if (!isNonEmptyString(key)) {
+        throw new Error('IORedisCacheAdapter currently support only string keys');
+      }
       count = await this.redis.exists(key);
     } catch (e) {
       return undefined;
@@ -99,22 +111,12 @@ export class IoRedisCacheAdapter<TBase = string> extends AbstractCacheAdapter<TB
     return count === 1;
   };
 
-  delete = async (key: CacheKey): Promise<TrueOrCacheException> => {
+  delete = async <K extends KBase = KBase>(key: K): Promise<true | CacheException> => {
     throw new UnsupportedFeatureException({
       message: 'Not yet implemented',
     });
   };
-  getMultiple = async <T = TBase, K = Readonly<CacheKey[]>>(keys: K): Promise<Array<CacheItemInterface<T>>> => {
-    throw new UnsupportedFeatureException({
-      message: 'Not yet implemented',
-    });
-  };
-  setMultiple = async <T = TBase>(keys: Map<CacheKey, T>): Promise<Map<CacheKey, TrueOrCacheException>> => {
-    throw new UnsupportedFeatureException({
-      message: 'Not yet implemented',
-    });
-  };
-  deleteMultiple = async (keys: CacheKey[]): Promise<Map<CacheKey, TrueOrCacheException>> => {
+  deleteMultiple = async <K extends KBase = KBase>(keys: K[]): Promise<Map<K, true | CacheException>> => {
     throw new UnsupportedFeatureException({
       message: 'Not yet implemented',
     });
