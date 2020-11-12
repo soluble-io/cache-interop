@@ -1,5 +1,11 @@
 # @soluble/cache-interop
 
+## 0.2.2
+
+### Patch Changes
+
+- [`fe1fcca`](https://github.com/soluble-io/tci/commit/fe1fcca812ff3d8683cebe722e47bd81715d6fbf) [#19](https://github.com/soluble-io/tci/pull/19) Thanks [@belgattitude](https://github.com/belgattitude)! - Refactor delete and deleteMultiple return to be boolean
+
 ## 0.2.1
 
 ### Patch Changes
