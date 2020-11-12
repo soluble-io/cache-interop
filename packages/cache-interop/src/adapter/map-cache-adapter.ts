@@ -66,10 +66,10 @@ export class MapCacheAdapter<TBase = string, KBase = CacheKey>
     return this.map.has(key);
   };
 
-  delete = async <K extends KBase = KBase>(key: K): Promise<number | CacheException> => {
-    const count = this.map.has(key) === true ? 1 : 0;
+  delete = async <K extends KBase = KBase>(key: K): Promise<boolean | CacheException> => {
+    const exists = this.map.has(key) === true;
     this.map.delete(key);
-    return count;
+    return exists;
   };
 
   clear = async (): Promise<boolean> => {

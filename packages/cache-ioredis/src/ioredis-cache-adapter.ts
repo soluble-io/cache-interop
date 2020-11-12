@@ -104,12 +104,12 @@ export class IoRedisCacheAdapter<TBase = string, KBase = CacheKey>
     return this.redis.exists(key).then((count) => count === 1);
   };
 
-  delete = async <K extends KBase = KBase>(key: K): Promise<number | CacheException> => {
+  delete = async <K extends KBase = KBase>(key: K): Promise<boolean | CacheException> => {
     if (!isNonEmptyString(key)) {
       throw new Error('IORedisCacheAdapter currently support only string keys');
     }
     let error: CacheException | null = null;
-    let count = 0;
+    let exists = false;
     const _ = await this.redis.del(key, (cbError, cbCount) => {
       if (cbError !== null) {
         error = new CacheException({
@@ -117,13 +117,13 @@ export class IoRedisCacheAdapter<TBase = string, KBase = CacheKey>
           previousError: cbError,
         });
       } else {
-        count = cbCount;
+        exists = cbCount === 1;
       }
     });
     if (error !== null) {
       return error;
     }
-    return count;
+    return exists;
   };
 
   clear = async (): Promise<boolean> => {
