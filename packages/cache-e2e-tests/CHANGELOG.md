@@ -1,5 +1,11 @@
 # @soluble/cache-e2e-tests
 
+## 0.2.0
+
+### Minor Changes
+
+- [`fe1fcca`](https://github.com/soluble-io/tci/commit/fe1fcca812ff3d8683cebe722e47bd81715d6fbf) [#19](https://github.com/soluble-io/tci/pull/19) Thanks [@belgattitude](https://github.com/belgattitude)! - Update e2e test for new api for delete and deleteMultiple
+
 ## 0.1.2
 
 ### Patch Changes
