@@ -19,21 +19,24 @@ export class MapCacheAdapter<TBase = string, KBase = CacheKey>
     this.dateProvider = new EsDateProvider();
   }
 
-  get = async <T = TBase, K extends KBase = KBase>(key: K): Promise<CacheItemInterface<T>> => {
+  get = async <T = TBase, K extends KBase = KBase>(key: K, defaultValue?: T): Promise<CacheItemInterface<T>> => {
     if (typeof key !== 'string') {
       // @todo remove this
       throw new Error('Error @todo check for possible values');
     }
-    if (this.map.has(key)) {
-      const cached = this.map.get(key);
-      if (cached !== undefined) {
-        const { expiresAt, data } = cached;
-        // @todo check for expiration date
-        return CacheItem.createFromHit<T>({
-          key,
-          value: data as T,
-        });
-      }
+    const cached = this.map.get(key);
+    if (cached !== undefined) {
+      const { expiresAt, data } = cached;
+      // @todo check for expiration date
+      return CacheItem.createFromHit<T>({
+        key,
+        value: data as T,
+      });
+    } else if (defaultValue !== undefined) {
+      return CacheItem.createFromHit<T>({
+        key,
+        value: defaultValue,
+      });
     }
     return CacheItem.createFromMiss<T>({
       key: key,
@@ -72,7 +75,7 @@ export class MapCacheAdapter<TBase = string, KBase = CacheKey>
     return exists;
   };
 
-  clear = async (): Promise<boolean> => {
+  clear = async (): Promise<true> => {
     this.map.clear();
     return true;
   };

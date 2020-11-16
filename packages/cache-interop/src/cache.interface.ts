@@ -1,8 +1,8 @@
 import { CacheItemInterface } from './cache-item.interface';
-import { CacheException } from './exceptions/cache.exception';
-import { CacheProviderException } from './exceptions';
+import { CacheException, CacheProviderException, InvalidArgumentException } from './exceptions';
 
 export type SetOptions = {
+  /** Time-To-Live expressed in seconds */
   ttl?: number;
 };
 export type GetOrSetOptions = SetOptions; // &{}
@@ -17,11 +17,26 @@ export type TrueOrFalseOrUndefined = true | false | undefined;
 export type CacheKey = string;
 
 export interface CacheInterface<TBase = string, KBase = CacheKey> {
-  get<T = TBase, K extends KBase = KBase>(key: K): Promise<CacheItemInterface<T>>;
   /**
-   * @param key
-   * @param value a (serializable) value or a function (sync, async, promise) returning the value.
-   * @param options
+   * Fetches a value from the cache
+   *
+   * @param key - The unique key of this item in the cache.
+   *
+   * @returns A promise returning a CacheItemInterface, or defaultValue in case of cache miss.
+   * @throws InvalidArgumentException
+   *         MUST be thrown if the $key string is not a legal value.
+   */
+  get<T = TBase, K extends KBase = KBase>(key: K, defaultValue?: T): Promise<CacheItemInterface<T>>;
+
+  /**
+   * Persists data in the cache, uniquely referenced by a key.
+   *
+   * @param key - The key of the item to store.
+   * @param value - The value of the item to store or a function returning the value. Must be serializable.
+   * @param options - An object holding options
+   *
+   * @throws InvalidArgumentException
+   *         MUST be thrown if the $key string is not a legal value.
    */
   set<T = TBase, K extends KBase = KBase>(
     key: K,
@@ -30,23 +45,65 @@ export interface CacheInterface<TBase = string, KBase = CacheKey> {
   ): Promise<true | CacheException>;
 
   /**
+   * Delete an item from the cache by its unique key.
+   *
+   * @param key - The unique cache key of the item to delete.
+   *
    * @return True if the item was successfully removed, false if it did not exists.
    *         CacheException if there was an error.
+   *
+   * @throws InvalidArgumentException
+   *         MUST be thrown if the $key string is not a legal value.
    */
   delete<K extends KBase = KBase>(key: K): Promise<boolean | CacheException>;
 
   /**
+   * Determines whether an item is present in the cache.
+   *
+   * NOTE: It is recommended that has() is only to be used for cache warming type purposes
+   * and not to be used within your live applications operations for get/set, as this method
+   * is subject to a race condition where your has() will return true and immediately after,
+   * another script can remove it, making the state of your app out of date.
+   *
+   * @param key - The cache item key
+   *
    * @return True if the item exists in the cache and was removed, false otherwise.
    *         Undefined is used to determine if the operation was successful
+   *
+   * @throws InvalidArgumentException
+   *         MUST be thrown if the $key string is not a legal value.
    */
   has<K extends KBase = KBase>(key: K): Promise<TrueOrFalseOrUndefined>;
 
+  /**
+   * Obtains multiple cache items by their unique keys.
+   *
+   * @param keys - A list of keys that can obtained in a single operation.
+   */
   getMultiple<T = TBase, K extends KBase = KBase>(keys: K[]): Promise<Map<K, CacheItemInterface<T>>>;
+
+  /**
+   * Persists a set of key => value pairs in the cache.
+   *
+   * @param keyVals - array of tuples container key and value
+   */
   setMultiple<T = TBase, K extends KBase = KBase>(
     keyVals: Readonly<[K, T | CacheValueProviderFn<T>][]>
   ): Promise<Map<K, true | CacheException>>;
+
+  /**
+   * Delete cache entries from multiple keys
+   *
+   * @param keys - A list of keys that should be deleted.
+   */
   deleteMultiple<K extends KBase = KBase>(keys: K[]): Promise<Map<K, boolean | CacheException>>;
-  clear(): Promise<TrueOrFalseOrUndefined>;
+
+  /**
+   * Delete the entire cache's keys.
+   *
+   * @return bool True on success and CacheException on failure.
+   */
+  clear(): Promise<true | CacheException>;
 
   getOrSet<T = TBase, K extends KBase = KBase>(
     key: K,
