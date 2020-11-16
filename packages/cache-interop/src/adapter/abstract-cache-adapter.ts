@@ -17,7 +17,7 @@ export abstract class AbstractCacheAdapter<TBase = string, KBase = CacheKey> imp
     value: T | CacheValueProviderFn<T>,
     options?: SetOptions
   ): Promise<true | CacheException>;
-  abstract get<T = TBase, K extends KBase = KBase>(key: K): Promise<CacheItemInterface<T>>;
+  abstract get<T = TBase, K extends KBase = KBase>(key: K, defaultValue?: T): Promise<CacheItemInterface<T>>;
   abstract has<K extends KBase = KBase>(key: K): Promise<TrueOrFalseOrUndefined>;
 
   abstract delete<K extends KBase = KBase>(key: K): Promise<boolean | CacheException>;
@@ -46,7 +46,7 @@ export abstract class AbstractCacheAdapter<TBase = string, KBase = CacheKey> imp
     return new Map(responses);
   };
 
-  abstract clear(): Promise<boolean>;
+  abstract clear(): Promise<true | CacheException>;
 
   abstract getStorage(): unknown;
 
