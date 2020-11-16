@@ -185,6 +185,31 @@ describe.each(adapters)('Adapter: %s %s', (name, image, adapterFactory) => {
 
   /**
    * ##############################################################
+   * # Adapter::clear() behaviour                                   #
+   * ##############################################################
+   */
+  describe('Adapter::clear()', () => {
+    describe('when no value is in cache', () => {
+      it('should return true', async () => {
+        expect(await cache.clear()).toStrictEqual(true);
+      });
+    });
+    describe('when some values are in cache', () => {
+      it('should return true and delete the values', async () => {
+        await cache.setMultiple([
+          ['k1', 'val1'],
+          ['k2', 'val2'],
+        ]);
+        expect((await cache.getMultiple(['k1', 'k2'])).size).toStrictEqual(2);
+        expect(await cache.clear()).toStrictEqual(true);
+        expect((await cache.get('k1')).value).toBeNull();
+        expect((await cache.get('k2')).value).toBeNull();
+      });
+    });
+  });
+
+  /**
+   * ##############################################################
    * # Adapter::has() behaviour                                   #
    * ##############################################################
    */
