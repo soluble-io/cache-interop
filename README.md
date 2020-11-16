@@ -1,5 +1,14 @@
-# @soluble/tci
+# Ts-Cache-Interop
 
 [![codecov](https://codecov.io/gh/soluble-io/tci/branch/main/graph/badge.svg)](https://codecov.io/gh/soluble-io/tci)
+
+## Packages
+
+### Cache-interop
+
+Contracts and interfaces in [cache-interop/README.md](./packages/cache-interop/README.md)
+
+### Adapters
+
 
 
