@@ -12,6 +12,21 @@ Collection of cache adapters for nodejs.
 - [x] Written in typescript.
 - [x] Fully tested with [e2e](./packages/cache-e2e-tests/test/all-adapters-base.test.ts) tests.
 
+## Roadmap
+
+- [ ] Finalize v1 API
+    - [ ] injectable LoggerInterface
+    - [ ] SerializerInterface (json, msgpack, gzip, marshaller)
+      - [ ] Chainable serializer (json -> gzip...)
+    - [ ] Cache manager
+      - [ ] Chainable cache adapter (allows lru as L1, redis as L2)
+- [ ] Adapters
+    - [ ] adapter for node-redis
+    - [ ] lru-cache
+- [ ] Documentation          
+
+ 
+
 ## Quick examples
 
 ```typescript
