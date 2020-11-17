@@ -8,13 +8,11 @@ Collection of cache adapters for nodejs.
 
 - [x] Simple but powerful API.
 - [x] Easily substitute any adapter.
-- [x] Quickly write your own adapter.
+- [x] Work with `async`/`await`.
 - [x] Written in typescript.
 - [x] Fully tested with e2e tests.
 
 ## Quick examples
-
-### 
 
 ```typescript
 import { IoRedisCacheAdapter } from '@soluble/cache-ioredis';
@@ -59,7 +57,7 @@ This monorepo holds the various adapters, the contracts for interoperability and
 - [C# getOrSet](https://csharp.hotexamples.com/examples/Microsoft.Framework.Caching.Memory/MemoryCache/GetOrSet/php-memorycache-getorset-method-examples.html) - C# Memory::getOrSet() method.
 - [SWR](https://swr.vercel.app/) - React Hooks library for data fetching
 
-### Aknowledgements
+### Acknowledgements
 
 - [microbundle](https://github.com/developit/microbundle) - Zero-configuration bundler for tiny modules. 
 - [node-testcontainers](https://github.com/testcontainers/testcontainers-node) - Ephemeral docker instances to facilitate e2e on various services (redis...)
