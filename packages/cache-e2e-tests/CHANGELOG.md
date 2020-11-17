@@ -1,5 +1,11 @@
 # @soluble/cache-e2e-tests
 
+## 0.3.0
+
+### Minor Changes
+
+- [`1366ad7`](https://github.com/soluble-io/tci/commit/1366ad75ddc7f1e0d5235b8a1e0c5dc124a9bef2) [#22](https://github.com/soluble-io/tci/pull/22) Thanks [@belgattitude](https://github.com/belgattitude)! - Add tests for cache.clear
+
 ## 0.2.0
 
 ### Minor Changes
