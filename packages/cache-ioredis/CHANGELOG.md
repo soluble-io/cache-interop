@@ -1,5 +1,18 @@
 # @soluble/cache-ioredis
 
+## 0.3.0
+
+### Minor Changes
+
+- [`1366ad7`](https://github.com/soluble-io/tci/commit/1366ad75ddc7f1e0d5235b8a1e0c5dc124a9bef2) [#22](https://github.com/soluble-io/tci/pull/22) Thanks [@belgattitude](https://github.com/belgattitude)! - refactor CacheInterface.clear()
+
+* [`1366ad7`](https://github.com/soluble-io/tci/commit/1366ad75ddc7f1e0d5235b8a1e0c5dc124a9bef2) [#22](https://github.com/soluble-io/tci/pull/22) Thanks [@belgattitude](https://github.com/belgattitude)! - Added defaultValue in CacheInterface.get(key, defaultValue)
+
+### Patch Changes
+
+- Updated dependencies [[`1366ad7`](https://github.com/soluble-io/tci/commit/1366ad75ddc7f1e0d5235b8a1e0c5dc124a9bef2), [`1366ad7`](https://github.com/soluble-io/tci/commit/1366ad75ddc7f1e0d5235b8a1e0c5dc124a9bef2)]:
+  - @soluble/cache-interop@0.3.0
+
 ## 0.2.2
 
 ### Patch Changes
