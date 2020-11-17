@@ -1,4 +1,4 @@
-# Change Log
+# Changelog
 
 This project adheres to [semantic versioning](https://semver.org/).
 
