@@ -1,8 +1,12 @@
 # Change Log
 
-All notable changes to this project will be documented in this file.
+This project adheres to [semantic versioning](https://semver.org/).
 
-The format is based on [Keep a Changelog](http://keepachangelog.com/)
-and this project adheres to [Semantic Versioning](http://semver.org/).
+All notable changes to this project will be documented 
+in their respective packages
+([@soluble/cache-interop](./packages/cache-interop/CHANGELOG.md),
+[@soluble/cache-ioredis](./packages/cache-ioredis)) and on the [github release page](https://github.com/soluble-io/tci/releases).
 
-## 0.1.0 (2020-xx-xx) 
+
+
+
