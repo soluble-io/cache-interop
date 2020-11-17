@@ -2,7 +2,7 @@ import { CacheItemInterface } from './cache-item.interface';
 import { CacheException, CacheProviderException, InvalidArgumentException } from './exceptions';
 
 export type SetOptions = {
-  /** Time-To-Live expressed in seconds */
+  /** Time-To-Live expressed in seconds, 0 meaning forever  */
   ttl?: number;
 };
 export type GetOrSetOptions = SetOptions; // &{}
