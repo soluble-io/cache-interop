@@ -13,6 +13,7 @@ import {
   isNonEmptyString,
   isParsableNumeric,
   CacheProviderException,
+  UnexpectedErrorException,
 } from '@soluble/cache-interop';
 import IORedis from 'ioredis';
 
@@ -30,7 +31,7 @@ export class IoRedisCacheAdapter<TBase = string, KBase = CacheKey>
     this.redis = new IORedis({ db, ...rest });
   }
 
-  get = async <T = TBase, K extends KBase = KBase>(key: K): Promise<CacheItemInterface<T>> => {
+  get = async <T = TBase, K extends KBase = KBase>(key: K, defaultValue?: T): Promise<CacheItemInterface<T>> => {
     let value: T;
     if (typeof key !== 'string') {
       // @todo remove this
@@ -48,6 +49,12 @@ export class IoRedisCacheAdapter<TBase = string, KBase = CacheKey>
       });
     }
     if (value === null) {
+      if (defaultValue !== undefined) {
+        return CacheItem.createFromHit<T>({
+          key,
+          value: defaultValue,
+        });
+      }
       return CacheItem.createFromMiss<T>({
         key: key,
         expiresAt: 0,
@@ -104,12 +111,12 @@ export class IoRedisCacheAdapter<TBase = string, KBase = CacheKey>
     return this.redis.exists(key).then((count) => count === 1);
   };
 
-  delete = async <K extends KBase = KBase>(key: K): Promise<number | CacheException> => {
+  delete = async <K extends KBase = KBase>(key: K): Promise<boolean | CacheException> => {
     if (!isNonEmptyString(key)) {
       throw new Error('IORedisCacheAdapter currently support only string keys');
     }
     let error: CacheException | null = null;
-    let count = 0;
+    let exists = false;
     const _ = await this.redis.del(key, (cbError, cbCount) => {
       if (cbError !== null) {
         error = new CacheException({
@@ -117,18 +124,37 @@ export class IoRedisCacheAdapter<TBase = string, KBase = CacheKey>
           previousError: cbError,
         });
       } else {
-        count = cbCount;
+        exists = cbCount === 1;
       }
     });
     if (error !== null) {
       return error;
     }
-    return count;
+    return exists;
   };
 
-  clear = async (): Promise<boolean> => {
-    const ret = await this.redis.flushdb();
-    return ret === 'OK';
+  clear = async (): Promise<true | CacheException> => {
+    let response: true | CacheException | null = null;
+    await this.redis.flushdb((err, res) => {
+      if (err !== null) {
+        response = new CacheException({
+          message: `Cannot clear cache: ${err.message}`,
+          previousError: err,
+        });
+      } else if (res !== 'OK') {
+        response = new UnexpectedErrorException({
+          message: `IoRedis should return 'OK' if not error was set`,
+        });
+      } else {
+        response = true;
+      }
+    });
+    return (
+      response ??
+      new UnexpectedErrorException({
+        message: 'IoRedis.flushdb() should return a valid response',
+      })
+    );
   };
 
   getStorage(): IORedis.Redis {

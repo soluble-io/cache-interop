@@ -169,16 +169,41 @@ describe.each(adapters)('Adapter: %s %s', (name, image, adapterFactory) => {
    */
   describe('Adapter::delete()', () => {
     describe('when value is not in cache', () => {
-      it('should return 0 count', async () => {
-        expect(await cache.delete('no_existsing')).toStrictEqual(0);
+      it('should return false', async () => {
+        expect(await cache.delete('no_existing')).toStrictEqual(false);
       });
     });
     describe('when value is in cache', () => {
-      it('should return 1 and delete the entry', async () => {
+      it('should return true and delete the entry', async () => {
         await cache.set('k', 'cool');
         expect((await cache.get('k')).value).toStrictEqual('cool');
-        expect(await cache.delete('k')).toStrictEqual(1);
+        expect(await cache.delete('k')).toStrictEqual(true);
         expect((await cache.get('k')).value).toStrictEqual(null);
+      });
+    });
+  });
+
+  /**
+   * ##############################################################
+   * # Adapter::clear() behaviour                                   #
+   * ##############################################################
+   */
+  describe('Adapter::clear()', () => {
+    describe('when no value is in cache', () => {
+      it('should return true', async () => {
+        expect(await cache.clear()).toStrictEqual(true);
+      });
+    });
+    describe('when some values are in cache', () => {
+      it('should return true and delete the values', async () => {
+        await cache.setMultiple([
+          ['k1', 'val1'],
+          ['k2', 'val2'],
+        ]);
+        expect((await cache.getMultiple(['k1', 'k2'])).size).toStrictEqual(2);
+        expect(await cache.clear()).toStrictEqual(true);
+        expect((await cache.get('k1')).value).toBeNull();
+        expect((await cache.get('k2')).value).toBeNull();
       });
     });
   });
@@ -208,14 +233,13 @@ describe.each(adapters)('Adapter: %s %s', (name, image, adapterFactory) => {
    * ##############################################################
    */
   describe('Adapter::deleteMultiple()', () => {
-    it('should return the delete count for each keys', async () => {
+    it('should return a Map with key and boolean', async () => {
       await cache.set('key-exists', 'cool');
-      const resp = await cache.deleteMultiple(['key-exists', 'no1', 'no2']);
+      const resp = await cache.deleteMultiple(['key-exists', 'no1']);
       expect(resp).toStrictEqual(
         new Map([
-          ['key-exists', 1],
-          ['no1', 0],
-          ['no2', 0],
+          ['key-exists', true],
+          ['no1', false],
         ])
       );
     });

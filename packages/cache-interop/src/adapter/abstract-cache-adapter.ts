@@ -17,14 +17,14 @@ export abstract class AbstractCacheAdapter<TBase = string, KBase = CacheKey> imp
     value: T | CacheValueProviderFn<T>,
     options?: SetOptions
   ): Promise<true | CacheException>;
-  abstract get<T = TBase, K extends KBase = KBase>(key: K): Promise<CacheItemInterface<T>>;
+  abstract get<T = TBase, K extends KBase = KBase>(key: K, defaultValue?: T): Promise<CacheItemInterface<T>>;
   abstract has<K extends KBase = KBase>(key: K): Promise<TrueOrFalseOrUndefined>;
 
-  abstract delete<K extends KBase = KBase>(key: K): Promise<number | CacheException>;
+  abstract delete<K extends KBase = KBase>(key: K): Promise<boolean | CacheException>;
 
-  deleteMultiple = async <K extends KBase = KBase>(keys: K[]): Promise<Map<K, number | CacheException>> => {
+  deleteMultiple = async <K extends KBase = KBase>(keys: K[]): Promise<Map<K, boolean | CacheException>> => {
     const promises = keys.map((key) => {
-      return this.delete(key).then((resp): [K, number | CacheException] => [key, resp]);
+      return this.delete(key).then((resp): [K, boolean | CacheException] => [key, resp]);
     });
     return Promise.all(promises).then((resp) => new Map(resp));
   };
@@ -46,7 +46,7 @@ export abstract class AbstractCacheAdapter<TBase = string, KBase = CacheKey> imp
     return new Map(responses);
   };
 
-  abstract clear(): Promise<boolean>;
+  abstract clear(): Promise<true | CacheException>;
 
   abstract getStorage(): unknown;
 
