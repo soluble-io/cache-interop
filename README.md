@@ -61,5 +61,5 @@ This monorepo holds the various adapters, the contracts for interoperability and
 
 - [microbundle](https://github.com/developit/microbundle) - Zero-configuration bundler for tiny modules. 
 - [node-testcontainers](https://github.com/testcontainers/testcontainers-node) - Ephemeral docker instances to facilitate e2e on various services (redis...)
-
+- [atlassian/changesets](https://github.com/atlassian/changesets) - To ease pain with monorepo versioning.
 
