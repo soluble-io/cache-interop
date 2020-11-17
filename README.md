@@ -6,11 +6,11 @@ Collection of cache adapters for nodejs.
 
 ## Features
 
-- [x] Simple but powerful API.
+- [x] Simple but powerful [API](./packages/cache-interop/src/cache.interface.ts).
 - [x] Easily substitute any adapter.
 - [x] Work with `async`/`await`.
 - [x] Written in typescript.
-- [x] Fully tested with e2e tests.
+- [x] Fully tested with [e2e](./packages/cache-e2e-tests/test/all-adapters-base.test.ts) tests.
 
 ## Quick examples
 
