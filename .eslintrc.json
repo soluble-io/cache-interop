@@ -44,7 +44,7 @@
         "fn": "it"
       }
     ],
-    "sonarjs/cognitive-complexity": ["error", 15],
+    "sonarjs/cognitive-complexity": ["error", 20],
     "sonarjs/no-useless-catch": "error",
     "sonarjs/no-identical-expressions": "warn",
     "sonarjs/no-small-switch": "off",
