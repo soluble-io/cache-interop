@@ -1,0 +1,72 @@
+{
+  "name": "@soluble/cache-redis",
+  "description": "Node redis cache interop adapter",
+  "version": "0.3.1",
+  "license": "MIT",
+  "homepage": "https://github.com/soluble-io/tci/tree/main/packages/cache-redis",
+  "repository": "https://github.com/soluble-io/tci",
+  "author": {
+    "name": "Vanvelthem Sébastien",
+    "url": "https://github.com/belgattitude"
+  },
+  "keywords": [
+    "cache",
+    "interop",
+    "redis",
+    "node-redis"
+  ],
+  "jsnext:main": "dist/cache-redis.es.js",
+  "source": "src/index.ts",
+  "module": "dist/cache-redis.es.js",
+  "esmodules": "dist/cache-redis.modern.js",
+  "main": "dist/cache-redis.js",
+  "umd:main": "dist/cache-redis.umd.js",
+  "typings": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "sideEffects": false,
+  "scripts": {
+    "start": "cross-env NODE_ENV=development tsdx watch",
+    "build": "cross-env NODE_ENV=production microbundle --tsconfig tsconfig.build.json --target node",
+    "clean": "rimraf --no-glob ./dist ./build ./coverage ./out",
+    "test": "run-s test:unit -- {@}",
+    "test:unit": "jest --config jest.config.js --color $@",
+    "typecheck": "tsc --noEmit",
+    "typecheck:build": "tsc --project tsconfig.build.json --noEmit",
+    "lint": "run-p lint:code",
+    "lint:code": "eslint . --ext .ts,.tsx,.js,.jsx",
+    "fix:staged": "lint-staged --allow-empty",
+    "fix:all": "run-p fix:all:*",
+    "fix:all:code": "eslint . --ext .ts,.tsx,.js,.jsx --fix",
+    "deps:check": "npx npm-check-updates --dep prod,dev,optional",
+    "deps:update": "npx npm-check-updates --dep prod,dev,optional -u",
+    "coverage:publish": "codecov --root=../../ -F cacheRedis"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "prettier --write",
+      "eslint --fix"
+    ],
+    "*.{yaml,json,md,html}": [
+      "prettier --write"
+    ]
+  },
+  "dependencies": {
+    "@soluble/cache-interop": "^0.3.1"
+  },
+  "devDependencies": {
+    "@types/redis": "^2.8.28",
+    "redis": "^3.0.2",
+    "ts-jest": "^26.4.4",
+    "tslib": "^2.0.3",
+    "typescript": "^4.0.5"
+  },
+  "peerDependencies": {
+    "@types/redis": ">=2.8.28",
+    "ioredis": ">=3.0"
+  },
+  "engines": {
+    "node": ">=10.13"
+  }
+}

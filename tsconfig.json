@@ -7,7 +7,9 @@
       "@soluble/cache-interop": ["./packages/cache-interop/src"],
       "@soluble/cache-interop/*": ["./packages/cache-interop/src/*"],
       "@soluble/cache-ioredis": ["./packages/cache-ioredis/src"],
-      "@soluble/cache-ioredis/*": ["./packages/cache-ioredis/src/*"]
+      "@soluble/cache-ioredis/*": ["./packages/cache-ioredis/src/*"],
+      "@soluble/cache-redis": ["./packages/cache-redis/src"],
+      "@soluble/cache-redis/*": ["./packages/cache-redis/src/*"]
     }
   },
   "files": [],

@@ -22,6 +22,7 @@ const config = {
   collectCoverageFrom: [
     '<rootDir>/cache-interop/src/**/*.{ts,js}',
     '<rootDir>/cache-ioredis/src/**/*.{ts,js}',
+    '<rootDir>/cache-redis/src/**/*.{ts,js}',
     '!**/*.test.ts',
   ],
   globals: {
