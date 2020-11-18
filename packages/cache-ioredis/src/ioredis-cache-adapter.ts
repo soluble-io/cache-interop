@@ -92,7 +92,7 @@ export class IoRedisCacheAdapter<TBase = string, KBase = CacheKey>
       if (!isNonEmptyString(key)) {
         throw new Error('IORedisCacheAdapter currently support only string keys');
       }
-      const resolver = (response) => {
+      const resolver = (response: unknown) => {
         resolve(
           response !== null
             ? true
