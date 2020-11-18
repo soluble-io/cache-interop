@@ -29,7 +29,7 @@ const adapters = [
     'redis:5-alpine',
     (options) => {
       return new RedisCacheAdapter({
-        host: options!.dsn,
+        url: options!.dsn,
       });
     },
   ],
@@ -38,7 +38,7 @@ const adapters = [
     'redis:6-alpine',
     (options) => {
       return new RedisCacheAdapter({
-        host: options!.dsn,
+        url: options!.dsn,
       });
     },
   ],
@@ -72,14 +72,8 @@ describe.each(adapters)('Adapter: %s %s', (name, image, adapterFactory) => {
   afterAll(async () => {
     switch (name) {
       case 'RedisCacheAdapter':
-        const quit = async () => {
-          return new Promise((resolve) => {
-            (cache as RedisCacheAdapter).getStorage().quit(() => {
-              resolve();
-            });
-          });
-        };
-        await quit();
+        (cache as RedisCacheAdapter).getStorage().end(true);
+        sleep(500);
         break;
       case 'IoRedisCacheAdapter':
         await (cache as IoRedisCacheAdapter).getStorage().quit();
