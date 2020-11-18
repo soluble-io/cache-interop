@@ -47,6 +47,7 @@ if (value)
 |-------------------------|--------|---------------------------------------|
 | [@soluble/cache-interop](./packages/cache-interop) | `node`,`browser` | Interoperability interfaces & contracts  |
 | [@soluble/cache-ioredis](./packages/cache-ioredis) | `node` | Adapter for node [ioredis](https://github.com/luin/ioredis) driver |
+| [@soluble/cache-redis](./packages/cache-redis) | `node` | Adapter for node [ioredis](https://github.com/NodeRedis/node-redis) driver |
 
   
 ## Structure
