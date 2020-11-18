@@ -1,0 +1,13 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "outDir": "./out",
+    "paths": {
+      "@soluble/cache-interop": ["../cache-interop/src"],
+      "@soluble/cache-interop/*": ["../cache-interop/src/*"]
+    }
+  },
+
+  "references": [{ "path": "../cache-interop" }],
+  "exclude": ["node_modules", "dist"]
+}

@@ -1,5 +1,6 @@
 import { CacheException, CacheInterface, CacheProviderException, MapCacheAdapter } from '@soluble/cache-interop';
 import { IoRedisCacheAdapter } from '@soluble/cache-ioredis';
+import { RedisCacheAdapter } from '@soluble/cache-redis';
 import { GenericContainer } from 'testcontainers';
 import { StartedTestContainer } from 'testcontainers/dist/test-container';
 
@@ -23,35 +24,63 @@ const adapters = [
       return IoRedisCacheAdapter.createFromDSN(options!.dsn);
     },
   ],
+  [
+    'RedisCacheAdapter',
+    'redis:5-alpine',
+    (options) => {
+      return new RedisCacheAdapter({
+        url: options!.dsn,
+      });
+    },
+  ],
+  [
+    'RedisCacheAdapter',
+    'redis:6-alpine',
+    (options) => {
+      return new RedisCacheAdapter({
+        url: options!.dsn,
+      });
+    },
+  ],
 ] as [name: string, image: string, factory: (options?: Record<string, any>) => CacheInterface][];
 
 describe.each(adapters)('Adapter: %s %s', (name, image, adapterFactory) => {
-  let container: StartedTestContainer;
+  let container: StartedTestContainer | null;
   let cache: CacheInterface;
 
   beforeAll(async () => {
-    switch (name) {
-      case 'IoRedisCacheAdapter':
-        console.log('Starting redis container....');
-        const [imageName, imageTag] = (image ?? '').split(':');
-        container = await new GenericContainer(imageName, imageTag).withExposedPorts(6379).start();
-        const options = {
-          dsn: `redis://${container.getHost()}:${container.getMappedPort(6379)}`,
-        };
-        cache = adapterFactory(options);
-        break;
-      default:
-        cache = adapterFactory();
+    if (image.match(/^[a-z_\-0-9]+:[a-z_\-0-9]+$/i)) {
+      console.log(`Starting docker container ${image}...`);
+      const [imageName, imageTag] = (image ?? '').split(':');
+      container = await new GenericContainer(imageName, imageTag).withExposedPorts(6379).start();
+      switch (name) {
+        case 'RedisCacheAdapter':
+        case 'IoRedisCacheAdapter':
+          const options = {
+            dsn: `redis://${container.getHost()}:${container.getMappedPort(6379)}`,
+          };
+          cache = adapterFactory(options);
+          break;
+        default:
+          throw new Error('check test suite setup');
+      }
+    } else {
+      container = null;
+      cache = adapterFactory();
     }
   });
   afterAll(async () => {
     switch (name) {
-      case 'IoRedisCacheAdapter':
-        console.log('Stopping redis container...');
-        await (cache as IoRedisCacheAdapter).getStorage().quit();
-        await container.stop();
+      case 'RedisCacheAdapter':
+        (cache as RedisCacheAdapter).getStorage().end(true);
         break;
-      default:
+      case 'IoRedisCacheAdapter':
+        await (cache as IoRedisCacheAdapter).getStorage().quit();
+        break;
+    }
+    if (container !== null) {
+      console.log('stopping container...');
+      container.stop();
     }
   });
 

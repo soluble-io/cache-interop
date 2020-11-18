@@ -11,7 +11,10 @@ coverage:
         target: 1%
         flags:
           - cacheIORedis
-
+      cacheRedis:
+        target: 1%
+        flags:
+          - cacheRedis
 flags:
   cacheInterop:
     paths:
@@ -19,6 +22,9 @@ flags:
   cacheIORedis:
     paths:
       - packages/cache-ioredis
+  cacheRedis:
+    paths:
+      - packages/cache-redis
   e2e:
     paths:
       - packages/cache-e2e-tests
