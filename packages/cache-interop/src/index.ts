@@ -6,3 +6,4 @@ export * from './exceptions';
 export * from './serializer';
 export * from './types';
 export * from './utils';
+export * from './eviction';

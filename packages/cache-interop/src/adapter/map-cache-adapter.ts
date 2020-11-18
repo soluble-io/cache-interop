@@ -7,15 +7,27 @@ import { executeValueProviderFn } from '../utils/value-provider';
 import { DateProvider } from '../expiry/date-provider.interface';
 import { EsDateProvider } from '../expiry/es-date-provider';
 import { CacheException, CacheProviderException, UnsupportedFeatureException } from '../exceptions';
+import { EvictionPolicyInterface, ExpiresAtPolicy } from '../eviction';
+
+type Options = {
+  evictionPolicy?: EvictionPolicyInterface;
+};
+
+const defaultOptions = {
+  evictionPolicy: new ExpiresAtPolicy(),
+};
 
 export class MapCacheAdapter<TBase = string, KBase = CacheKey>
   extends AbstractCacheAdapter<TBase, KBase>
   implements CacheInterface<TBase, KBase> {
   private map: Map<KBase, { expiresAt: number; data: unknown }>;
   private dateProvider: DateProvider;
-  constructor() {
+  private evictionPolicy: EvictionPolicyInterface;
+  constructor(options?: Options) {
     super();
+    const { evictionPolicy } = { ...defaultOptions, ...(options ?? {}) };
     this.map = new Map();
+    this.evictionPolicy = evictionPolicy;
     this.dateProvider = new EsDateProvider();
   }
 
@@ -25,9 +37,9 @@ export class MapCacheAdapter<TBase = string, KBase = CacheKey>
       throw new Error('Error @todo check for possible values');
     }
     const cached = this.map.get(key);
-    if (cached !== undefined) {
-      const { expiresAt, data } = cached;
-      // @todo check for expiration date
+    const expired = cached?.expiresAt ? this.evictionPolicy.isExpired(cached.expiresAt) : false;
+    if (cached !== undefined && !expired) {
+      const { data } = cached;
       return CacheItem.createFromHit<T>({
         key,
         value: data as T,
@@ -60,7 +72,8 @@ export class MapCacheAdapter<TBase = string, KBase = CacheKey>
         });
       }
     }
-    const expiresAt = this.dateProvider.getUnixTime() + (options?.ttl ?? 0);
+    const { ttl = 0 } = options || {};
+    const expiresAt = ttl === 0 ? 0 : this.dateProvider.getUnixTime() + ttl;
     this.map.set(key, { expiresAt, data: v as T });
     return true;
   };
