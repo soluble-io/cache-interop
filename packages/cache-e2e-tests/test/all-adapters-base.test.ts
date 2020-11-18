@@ -3,6 +3,10 @@ import { IoRedisCacheAdapter } from '@soluble/cache-ioredis';
 import { GenericContainer } from 'testcontainers';
 import { StartedTestContainer } from 'testcontainers/dist/test-container';
 
+const sleep = async (ms: number): Promise<void> => {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+};
+
 const adapters = [
   ['MapCacheAdapter', '', () => new MapCacheAdapter()],
   [
@@ -157,6 +161,39 @@ describe.each(adapters)('Adapter: %s %s', (name, image, adapterFactory) => {
           hit: true,
           error: false,
           value: 'hello world',
+        });
+      });
+    });
+    describe('when a defaultValue is given', () => {
+      it('should return defaultValue if nothing in cache', async () => {
+        expect(await cache.get('k', 'default')).toMatchObject({
+          key: 'k',
+          hit: true,
+          error: false,
+          value: 'default',
+        });
+      });
+    });
+    describe('when an item was set with 0 expiry (forever)', () => {
+      it('should always return a cache hit', async () => {
+        await cache.set('k', 'hello world', { ttl: 0 });
+        expect(await cache.get('k')).toMatchObject({
+          key: 'k',
+          hit: true,
+          error: false,
+          value: 'hello world',
+        });
+      });
+    });
+    describe('when an item was set with 1 second expiry', () => {
+      it('should always return a cache miss if a second has passed', async () => {
+        await cache.set('k', 'hello world', { ttl: 1 });
+        await sleep(1001);
+        expect(await cache.get('k')).toMatchObject({
+          key: 'k',
+          hit: false,
+          error: false,
+          value: null,
         });
       });
     });

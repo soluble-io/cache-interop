@@ -1,5 +1,5 @@
 import { DateProvider } from './date-provider.interface';
-import { EsDateProvider } from './es-date-provider';
+import { EsDateProvider, UnixTime } from './es-date-provider';
 
 export class CacheExpiry {
   private dateProvider: DateProvider;
@@ -13,7 +13,7 @@ export class CacheExpiry {
    *
    * @param ttl number in seconds
    */
-  getExpiresAt(ttl: number): number | null {
+  getExpiresAt(ttl: number): UnixTime | null {
     if (ttl === 0) {
       return null;
     }

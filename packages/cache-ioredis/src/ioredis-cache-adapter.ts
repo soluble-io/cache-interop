@@ -70,6 +70,7 @@ export class IoRedisCacheAdapter<TBase = string, KBase = CacheKey>
     value: T | CacheValueProviderFn<T>,
     options?: SetOptions
   ): Promise<true | CacheException> => {
+    const { ttl = 0 } = options ?? {};
     let v = value;
     if (isCacheValueProviderFn(value)) {
       try {
@@ -82,17 +83,16 @@ export class IoRedisCacheAdapter<TBase = string, KBase = CacheKey>
         });
       }
     }
-    return new Promise((resolve, reject) => {
-      if (v === null) {
-        resolve(true);
-      }
+    if (v === null) return true;
+
+    return new Promise((resolve) => {
       if (!isNonEmptyString(v)) {
         throw new Error('IORedisCacheAdapter currently support only string values');
       }
       if (!isNonEmptyString(key)) {
         throw new Error('IORedisCacheAdapter currently support only string keys');
       }
-      this.redis.set(key, v).then((response) => {
+      const resolver = (response: unknown) => {
         resolve(
           response !== null
             ? true
@@ -100,7 +100,12 @@ export class IoRedisCacheAdapter<TBase = string, KBase = CacheKey>
                 message: '[IoRedisCacheAdapter.set()] Cannot write to cache',
               })
         );
-      });
+      };
+      if (ttl > 0) {
+        this.redis.setex(key, ttl, v).then(resolver);
+      } else {
+        this.redis.set(key, v).then(resolver);
+      }
     });
   };
 

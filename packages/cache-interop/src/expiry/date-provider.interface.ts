@@ -1,6 +1,8 @@
+import { UnixTime } from './es-date-provider';
+
 export interface DateProvider {
   /**
-   * Return the current time as Unix Timestamp (seconds since January 1, 1970)
+   * Return the current time as Unix Timestamp (number of seconds since January 1, 1970)
    */
-  getUnixTime(): number;
+  getUnixTime(): UnixTime;
 }
