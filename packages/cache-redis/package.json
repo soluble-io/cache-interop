@@ -1,7 +1,7 @@
 {
   "name": "@soluble/cache-redis",
   "description": "Node redis cache interop adapter",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "license": "MIT",
   "homepage": "https://github.com/soluble-io/tci/tree/main/packages/cache-redis",
   "repository": "https://github.com/soluble-io/tci",
@@ -22,9 +22,7 @@
   "main": "dist/cache-redis.js",
   "umd:main": "dist/cache-redis.umd.js",
   "typings": "dist/index.d.ts",
-  "files": [
-    "dist"
-  ],
+  "files": ["dist"],
   "sideEffects": false,
   "scripts": {
     "start": "cross-env NODE_ENV=development tsdx watch",
