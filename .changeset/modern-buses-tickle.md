@@ -2,4 +2,4 @@
 '@soluble/cache-redis': patch
 ---
 
-node-redis adapter
+node-redis adapter implementation
