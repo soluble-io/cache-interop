@@ -1,5 +1,11 @@
 # @soluble/cache-e2e-tests
 
+## 0.3.1
+
+### Patch Changes
+
+- [`5ad87be`](https://github.com/soluble-io/tci/commit/5ad87be6fb7e17f8e8f3503c41fddcd60a028ed9) [#25](https://github.com/soluble-io/tci/pull/25) Thanks [@belgattitude](https://github.com/belgattitude)! - Add support to ttl expiration
+
 ## 0.3.0
 
 ### Minor Changes
