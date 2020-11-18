@@ -37,32 +37,43 @@ export class RedisCacheAdapter<TBase = string, KBase = CacheKey>
       // @todo remove this
       throw new Error('Error @todo check for possible values');
     }
-    try {
-      value = ((await this.redis.get(key)) as unknown) as T;
-    } catch (e) {
-      return CacheItem.createFromError<T>({
-        key,
-        error: new CacheException({
-          previousError: e,
-          message: '[IoRedisCacheAdapter.get()] Cannot get data from cache',
-        }),
+    return new Promise((resolve) => {
+      this.redis.get(key, (err, value) => {
+        if (err !== null) {
+          resolve(
+            CacheItem.createFromError<T>({
+              key,
+              error: new CacheException({
+                previousError: err,
+                message: '[RedisCacheAdapter.get()] Cannot get data from cache',
+              }),
+            })
+          );
+        } else if (value === null) {
+          if (defaultValue !== undefined) {
+            resolve(
+              CacheItem.createFromHit<T>({
+                key,
+                value: defaultValue,
+              })
+            );
+          } else {
+            resolve(
+              CacheItem.createFromMiss<T>({
+                key: key,
+                expiresAt: 0,
+              })
+            );
+          }
+        } else {
+          resolve(
+            CacheItem.createFromHit<T>({
+              key,
+              value: (value as unknown) as T,
+            })
+          );
+        }
       });
-    }
-    if (value === null) {
-      if (defaultValue !== undefined) {
-        return CacheItem.createFromHit<T>({
-          key,
-          value: defaultValue,
-        });
-      }
-      return CacheItem.createFromMiss<T>({
-        key: key,
-        expiresAt: 0,
-      });
-    }
-    return CacheItem.createFromHit<T>({
-      key,
-      value,
     });
   };
   set = async <T = TBase, K extends KBase = KBase>(
@@ -113,61 +124,63 @@ export class RedisCacheAdapter<TBase = string, KBase = CacheKey>
 
   has = async <K extends KBase = KBase>(key: K): Promise<TrueOrFalseOrUndefined> => {
     if (!isNonEmptyString(key)) {
-      throw new Error('IORedisCacheAdapter currently support only string keys');
+      throw new Error('RedisCacheAdapter currently support only string keys');
     }
-    return this.redis.exists(key, (err: RedisError | null, count) => {
-      if (err !== null) {
-        // @todo see how error can be logged or returned
-        return undefined;
-      }
-      return count === 1;
-    });
+    return new Promise((resolve) =>
+      this.redis.exists(key, (err: RedisError | null, count) => {
+        if (err !== null) {
+          // @todo see how error can be logged or returned
+          resolve(undefined);
+        }
+        resolve(count === 1);
+      })
+    );
   };
 
   delete = async <K extends KBase = KBase>(key: K): Promise<boolean | CacheException> => {
     if (!isNonEmptyString(key)) {
-      throw new Error('IORedisCacheAdapter currently support only string keys');
+      throw new Error('RedisCacheAdapter currently support only string keys');
     }
-    let error: CacheException | null = null;
-    let exists = false;
-    const _ = this.redis.del(key, (cbError, cbCount) => {
-      if (cbError !== null) {
-        error = new CacheException({
-          message: cbError.message,
-          previousError: cbError,
-        });
-      } else {
-        exists = cbCount === 1;
-      }
+    return new Promise((resolve) => {
+      this.redis.del(key, (cbError, cbCount) => {
+        if (cbError !== null) {
+          resolve(
+            new CacheException({
+              message: cbError.message,
+              previousError: cbError,
+            })
+          );
+        } else {
+          resolve(cbCount === 1);
+        }
+      });
     });
-    if (error !== null) {
-      return error;
-    }
-    return exists;
   };
 
   clear = async (): Promise<true | CacheException> => {
-    let response: true | CacheException | null = null;
-    await this.redis.flushdb((err, res) => {
-      if (err !== null) {
-        response = new CacheException({
-          message: `Cannot clear cache: ${err.message}`,
-          previousError: err,
-        });
-      } else if (res !== 'OK') {
-        response = new UnexpectedErrorException({
-          message: `IoRedis should return 'OK' if not error was set`,
-        });
-      } else {
-        response = true;
-      }
+    return new Promise((resolve) => {
+      let response: true | CacheException | null = null;
+      this.redis.flushdb((err, res) => {
+        if (err !== null) {
+          response = new CacheException({
+            message: `Cannot clear cache: ${err.message}`,
+            previousError: err,
+          });
+        } else if (res !== 'OK') {
+          response = new UnexpectedErrorException({
+            message: `Redis should return 'OK' if not error was set`,
+          });
+        } else {
+          response = true;
+        }
+        resolve(
+          response ??
+            new UnexpectedErrorException({
+              message: 'Redis.flushdb() should return a valid response',
+            })
+        );
+      });
     });
-    return (
-      response ??
-      new UnexpectedErrorException({
-        message: 'IoRedis.flushdb() should return a valid response',
-      })
-    );
   };
 
   getStorage(): RedisClient {

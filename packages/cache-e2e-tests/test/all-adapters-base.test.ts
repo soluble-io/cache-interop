@@ -73,7 +73,6 @@ describe.each(adapters)('Adapter: %s %s', (name, image, adapterFactory) => {
     switch (name) {
       case 'RedisCacheAdapter':
         (cache as RedisCacheAdapter).getStorage().end(true);
-        sleep(500);
         break;
       case 'IoRedisCacheAdapter':
         await (cache as IoRedisCacheAdapter).getStorage().quit();
