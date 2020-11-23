@@ -3,7 +3,7 @@
   "description": "IORedis cache interop adapter",
   "version": "0.3.1",
   "license": "MIT",
-  "homepage": "https://github.com/soluble-io/tci/tree/main/packages/cache-ioredis",
+  "homepage": "https://github.com/soluble-io/cache-interop/tree/main/packages/cache-ioredis",
   "repository": "https://github.com/soluble-io/tci",
   "author": {
     "name": "Vanvelthem Sébastien",
