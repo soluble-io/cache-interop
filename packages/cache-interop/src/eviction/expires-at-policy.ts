@@ -1,7 +1,8 @@
 import { EvictionPolicyInterface } from './eviction-policy.interface';
 import { EsDateProvider, UnixTime } from '../expiry/es-date-provider';
 import { DateProvider } from '../expiry/date-provider.interface';
-import { CacheKey } from '../cache.interface';
+import { isSafeInteger } from '../utils';
+import { InvalidArgumentException } from '../exceptions';
 
 export class ExpiresAtPolicy implements EvictionPolicyInterface {
   private dateProvider: DateProvider;
@@ -10,7 +11,18 @@ export class ExpiresAtPolicy implements EvictionPolicyInterface {
     this.dateProvider = dateProvider;
   }
 
-  isExpired<T>(expiresAt: UnixTime, data?: T, key?: CacheKey): boolean {
+  /**
+   * Checks whether a expiration unix time is still valid
+   *
+   * @param expiresAt - UnixTime expressed in seconds
+   * @throws InvalidArgumentException
+   */
+  isExpired<T>(expiresAt: UnixTime): boolean {
+    if (!isSafeInteger(expiresAt)) {
+      throw new InvalidArgumentException({
+        message: 'ExpiresAtPolicy expects parameter expiresAt to be a safeInteger',
+      });
+    }
     if (expiresAt === 0) {
       return false;
     }

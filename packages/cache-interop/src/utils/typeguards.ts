@@ -34,6 +34,10 @@ export function isNonEmptyString(value: unknown, trim = true): value is string {
   return typeof value === 'string' && (trim ? value.trim() : value).length > 0;
 }
 
+export function isSafeInteger(value: unknown): value is number {
+  return typeof value === 'number' && Number.isSafeInteger(value);
+}
+
 export function isParsableNumeric(value: unknown): value is number {
   if (Number.isNaN(value)) {
     return false;

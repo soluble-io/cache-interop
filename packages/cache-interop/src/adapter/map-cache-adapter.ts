@@ -79,7 +79,11 @@ export class MapCacheAdapter<TBase = string, KBase = CacheKey>
   };
 
   has = async <K extends KBase = KBase>(key: K): Promise<TrueOrFalseOrUndefined> => {
-    return this.map.has(key);
+    if (!this.map.has(key)) {
+      return false;
+    }
+    const { expiresAt = 0 } = this.map.get(key) ?? {};
+    return !this.evictionPolicy.isExpired(expiresAt);
   };
 
   delete = async <K extends KBase = KBase>(key: K): Promise<boolean | CacheException> => {
