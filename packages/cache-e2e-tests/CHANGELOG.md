@@ -1,5 +1,11 @@
 # @soluble/cache-e2e-tests
 
+## 0.3.2
+
+### Patch Changes
+
+- [`bf3304b`](https://github.com/soluble-io/tci/commit/bf3304bcacc2274d7e280ee982bb997c75efeffc) [#30](https://github.com/soluble-io/tci/pull/30) Thanks [@belgattitude](https://github.com/belgattitude)! - Add expiry checks in MapCacheAdapter.has()
+
 ## 0.3.1
 
 ### Patch Changes
