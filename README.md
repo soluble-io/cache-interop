@@ -1,6 +1,6 @@
 # Cache interop
 
-[![codecov](https://codecov.io/gh/soluble-io/tci/branch/main/graph/badge.svg)](https://codecov.io/gh/soluble-io/tci)
+[![codecov](https://codecov.io/gh/soluble-io/cache-interop/branch/main/graph/badge.svg)](https://codecov.io/gh/soluble-io/cache-interop)
 
 Collection of cache adapters for nodejs.   
 

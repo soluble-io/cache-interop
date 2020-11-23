@@ -1,6 +1,6 @@
 {
   "$schema": "https://unpkg.com/@changesets/config@1.4.0/schema.json",
-  "changelog": ["@changesets/changelog-github", { "repo": "soluble-io/tci" }],
+  "changelog": ["@changesets/changelog-github", { "repo": "soluble-io/cache-interop" }],
   "commit": false,
   "linked": [],
   "access": "public",
