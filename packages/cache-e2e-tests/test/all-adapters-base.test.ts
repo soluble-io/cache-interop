@@ -89,7 +89,7 @@ describe.each(adapters)('Adapter: %s %s', (name, image, adapterFactory) => {
   });
   /**
    * ##############################################################
-   * # Adapter::set() basic behaviour                             #
+   * # Adapter.set() basic behaviour                             #
    * ##############################################################
    */
   describe('Adapter.set() basics', () => {
@@ -168,7 +168,7 @@ describe.each(adapters)('Adapter: %s %s', (name, image, adapterFactory) => {
 
   /**
    * ##############################################################
-   * # Adapter::get() behaviour                                   #
+   * # Adapter.get() behaviour                                   #
    * ##############################################################
    */
   describe('Adapter.get()', () => {
@@ -230,10 +230,10 @@ describe.each(adapters)('Adapter: %s %s', (name, image, adapterFactory) => {
 
   /**
    * ##############################################################
-   * # Adapter::delete() behaviour                                   #
+   * # Adapter.delete() behaviour                                   #
    * ##############################################################
    */
-  describe('Adapter::delete()', () => {
+  describe('Adapter.delete()', () => {
     describe('when value is not in cache', () => {
       it('should return false', async () => {
         expect(await cache.delete('no_existing')).toStrictEqual(false);
@@ -251,10 +251,10 @@ describe.each(adapters)('Adapter: %s %s', (name, image, adapterFactory) => {
 
   /**
    * ##############################################################
-   * # Adapter::clear() behaviour                                   #
+   * # Adapter.clear() behaviour                                   #
    * ##############################################################
    */
-  describe('Adapter::clear()', () => {
+  describe('Adapter.clear()', () => {
     describe('when no value is in cache', () => {
       it('should return true', async () => {
         expect(await cache.clear()).toStrictEqual(true);
@@ -276,13 +276,13 @@ describe.each(adapters)('Adapter: %s %s', (name, image, adapterFactory) => {
 
   /**
    * ##############################################################
-   * # Adapter::has() behaviour                                   #
+   * # Adapter.has() behaviour                                   #
    * ##############################################################
    */
-  describe('Adapter::has()', () => {
+  describe('Adapter.has()', () => {
     describe('when value is not in cache', () => {
       it('should return false', async () => {
-        expect(await cache.has('no_existsing')).toStrictEqual(false);
+        expect(await cache.has('not_exist')).toStrictEqual(false);
       });
     });
     describe('when value is in cache', () => {
@@ -291,14 +291,28 @@ describe.each(adapters)('Adapter: %s %s', (name, image, adapterFactory) => {
         expect(await cache.has('k')).toStrictEqual(true);
       });
     });
+    describe('when an item was set with 0 expiry (forever)', () => {
+      it('should always return true', async () => {
+        await cache.set('k', 'hello world', { ttl: 0 });
+        expect(await cache.has('k')).toStrictEqual(true);
+      });
+    });
+
+    describe('when an item was set with 1 second expiry', () => {
+      it('should return false if a second has passed', async () => {
+        await cache.set('k', 'hello world', { ttl: 1 });
+        await sleep(1001);
+        expect(await cache.has('k')).toStrictEqual(false);
+      });
+    });
   });
 
   /**
    * ##############################################################
-   * # Adapter::deleteMultiple() behaviour                                   #
+   * # Adapter.deleteMultiple() behaviour                                   #
    * ##############################################################
    */
-  describe('Adapter::deleteMultiple()', () => {
+  describe('Adapter.deleteMultiple()', () => {
     it('should return a Map with key and boolean', async () => {
       await cache.set('key-exists', 'cool');
       const resp = await cache.deleteMultiple(['key-exists', 'no1']);
@@ -313,10 +327,10 @@ describe.each(adapters)('Adapter: %s %s', (name, image, adapterFactory) => {
 
   /**
    * ##############################################################
-   * # Adapter::setMultiple() behaviour                                   #
+   * # Adapter.setMultiple() behaviour                                   #
    * ##############################################################
    */
-  describe('Adapter::setMultiple()', () => {
+  describe('Adapter.setMultiple()', () => {
     describe('when keyVals are valid', () => {
       it('should return a map with key/true', async () => {
         const fnAsyncOk = jest.fn(async (_) => 'async');
@@ -366,10 +380,10 @@ describe.each(adapters)('Adapter: %s %s', (name, image, adapterFactory) => {
 
   /**
    * ##############################################################
-   * # Adapter::getMultiple() behaviour                                   #
+   * # Adapter.getMultiple() behaviour                                   #
    * ##############################################################
    */
-  describe('Adapter::getMultiple()', () => {
+  describe('Adapter.getMultiple()', () => {
     it('should return existing keys', async () => {
       await cache.set('key1', 'val1');
       await cache.setMultiple([['key2', 'val2']]);
@@ -383,10 +397,10 @@ describe.each(adapters)('Adapter: %s %s', (name, image, adapterFactory) => {
 
   /**
    * ##############################################################
-   * # Adapter::getOrSet() behaviour                                   #
+   * # Adapter.getOrSet() behaviour                                   #
    * ##############################################################
    */
-  describe('Adapter::getOrSet', () => {
+  describe('Adapter.getOrSet', () => {
     describe('when value is not in cache', () => {
       it('should return and set the value', async () => {
         expect(await cache.getOrSet('k', async () => 'hello')).toMatchObject({
