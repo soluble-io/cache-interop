@@ -2,6 +2,7 @@ import {
   CacheInterface,
   CacheKey,
   CacheValueProviderFn,
+  GetOptions,
   GetOrSetOptions,
   SetOptions,
   TrueOrFalseOrUndefined,
@@ -10,6 +11,14 @@ import { CacheItemInterface } from '../cache-item.interface';
 import { executeValueProviderFn, isCacheValueProviderFn } from '../utils';
 import { CacheItem } from '../cache-item';
 import { CacheException } from '../exceptions';
+import { getGetOrSetCacheDisabledParams } from '../utils/cache-options-utils';
+
+const defaultGetOrSetOptions: GetOrSetOptions = {
+  disableCache: {
+    read: false,
+    write: false,
+  },
+} as const;
 
 export abstract class AbstractCacheAdapter<TBase = string, KBase = CacheKey> implements CacheInterface<TBase, KBase> {
   abstract set<T = TBase, K extends KBase = KBase>(
@@ -17,7 +26,7 @@ export abstract class AbstractCacheAdapter<TBase = string, KBase = CacheKey> imp
     value: T | CacheValueProviderFn<T>,
     options?: SetOptions
   ): Promise<true | CacheException>;
-  abstract get<T = TBase, K extends KBase = KBase>(key: K, defaultValue?: T): Promise<CacheItemInterface<T>>;
+  abstract get<T = TBase, K extends KBase = KBase>(key: K, options?: GetOptions<T>): Promise<CacheItemInterface<T>>;
   abstract has<K extends KBase = KBase>(key: K): Promise<TrueOrFalseOrUndefined>;
 
   abstract delete<K extends KBase = KBase>(key: K): Promise<boolean | CacheException>;
@@ -29,18 +38,22 @@ export abstract class AbstractCacheAdapter<TBase = string, KBase = CacheKey> imp
     return Promise.all(promises).then((resp) => new Map(resp));
   };
 
-  getMultiple = async <T = TBase, K extends KBase = KBase>(keys: K[]): Promise<Map<K, CacheItemInterface<T>>> => {
+  getMultiple = async <T = TBase, K extends KBase = KBase>(
+    keys: K[],
+    options?: GetOptions<T>
+  ): Promise<Map<K, CacheItemInterface<T>>> => {
     const promises = keys.map((key) => {
-      return this.get<T>(key).then((item): [K, CacheItemInterface<T>] => [key, item]);
+      return this.get<T>(key, options).then((item): [K, CacheItemInterface<T>] => [key, item]);
     });
     return Promise.all(promises).then((resp) => new Map(resp));
   };
 
   setMultiple = async <T = TBase, K extends KBase = KBase>(
-    keyVals: Readonly<[K, T | CacheValueProviderFn<T>][]>
+    keyVals: Readonly<[K, T | CacheValueProviderFn<T>][]>,
+    options?: SetOptions
   ): Promise<Map<K, true | CacheException>> => {
     const promises = keyVals.map(([key, value]) => {
-      return this.set(key, value).then((resp) => [key, resp]);
+      return this.set(key, value, options).then((resp) => [key, resp]);
     });
     const responses = (await Promise.all(promises)) as [K, true | CacheException][];
     return new Map(responses);
@@ -55,6 +68,8 @@ export abstract class AbstractCacheAdapter<TBase = string, KBase = CacheKey> imp
     value: T | CacheValueProviderFn<T>,
     options?: GetOrSetOptions
   ): Promise<CacheItemInterface<T>> => {
+    const { disableCache = false, ...setOptions } = { ...defaultGetOrSetOptions, ...(options ?? {}) };
+    const { read: disableRead, write: disableWrite } = getGetOrSetCacheDisabledParams(disableCache);
     const cacheItem = await this.get<T, K>(key);
     if (cacheItem.hit) {
       return cacheItem;
@@ -78,7 +93,7 @@ export abstract class AbstractCacheAdapter<TBase = string, KBase = CacheKey> imp
     } else {
       v = value;
     }
-    const stored = await this.set(key, v, options);
+    const stored = await this.set(key, v, setOptions);
     const { ttl = null } = options ?? {};
     return CacheItem.createFromHit<T, string>({
       key: typeof key === 'string' ? key : 'Unsupported Key',
