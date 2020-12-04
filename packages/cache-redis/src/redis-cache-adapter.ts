@@ -11,11 +11,11 @@ import {
   TrueOrFalseOrUndefined,
   isCacheValueProviderFn,
   isNonEmptyString,
-  isParsableNumeric,
   CacheProviderException,
   UnexpectedErrorException,
 } from '@soluble/cache-interop';
 import { RedisClient, createClient, ClientOpts, AbortError, AggregateError, ReplyError, RedisError } from 'redis';
+import { GetOptions } from '../../cache-interop/src';
 
 export class RedisCacheAdapter<TBase = string, KBase = CacheKey>
   extends AbstractCacheAdapter<TBase, KBase>
@@ -31,7 +31,7 @@ export class RedisCacheAdapter<TBase = string, KBase = CacheKey>
     this.redis = createClient({ db, ...rest });
   }
 
-  get = async <T = TBase, K extends KBase = KBase>(key: K, defaultValue?: T): Promise<CacheItemInterface<T>> => {
+  get = async <T = TBase, K extends KBase = KBase>(key: K, options?: GetOptions<T>): Promise<CacheItemInterface<T>> => {
     let value: T;
     if (typeof key !== 'string') {
       // @todo remove this
@@ -50,7 +50,8 @@ export class RedisCacheAdapter<TBase = string, KBase = CacheKey>
             })
           );
         } else if (value === null) {
-          if (defaultValue !== undefined) {
+          const { defaultValue = null } = options ?? {};
+          if (defaultValue !== null) {
             resolve(
               CacheItem.createFromHit<T>({
                 key,

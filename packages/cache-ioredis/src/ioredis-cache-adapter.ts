@@ -14,6 +14,7 @@ import {
   isParsableNumeric,
   CacheProviderException,
   UnexpectedErrorException,
+  GetOptions,
 } from '@soluble/cache-interop';
 import IORedis from 'ioredis';
 
@@ -31,7 +32,7 @@ export class IoRedisCacheAdapter<TBase = string, KBase = CacheKey>
     this.redis = new IORedis({ db, ...rest });
   }
 
-  get = async <T = TBase, K extends KBase = KBase>(key: K, defaultValue?: T): Promise<CacheItemInterface<T>> => {
+  get = async <T = TBase, K extends KBase = KBase>(key: K, options?: GetOptions<T>): Promise<CacheItemInterface<T>> => {
     let value: T;
     if (typeof key !== 'string') {
       // @todo remove this
@@ -49,7 +50,8 @@ export class IoRedisCacheAdapter<TBase = string, KBase = CacheKey>
       });
     }
     if (value === null) {
-      if (defaultValue !== undefined) {
+      const { defaultValue = null } = options ?? {};
+      if (defaultValue !== null) {
         return CacheItem.createFromHit<T>({
           key,
           value: defaultValue,

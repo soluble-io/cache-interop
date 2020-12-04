@@ -1,4 +1,11 @@
-import { CacheInterface, CacheKey, CacheValueProviderFn, SetOptions, TrueOrFalseOrUndefined } from '../cache.interface';
+import {
+  CacheInterface,
+  CacheKey,
+  CacheValueProviderFn,
+  GetOptions,
+  SetOptions,
+  TrueOrFalseOrUndefined,
+} from '../cache.interface';
 import { isCacheValueProviderFn } from '../utils/typeguards';
 import { AbstractCacheAdapter } from './abstract-cache-adapter';
 import { CacheItemInterface } from '../cache-item.interface';
@@ -6,7 +13,7 @@ import { CacheItem } from '../cache-item';
 import { executeValueProviderFn } from '../utils/value-provider';
 import { DateProvider } from '../expiry/date-provider.interface';
 import { EsDateProvider } from '../expiry/es-date-provider';
-import { CacheException, CacheProviderException, UnsupportedFeatureException } from '../exceptions';
+import { CacheException, CacheProviderException } from '../exceptions';
 import { EvictionPolicyInterface, ExpiresAtPolicy } from '../eviction';
 
 type Options = {
@@ -31,20 +38,22 @@ export class MapCacheAdapter<TBase = string, KBase = CacheKey>
     this.dateProvider = new EsDateProvider();
   }
 
-  get = async <T = TBase, K extends KBase = KBase>(key: K, defaultValue?: T): Promise<CacheItemInterface<T>> => {
+  get = async <T = TBase, K extends KBase = KBase>(key: K, options?: GetOptions<T>): Promise<CacheItemInterface<T>> => {
     if (typeof key !== 'string') {
       // @todo remove this
       throw new Error('Error @todo check for possible values');
     }
+    const { defaultValue = null } = options ?? {};
     const cached = this.map.get(key);
     const expired = cached?.expiresAt ? this.evictionPolicy.isExpired(cached.expiresAt) : false;
+
     if (cached !== undefined && !expired) {
       const { data } = cached;
       return CacheItem.createFromHit<T>({
         key,
         value: data as T,
       });
-    } else if (defaultValue !== undefined) {
+    } else if (defaultValue !== null) {
       return CacheItem.createFromHit<T>({
         key,
         value: defaultValue,
