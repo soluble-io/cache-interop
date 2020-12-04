@@ -393,6 +393,21 @@ describe.each(adapters)('Adapter: %s %s', (name, image, adapterFactory) => {
         expect((await cache.get('k-fn-err')).value).toStrictEqual(null);
         expect((await cache.get('k-async-err')).value).toStrictEqual(null);
       });
+      describe('when ttl option is given', () => {
+        it('should set ttl so entries will be discarded', async () => {
+          await cache.setMultiple([['k', 'hello']], {
+            ttl: 1,
+          });
+          expect((await cache.get('k')).value).toStrictEqual('hello');
+          await sleep(1001);
+          expect(await cache.get('k')).toMatchObject({
+            key: 'k',
+            hit: false,
+            error: false,
+            value: null,
+          });
+        });
+      });
       describe('when disableCache is true', () => {
         it('should not persist entry and return false', async () => {
           const ret = await cache.setMultiple(
