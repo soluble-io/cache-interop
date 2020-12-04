@@ -195,7 +195,7 @@ describe.each(adapters)('Adapter: %s %s', (name, image, adapterFactory) => {
     });
     describe('when a defaultValue is given', () => {
       it('should return defaultValue if nothing in cache', async () => {
-        expect(await cache.get('k', 'default')).toMatchObject({
+        expect(await cache.get('k', { defaultValue: 'default' })).toMatchObject({
           key: 'k',
           hit: true,
           error: false,
@@ -316,7 +316,7 @@ describe.each(adapters)('Adapter: %s %s', (name, image, adapterFactory) => {
     it('should return a Map with key and boolean', async () => {
       await cache.set('key-exists', 'cool');
       const resp = await cache.deleteMultiple(['key-exists', 'no1']);
-      expect(resp).toStrictEqual(
+      expect(resp).toStrictEqual<any>(
         new Map([
           ['key-exists', true],
           ['no1', false],
@@ -341,7 +341,7 @@ describe.each(adapters)('Adapter: %s %s', (name, image, adapterFactory) => {
           ['k-fn-ok', fnOk],
           ['k-async-ok', fnAsyncOk],
         ]);
-        expect(ret).toStrictEqual(
+        expect(ret).toStrictEqual<any>(
           new Map([
             ['k-string', true],
             ['k-null', true],
@@ -384,14 +384,29 @@ describe.each(adapters)('Adapter: %s %s', (name, image, adapterFactory) => {
    * ##############################################################
    */
   describe('Adapter.getMultiple()', () => {
-    it('should return existing keys', async () => {
-      await cache.set('key1', 'val1');
-      await cache.setMultiple([['key2', 'val2']]);
-      const resp = await cache.getMultiple(['key1', 'key2', 'key-not-exists']);
-      expect(resp.size).toBe(3);
-      expect(resp.get('key1')?.value).toStrictEqual('val1');
-      expect(resp.get('key2')?.value).toStrictEqual('val2');
-      expect(resp.get('key-not-exists')?.value).toBeNull();
+    describe('when some cache entries exists', () => {
+      it('should only return existing keys', async () => {
+        await cache.set('key1', 'val1');
+        await cache.setMultiple([['key2', 'val2']]);
+        const resp = await cache.getMultiple(['key1', 'key2', 'key-not-exists']);
+        expect(resp.size).toBe(3);
+        expect(resp.get('key1')?.value).toStrictEqual('val1');
+        expect(resp.get('key2')?.value).toStrictEqual('val2');
+        expect(resp.get('key-not-exists')?.value).toBeNull();
+      });
+    });
+    describe('when some entries exists and defaultValue provide', () => {
+      it('should return existing keys and set the defaults to others', async () => {
+        await cache.set('key1', 'val1');
+        await cache.setMultiple([['key2', 'val2']]);
+        const resp = await cache.getMultiple(['key1', 'key2', 'key-not-exists'], {
+          defaultValue: 'the_default_value',
+        });
+        expect(resp.size).toBe(3);
+        expect(resp.get('key1')?.value).toStrictEqual('val1');
+        expect(resp.get('key2')?.value).toStrictEqual('val2');
+        expect(resp.get('key-not-exists')?.value).toStrictEqual('the_default_value');
+      });
     });
   });
 
@@ -401,14 +416,51 @@ describe.each(adapters)('Adapter: %s %s', (name, image, adapterFactory) => {
    * ##############################################################
    */
   describe('Adapter.getOrSet', () => {
-    describe('when value is not in cache', () => {
-      it('should return and set the value', async () => {
-        expect(await cache.getOrSet('k', async () => 'hello')).toMatchObject({
+    describe('when key is not in cache', () => {
+      it('should execute the function and persist its return value', async () => {
+        const fct = jest.fn(async (_) => 'hello');
+        expect(await cache.getOrSet('k', fct)).toMatchObject({
           key: 'k',
           hit: true,
           error: false,
           value: 'hello',
         });
+        expect(fct).toHaveBeenCalledTimes(1);
+        expect((await cache.get('k')).value).toStrictEqual('hello');
+      });
+    });
+    describe('when key is already in cache', () => {
+      it('should execute not execute the function provider', async () => {
+        const fct = jest.fn(async (_) => 'value_from_promise');
+        await cache.set('k', 'initial_value');
+        expect(await cache.getOrSet('k', fct)).toMatchObject({
+          key: 'k',
+          hit: true,
+          error: false,
+          value: 'initial_value',
+        });
+        expect(fct).toHaveBeenCalledTimes(0);
+      });
+    });
+
+    describe('when disableCache is set to true', () => {
+      it('should execute the fn but ignore cache in read / write', async () => {
+        const fct = jest.fn(async (_) => 'from_promise');
+        //await cache.set('k', 'initial_value');
+        expect(
+          await cache.getOrSet('k', fct, {
+            disableCache: true,
+          })
+        ).toMatchObject({
+          key: 'k',
+          /*
+          hit: true,
+          error: false,
+          value: 'from_promise'
+           */
+        });
+        expect(fct).toHaveBeenCalledTimes(1);
+        //expect((await cache.get('k')).value).toStrictEqual('initial_value');
       });
     });
   });
