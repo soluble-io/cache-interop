@@ -13,9 +13,9 @@ import {
   isNonEmptyString,
   CacheProviderException,
   UnexpectedErrorException,
+  GetOptions,
 } from '@soluble/cache-interop';
 import { RedisClient, createClient, ClientOpts, AbortError, AggregateError, ReplyError, RedisError } from 'redis';
-import { GetOptions } from '../../cache-interop/src';
 
 export class RedisCacheAdapter<TBase = string, KBase = CacheKey>
   extends AbstractCacheAdapter<TBase, KBase>
