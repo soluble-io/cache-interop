@@ -393,6 +393,30 @@ describe.each(adapters)('Adapter: %s %s', (name, image, adapterFactory) => {
         expect((await cache.get('k-fn-err')).value).toStrictEqual(null);
         expect((await cache.get('k-async-err')).value).toStrictEqual(null);
       });
+      describe('when disableCache is true', () => {
+        it('should not persist entry and return false', async () => {
+          const ret = await cache.setMultiple(
+            [
+              ['k1', 'hello'],
+              ['k2', 'cool'],
+            ],
+            {
+              disableCache: true,
+            }
+          );
+          expect(ret.get('k1')).toStrictEqual(false);
+          expect(ret.get('k2')).toStrictEqual(false);
+          expect((await cache.get('k1')).value).toStrictEqual(null);
+          expect((await cache.get('k2')).value).toStrictEqual(null);
+        });
+        it('should never execute function provider', async () => {
+          const fn = jest.fn(async (_) => 'cool');
+          await cache.setMultiple([['k', fn]], {
+            disableCache: true,
+          });
+          expect(fn).toHaveBeenCalledTimes(0);
+        });
+      });
     });
   });
 
