@@ -1,11 +1,30 @@
 import { CacheItemInterface } from './cache-item.interface';
 import { CacheException, CacheProviderException, InvalidArgumentException } from './exceptions';
 
+export type GetOptions<T> = {
+  defaultValue?: T;
+  disableCache?: boolean;
+};
+
 export type SetOptions = {
   /** Time-To-Live expressed in seconds, 0 meaning forever  */
   ttl?: number;
+  /** Whether to disable caching, by default false */
+  disableCache?: boolean;
 };
-export type GetOrSetOptions = SetOptions; // &{}
+export type GetOrSetOptions = Omit<SetOptions, 'disableCache'> & {
+  /** Whether to disable caching, by default false.
+   *  Accepts an object to selectively disable writes and/or reads
+   */
+  disableCache:
+    | boolean
+    | {
+        /** Whether to disable cache reads */
+        read: boolean;
+        /** Whether to disable cache writes */
+        write: boolean;
+      };
+};
 
 type CacheValueProviderParams = { key: CacheKey };
 export type CacheProviderAsyncFn<T> = (params?: CacheValueProviderParams) => Promise<T>;
@@ -21,19 +40,20 @@ export interface CacheInterface<TBase = string, KBase = CacheKey> {
    * Fetches a value from the cache
    *
    * @param key - The unique key of this item in the cache.
+   * @param options - An object holding GetOptions
    *
    * @returns A promise returning a CacheItemInterface, or defaultValue in case of cache miss.
    * @throws InvalidArgumentException
    *         MUST be thrown if the $key string is not a legal value.
    */
-  get<T = TBase, K extends KBase = KBase>(key: K, defaultValue?: T): Promise<CacheItemInterface<T>>;
+  get<T = TBase, K extends KBase = KBase>(key: K, options?: GetOptions<T>): Promise<CacheItemInterface<T>>;
 
   /**
    * Persists data in the cache, uniquely referenced by a key.
    *
    * @param key - The key of the item to store.
    * @param value - The value of the item to store or a function returning the value. Must be serializable.
-   * @param options - An object holding options
+   * @param options - An object holding SetOptions
    *
    * @throws InvalidArgumentException
    *         MUST be thrown if the $key string is not a legal value.
@@ -80,7 +100,10 @@ export interface CacheInterface<TBase = string, KBase = CacheKey> {
    *
    * @param keys - A list of keys that can obtained in a single operation.
    */
-  getMultiple<T = TBase, K extends KBase = KBase>(keys: K[]): Promise<Map<K, CacheItemInterface<T>>>;
+  getMultiple<T = TBase, K extends KBase = KBase>(
+    keys: K[],
+    options?: GetOptions<T>
+  ): Promise<Map<K, CacheItemInterface<T>>>;
 
   /**
    * Persists a set of key => value pairs in the cache.
@@ -88,7 +111,8 @@ export interface CacheInterface<TBase = string, KBase = CacheKey> {
    * @param keyVals - array of tuples container key and value
    */
   setMultiple<T = TBase, K extends KBase = KBase>(
-    keyVals: Readonly<[K, T | CacheValueProviderFn<T>][]>
+    keyVals: Readonly<[K, T | CacheValueProviderFn<T>][]>,
+    options?: SetOptions
   ): Promise<Map<K, true | CacheException>>;
 
   /**
