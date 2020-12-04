@@ -71,8 +71,11 @@ export class IoRedisCacheAdapter<TBase = string, KBase = CacheKey>
     key: K,
     value: T | CacheValueProviderFn<T>,
     options?: SetOptions
-  ): Promise<true | CacheException> => {
-    const { ttl = 0 } = options ?? {};
+  ): Promise<boolean | CacheException> => {
+    const { ttl = 0, disableCache = false } = options ?? {};
+    if (disableCache) {
+      return false;
+    }
     let v = value;
     if (isCacheValueProviderFn(value)) {
       try {

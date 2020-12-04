@@ -25,7 +25,7 @@ export abstract class AbstractCacheAdapter<TBase = string, KBase = CacheKey> imp
     key: K,
     value: T | CacheValueProviderFn<T>,
     options?: SetOptions
-  ): Promise<true | CacheException>;
+  ): Promise<boolean | CacheException>;
   abstract get<T = TBase, K extends KBase = KBase>(key: K, options?: GetOptions<T>): Promise<CacheItemInterface<T>>;
   abstract has<K extends KBase = KBase>(key: K): Promise<TrueOrFalseOrUndefined>;
 
@@ -51,11 +51,11 @@ export abstract class AbstractCacheAdapter<TBase = string, KBase = CacheKey> imp
   setMultiple = async <T = TBase, K extends KBase = KBase>(
     keyVals: Readonly<[K, T | CacheValueProviderFn<T>][]>,
     options?: SetOptions
-  ): Promise<Map<K, true | CacheException>> => {
+  ): Promise<Map<K, boolean | CacheException>> => {
     const promises = keyVals.map(([key, value]) => {
       return this.set(key, value, options).then((resp) => [key, resp]);
     });
-    const responses = (await Promise.all(promises)) as [K, true | CacheException][];
+    const responses = (await Promise.all(promises)) as [K, boolean | CacheException][];
     return new Map(responses);
   };
 

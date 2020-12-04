@@ -68,7 +68,11 @@ export class MapCacheAdapter<TBase = string, KBase = CacheKey>
     key: K,
     value: T | CacheValueProviderFn<T>,
     options?: SetOptions
-  ): Promise<true | CacheException> => {
+  ): Promise<boolean | CacheException> => {
+    const { disableCache = false, ttl = 0 } = options ?? {};
+    if (disableCache) {
+      return false;
+    }
     let v = value;
     if (isCacheValueProviderFn(value)) {
       try {
@@ -81,7 +85,6 @@ export class MapCacheAdapter<TBase = string, KBase = CacheKey>
         });
       }
     }
-    const { ttl = 0 } = options || {};
     const expiresAt = ttl === 0 ? 0 : this.dateProvider.getUnixTime() + ttl;
     this.map.set(key, { expiresAt, data: v as T });
     return true;

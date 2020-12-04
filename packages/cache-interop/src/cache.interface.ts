@@ -62,7 +62,7 @@ export interface CacheInterface<TBase = string, KBase = CacheKey> {
     key: K,
     value: T | CacheValueProviderFn<T>,
     options?: SetOptions
-  ): Promise<true | CacheException>;
+  ): Promise<boolean | CacheException>;
 
   /**
    * Delete an item from the cache by its unique key.
@@ -113,7 +113,7 @@ export interface CacheInterface<TBase = string, KBase = CacheKey> {
   setMultiple<T = TBase, K extends KBase = KBase>(
     keyVals: Readonly<[K, T | CacheValueProviderFn<T>][]>,
     options?: SetOptions
-  ): Promise<Map<K, true | CacheException>>;
+  ): Promise<Map<K, boolean | CacheException>>;
 
   /**
    * Delete cache entries from multiple keys
