@@ -111,6 +111,24 @@ describe.each(adapters)('Adapter: %s %s', (name, image, adapterFactory) => {
         expect((await cache.get('k2')).value).toBeNull();
       });
     });
+    describe('when disableCache is true', () => {
+      it('should not persist entry and return false', async () => {
+        expect(
+          await cache.set('k', 'cool', {
+            disableCache: true,
+          })
+        ).toStrictEqual(false);
+        expect((await cache.get('k')).value).toStrictEqual(null);
+      });
+      it('should never execute function provider', async () => {
+        const fct = jest.fn((_) => 'cool');
+        await cache.set('k', 'cool', {
+          disableCache: true,
+        });
+        expect(fct).toHaveBeenCalledTimes(0);
+      });
+    });
+
     describe('when value is a function returning a string', () => {
       it('should call the function and return true', async () => {
         const fct = jest.fn((_) => 'cool');
