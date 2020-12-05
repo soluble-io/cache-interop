@@ -14,7 +14,7 @@ type CacheItemProps<T, K = CacheKey> = {
 export class CacheItem<T, KBase = CacheKey> implements CacheItemInterface<T, KBase> {
   public readonly hit: boolean;
   public get value(): T | null {
-    return this.hit ? this._value : null;
+    return this._value;
   }
   public readonly metadata: CacheItemMetadata;
   public readonly key: KBase;
@@ -37,11 +37,13 @@ export class CacheItem<T, KBase = CacheKey> implements CacheItemInterface<T, KBa
     key: K;
     expiresAt?: CacheExpiresAt;
     fetched?: boolean;
+    value?: T;
     error?: CacheException;
   }): CacheItemInterface<T, K> {
-    return new CacheItem<null, K>({
+    return new CacheItem<T, K>({
       hit: false,
       key: props.key,
+      value: props.value,
       metadata: {
         ...(props.expiresAt ? { expiresAt: props.expiresAt } : {}),
       },
