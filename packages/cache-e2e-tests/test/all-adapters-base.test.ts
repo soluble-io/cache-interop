@@ -120,7 +120,7 @@ describe.each(adapters)('Adapter: %s %s', (name, image, adapterFactory) => {
         ).toStrictEqual(false);
         expect((await cache.get('k')).value).toStrictEqual(null);
       });
-      it('should never execute function provider', async () => {
+      it('should not execute the function provider', async () => {
         const fct = jest.fn((_) => 'cool');
         await cache.set('k', 'cool', {
           disableCache: true,
@@ -215,9 +215,18 @@ describe.each(adapters)('Adapter: %s %s', (name, image, adapterFactory) => {
       it('should return defaultValue if nothing in cache', async () => {
         expect(await cache.get('k', { defaultValue: 'default' })).toMatchObject({
           key: 'k',
-          hit: true,
+          hit: false,
           error: false,
           value: 'default',
+        });
+      });
+      it('should give priority to existing cache entry', async () => {
+        await cache.set('k', 'initial');
+        expect(await cache.get('k', { defaultValue: 'default' })).toMatchObject({
+          key: 'k',
+          hit: true,
+          error: false,
+          value: 'initial',
         });
       });
     });
@@ -241,6 +250,24 @@ describe.each(adapters)('Adapter: %s %s', (name, image, adapterFactory) => {
           hit: false,
           error: false,
           value: null,
+        });
+      });
+    });
+
+    describe('when disableCache is true and an entry exists', () => {
+      describe('when no defaultValue provided', () => {
+        it('should never return the cache entry', async () => {
+          await cache.set('k', 'cool');
+          expect(
+            await cache.get('k', {
+              disableCache: true,
+            })
+          ).toMatchObject({
+            key: 'k',
+            hit: false,
+            error: false,
+            value: null,
+          });
         });
       });
     });
@@ -452,7 +479,7 @@ describe.each(adapters)('Adapter: %s %s', (name, image, adapterFactory) => {
         expect(resp.get('key-not-exists')?.value).toBeNull();
       });
     });
-    describe('when some entries exists and defaultValue provide', () => {
+    describe('when some entries exists and defaultValue is provided', () => {
       it('should return existing keys and set the defaults to others', async () => {
         await cache.set('key1', 'val1');
         await cache.setMultiple([['key2', 'val2']]);
@@ -487,7 +514,7 @@ describe.each(adapters)('Adapter: %s %s', (name, image, adapterFactory) => {
       });
     });
     describe('when key is already in cache', () => {
-      it('should execute not execute the function provider', async () => {
+      it('should not execute the function provider and return the entry', async () => {
         const fct = jest.fn(async (_) => 'value_from_promise');
         await cache.set('k', 'initial_value');
         expect(await cache.getOrSet('k', fct)).toMatchObject({
@@ -500,24 +527,25 @@ describe.each(adapters)('Adapter: %s %s', (name, image, adapterFactory) => {
       });
     });
 
-    describe('when disableCache is set to true', () => {
-      it('should execute the fn but ignore cache in read / write', async () => {
-        const fct = jest.fn(async (_) => 'from_promise');
-        //await cache.set('k', 'initial_value');
-        expect(
-          await cache.getOrSet('k', fct, {
-            disableCache: true,
-          })
-        ).toMatchObject({
-          key: 'k',
-          /*
-          hit: true,
-          error: false,
-          value: 'from_promise'
-           */
+    describe('when disableCache is set to true (read/write)', () => {
+      describe('when a cache entry exists', () => {
+        it('should execute the fn but ignore cache in read / write', async () => {
+          const fct = jest.fn(async (_) => 'from_promise');
+          await cache.set('k', 'initial_value');
+          expect(
+            await cache.getOrSet('k', fct, {
+              disableCache: true,
+            })
+          ).toMatchObject({
+            key: 'k',
+            // @todo redefine what hit is
+            //hit: false,
+            error: false,
+            value: 'from_promise',
+          });
+          expect(fct).toHaveBeenCalledTimes(1);
+          expect((await cache.get('k')).value).toStrictEqual('initial_value');
         });
-        expect(fct).toHaveBeenCalledTimes(1);
-        //expect((await cache.get('k')).value).toStrictEqual('initial_value');
       });
     });
   });
