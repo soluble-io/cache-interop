@@ -43,9 +43,16 @@ export class MapCacheAdapter<TBase = string, KBase = CacheKey>
       // @todo remove this
       throw new Error('Error @todo check for possible values');
     }
-    const { defaultValue = null } = options ?? {};
+    const { defaultValue = null, disableCache = false } = options ?? {};
+    if (disableCache) {
+      return CacheItem.createFromMiss({
+        key,
+        value: defaultValue !== null ? defaultValue : undefined,
+      });
+    }
     const cached = this.map.get(key);
-    const expired = cached?.expiresAt ? this.evictionPolicy.isExpired(cached.expiresAt) : false;
+    const { expiresAt = null } = cached ?? {};
+    const expired = expiresAt !== null ? this.evictionPolicy.isExpired(expiresAt) : false;
 
     if (cached !== undefined && !expired) {
       const { data } = cached;
@@ -53,14 +60,10 @@ export class MapCacheAdapter<TBase = string, KBase = CacheKey>
         key,
         value: data as T,
       });
-    } else if (defaultValue !== null) {
-      return CacheItem.createFromHit<T>({
-        key,
-        value: defaultValue,
-      });
     }
     return CacheItem.createFromMiss<T>({
       key: key,
+      value: defaultValue !== null ? defaultValue : undefined,
     });
   };
 

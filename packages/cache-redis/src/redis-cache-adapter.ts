@@ -32,10 +32,16 @@ export class RedisCacheAdapter<TBase = string, KBase = CacheKey>
   }
 
   get = async <T = TBase, K extends KBase = KBase>(key: K, options?: GetOptions<T>): Promise<CacheItemInterface<T>> => {
-    let value: T;
     if (typeof key !== 'string') {
       // @todo remove this
       throw new Error('Error @todo check for possible values');
+    }
+    const { disableCache = false, defaultValue = null } = options ?? {};
+    if (disableCache) {
+      return CacheItem.createFromMiss<T>({
+        key: key,
+        value: defaultValue !== null ? defaultValue : undefined,
+      });
     }
     return new Promise((resolve) => {
       this.redis.get(key, (err, value) => {
@@ -50,22 +56,12 @@ export class RedisCacheAdapter<TBase = string, KBase = CacheKey>
             })
           );
         } else if (value === null) {
-          const { defaultValue = null } = options ?? {};
-          if (defaultValue !== null) {
-            resolve(
-              CacheItem.createFromHit<T>({
-                key,
-                value: defaultValue,
-              })
-            );
-          } else {
-            resolve(
-              CacheItem.createFromMiss<T>({
-                key: key,
-                expiresAt: 0,
-              })
-            );
-          }
+          resolve(
+            CacheItem.createFromMiss<T>({
+              key,
+              value: defaultValue !== null ? defaultValue : undefined,
+            })
+          );
         } else {
           resolve(
             CacheItem.createFromHit<T>({

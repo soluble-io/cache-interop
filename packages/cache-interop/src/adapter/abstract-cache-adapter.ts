@@ -70,7 +70,7 @@ export abstract class AbstractCacheAdapter<TBase = string, KBase = CacheKey> imp
   ): Promise<CacheItemInterface<T>> => {
     const { disableCache = false, ...setOptions } = { ...defaultGetOrSetOptions, ...(options ?? {}) };
     const { read: disableRead, write: disableWrite } = getGetOrSetCacheDisabledParams(disableCache);
-    const cacheItem = await this.get<T, K>(key);
+    const cacheItem = await this.get<T, K>(key, { disableCache: disableRead });
     if (cacheItem.hit) {
       return cacheItem;
     }
@@ -93,7 +93,7 @@ export abstract class AbstractCacheAdapter<TBase = string, KBase = CacheKey> imp
     } else {
       v = value;
     }
-    const stored = await this.set(key, v, setOptions);
+    const stored = await this.set(key, v, { ...setOptions, disableCache: disableWrite });
     const { ttl = null } = options ?? {};
     return CacheItem.createFromHit<T, string>({
       key: typeof key === 'string' ? key : 'Unsupported Key',
