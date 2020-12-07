@@ -1,11 +1,40 @@
 import { CacheItemInterface } from './cache-item.interface';
 import { CacheException, CacheProviderException, InvalidArgumentException } from './exceptions';
 
+export type GetOptions<T> = {
+  defaultValue?: T;
+  disableCache?: boolean;
+};
+
+export type DeleteOptions = {
+  /** Whether to disable caching, by default false */
+  disableCache?: boolean;
+};
+
+export type HasOptions = {
+  /** Whether to disable caching, by default false */
+  disableCache?: boolean;
+};
+
 export type SetOptions = {
   /** Time-To-Live expressed in seconds, 0 meaning forever  */
   ttl?: number;
+  /** Whether to disable caching, by default false */
+  disableCache?: boolean;
 };
-export type GetOrSetOptions = SetOptions; // &{}
+export type GetOrSetOptions = Omit<SetOptions, 'disableCache'> & {
+  /** Whether to disable caching, by default false.
+   *  Accepts an object to selectively disable writes and/or reads
+   */
+  disableCache:
+    | boolean
+    | {
+        /** True to disable cache reads */
+        read: boolean;
+        /** True to disable cache writes */
+        write: boolean;
+      };
+};
 
 type CacheValueProviderParams = { key: CacheKey };
 export type CacheProviderAsyncFn<T> = (params?: CacheValueProviderParams) => Promise<T>;
@@ -21,19 +50,20 @@ export interface CacheInterface<TBase = string, KBase = CacheKey> {
    * Fetches a value from the cache
    *
    * @param key - The unique key of this item in the cache.
+   * @param options - An object holding GetOptions
    *
    * @returns A promise returning a CacheItemInterface, or defaultValue in case of cache miss.
    * @throws InvalidArgumentException
    *         MUST be thrown if the $key string is not a legal value.
    */
-  get<T = TBase, K extends KBase = KBase>(key: K, defaultValue?: T): Promise<CacheItemInterface<T>>;
+  get<T = TBase, K extends KBase = KBase>(key: K, options?: GetOptions<T>): Promise<CacheItemInterface<T>>;
 
   /**
    * Persists data in the cache, uniquely referenced by a key.
    *
    * @param key - The key of the item to store.
    * @param value - The value of the item to store or a function returning the value. Must be serializable.
-   * @param options - An object holding options
+   * @param options - An object holding SetOptions
    *
    * @throws InvalidArgumentException
    *         MUST be thrown if the $key string is not a legal value.
@@ -42,7 +72,7 @@ export interface CacheInterface<TBase = string, KBase = CacheKey> {
     key: K,
     value: T | CacheValueProviderFn<T>,
     options?: SetOptions
-  ): Promise<true | CacheException>;
+  ): Promise<boolean | CacheException>;
 
   /**
    * Delete an item from the cache by its unique key.
@@ -55,7 +85,7 @@ export interface CacheInterface<TBase = string, KBase = CacheKey> {
    * @throws InvalidArgumentException
    *         MUST be thrown if the $key string is not a legal value.
    */
-  delete<K extends KBase = KBase>(key: K): Promise<boolean | CacheException>;
+  delete<K extends KBase = KBase>(key: K, options?: DeleteOptions): Promise<boolean | CacheException>;
 
   /**
    * Determines whether an item is present in the cache.
@@ -68,19 +98,23 @@ export interface CacheInterface<TBase = string, KBase = CacheKey> {
    * @param key - The cache item key
    *
    * @return True if the item exists in the cache and was removed, false otherwise.
-   *         Undefined is used to determine if the operation was successful
+   *         Undefined is used to determine if the operation was successful.
+   *         If cacheDisabled option is set to true, it will always return false.
    *
    * @throws InvalidArgumentException
    *         MUST be thrown if the $key string is not a legal value.
    */
-  has<K extends KBase = KBase>(key: K): Promise<TrueOrFalseOrUndefined>;
+  has<K extends KBase = KBase>(key: K, options?: HasOptions): Promise<TrueOrFalseOrUndefined>;
 
   /**
    * Obtains multiple cache items by their unique keys.
    *
    * @param keys - A list of keys that can obtained in a single operation.
    */
-  getMultiple<T = TBase, K extends KBase = KBase>(keys: K[]): Promise<Map<K, CacheItemInterface<T>>>;
+  getMultiple<T = TBase, K extends KBase = KBase>(
+    keys: K[],
+    options?: GetOptions<T>
+  ): Promise<Map<K, CacheItemInterface<T>>>;
 
   /**
    * Persists a set of key => value pairs in the cache.
@@ -88,15 +122,19 @@ export interface CacheInterface<TBase = string, KBase = CacheKey> {
    * @param keyVals - array of tuples container key and value
    */
   setMultiple<T = TBase, K extends KBase = KBase>(
-    keyVals: Readonly<[K, T | CacheValueProviderFn<T>][]>
-  ): Promise<Map<K, true | CacheException>>;
+    keyVals: Readonly<[K, T | CacheValueProviderFn<T>][]>,
+    options?: SetOptions
+  ): Promise<Map<K, boolean | CacheException>>;
 
   /**
    * Delete cache entries from multiple keys
    *
    * @param keys - A list of keys that should be deleted.
    */
-  deleteMultiple<K extends KBase = KBase>(keys: K[]): Promise<Map<K, boolean | CacheException>>;
+  deleteMultiple<K extends KBase = KBase>(
+    keys: K[],
+    options?: DeleteOptions
+  ): Promise<Map<K, boolean | CacheException>>;
 
   /**
    * Delete the entire cache's keys.

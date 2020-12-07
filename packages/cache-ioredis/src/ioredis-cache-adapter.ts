@@ -14,6 +14,9 @@ import {
   isParsableNumeric,
   CacheProviderException,
   UnexpectedErrorException,
+  GetOptions,
+  HasOptions,
+  DeleteOptions,
 } from '@soluble/cache-interop';
 import IORedis from 'ioredis';
 
@@ -31,12 +34,19 @@ export class IoRedisCacheAdapter<TBase = string, KBase = CacheKey>
     this.redis = new IORedis({ db, ...rest });
   }
 
-  get = async <T = TBase, K extends KBase = KBase>(key: K, defaultValue?: T): Promise<CacheItemInterface<T>> => {
-    let value: T;
+  get = async <T = TBase, K extends KBase = KBase>(key: K, options?: GetOptions<T>): Promise<CacheItemInterface<T>> => {
     if (typeof key !== 'string') {
       // @todo remove this
       throw new Error('Error @todo check for possible values');
     }
+    const { defaultValue = null, disableCache = false } = options ?? {};
+    if (disableCache) {
+      return CacheItem.createFromMiss({
+        key,
+        value: defaultValue !== null ? defaultValue : undefined,
+      });
+    }
+    let value: T;
     try {
       value = ((await this.redis.get(key)) as unknown) as T;
     } catch (e) {
@@ -49,15 +59,9 @@ export class IoRedisCacheAdapter<TBase = string, KBase = CacheKey>
       });
     }
     if (value === null) {
-      if (defaultValue !== undefined) {
-        return CacheItem.createFromHit<T>({
-          key,
-          value: defaultValue,
-        });
-      }
       return CacheItem.createFromMiss<T>({
         key: key,
-        expiresAt: 0,
+        value: defaultValue !== null ? defaultValue : undefined,
       });
     }
     return CacheItem.createFromHit<T>({
@@ -69,8 +73,11 @@ export class IoRedisCacheAdapter<TBase = string, KBase = CacheKey>
     key: K,
     value: T | CacheValueProviderFn<T>,
     options?: SetOptions
-  ): Promise<true | CacheException> => {
-    const { ttl = 0 } = options ?? {};
+  ): Promise<boolean | CacheException> => {
+    const { ttl = 0, disableCache = false } = options ?? {};
+    if (disableCache) {
+      return false;
+    }
     let v = value;
     if (isCacheValueProviderFn(value)) {
       try {
@@ -109,16 +116,24 @@ export class IoRedisCacheAdapter<TBase = string, KBase = CacheKey>
     });
   };
 
-  has = async <K extends KBase = KBase>(key: K): Promise<TrueOrFalseOrUndefined> => {
+  has = async <K extends KBase = KBase>(key: K, options?: HasOptions): Promise<TrueOrFalseOrUndefined> => {
     if (!isNonEmptyString(key)) {
       throw new Error('IORedisCacheAdapter currently support only string keys');
+    }
+    const { disableCache = false } = options ?? {};
+    if (disableCache) {
+      return false;
     }
     return this.redis.exists(key).then((count) => count === 1);
   };
 
-  delete = async <K extends KBase = KBase>(key: K): Promise<boolean | CacheException> => {
+  delete = async <K extends KBase = KBase>(key: K, options?: DeleteOptions): Promise<boolean | CacheException> => {
     if (!isNonEmptyString(key)) {
       throw new Error('IORedisCacheAdapter currently support only string keys');
+    }
+    const { disableCache = false } = options ?? {};
+    if (disableCache) {
+      return false;
     }
     let error: CacheException | null = null;
     let exists = false;

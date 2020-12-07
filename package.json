@@ -29,7 +29,7 @@
     "lint": "yarn workspaces run lint",
     "fix:staged": "yarn workspaces run fix:staged",
     "deduplicate": "yarn-deduplicate yarn.lock",
-    "reinstall": "lerna clean --yes && lerna run clean && npx rimraf@^3.0 --no-glob ./yarn.lock ./node_modules && yarn install",
+    "reinstall": "lerna clean --yes && lerna run clean && npx rimraf@^3.0 --no-glob ./yarn.lock ./node_modules && yarn install && yarn deduplicate",
     "coverage:publish": "codecov && lerna run coverage:publish -- -f coverage/clover.xml",
     "deps:check": "ncu && lerna exec -- yarn deps:check",
     "deps:update": "ncu -u && lerna exec -- yarn deps:update"
