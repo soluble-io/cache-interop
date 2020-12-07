@@ -316,7 +316,7 @@ describe.each(adapters)('Adapter: %s %s', (name, image, adapterFactory) => {
     it('should return a Map with key and boolean', async () => {
       await cache.set('key-exists', 'cool');
       const resp = await cache.deleteMultiple(['key-exists', 'no1']);
-      expect(resp).toStrictEqual(
+      expect(resp).toStrictEqual<any>(
         new Map([
           ['key-exists', true],
           ['no1', false],
@@ -341,7 +341,7 @@ describe.each(adapters)('Adapter: %s %s', (name, image, adapterFactory) => {
           ['k-fn-ok', fnOk],
           ['k-async-ok', fnAsyncOk],
         ]);
-        expect(ret).toStrictEqual(
+        expect(ret).toStrictEqual<any>(
           new Map([
             ['k-string', true],
             ['k-null', true],
