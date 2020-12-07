@@ -1,5 +1,25 @@
 # @soluble/cache-interop
 
+## 0.4.0
+
+### Minor Changes
+
+- [`47d2228`](https://github.com/soluble-io/cache-interop/commit/47d2228256a92a0e3bcacc205845f908e58f9f4e) [#33](https://github.com/soluble-io/cache-interop/pull/33) Thanks [@belgattitude](https://github.com/belgattitude)! - Add disableCache option to CacheInterface.get() and CacheInterface.getMultiple()
+
+* [`ce0f736`](https://github.com/soluble-io/cache-interop/commit/ce0f73681cd3d5ecb98a1addd303852b71f1dad0) [#33](https://github.com/soluble-io/cache-interop/pull/33) Thanks [@belgattitude](https://github.com/belgattitude)! - Support disableCache in adapter.has method
+
+- [`47d2228`](https://github.com/soluble-io/cache-interop/commit/47d2228256a92a0e3bcacc205845f908e58f9f4e) [#33](https://github.com/soluble-io/cache-interop/pull/33) Thanks [@belgattitude](https://github.com/belgattitude)! - Minor refactor to CacheInterface.set, now returns a boolean (needed for disableCache)
+
+* [`47d2228`](https://github.com/soluble-io/cache-interop/commit/47d2228256a92a0e3bcacc205845f908e58f9f4e) [#33](https://github.com/soluble-io/cache-interop/pull/33) Thanks [@belgattitude](https://github.com/belgattitude)! - Breaking refactor of CacheInterface.get(string, GetOptions), defaultValue is now set through GetOptions
+
+- [`47d2228`](https://github.com/soluble-io/cache-interop/commit/47d2228256a92a0e3bcacc205845f908e58f9f4e) [#33](https://github.com/soluble-io/cache-interop/pull/33) Thanks [@belgattitude](https://github.com/belgattitude)! - Add disableCache option to CacheInterface.set() and CacheInterface.setMultiple()
+
+* [`ce0f736`](https://github.com/soluble-io/cache-interop/commit/ce0f73681cd3d5ecb98a1addd303852b71f1dad0) [#33](https://github.com/soluble-io/cache-interop/pull/33) Thanks [@belgattitude](https://github.com/belgattitude)! - Add disableCache to Adapter.delete\* behaviour
+
+- [`a874e5f`](https://github.com/soluble-io/cache-interop/commit/a874e5f136f5437745d2495f03d4d2f30dceab7d) [#33](https://github.com/soluble-io/cache-interop/pull/33) Thanks [@belgattitude](https://github.com/belgattitude)! - Add support for disableCache in CacheInterface.getOrSet()
+
+* [`47d2228`](https://github.com/soluble-io/cache-interop/commit/47d2228256a92a0e3bcacc205845f908e58f9f4e) [#33](https://github.com/soluble-io/cache-interop/pull/33) Thanks [@belgattitude](https://github.com/belgattitude)! - Add disableCache option to Cacheinterface.getOrSet() with support for read/write
+
 ## 0.3.2
 
 ### Patch Changes
