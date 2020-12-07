@@ -4,6 +4,7 @@ import {
   CacheValueProviderFn,
   GetOptions,
   GetOrSetOptions,
+  HasOptions,
   SetOptions,
   TrueOrFalseOrUndefined,
 } from '../cache.interface';
@@ -27,7 +28,7 @@ export abstract class AbstractCacheAdapter<TBase = string, KBase = CacheKey> imp
     options?: SetOptions
   ): Promise<boolean | CacheException>;
   abstract get<T = TBase, K extends KBase = KBase>(key: K, options?: GetOptions<T>): Promise<CacheItemInterface<T>>;
-  abstract has<K extends KBase = KBase>(key: K): Promise<TrueOrFalseOrUndefined>;
+  abstract has<K extends KBase = KBase>(key: K, options?: HasOptions): Promise<TrueOrFalseOrUndefined>;
 
   abstract delete<K extends KBase = KBase>(key: K): Promise<boolean | CacheException>;
 
@@ -95,6 +96,7 @@ export abstract class AbstractCacheAdapter<TBase = string, KBase = CacheKey> imp
     }
     const stored = await this.set(key, v, { ...setOptions, disableCache: disableWrite });
     const { ttl = null } = options ?? {};
+
     return CacheItem.createFromHit<T, string>({
       key: typeof key === 'string' ? key : 'Unsupported Key',
       fetched: fetched,

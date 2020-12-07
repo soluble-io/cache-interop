@@ -6,6 +6,11 @@ export type GetOptions<T> = {
   disableCache?: boolean;
 };
 
+export type HasOptions = {
+  /** Whether to disable caching, by default false */
+  disableCache?: boolean;
+};
+
 export type SetOptions = {
   /** Time-To-Live expressed in seconds, 0 meaning forever  */
   ttl?: number;
@@ -19,9 +24,9 @@ export type GetOrSetOptions = Omit<SetOptions, 'disableCache'> & {
   disableCache:
     | boolean
     | {
-        /** Whether to disable cache reads */
+        /** True to disable cache reads */
         read: boolean;
-        /** Whether to disable cache writes */
+        /** True to disable cache writes */
         write: boolean;
       };
 };
@@ -88,12 +93,13 @@ export interface CacheInterface<TBase = string, KBase = CacheKey> {
    * @param key - The cache item key
    *
    * @return True if the item exists in the cache and was removed, false otherwise.
-   *         Undefined is used to determine if the operation was successful
+   *         Undefined is used to determine if the operation was successful.
+   *         If cacheDisabled option is set to true, it will always return false.
    *
    * @throws InvalidArgumentException
    *         MUST be thrown if the $key string is not a legal value.
    */
-  has<K extends KBase = KBase>(key: K): Promise<TrueOrFalseOrUndefined>;
+  has<K extends KBase = KBase>(key: K, options?: HasOptions): Promise<TrueOrFalseOrUndefined>;
 
   /**
    * Obtains multiple cache items by their unique keys.

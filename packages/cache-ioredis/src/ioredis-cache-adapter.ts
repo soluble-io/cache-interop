@@ -17,6 +17,7 @@ import {
   GetOptions,
 } from '@soluble/cache-interop';
 import IORedis from 'ioredis';
+import { HasOptions } from '../../cache-interop/src';
 
 export class IoRedisCacheAdapter<TBase = string, KBase = CacheKey>
   extends AbstractCacheAdapter<TBase, KBase>
@@ -114,9 +115,13 @@ export class IoRedisCacheAdapter<TBase = string, KBase = CacheKey>
     });
   };
 
-  has = async <K extends KBase = KBase>(key: K): Promise<TrueOrFalseOrUndefined> => {
+  has = async <K extends KBase = KBase>(key: K, options?: HasOptions): Promise<TrueOrFalseOrUndefined> => {
     if (!isNonEmptyString(key)) {
       throw new Error('IORedisCacheAdapter currently support only string keys');
+    }
+    const { disableCache = false } = options ?? {};
+    if (disableCache) {
+      return false;
     }
     return this.redis.exists(key).then((count) => count === 1);
   };

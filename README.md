@@ -1,5 +1,7 @@
 # Cache interop
 
+> This project is in early architectural definition ;)
+
 [![codecov](https://codecov.io/gh/soluble-io/cache-interop/branch/main/graph/badge.svg)](https://codecov.io/gh/soluble-io/cache-interop)
 
 Collection of cache adapters for nodejs.   
@@ -29,17 +31,31 @@ Collection of cache adapters for nodejs.
 
 ## Quick examples
 
+### Adapter.getOrSet()
+
 ```typescript
 import { IoRedisCacheAdapter } from '@soluble/cache-ioredis';
 
 const cache = new IoRedisCacheAdapter({...});
 
-const { value, error } = await cache.getOrSet('key', async () => {
-  return fetch('/api/user').then(resp => resp.json());
-}, { ttl: 3600 });
+const fetchApi = async () => myFetch('/api').then(r => JSON.stringify(r));
 
-if (value)
+const { value, error } = await cache.getOrSet('key', fetchApi(), { ttl: 3600 });
+
+if (value !== null) {
+  // do something
+}
 ```
+
+| GetOrSetOptions | target | default | description            |
+|-----------------|--------|---------|------------------------|
+| `ttl`           | `number` | 0       | Time-To-Live in seconds since Epoch time. If zero, no expiry.|
+| `disableCache`  | `boolean`/`{read: boolean, write: boolean}` | false      | |
+
+
+### DisableCache
+
+
 
 ## Adapters
 

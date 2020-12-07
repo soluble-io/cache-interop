@@ -4,9 +4,10 @@ import {
   CacheValueProviderFn,
   GetOptions,
   SetOptions,
+  HasOptions,
   TrueOrFalseOrUndefined,
 } from '../cache.interface';
-import { isCacheValueProviderFn } from '../utils/typeguards';
+import { isCacheValueProviderFn, isNonEmptyString } from '../utils/typeguards';
 import { AbstractCacheAdapter } from './abstract-cache-adapter';
 import { CacheItemInterface } from '../cache-item.interface';
 import { CacheItem } from '../cache-item';
@@ -93,7 +94,14 @@ export class MapCacheAdapter<TBase = string, KBase = CacheKey>
     return true;
   };
 
-  has = async <K extends KBase = KBase>(key: K): Promise<TrueOrFalseOrUndefined> => {
+  has = async <K extends KBase = KBase>(key: K, options?: HasOptions): Promise<TrueOrFalseOrUndefined> => {
+    if (!isNonEmptyString(key)) {
+      throw new Error('MapCacheAdapter currently support only string keys');
+    }
+    const { disableCache = false } = options ?? {};
+    if (disableCache) {
+      return false;
+    }
     if (!this.map.has(key)) {
       return false;
     }

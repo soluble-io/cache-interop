@@ -342,12 +342,26 @@ describe.each(adapters)('Adapter: %s %s', (name, image, adapterFactory) => {
         expect(await cache.has('k')).toStrictEqual(true);
       });
     });
-
     describe('when an item was set with 1 second expiry', () => {
       it('should return false if a second has passed', async () => {
         await cache.set('k', 'hello world', { ttl: 1 });
         await sleep(1001);
         expect(await cache.has('k')).toStrictEqual(false);
+      });
+    });
+    describe('when cacheDisabled is set to true', () => {
+      it('should always return false whether the item exists or not', async () => {
+        expect(
+          await cache.has('k', {
+            disableCache: true,
+          })
+        ).toStrictEqual(false);
+        await cache.set('k', 'hello world');
+        expect(
+          await cache.has('k', {
+            disableCache: true,
+          })
+        ).toStrictEqual(false);
       });
     });
   });
@@ -539,7 +553,7 @@ describe.each(adapters)('Adapter: %s %s', (name, image, adapterFactory) => {
           ).toMatchObject({
             key: 'k',
             // @todo redefine what hit is
-            //hit: false,
+            hit: false,
             error: false,
             value: 'from_promise',
           });

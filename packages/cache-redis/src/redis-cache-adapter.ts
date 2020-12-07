@@ -16,6 +16,7 @@ import {
   GetOptions,
 } from '@soluble/cache-interop';
 import { RedisClient, createClient, ClientOpts, AbortError, AggregateError, ReplyError, RedisError } from 'redis';
+import { HasOptions } from '../../cache-interop/src';
 
 export class RedisCacheAdapter<TBase = string, KBase = CacheKey>
   extends AbstractCacheAdapter<TBase, KBase>
@@ -122,9 +123,13 @@ export class RedisCacheAdapter<TBase = string, KBase = CacheKey>
     });
   };
 
-  has = async <K extends KBase = KBase>(key: K): Promise<TrueOrFalseOrUndefined> => {
+  has = async <K extends KBase = KBase>(key: K, options?: HasOptions): Promise<TrueOrFalseOrUndefined> => {
     if (!isNonEmptyString(key)) {
       throw new Error('RedisCacheAdapter currently support only string keys');
+    }
+    const { disableCache = false } = options ?? {};
+    if (disableCache) {
+      return false;
     }
     return new Promise((resolve) =>
       this.redis.exists(key, (err: RedisError | null, count) => {
