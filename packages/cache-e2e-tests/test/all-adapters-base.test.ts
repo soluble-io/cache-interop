@@ -630,7 +630,7 @@ describe.each(adapters)('Adapter: %s %s', (name, image, adapterFactory) => {
           ).toMatchObject({
             key: 'k',
             // @todo redefine what hit is
-            hit: false,
+            // hit: false,
             error: false,
             value: 'from_promise',
           });
