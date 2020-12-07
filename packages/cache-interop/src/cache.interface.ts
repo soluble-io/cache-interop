@@ -26,7 +26,7 @@ export type GetOrSetOptions = Omit<SetOptions, 'disableCache'> & {
   /** Whether to disable caching, by default false.
    *  Accepts an object to selectively disable writes and/or reads
    */
-  disableCache:
+  disableCache?:
     | boolean
     | {
         /** True to disable cache reads */
