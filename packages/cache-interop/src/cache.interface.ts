@@ -6,6 +6,11 @@ export type GetOptions<T> = {
   disableCache?: boolean;
 };
 
+export type DeleteOptions = {
+  /** Whether to disable caching, by default false */
+  disableCache?: boolean;
+};
+
 export type HasOptions = {
   /** Whether to disable caching, by default false */
   disableCache?: boolean;
@@ -80,7 +85,7 @@ export interface CacheInterface<TBase = string, KBase = CacheKey> {
    * @throws InvalidArgumentException
    *         MUST be thrown if the $key string is not a legal value.
    */
-  delete<K extends KBase = KBase>(key: K): Promise<boolean | CacheException>;
+  delete<K extends KBase = KBase>(key: K, options?: DeleteOptions): Promise<boolean | CacheException>;
 
   /**
    * Determines whether an item is present in the cache.
@@ -126,7 +131,10 @@ export interface CacheInterface<TBase = string, KBase = CacheKey> {
    *
    * @param keys - A list of keys that should be deleted.
    */
-  deleteMultiple<K extends KBase = KBase>(keys: K[]): Promise<Map<K, boolean | CacheException>>;
+  deleteMultiple<K extends KBase = KBase>(
+    keys: K[],
+    options?: DeleteOptions
+  ): Promise<Map<K, boolean | CacheException>>;
 
   /**
    * Delete the entire cache's keys.

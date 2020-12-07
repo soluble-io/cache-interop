@@ -6,6 +6,7 @@ import {
   SetOptions,
   HasOptions,
   TrueOrFalseOrUndefined,
+  DeleteOptions,
 } from '../cache.interface';
 import { isCacheValueProviderFn, isNonEmptyString } from '../utils/typeguards';
 import { AbstractCacheAdapter } from './abstract-cache-adapter';
@@ -109,7 +110,14 @@ export class MapCacheAdapter<TBase = string, KBase = CacheKey>
     return !this.evictionPolicy.isExpired(expiresAt);
   };
 
-  delete = async <K extends KBase = KBase>(key: K): Promise<boolean | CacheException> => {
+  delete = async <K extends KBase = KBase>(key: K, options?: DeleteOptions): Promise<boolean | CacheException> => {
+    if (!isNonEmptyString(key)) {
+      throw new Error('MapCacheAdapter currently support only string keys');
+    }
+    const { disableCache = false } = options ?? {};
+    if (disableCache) {
+      return false;
+    }
     const exists = this.map.has(key) === true;
     this.map.delete(key);
     return exists;

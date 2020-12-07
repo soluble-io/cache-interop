@@ -14,9 +14,10 @@ import {
   CacheProviderException,
   UnexpectedErrorException,
   GetOptions,
+  HasOptions,
+  DeleteOptions,
 } from '@soluble/cache-interop';
 import { RedisClient, createClient, ClientOpts, AbortError, AggregateError, ReplyError, RedisError } from 'redis';
-import { HasOptions } from '../../cache-interop/src';
 
 export class RedisCacheAdapter<TBase = string, KBase = CacheKey>
   extends AbstractCacheAdapter<TBase, KBase>
@@ -142,10 +143,15 @@ export class RedisCacheAdapter<TBase = string, KBase = CacheKey>
     );
   };
 
-  delete = async <K extends KBase = KBase>(key: K): Promise<boolean | CacheException> => {
+  delete = async <K extends KBase = KBase>(key: K, options?: DeleteOptions): Promise<boolean | CacheException> => {
     if (!isNonEmptyString(key)) {
       throw new Error('RedisCacheAdapter currently support only string keys');
     }
+    const { disableCache = false } = options ?? {};
+    if (disableCache) {
+      return false;
+    }
+
     return new Promise((resolve) => {
       this.redis.del(key, (cbError, cbCount) => {
         if (cbError !== null) {

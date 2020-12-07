@@ -254,7 +254,7 @@ describe.each(adapters)('Adapter: %s %s', (name, image, adapterFactory) => {
       });
     });
 
-    describe('when disableCache is true and an entry exists', () => {
+    describe('when disableCache is true', () => {
       describe('when no defaultValue provided', () => {
         it('should never return the cache entry', async () => {
           await cache.set('k', 'cool');
@@ -267,6 +267,22 @@ describe.each(adapters)('Adapter: %s %s', (name, image, adapterFactory) => {
             hit: false,
             error: false,
             value: null,
+          });
+        });
+      });
+      describe('when defaultValue value is provided', () => {
+        it('should never return the default', async () => {
+          await cache.set('k', 'cool');
+          expect(
+            await cache.get('k', {
+              defaultValue: 'default',
+              disableCache: true,
+            })
+          ).toMatchObject({
+            key: 'k',
+            hit: false,
+            error: false,
+            value: 'default',
           });
         });
       });
@@ -290,6 +306,39 @@ describe.each(adapters)('Adapter: %s %s', (name, image, adapterFactory) => {
         expect((await cache.get('k')).value).toStrictEqual('cool');
         expect(await cache.delete('k')).toStrictEqual(true);
         expect((await cache.get('k')).value).toStrictEqual(null);
+      });
+    });
+    describe('when disableCache is set to true', () => {
+      describe('when an item exists', () => {
+        it('should no delete it and return false', async () => {
+          await cache.set('k', 'hello');
+          const ret = await cache.delete('k', {
+            disableCache: true,
+          });
+          expect(ret).toStrictEqual(false);
+          expect((await cache.get('k')).value).toStrictEqual('hello');
+        });
+        describe('when no item exists', () => {
+          it('should return false', async () => {
+            const ret = await cache.delete('k', {
+              disableCache: true,
+            });
+            expect(ret).toStrictEqual(false);
+          });
+        });
+      });
+      it('should always return false whether the item exists or not', async () => {
+        expect(
+          await cache.has('k', {
+            disableCache: true,
+          })
+        ).toStrictEqual(false);
+        await cache.set('k', 'hello world');
+        expect(
+          await cache.has('k', {
+            disableCache: true,
+          })
+        ).toStrictEqual(false);
       });
     });
   });
@@ -349,7 +398,7 @@ describe.each(adapters)('Adapter: %s %s', (name, image, adapterFactory) => {
         expect(await cache.has('k')).toStrictEqual(false);
       });
     });
-    describe('when cacheDisabled is set to true', () => {
+    describe('when disableCache is set to true', () => {
       it('should always return false whether the item exists or not', async () => {
         expect(
           await cache.has('k', {
@@ -381,6 +430,20 @@ describe.each(adapters)('Adapter: %s %s', (name, image, adapterFactory) => {
           ['no1', false],
         ])
       );
+    });
+    describe('when disableCache is set to true', () => {
+      it('should return a Map with key and false', async () => {
+        await cache.set('key-exists', 'cool');
+        const resp = await cache.deleteMultiple(['key-exists', 'no1'], {
+          disableCache: true,
+        });
+        expect(resp).toStrictEqual<any>(
+          new Map([
+            ['key-exists', false],
+            ['no1', false],
+          ])
+        );
+      });
     });
   });
 
@@ -503,6 +566,20 @@ describe.each(adapters)('Adapter: %s %s', (name, image, adapterFactory) => {
         expect(resp.size).toBe(3);
         expect(resp.get('key1')?.value).toStrictEqual('val1');
         expect(resp.get('key2')?.value).toStrictEqual('val2');
+        expect(resp.get('key-not-exists')?.value).toStrictEqual('the_default_value');
+      });
+    });
+    describe('when disableCache is set to true', () => {
+      it('should return null but respect defaultValue', async () => {
+        await cache.set('key1', 'val1');
+        await cache.setMultiple([['key2', 'val2']]);
+        const resp = await cache.getMultiple(['key1', 'key2', 'key-not-exists'], {
+          defaultValue: 'the_default_value',
+          disableCache: true,
+        });
+        expect(resp.size).toBe(3);
+        expect(resp.get('key1')?.value).toStrictEqual('the_default_value');
+        expect(resp.get('key2')?.value).toStrictEqual('the_default_value');
         expect(resp.get('key-not-exists')?.value).toStrictEqual('the_default_value');
       });
     });

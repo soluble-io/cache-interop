@@ -2,6 +2,7 @@ import {
   CacheInterface,
   CacheKey,
   CacheValueProviderFn,
+  DeleteOptions,
   GetOptions,
   GetOrSetOptions,
   HasOptions,
@@ -27,14 +28,19 @@ export abstract class AbstractCacheAdapter<TBase = string, KBase = CacheKey> imp
     value: T | CacheValueProviderFn<T>,
     options?: SetOptions
   ): Promise<boolean | CacheException>;
+
   abstract get<T = TBase, K extends KBase = KBase>(key: K, options?: GetOptions<T>): Promise<CacheItemInterface<T>>;
+
   abstract has<K extends KBase = KBase>(key: K, options?: HasOptions): Promise<TrueOrFalseOrUndefined>;
 
-  abstract delete<K extends KBase = KBase>(key: K): Promise<boolean | CacheException>;
+  abstract delete<K extends KBase = KBase>(key: K, options?: DeleteOptions): Promise<boolean | CacheException>;
 
-  deleteMultiple = async <K extends KBase = KBase>(keys: K[]): Promise<Map<K, boolean | CacheException>> => {
+  deleteMultiple = async <K extends KBase = KBase>(
+    keys: K[],
+    options?: DeleteOptions
+  ): Promise<Map<K, boolean | CacheException>> => {
     const promises = keys.map((key) => {
-      return this.delete(key).then((resp): [K, boolean | CacheException] => [key, resp]);
+      return this.delete(key, options).then((resp): [K, boolean | CacheException] => [key, resp]);
     });
     return Promise.all(promises).then((resp) => new Map(resp));
   };
