@@ -1,5 +1,11 @@
 # @soluble/cache-interop
 
+## 0.4.1
+
+### Patch Changes
+
+- [`6813ad8`](https://github.com/soluble-io/cache-interop/commit/6813ad8892dc60e05e243f88ba0b37ef5c6cb812) [#36](https://github.com/soluble-io/cache-interop/pull/36) Thanks [@belgattitude](https://github.com/belgattitude)! - Fix disableCache option must be optional
+
 ## 0.4.0
 
 ### Minor Changes
