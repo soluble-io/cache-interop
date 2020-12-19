@@ -3,6 +3,7 @@
 > This project is in early architectural definition ;)
 
 [![codecov](https://codecov.io/gh/soluble-io/cache-interop/branch/main/graph/badge.svg)](https://codecov.io/gh/soluble-io/cache-interop)
+[![codefactor](https://www.codefactor.io/repository/github/soluble-io/cache-interop/badge)](https://www.codefactor.io/repository/github/soluble-io/cache-interop)
 
 Collection of cache adapters for nodejs.   
 
