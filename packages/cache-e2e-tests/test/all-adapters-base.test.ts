@@ -1,73 +1,53 @@
 import { CacheException, CacheInterface, CacheProviderException, MapCacheAdapter } from '@soluble/cache-interop';
 import { IoRedisCacheAdapter } from '@soluble/cache-ioredis';
 import { RedisCacheAdapter } from '@soluble/cache-redis';
-import { GenericContainer } from 'testcontainers';
-import { StartedTestContainer } from 'testcontainers/dist/test-container';
+import { E2eDockerContainers } from '../config/docker-container.config';
 
 const sleep = async (ms: number): Promise<void> => {
   return new Promise((resolve) => setTimeout(resolve, ms));
 };
 
 const adapters = [
-  ['MapCacheAdapter', '', () => new MapCacheAdapter()],
+  ['MapCacheAdapter', () => new MapCacheAdapter()],
   [
-    'IoRedisCacheAdapter',
-    'redis:5-alpine',
-    (options) => {
-      return IoRedisCacheAdapter.createFromDSN(options!.dsn);
+    'IoRedisCacheAdapter/Redis5',
+    async () => {
+      const { dsn } = await E2eDockerContainers.getContainer('redis5');
+      return IoRedisCacheAdapter.createFromDSN(dsn);
     },
   ],
   [
-    'IoRedisCacheAdapter',
-    'redis:6-alpine',
-    (options) => {
-      return IoRedisCacheAdapter.createFromDSN(options!.dsn);
+    'IoRedisCacheAdapter/Redis6',
+    async () => {
+      const { dsn } = await E2eDockerContainers.getContainer('redis6');
+      return IoRedisCacheAdapter.createFromDSN(dsn);
     },
   ],
   [
-    'RedisCacheAdapter',
-    'redis:5-alpine',
-    (options) => {
+    'RedisCacheAdapter/Redis5',
+    async () => {
+      const { dsn } = await E2eDockerContainers.getContainer('redis5');
       return new RedisCacheAdapter({
-        url: options!.dsn,
+        url: dsn,
       });
     },
   ],
   [
-    'RedisCacheAdapter',
-    'redis:6-alpine',
-    (options) => {
+    'RedisCacheAdapter/Redis6',
+    async () => {
+      const { dsn } = await E2eDockerContainers.getContainer('redis6');
       return new RedisCacheAdapter({
-        url: options!.dsn,
+        url: dsn,
       });
     },
   ],
-] as [name: string, image: string, factory: (options?: Record<string, any>) => CacheInterface][];
+] as [name: string, factory: () => CacheInterface | Promise<CacheInterface>][];
 
-describe.each(adapters)('Adapter: %s %s', (name, image, adapterFactory) => {
-  let container: StartedTestContainer | null;
+describe.each(adapters)('Adapter: %s', (name, adapterFactory) => {
   let cache: CacheInterface;
 
   beforeAll(async () => {
-    if (image.match(/^[a-z_\-0-9]+:[a-z_\-0-9]+$/i)) {
-      console.log(`Starting docker container ${image}...`);
-      const [imageName, imageTag] = (image ?? '').split(':');
-      container = await new GenericContainer(imageName, imageTag).withExposedPorts(6379).start();
-      switch (name) {
-        case 'RedisCacheAdapter':
-        case 'IoRedisCacheAdapter':
-          const options = {
-            dsn: `redis://${container.getHost()}:${container.getMappedPort(6379)}`,
-          };
-          cache = adapterFactory(options);
-          break;
-        default:
-          throw new Error('check test suite setup');
-      }
-    } else {
-      container = null;
-      cache = adapterFactory();
-    }
+    cache = await adapterFactory();
   });
   afterAll(async () => {
     switch (name) {
@@ -78,14 +58,10 @@ describe.each(adapters)('Adapter: %s %s', (name, image, adapterFactory) => {
         await (cache as IoRedisCacheAdapter).getStorage().quit();
         break;
     }
-    if (container !== null) {
-      console.log('stopping container...');
-      container.stop();
-    }
   });
 
-  afterEach(() => {
-    cache.clear();
+  afterEach(async () => {
+    await cache.clear();
   });
   /**
    * ##############################################################
