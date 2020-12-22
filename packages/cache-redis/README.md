@@ -7,6 +7,18 @@
 [![gzip size](https://badgen.net/bundlephobia/minzip/@soluble/cache-redis)](https://bundlephobia.com/result?p=@soluble/cache-redis)
 [![license](https://img.shields.io/npm/l/@soluble/cache-redis)](https://github.com/soluble-io/cache-interop/blob/main/LICENSE)
 
-```
+## Install
+
+```bash
 $ yarn add @soluble/cache-redis redis
+```
+
+### Usage
+
+```typescript
+import { RedisCacheAdapter } from '@soluble/cache-redis';
+
+const dsn = 'redis://user:pass@redis.com:6379/8';
+
+const cache = new RedisCacheAdapter({ url: dsn });
 ```

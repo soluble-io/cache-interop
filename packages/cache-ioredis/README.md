@@ -7,6 +7,18 @@
 [![gzip size](https://badgen.net/bundlephobia/minzip/@soluble/cache-ioredis)](https://bundlephobia.com/result?p=@soluble/cache-ioredis)
 [![license](https://img.shields.io/npm/l/@soluble/cache-ioredis)](https://github.com/soluble-io/cache-interop/blob/main/LICENSE)
 
-```
+## Install
+
+```bash
 $ yarn add @soluble/cache-ioredis ioredis
+```
+
+### Usage
+
+```typescript
+import { IoRedisCacheAdapter } from '@soluble/cache-ioredis';
+
+const dsn = 'redis://user:pass@redis.com:6379/8';
+
+const cache = IoRedisCacheAdapter.createFromDSN(dsn);
 ```
