@@ -1,5 +1,11 @@
 # @soluble/cache-node-redis
 
+## 0.4.1
+
+### Patch Changes
+
+- [`55a5ea6`](https://github.com/soluble-io/cache-interop/commit/55a5ea6c5d09af404f25fb07d88fa0d50e2965dd) [#42](https://github.com/soluble-io/cache-interop/pull/42) Thanks [@belgattitude](https://github.com/belgattitude)! - Fixed invalid devDependencies for node-redis client
+
 ## 0.4.0
 
 ### Minor Changes
