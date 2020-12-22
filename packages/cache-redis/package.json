@@ -64,7 +64,7 @@
   },
   "peerDependencies": {
     "@types/redis": ">=2.8.28",
-    "ioredis": ">=3.0"
+    "redis": ">=3.0"
   },
   "engines": {
     "node": ">=10.13"
