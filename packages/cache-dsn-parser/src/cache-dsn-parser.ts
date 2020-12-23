@@ -23,7 +23,7 @@ export const parseDsn = (dsn: string): CacheInteropDsn | Error => {
     return new Error('Cannot parse provided DSN');
   }
   const options: Record<string, number | string> = {};
-  for (const [key, value] of Object.entries(matches.groups)) {
+  Object.entries(matches.groups).forEach(([key, value]) => {
     if (typeof value === 'string') {
       switch (key) {
         case 'port':
@@ -33,6 +33,6 @@ export const parseDsn = (dsn: string): CacheInteropDsn | Error => {
           options[key] = value;
       }
     }
-  }
+  });
   return (options as unknown) as CacheInteropDsn;
 };
