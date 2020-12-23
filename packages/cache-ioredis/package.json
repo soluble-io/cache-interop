@@ -4,7 +4,11 @@
   "version": "0.4.0",
   "license": "MIT",
   "homepage": "https://github.com/soluble-io/cache-interop/tree/main/packages/cache-ioredis",
-  "repository": "https://github.com/soluble-io/cache-interop",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/soluble-io/cache-interop.git",
+    "directory": "packages/cache-ioredis"
+  },
   "author": {
     "name": "Vanvelthem Sébastien",
     "url": "https://github.com/belgattitude"
