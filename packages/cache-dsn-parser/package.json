@@ -1,0 +1,69 @@
+{
+  "name": "@soluble/cache-dsn-parser",
+  "description": "Utility parser for DSN",
+  "version": "0.1.0",
+  "license": "MIT",
+  "homepage": "https://github.com/soluble-io/cache-interop/tree/main/packages/cache-dsn-parser",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/soluble-io/cache-interop.git",
+    "directory": "packages/cache-dsn-parser"
+  },
+  "author": {
+    "name": "Vanvelthem Sébastien",
+    "url": "https://github.com/belgattitude"
+  },
+  "keywords": [
+    "cache",
+    "interop",
+    "dsn",
+    "parser",
+    "redis",
+    "ioredis"
+  ],
+  "jsnext:main": "dist/cache-dsn-parser.es.js",
+  "source": "src/index.ts",
+  "module": "dist/cache-dsn-parser.es.js",
+  "esmodules": "dist/cache-dsn-parser.modern.js",
+  "main": "dist/cache-dsn-parser.js",
+  "umd:main": "dist/cache-dsn-parser.umd.js",
+  "typings": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "sideEffects": false,
+  "scripts": {
+    "start": "cross-env NODE_ENV=development tsdx watch",
+    "build": "cross-env NODE_ENV=production microbundle --tsconfig tsconfig.build.json --target node",
+    "clean": "rimraf --no-glob ./dist ./build ./coverage ./out",
+    "test": "run-s test:unit -- {@}",
+    "test:unit": "jest --config jest.config.js --color $@",
+    "typecheck": "tsc --noEmit",
+    "typecheck:build": "tsc --project tsconfig.build.json --noEmit",
+    "lint": "run-p lint:code",
+    "lint:code": "eslint . --ext .ts,.tsx,.js,.jsx",
+    "fix:staged": "lint-staged --allow-empty",
+    "fix:all": "run-p fix:all:*",
+    "fix:all:code": "eslint . --ext .ts,.tsx,.js,.jsx --fix",
+    "deps:check": "ncu --reject @soluble/cache-interop --dep prod,dev,optional",
+    "deps:update": "ncu --reject @soluble/cache-interop --dep prod,dev,optional -u",
+    "coverage:publish": "codecov --root=../../ -F cacheDsnParser"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "prettier --write",
+      "eslint --fix"
+    ],
+    "*.{yaml,json,md,html}": [
+      "prettier --write"
+    ]
+  },
+  "devDependencies": {
+    "ts-jest": "^26.4.4",
+    "tslib": "^2.0.3",
+    "typescript": "^4.1.3"
+  },
+  "engines": {
+    "node": ">=10.13"
+  }
+}
