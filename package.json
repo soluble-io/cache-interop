@@ -1,6 +1,12 @@
 {
   "name": "@soluble/cache-interop-monorepo",
   "private": true,
+  "license": "MIT",
+  "homepage": "https://github.com/soluble-io/cache-interop",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/soluble-io/cache-interop.git"
+  },
   "author": {
     "name": "Vanvelthem Sébastien",
     "url": "https://github.com/belgattitude"
