@@ -13,6 +13,7 @@
 
 ```bash
 $ yarn add @soluble/cache-redis redis
+$ yarn add @types/ioredis --dev
 ```
 
 ### Usage
