@@ -3,6 +3,8 @@
 [![stable release](https://img.shields.io/npm/v/@soluble/cache-interop.svg)](https://npm.im/@soluble/cache-interop)
 [![codefactor](https://www.codefactor.io/repository/github/soluble-io/cache-interop/badge)](https://www.codefactor.io/repository/github/soluble-io/cache-interop)
 [![codecov](https://codecov.io/gh/soluble-io/cache-interop/branch/main/graph/badge.svg)](https://codecov.io/gh/soluble-io/cache-interop)
+[![Maintainability](https://api.codeclimate.com/v1/badges/115e70b4ecf997e2185c/maintainability)](https://codeclimate.com/github/soluble-io/cache-interop/maintainability)
+![Code Climate technical debt](https://img.shields.io/codeclimate/tech-debt/soluble-io/cache-interop)
 [![npm](https://img.shields.io/npm/dt/@soluble/cache-interop)](https://www.npmjs.com/package/@soluble/cache-interop)
 [![gzip size](https://badgen.net/bundlephobia/minzip/@soluble/cache-interop)](https://bundlephobia.com/result?p=@soluble/cache-interop)
 [![license](https://img.shields.io/npm/l/@soluble/cache-interop)](https://github.com/soluble-io/cache-interop/blob/main/LICENSE)
