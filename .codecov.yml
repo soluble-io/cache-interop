@@ -15,10 +15,17 @@ coverage:
         target: 1%
         flags:
           - cacheRedis
+      cacheDsnParser:
+        target: 1%
+        flags:
+          - cacheDsnParser
 flags:
   cacheInterop:
     paths:
       - packages/cache-interop
+  cacheDsnParser:
+    paths:
+      - packages/cache-dsn-parser
   cacheIORedis:
     paths:
       - packages/cache-ioredis
