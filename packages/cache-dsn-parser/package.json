@@ -1,13 +1,13 @@
 {
-  "name": "@soluble/cache-interop",
-  "description": "Async cache interop contracts",
-  "version": "0.4.1",
+  "name": "@soluble/cache-dsn-parser",
+  "description": "Utility parser for DSN",
+  "version": "0.1.1",
   "license": "MIT",
-  "homepage": "https://github.com/soluble-io/cache-interop/tree/main/packages/cache-interop",
+  "homepage": "https://github.com/soluble-io/cache-interop/tree/main/packages/cache-dsn-parser",
   "repository": {
     "type": "git",
     "url": "https://github.com/soluble-io/cache-interop.git",
-    "directory": "packages/cache-interop"
+    "directory": "packages/cache-dsn-parser"
   },
   "author": {
     "name": "Vanvelthem Sébastien",
@@ -16,24 +16,27 @@
   "keywords": [
     "cache",
     "interop",
-    "contract"
+    "dsn",
+    "parser",
+    "redis",
+    "ioredis"
   ],
-  "jsnext:main": "dist/cache-interop.es.js",
+  "jsnext:main": "dist/cache-dsn-parser.es.js",
   "source": "src/index.ts",
-  "module": "dist/cache-interop.es.js",
-  "esmodules": "dist/cache-interop.modern.js",
-  "main": "dist/cache-interop.js",
-  "umd:main": "dist/cache-interop.umd.js",
-  "types": "dist/index.d.ts",
+  "module": "dist/cache-dsn-parser.es.js",
+  "esmodules": "dist/cache-dsn-parser.modern.js",
+  "main": "dist/cache-dsn-parser.js",
+  "umd:main": "dist/cache-dsn-parser.umd.js",
+  "typings": "dist/index.d.ts",
   "files": [
     "dist"
   ],
   "sideEffects": false,
   "scripts": {
     "start": "cross-env NODE_ENV=development tsdx watch",
-    "build": "cross-env NODE_ENV=production microbundle --tsconfig ./tsconfig.build.json --target node",
+    "build": "cross-env NODE_ENV=production microbundle --tsconfig tsconfig.build.json --target node",
     "clean": "rimraf --no-glob ./dist ./build ./coverage ./out",
-    "test": "run-s test:* --",
+    "test": "run-s test:unit -- {@}",
     "test:unit": "jest --config jest.config.js --color $@",
     "typecheck": "tsc --noEmit",
     "typecheck:build": "tsc --project tsconfig.build.json --noEmit",
@@ -44,7 +47,7 @@
     "fix:all:code": "eslint . --ext .ts,.tsx,.js,.jsx --fix",
     "deps:check": "ncu --reject @soluble/cache-interop --dep prod,dev,optional",
     "deps:update": "ncu --reject @soluble/cache-interop --dep prod,dev,optional -u",
-    "coverage:publish": "codecov --root=../../ -F cacheInterop"
+    "coverage:publish": "codecov --root=../../ -F cacheDsnParser"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
@@ -56,13 +59,9 @@
     ]
   },
   "devDependencies": {
-    "dayjs": "^1.9.7",
     "ts-jest": "^26.4.4",
     "tslib": "^2.0.3",
     "typescript": "^4.1.3"
-  },
-  "peerDependencies": {
-    "ioredis": "^4.18.0"
   },
   "engines": {
     "node": ">=10.13"

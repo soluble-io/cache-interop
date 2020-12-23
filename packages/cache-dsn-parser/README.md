@@ -1,8 +1,8 @@
-# @soluble/cache-ioredis
+# @soluble/cache-dsn-parser
 
 [![stable release](https://img.shields.io/npm/v/@soluble/cache-ioredis.svg)](https://npm.im/@soluble/cache-ioredis)
 [![codefactor](https://www.codefactor.io/repository/github/soluble-io/cache-interop/badge)](https://www.codefactor.io/repository/github/soluble-io/cache-interop)
-[![codecov](https://codecov.io/gh/soluble-io/cache-interop/branch/main/graph/badge.svg)](https://codecov.io/gh/soluble-io/cache-interop)
+[![codecov](https://codecov.io/gh/soluble-io/cache-interop/branch/main/graph/badge.svg?flag=cacheDsnParser)](https://codecov.io/gh/soluble-io/cache-interop)
 [![Maintainability](https://api.codeclimate.com/v1/badges/115e70b4ecf997e2185c/maintainability)](https://codeclimate.com/github/soluble-io/cache-interop/maintainability)
 ![Code Climate technical debt](https://img.shields.io/codeclimate/tech-debt/soluble-io/cache-interop)
 [![npm](https://img.shields.io/npm/dt/@soluble/cache-ioredis)](https://www.npmjs.com/package/@soluble/cache-ioredis)
@@ -12,16 +12,25 @@
 ## Install
 
 ```bash
-$ yarn add @soluble/cache-ioredis ioredis
-$ yarn add @types/ioredis --dev
+$ yarn add @soluble/cache-dsn-parser
 ```
 
 ### Usage
 
 ```typescript
-import { IoRedisCacheAdapter } from '@soluble/cache-ioredis';
+import { parseDsn } from '@soluble/cache-dsn-parser';
+const parsed = parseDsn('redis://user:p@s/d@www.example.com:6379/0');
 
-const dsn = 'redis://user:pass@redis.com:6379/8';
-
-const cache = IoRedisCacheAdapter.createFromDSN(dsn);
+// Will give somthing like
+toStrictEqual(
+  {
+    driver: 'redis',
+    pass: 'password',
+    host: 'www.example.com',
+    user: 'user',
+    port: 6379,
+    db: '0',
+  },
+  parsed
+);
 ```
