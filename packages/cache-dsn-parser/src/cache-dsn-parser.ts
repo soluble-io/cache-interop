@@ -1,5 +1,5 @@
 import queryString from 'query-string';
-import { ErrorReasons, ParserErrorResult, ParserResult, SupportedDrivers } from './cache-dsn-parser.types';
+import type { ErrorReasons, ParserErrorResult, ParserResult, SupportedDrivers } from './cache-dsn-parser.types';
 
 export const supportedDrivers = ['redis', 'mysql', 'postgresql'] as const;
 
