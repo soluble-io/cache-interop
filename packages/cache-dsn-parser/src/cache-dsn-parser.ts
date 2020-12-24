@@ -1,6 +1,6 @@
 import queryString from 'query-string';
 
-const supportedDrivers = ['redis'] as const;
+const supportedDrivers = ['redis', 'mysql', 'postgresql'] as const;
 type SupportedDrivers = typeof supportedDrivers[number];
 
 export type CacheInteropDsn = {
@@ -19,10 +19,35 @@ const dsnRegexp = new RegExp(
   )})):\\/\\/((?<user>.+)?:(?<pass>.+)@)?(?<host>[^\\/:]+?)(:(?<port>\\d{2,5})?)?(\\/(?<db>\\w))?(\\?(?<params>.+))?$`
 );
 
-export const parseDsn = (dsn: string): CacheInteropDsn | Error => {
+type Result =
+  | {
+      success: true;
+      value: CacheInteropDsn;
+    }
+  | {
+      success: false;
+      reason: 'EMPTY_DSN' | 'INVALID_ARGUMENT' | 'PARSE_ERROR';
+      message: string;
+    };
+
+export const parseDsn = (dsn: string): Result => {
+  if (typeof dsn !== 'string') {
+    return {
+      success: false,
+      reason: 'INVALID_ARGUMENT',
+      message: 'DSN must be a string',
+    };
+  }
+  if (dsn.trim() === '') {
+    return {
+      success: false,
+      reason: 'EMPTY_DSN',
+      message: 'DSN cannot be empty',
+    };
+  }
   const matches = dsn.match(dsnRegexp);
   if (matches === null || !matches.groups) {
-    return new Error('Cannot parse provided DSN');
+    return { success: false, reason: 'PARSE_ERROR', message: 'Cannot parse DSN' };
   }
   const options: Record<string, unknown> = {};
   Object.entries(matches.groups).forEach(([key, value]) => {
@@ -43,5 +68,8 @@ export const parseDsn = (dsn: string): CacheInteropDsn | Error => {
       }
     }
   });
-  return (options as unknown) as CacheInteropDsn;
+  return {
+    success: true,
+    value: (options as unknown) as CacheInteropDsn,
+  };
 };
