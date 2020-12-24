@@ -1,4 +1,4 @@
-import { parseDsn } from '../cache-dsn-parser';
+import { CacheInteropDsn, parseDsn } from '../cache-dsn-parser';
 
 describe('parseDsn', () => {
   describe('when provided dsn contains all options', () => {
@@ -13,6 +13,24 @@ describe('parseDsn', () => {
       });
     });
   });
+  describe('when provided dsn contains query params', () => {
+    it('should return the parsed params and cast bool and numbers', () => {
+      const parsed = (parseDsn(
+        'redis://localhost/0?paramInt=2&paramBool=false&paramStr=hello'
+      ) as unknown) as CacheInteropDsn;
+      expect(parsed).toMatchObject({
+        driver: 'redis',
+        host: 'localhost',
+        db: '0',
+        params: {
+          paramInt: 2,
+          paramBool: false,
+          paramStr: 'hello',
+        },
+      });
+    });
+  });
+
   describe('when provided password contains special characters', () => {
     it('should return the correct parsed params', () => {
       expect(parseDsn('redis://username:P@/ssw/rd@www.example.com:6379/0')).toStrictEqual({
@@ -37,7 +55,7 @@ describe('parseDsn', () => {
     });
   });
   describe('when a dsn is provided with no user/pass', () => {
-    it('should return options all parts', () => {
+    it('should return the correct parsed params', () => {
       const dsn = 'redis://www.example.com:6379/0';
       expect(parseDsn(dsn)).toStrictEqual({
         driver: 'redis',
@@ -48,7 +66,7 @@ describe('parseDsn', () => {
     });
   });
   describe('when a dsn is provided with host only', () => {
-    it('should return options all parts', () => {
+    it('should return the correct parsed params', () => {
       const dsn = 'redis://localhost';
       expect(parseDsn(dsn)).toStrictEqual({
         driver: 'redis',
@@ -57,7 +75,7 @@ describe('parseDsn', () => {
     });
   });
   describe('when a dsn is provided with host and port only', () => {
-    it('should return options all parts', () => {
+    it('should return the correct parsed params', () => {
       const dsn = 'redis://localhost:6379';
       expect(parseDsn(dsn)).toStrictEqual({
         driver: 'redis',
@@ -67,7 +85,7 @@ describe('parseDsn', () => {
     });
   });
   describe('when a dsn is provided with host, port and db only', () => {
-    it('should return options all parts', () => {
+    it('should return the correct parsed params', () => {
       const dsn = 'redis://localhost:6379/0';
       expect(parseDsn(dsn)).toStrictEqual({
         driver: 'redis',
