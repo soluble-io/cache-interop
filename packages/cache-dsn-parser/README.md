@@ -9,6 +9,8 @@
 [![gzip size](https://badgen.net/bundlephobia/minzip/@soluble/cache-dsn-parser)](https://bundlephobia.com/result?p=@soluble/cache-dsn-parser)
 [![license](https://img.shields.io/npm/l/@soluble/cache-dsn-parser)](https://github.com/soluble-io/cache-interop/blob/main/LICENSE)
 
+A basic DSN parser that handles special characters like `/` in the password field (most libs won't).
+
 ## Install
 
 ```bash
@@ -19,18 +21,18 @@ $ yarn add @soluble/cache-dsn-parser
 
 ```typescript
 import { parseDsn } from '@soluble/cache-dsn-parser';
-const parsed = parseDsn('redis://user:p@s/d@www.example.com:6379/0');
+const parsed = parseDsn('redis://user:p@s/d@www.example.com:6379/0?ssl=true');
 
-// Will give somthing like
-toStrictEqual(
-  {
-    driver: 'redis',
-    pass: 'password',
-    host: 'www.example.com',
-    user: 'user',
-    port: 6379,
-    db: '0',
+// Will give something like
+assert.deepEqual(parsed, {
+  driver: 'redis',
+  pass: 'password',
+  host: 'www.example.com',
+  user: 'user',
+  port: 6379,
+  db: '0',
+  params: {
+    ssl: true,
   },
-  parsed
-);
+});
 ```
