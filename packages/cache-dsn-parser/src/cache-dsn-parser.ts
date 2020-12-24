@@ -1,7 +1,13 @@
 import queryString from 'query-string';
+import { ErrorReasons, ParserErrorResult, ParserResult, SupportedDrivers } from './cache-dsn-parser.types';
 
-const supportedDrivers = ['redis', 'mysql', 'postgresql'] as const;
-type SupportedDrivers = typeof supportedDrivers[number];
+export const supportedDrivers = ['redis', 'mysql', 'postgresql'] as const;
+
+export const errorReasons = {
+  EMPTY_DSN: 'DSN cannot be empty',
+  INVALID_ARGUMENT: 'DSN must be a string',
+  PARSE_ERROR: 'Cannot parse DSN',
+} as const;
 
 export type CacheInteropDsn = {
   driver: SupportedDrivers;
@@ -19,35 +25,24 @@ const dsnRegexp = new RegExp(
   )})):\\/\\/((?<user>.+)?:(?<pass>.+)@)?(?<host>[^\\/:]+?)(:(?<port>\\d{2,5})?)?(\\/(?<db>\\w))?(\\?(?<params>.+))?$`
 );
 
-type Result =
-  | {
-      success: true;
-      value: CacheInteropDsn;
-    }
-  | {
-      success: false;
-      reason: 'EMPTY_DSN' | 'INVALID_ARGUMENT' | 'PARSE_ERROR';
-      message: string;
-    };
+const createErrorResult = (reason: ErrorReasons): ParserErrorResult => {
+  return {
+    success: false,
+    reason: reason,
+    message: errorReasons[reason],
+  };
+};
 
-export const parseDsn = (dsn: string): Result => {
+export const parseDsn = (dsn: string): ParserResult => {
   if (typeof dsn !== 'string') {
-    return {
-      success: false,
-      reason: 'INVALID_ARGUMENT',
-      message: 'DSN must be a string',
-    };
+    return createErrorResult('INVALID_ARGUMENT');
   }
   if (dsn.trim() === '') {
-    return {
-      success: false,
-      reason: 'EMPTY_DSN',
-      message: 'DSN cannot be empty',
-    };
+    return createErrorResult('EMPTY_DSN');
   }
   const matches = dsn.match(dsnRegexp);
   if (matches === null || !matches.groups) {
-    return { success: false, reason: 'PARSE_ERROR', message: 'Cannot parse DSN' };
+    return createErrorResult('PARSE_ERROR');
   }
   const options: Record<string, unknown> = {};
   Object.entries(matches.groups).forEach(([key, value]) => {
