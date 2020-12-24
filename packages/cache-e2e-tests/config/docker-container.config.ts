@@ -30,7 +30,6 @@ export class E2eDockerContainers {
 
   static async shutdownAll(): Promise<true> {
     for (const [key, { container, dsn }] of E2eDockerContainers._instances) {
-      console.log('STOPPING CONTAINER', key, dsn);
       try {
         await container.stop({
           timeout: 5000,
