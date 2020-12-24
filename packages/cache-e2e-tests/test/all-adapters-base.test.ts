@@ -16,6 +16,7 @@ const adapters = [
       return IoRedisCacheAdapter.createFromDSN(dsn);
     },
   ],
+
   [
     'IoRedisCacheAdapter/Redis6',
     async () => {
@@ -45,13 +46,13 @@ const adapters = [
 
 describe.each(adapters)('Adapter: %s', (name, adapterFactory) => {
   let cache: CacheInterface;
-
   beforeAll(async () => {
     cache = await adapterFactory();
   });
   afterAll(async () => {
     switch (name) {
-      case 'RedisCacheAdapter':
+      case 'RedisCacheAdapter/Redis5':
+      case 'RedisCacheAdapter/Redis6':
         await new Promise((resolve, reject) => {
           (cache as RedisCacheAdapter).getStorage().quit((err, reply) => {
             if (err) {
@@ -61,7 +62,8 @@ describe.each(adapters)('Adapter: %s', (name, adapterFactory) => {
           });
         });
         break;
-      case 'IoRedisCacheAdapter':
+      case 'IoRedisCacheAdapter/Redis5':
+      case 'IoRedisCacheAdapter/Redis6':
         await (cache as IoRedisCacheAdapter).getStorage().quit();
         break;
     }
