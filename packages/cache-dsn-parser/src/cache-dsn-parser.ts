@@ -9,6 +9,12 @@ export const errorReasons = {
   PARSE_ERROR: 'Cannot parse DSN',
 } as const;
 
+const dsnRegexp = new RegExp(
+  `^(?<driver>(${supportedDrivers.join(
+    '|'
+  )})):\\/\\/((?<user>.+)?:(?<pass>.+)@)?(?<host>[^\\/:]+?)(:(?<port>\\d{2,5})?)?(\\/(?<db>\\w))?(\\?(?<params>.+))?$`
+);
+
 export type CacheInteropDsn = {
   driver: SupportedDrivers;
   user?: string;
@@ -19,18 +25,19 @@ export type CacheInteropDsn = {
   params?: Record<string, number | string | boolean>;
 };
 
-const dsnRegexp = new RegExp(
-  `^(?<driver>(${supportedDrivers.join(
-    '|'
-  )})):\\/\\/((?<user>.+)?:(?<pass>.+)@)?(?<host>[^\\/:]+?)(:(?<port>\\d{2,5})?)?(\\/(?<db>\\w))?(\\?(?<params>.+))?$`
-);
-
 const createErrorResult = (reason: ErrorReasons): ParserErrorResult => {
   return {
     success: false,
     reason: reason,
     message: errorReasons[reason],
   };
+};
+
+const parseQueryParams = (queryParams: string) => {
+  return queryString.parse(queryParams, {
+    parseBooleans: true,
+    parseNumbers: true,
+  });
 };
 
 export const parseDsn = (dsn: string): ParserResult => {
@@ -52,11 +59,7 @@ export const parseDsn = (dsn: string): ParserResult => {
           options['port'] = Number.parseInt(value, 10);
           break;
         case 'params':
-          const parsed = queryString.parse(value, {
-            parseBooleans: true,
-            parseNumbers: true,
-          });
-          options['params'] = parsed;
+          options['params'] = parseQueryParams(value);
           break;
         default:
           options[key] = value;
