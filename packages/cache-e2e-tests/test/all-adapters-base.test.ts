@@ -52,7 +52,14 @@ describe.each(adapters)('Adapter: %s', (name, adapterFactory) => {
   afterAll(async () => {
     switch (name) {
       case 'RedisCacheAdapter':
-        (cache as RedisCacheAdapter).getStorage().end(true);
+        await new Promise((resolve, reject) => {
+          (cache as RedisCacheAdapter).getStorage().quit((err, reply) => {
+            if (err) {
+              reject(err.message);
+            }
+            resolve(reply);
+          });
+        });
         break;
       case 'IoRedisCacheAdapter':
         await (cache as IoRedisCacheAdapter).getStorage().quit();
