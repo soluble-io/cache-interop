@@ -38,7 +38,7 @@
     ]
   },
   "devDependencies": {
-    "@types/ioredis": "^4.17.9",
+    "@types/ioredis": "^4.17.10",
     "ioredis": "^4.19.4"
   },
   "engines": {

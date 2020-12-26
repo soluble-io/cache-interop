@@ -59,7 +59,7 @@
     "@soluble/cache-interop": "^0.4.0"
   },
   "devDependencies": {
-    "@types/ioredis": "^4.17.9",
+    "@types/ioredis": "^4.17.10",
     "ioredis": "^4.19.4",
     "ts-jest": "^26.4.4",
     "tslib": "^2.0.3",
