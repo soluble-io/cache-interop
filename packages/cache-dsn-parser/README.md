@@ -23,16 +23,23 @@ $ yarn add @soluble/cache-dsn-parser
 import { parseDsn } from '@soluble/cache-dsn-parser';
 const parsed = parseDsn('redis://user:p@s/d@www.example.com:6379/0?ssl=true');
 
-// Will give something like
-assert.deepEqual(parsed, {
-  driver: 'redis',
-  pass: 'password',
-  host: 'www.example.com',
-  user: 'user',
-  port: 6379,
-  db: '0',
-  params: {
-    ssl: true,
-  },
-});
+if (parsed.success) {
+  assert.deepEqual(parsed.value, {
+    driver: 'redis',
+    pass: 'password',
+    host: 'www.example.com',
+    user: 'user',
+    port: 6379,
+    db: '0',
+    params: {
+      ssl: true,
+    },
+  });
+} else {
+  assert.deepEqual(parsed.error, 'Cannot parse provided DSN');
+}
 ```
+
+## Faq
+
+### Why result is wrapped
