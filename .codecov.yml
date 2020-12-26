@@ -3,40 +3,40 @@ coverage:
     patch: off
     project:
       default: off
-      cache_interop:
+      cache_interop_unit:
         target: 1%
         flags:
           - cache_interop
-      cache_ioredis:
+      cache_ioredis_unit:
         target: 1%
         flags:
           - cache_ioredis
-      cache_redis:
-        target: 1%
+      cache_redis_unit:
+        target: 0%
         flags:
           - cache_redis
-      cache_dsn_parser:
+      cache_dsn_parser_unit:
         target: 1%
         flags:
           - cache_dsn_parser
 flags:
-  cache_dsn_parser:
+  cache_dsn_parser_unit:
     paths:
-      - packages/cache-dsn-parser
-  cache_interop:
+      - packages/cache-dsn-parser/src
+  cache_interop_unit:
     paths:
-      - packages/cache-interop
-  cache_io_redis:
+      - packages/cache-interop/src
+  cache_io_redis_unit:
     paths:
-      - packages/cache-ioredis
-  cache_redis:
+      - packages/cache-ioredis/src
+  cache_redis_unit:
     paths:
-      - packages/cache-redis
+      - packages/cache-redis/src
   e2e:
     paths:
-      - packages/cache-ioredis
-      - packages/cache-redis
-      - packages/cache-interop
+      - packages/cache-ioredis/src
+      - packages/cache-redis/src
+      - packages/cache-interop/src
 
 ignore:
   - "scripts/**/*"
