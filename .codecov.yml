@@ -15,14 +15,14 @@ coverage:
         target: 0%
         flags:
           - cache_redis
-      cache_dsn_parser_unit:
+      dsn_parser_unit:
         target: 1%
         flags:
           - cache_dsn_parser
 flags:
-  cache_dsn_parser_unit:
+  dsn_parser_unit:
     paths:
-      - packages/cache-dsn-parser/src
+      - packages/dsn-parser/src
   cache_interop_unit:
     paths:
       - packages/cache-interop/src

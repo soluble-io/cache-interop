@@ -1,13 +1,13 @@
 {
-  "name": "@soluble/cache-dsn-parser",
+  "name": "@soluble/dsn-parser",
   "description": "Utility parser for DSN",
-  "version": "0.1.1",
+  "version": "0.9.0",
   "license": "MIT",
-  "homepage": "https://github.com/soluble-io/cache-interop/tree/main/packages/cache-dsn-parser",
+  "homepage": "https://github.com/soluble-io/cache-interop/tree/main/packages/dsn-parser",
   "repository": {
     "type": "git",
     "url": "https://github.com/soluble-io/cache-interop.git",
-    "directory": "packages/cache-dsn-parser"
+    "directory": "packages/dsn-parser"
   },
   "author": {
     "name": "Vanvelthem Sébastien",
@@ -21,12 +21,12 @@
     "redis",
     "ioredis"
   ],
-  "jsnext:main": "dist/cache-dsn-parser.es.js",
+  "jsnext:main": "dist/dsn-parser.es.js",
   "source": "src/index.ts",
-  "module": "dist/cache-dsn-parser.es.js",
-  "esmodules": "dist/cache-dsn-parser.modern.js",
-  "main": "dist/cache-dsn-parser.js",
-  "umd:main": "dist/cache-dsn-parser.umd.js",
+  "module": "dist/dsn-parser.es.js",
+  "esmodules": "dist/dsn-parser.modern.js",
+  "main": "dist/dsn-parser.js",
+  "umd:main": "dist/dsn-parser.umd.js",
   "typings": "dist/index.d.ts",
   "files": [
     "dist"
@@ -47,7 +47,7 @@
     "fix:all:code": "eslint . --ext .ts,.tsx,.js,.jsx --fix",
     "deps:check": "ncu --reject @soluble/cache-interop --dep prod,dev,optional",
     "deps:update": "ncu --reject @soluble/cache-interop --dep prod,dev,optional -u",
-    "coverage:publish": "codecov --root=../../ -F cacheDsnParser"
+    "coverage:publish": "codecov --root=../../ -F dsn_parser_unit"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [

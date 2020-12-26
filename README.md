@@ -93,8 +93,8 @@ This monorepo holds the various adapters, the contracts for interoperability and
 
 ```
 ./packages
- ├── cache-dsn-parser
- │   └── # @soluble/cache-dsn-parser: utility for parsing connection dsn #
+ ├── dsn-parser
+ │   └── # @soluble/dsn-parser: utility for parsing connection dsn #
  ├── cache-interop 
  │   └── # @soluble/cache-interop: cache interoperability contracts #
  ├── cache-ioredis

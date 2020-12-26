@@ -7,9 +7,10 @@
     "baseUrl": "./src",
     "composite": false,
     "noEmit": false,
+    "declaration": true,
     "declarationMap": false,
-    "declarationDir": "./dist",
-    "outDir": "./dist"
+    "declarationDir": "./dist"
   },
+  "include": ["./src/*.types.ts"],
   "exclude": ["*.test.ts"]
 }

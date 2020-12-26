@@ -81,7 +81,7 @@ jobs:
           bash <(curl -s https://codecov.io/bash) -F cache_interop_unit -s ./packages/cache-interop/coverage
           bash <(curl -s https://codecov.io/bash) -F cache_ioredis_unit -s ./packages/cache-ioredis/coverage
           bash <(curl -s https://codecov.io/bash) -F cache_redis_unit -s ./packages/cache-redis/coverage
-          bash <(curl -s https://codecov.io/bash) -F cache_dsn_parser_unit -s ./packages/cache-dsn-parser/coverage
+          bash <(curl -s https://codecov.io/bash) -F dsn_parser_unit -s ./packages/dsn-parser/coverage
           bash <(curl -s https://codecov.io/bash) -F e2e -s ./packages/cache-e2e-tests/coverage
 
       - name: Build all

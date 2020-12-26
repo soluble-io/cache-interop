@@ -5,7 +5,6 @@
     "lib": ["esnext"],
     "moduleResolution": "node",
     "importHelpers": true,
-    "declaration": true,
     "sourceMap": true,
     "allowJs": true,
     "checkJs": true,
