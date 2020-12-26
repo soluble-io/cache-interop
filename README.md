@@ -1,12 +1,29 @@
-# Cache interop
+<p align="center">
+  <a href="https://github.com/soluble-io/cache-interop">
+    <h1 align="center">CacheInterop</h1>
+  </a>
+</p>
+
+<p align="center">
+  <a aria-label="Codecov" href="https://codecov.io/gh/soluble-io/cache-interop">
+    <img alt="Codecov" src="https://img.shields.io/codecov/c/github/soluble-io/cache-interop?logo=codecov&style=for-the-badge&labelColor=000000" />
+  </a>
+  <a aria-label="Codefactor grade" href="https://www.codefactor.io/repository/github/soluble-io/cache-interop">
+    <img alt="Codefactor" src="https://img.shields.io/codefactor/grade/github/soluble-io/cache-interop?label=Codefactor&logo=codefactor&style=for-the-badge&labelColor=000000" />
+  </a>
+  <a aria-label="CodeClimate maintainability" href="https://codeclimate.com/github/soluble-io/cache-interop">
+    <img alt="Maintainability" src="https://img.shields.io/codeclimate/maintainability/soluble-io/cache-interop?label=Maintainability&logo=code-climate&style=for-the-badge&labelColor=000000" />
+  </a>
+  <a aria-label="CodeClimate technical debt" href="https://codeclimate.com/github/soluble-io/cache-interop">
+    <img alt="Techdebt" src="https://img.shields.io/codeclimate/tech-debt/soluble-io/cache-interop?label=TechDebt&logo=code-climate&style=for-the-badge&labelColor=000000" />
+  </a>
+  <a aria-label="Licence" href="https://github.com/soluble-io/cache-interop/blob/main/LICENSE">
+    <img alt="Licence" src="https://img.shields.io/npm/l/@soluble/cache-ioredis?style=for-the-badge&labelColor=000000" />
+  </a>
+</p>
 
 > This project is in early architectural definition ;)
 
-[![codecov](https://codecov.io/gh/soluble-io/cache-interop/branch/main/graph/badge.svg)](https://codecov.io/gh/soluble-io/cache-interop)
-[![codefactor](https://www.codefactor.io/repository/github/soluble-io/cache-interop/badge)](https://www.codefactor.io/repository/github/soluble-io/cache-interop)
-[![Maintainability](https://api.codeclimate.com/v1/badges/115e70b4ecf997e2185c/maintainability)](https://codeclimate.com/github/soluble-io/cache-interop/maintainability)
-![Code Climate technical debt](https://img.shields.io/codeclimate/tech-debt/soluble-io/cache-interop)
-[![license](https://img.shields.io/npm/l/@soluble/cache-ioredis)](https://github.com/soluble-io/cache-interop/blob/main/LICENSE)
 
 Collection of cache adapters for nodejs.   
 
