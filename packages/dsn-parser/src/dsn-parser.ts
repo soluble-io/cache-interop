@@ -1,5 +1,5 @@
 import queryString from 'query-string';
-import type { ErrorReasons, ParserErrorResult, ParserResult, SupportedDrivers } from './cache-dsn-parser.types';
+import type { ErrorReasons, ParserErrorResult, ParserResult, SupportedDrivers } from './dsn-parser.types';
 
 export const supportedDrivers = ['redis', 'mysql', 'postgresql'] as const;
 
@@ -15,7 +15,7 @@ const dsnRegexp = new RegExp(
   )})):\\/\\/((?<user>.+)?:(?<pass>.+)@)?(?<host>[^\\/:]+?)(:(?<port>\\d{2,5})?)?(\\/(?<db>\\w))?(\\?(?<params>.+))?$`
 );
 
-export type CacheInteropDsn = {
+export type ParsedDsn = {
   driver: SupportedDrivers;
   user?: string;
   pass?: string;
@@ -68,6 +68,6 @@ export const parseDsn = (dsn: string): ParserResult => {
   });
   return {
     success: true,
-    value: (options as unknown) as CacheInteropDsn,
+    value: (options as unknown) as ParsedDsn,
   };
 };

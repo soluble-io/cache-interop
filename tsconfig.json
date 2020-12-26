@@ -4,8 +4,8 @@
     "rootDir": ".",
     "baseUrl": ".",
     "paths": {
-      "@soluble/cache-dsn-parser": ["./packages/cache-dsn-parser/src"],
-      "@soluble/cache-dn-parser/*": ["./packages/cache-dsn-parser/src/*"],
+      "@soluble/dsn-parser": ["./packages/dsn-parser/src"],
+      "@soluble/dsn-parser/*": ["./packages/dsn-parser/src/*"],
       "@soluble/cache-interop": ["./packages/cache-interop/src"],
       "@soluble/cache-interop/*": ["./packages/cache-interop/src/*"],
       "@soluble/cache-ioredis": ["./packages/cache-ioredis/src"],
