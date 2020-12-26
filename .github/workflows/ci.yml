@@ -74,13 +74,17 @@ jobs:
         env:
           CI: true
 
+      - name: Send coverage to codecov.io
+        working-directory: .
+        run: |
+          bash <(curl -s https://codecov.io/bash) -F cache_interop -s ./packages/cache-interop/coverage
+          bash <(curl -s https://codecov.io/bash) -F cache_ioredis-s ./packages/cache-ioredis/coverage
+          bash <(curl -s https://codecov.io/bash) -F cache_redis -s ./packages/cache-redis/coverage
+          bash <(curl -s https://codecov.io/bash) -F cache_dsn_parser -s ./packages/cache-dsn-parser/coverage
+          bash <(curl -s https://codecov.io/bash) -F e2e -s ./packages/cache-e2e-tests/coverage
+
       - name: Build all
         run: |
           yarn build
 
-      - name: Send coverage to codecov.io
-        working-directory: .
-        run: |
-          npm install -g codecov
-          yarn coverage:publish
 
