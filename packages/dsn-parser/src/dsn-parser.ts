@@ -1,73 +1,65 @@
-import queryString from 'query-string';
-import type { ErrorReasons, ParserErrorResult, ParserResult, SupportedDrivers } from './dsn-parser.types';
-
-export const supportedDrivers = ['redis', 'mysql', 'postgresql'] as const;
-
-export const errorReasons = {
-  EMPTY_DSN: 'DSN cannot be empty',
-  INVALID_ARGUMENT: 'DSN must be a string',
-  PARSE_ERROR: 'Cannot parse DSN',
-} as const;
+import type { ParserResult } from './dsn-parser.type';
+import { createErrorResult, isNonEmptyString, isValidNetworkPort } from './dsn-parser.util';
+import { parseQueryParams } from './query-param-parser';
 
 const dsnRegexp = new RegExp(
-  `^(?<driver>(${supportedDrivers.join(
-    '|'
-  )})):\\/\\/((?<user>.+)?:(?<pass>.+)@)?(?<host>[^\\/:]+?)(:(?<port>\\d{2,5})?)?(\\/(?<db>\\w))?(\\?(?<params>.+))?$`
+  `^(?<driver>([a-z0-9_-]+)):\\/\\/((?<user>.+)?:(?<pass>.+)@)?(?<host>[^\\/:]+?)(:(?<port>\\d+)?)?(\\/(?<db>\\w))?(\\?(?<params>.+))?$`,
+  'i'
 );
 
+type ParseDsnOptions = {
+  /** Whether to lowercase parsed driver name, default: false */
+  lowercaseDriver?: boolean;
+};
+
+const defaultOptions = {
+  lowercaseDriver: false,
+};
+
 export type ParsedDsn = {
-  driver: SupportedDrivers;
+  driver: string;
+  host: string;
   user?: string;
   pass?: string;
-  host: string;
   port?: number;
   db?: string;
+  /** Query params */
   params?: Record<string, number | string | boolean>;
 };
 
-const createErrorResult = (reason: ErrorReasons): ParserErrorResult => {
-  return {
-    success: false,
-    reason: reason,
-    message: errorReasons[reason],
-  };
-};
-
-const parseQueryParams = (queryParams: string) => {
-  return queryString.parse(queryParams, {
-    parseBooleans: true,
-    parseNumbers: true,
-  });
-};
-
-export const parseDsn = (dsn: string): ParserResult => {
-  if (typeof dsn !== 'string') {
-    return createErrorResult('INVALID_ARGUMENT');
+export const parseDsn = (dsn: string, options?: ParseDsnOptions): ParserResult => {
+  if (!isNonEmptyString(dsn)) {
+    return createErrorResult(typeof dsn !== 'string' ? 'INVALID_ARGUMENT' : 'EMPTY_DSN');
   }
-  if (dsn.trim() === '') {
-    return createErrorResult('EMPTY_DSN');
-  }
+  const opts = { ...defaultOptions, ...(options || {}) };
   const matches = dsn.match(dsnRegexp);
   if (matches === null || !matches.groups) {
     return createErrorResult('PARSE_ERROR');
   }
-  const options: Record<string, unknown> = {};
+  const parsed: Record<string, unknown> = {};
   Object.entries(matches.groups).forEach(([key, value]) => {
     if (typeof value === 'string') {
       switch (key) {
+        case 'driver':
+          parsed['driver'] = opts.lowercaseDriver ? value.toLowerCase() : value;
+          break;
         case 'port':
-          options['port'] = Number.parseInt(value, 10);
+          parsed['port'] = Number.parseInt(value, 10);
           break;
         case 'params':
-          options['params'] = parseQueryParams(value);
+          parsed['params'] = parseQueryParams(value);
           break;
         default:
-          options[key] = value;
+          parsed[key] = value;
       }
     }
   });
+  const val = (parsed as unknown) as ParsedDsn;
+  if (val?.port && !isValidNetworkPort(val.port)) {
+    return createErrorResult('INVALID_PORT', `Invalid port: ${val.port}`);
+  }
   return {
     success: true,
-    value: (options as unknown) as ParsedDsn,
+    value: val,
   };
 };

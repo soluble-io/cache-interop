@@ -34,7 +34,7 @@
   "sideEffects": false,
   "scripts": {
     "start": "cross-env NODE_ENV=development tsdx watch",
-    "build": "cross-env NODE_ENV=production microbundle --tsconfig tsconfig.build.json --target node",
+    "build": "cross-env NODE_ENV=production microbundle --tsconfig tsconfig.build.json --target node --compress",
     "clean": "rimraf --no-glob ./dist ./build ./coverage ./out",
     "test": "run-s test:unit -- {@}",
     "test:unit": "jest --config jest.config.js --color $@",
@@ -65,8 +65,5 @@
   },
   "engines": {
     "node": ">=10.13"
-  },
-  "dependencies": {
-    "query-string": "^6.13.7"
   }
 }
