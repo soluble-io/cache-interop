@@ -65,8 +65,5 @@
   },
   "engines": {
     "node": ">=10.13"
-  },
-  "dependencies": {
-    "query-string": "^6.13.7"
   }
 }
