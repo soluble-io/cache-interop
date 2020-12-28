@@ -1,11 +1,11 @@
-import { isNonEmptyString, isValidHttpPort } from '../dsn-parser.util';
+import { isNonEmptyString, isValidNetworkPort } from '../dsn-parser.util';
 
-describe('isValidHttpPort', () => {
+describe('isValidNetworkPort', () => {
   it('should work as expected', () => {
-    expect(isValidHttpPort(3001)).toBeTruthy();
-    expect(isValidHttpPort(0)).toBeFalsy();
-    expect(isValidHttpPort(65536)).toBeFalsy();
-    expect(isValidHttpPort(-1)).toBeFalsy();
+    expect(isValidNetworkPort(3001)).toBeTruthy();
+    expect(isValidNetworkPort(0)).toBeFalsy();
+    expect(isValidNetworkPort(65536)).toBeFalsy();
+    expect(isValidNetworkPort(-1)).toBeFalsy();
   });
 });
 

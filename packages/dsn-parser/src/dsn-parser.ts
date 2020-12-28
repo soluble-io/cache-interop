@@ -1,5 +1,5 @@
 import type { ParserResult } from './dsn-parser.type';
-import { createErrorResult, isNonEmptyString, isValidHttpPort } from './dsn-parser.util';
+import { createErrorResult, isNonEmptyString, isValidNetworkPort } from './dsn-parser.util';
 import { parseQueryParams } from './query-param-parser';
 
 const dsnRegexp = new RegExp(
@@ -55,8 +55,8 @@ export const parseDsn = (dsn: string, options?: ParseDsnOptions): ParserResult =
     }
   });
   const val = (parsed as unknown) as ParsedDsn;
-  if (val?.port && !isValidHttpPort(val.port)) {
-    return createErrorResult('INVALID_PORT', `Invalid http port: ${val.port}`);
+  if (val?.port && !isValidNetworkPort(val.port)) {
+    return createErrorResult('INVALID_PORT', `Invalid port: ${val.port}`);
   }
   return {
     success: true,

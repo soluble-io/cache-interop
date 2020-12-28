@@ -185,7 +185,7 @@ describe('parseDsn', () => {
       expect(parseDsn('pgsql://localhost:12345678')).toStrictEqual({
         success: false,
         reason: 'INVALID_PORT',
-        message: 'Invalid http port: 12345678',
+        message: 'Invalid port: 12345678',
       });
     });
   });
