@@ -17,6 +17,9 @@
   <a aria-label="Coverage" href="https://codecov.io/gh/soluble-io/cache-interop">
     <img alt="Codecov" src="https://img.shields.io/codecov/c/github/soluble-io/cache-interop?label=unit&logo=codecov&flag=dsn_parser_unit&style=for-the-badge&labelColor=000000" />
   </a>
+  <a aria-label="Typings">
+    <img alt="Typings" src="https://img.shields.io/static/v1?label=typings&message=3.5%2B&logo=typescript&style=for-the-badge&labelColor=000000&color=9cf" />
+  </a>
   <a aria-label="Licence" href="https://github.com/soluble-io/cache-interop/blob/main/LICENSE">
     <img alt="Licence" src="https://img.shields.io/npm/l/@soluble/cache-ioredis?style=for-the-badge&labelColor=000000" />
   </a>
@@ -35,8 +38,6 @@ $ yarn add @soluble/dsn-parser
 - [x] Portable, no assumption on driver (i.e: `redis`, `pgsql`...)
 - [x] Support for optional query params.
 - [x] Validation reasons, no `try...catch`.
-- [x] Node and browser exports.
-- [x] Small footprint, no dependencies.
 
 ## Usage
 
