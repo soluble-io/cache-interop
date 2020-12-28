@@ -1,5 +1,14 @@
 # @soluble/cache-ioredis
 
+## 0.4.1
+
+### Patch Changes
+
+- [`3b84baf`](https://github.com/soluble-io/cache-interop/commit/3b84baf1b2eddb1aa76da8c203cb073d2dc8ae29) [#60](https://github.com/soluble-io/cache-interop/pull/60) Thanks [@belgattitude](https://github.com/belgattitude)! - Compress dist files with terser
+
+- Updated dependencies [[`3b84baf`](https://github.com/soluble-io/cache-interop/commit/3b84baf1b2eddb1aa76da8c203cb073d2dc8ae29)]:
+  - @soluble/cache-interop@0.4.2
+
 ## 0.4.0
 
 ### Minor Changes
