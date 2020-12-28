@@ -38,6 +38,7 @@ $ yarn add @soluble/dsn-parser
 - [x] Portable, no assumption on driver (i.e: `redis`, `pgsql`...)
 - [x] Support for optional query params.
 - [x] Validation reasons, no `try...catch`.
+- [x] Node and browser support.
 
 ## Usage
 
