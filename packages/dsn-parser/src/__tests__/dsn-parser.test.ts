@@ -117,6 +117,42 @@ describe('parseDsn', () => {
       });
     });
   });
+  describe('when options are provided', () => {
+    it('should lowercase the driver if lowercaseDriver is true', () => {
+      const dsn = 'PGSQL://localhost';
+      expect(parseDsn(dsn, { lowercaseDriver: true })).toStrictEqual({
+        success: true,
+        value: {
+          driver: 'pgsql',
+          host: 'localhost',
+        },
+      });
+    });
+    it('should not lowercase the driver if lowercaseDriver is false', () => {
+      const dsn = 'PGSQL://localhost';
+      expect(parseDsn(dsn, { lowercaseDriver: false })).toStrictEqual({
+        success: true,
+        value: {
+          driver: 'PGSQL',
+          host: 'localhost',
+        },
+      });
+    });
+    it('should not lowercase the driver if option not provided', () => {
+      const dsn = 'PGSQL://localhost';
+      expect(parseDsn(dsn, {})).toStrictEqual({
+        success: true,
+        value: {
+          driver: 'PGSQL',
+          host: 'localhost',
+        },
+      });
+    });
+  });
+
+  // ########################################################
+  // Errors
+  // ########################################################
   describe('when a dsn is not parsable', () => {
     it('should return a PARSE_ERROR', () => {
       expect(parseDsn('redis:///0')).toStrictEqual({
@@ -141,6 +177,15 @@ describe('parseDsn', () => {
         success: false,
         reason: 'INVALID_ARGUMENT',
         message: 'DSN must be a string',
+      });
+    });
+  });
+  describe('when port is not a valid one', () => {
+    it('should return an INVALID_PORT reason', () => {
+      expect(parseDsn('pgsql://localhost:12345678')).toStrictEqual({
+        success: false,
+        reason: 'INVALID_PORT',
+        message: 'Invalid http port: 12345678',
       });
     });
   });

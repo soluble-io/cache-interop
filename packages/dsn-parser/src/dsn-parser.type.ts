@@ -1,6 +1,12 @@
-import { ParsedDsn, errorReasons, supportedDrivers } from './dsn-parser';
+import { ParsedDsn } from './dsn-parser';
 
-export type SupportedDrivers = typeof supportedDrivers[number];
+export const errorReasons = {
+  EMPTY_DSN: 'DSN cannot be empty',
+  INVALID_ARGUMENT: 'DSN must be a string',
+  PARSE_ERROR: 'Cannot parse DSN',
+  INVALID_PORT: 'Invalid port',
+} as const;
+
 export type ErrorReasons = keyof typeof errorReasons;
 
 type ParserSuccessResult = {
