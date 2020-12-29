@@ -3,7 +3,7 @@ import { parseDsn } from '../dsn-parser';
 describe('parseDsn', () => {
   describe('when provided dsn contains all options', () => {
     it('should return the correct parsed params', () => {
-      expect(parseDsn('redis://username:password@www.example.com:6379/0')).toStrictEqual({
+      expect(parseDsn('redis://username:password@www.example.com:6379/database$-#12_2.1')).toStrictEqual({
         success: true,
         value: {
           driver: 'redis',
@@ -11,7 +11,7 @@ describe('parseDsn', () => {
           host: 'www.example.com',
           user: 'username',
           port: 6379,
-          db: '0',
+          db: 'database$-#12_2.1',
         },
       });
     });
