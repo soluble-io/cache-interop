@@ -42,6 +42,7 @@ ignore:
   - "scripts/**/*"
   - "docs/**/*"
   - "scripts/**/*"
+  - "**/index.ts
 
 comment:
   layout: "reach,diff,flags,tree"
