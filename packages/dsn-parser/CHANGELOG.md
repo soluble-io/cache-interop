@@ -1,5 +1,11 @@
 # @soluble/dsn-parser
 
+## 1.2.0
+
+### Minor Changes
+
+- [`81b5d2d`](https://github.com/soluble-io/cache-interop/commit/81b5d2d9b0cdd848b333c629dda41a0e4a0066c9) [#69](https://github.com/soluble-io/cache-interop/pull/69) Thanks [@belgattitude](https://github.com/belgattitude)! - Allow extra chars in database field recognition
+
 ## 1.1.2
 
 ### Patch Changes
