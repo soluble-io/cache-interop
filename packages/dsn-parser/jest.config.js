@@ -8,7 +8,7 @@ module.exports = {
   displayName: 'cache-dsn-parser/unit',
   testRunner: 'jest-circus/runner',
   verbose: true,
-  collectCoverageFrom: ['src/**/*.{js,ts}', '!src/**/*.d.ts', '!src/**/*.test.ts'],
+  collectCoverageFrom: ['src/**/*.{js,ts}', '!src/**/*.d.ts', '!src/**/*.test.ts', '!/src/**/index.ts'],
   testMatch: ['<rootDir>/src/**/*.test.ts'],
   testEnvironment: 'node',
   transform: {
