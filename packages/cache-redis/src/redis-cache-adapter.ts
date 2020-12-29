@@ -16,21 +16,42 @@ import {
   GetOptions,
   HasOptions,
   DeleteOptions,
+  ConnectionInterface,
 } from '@soluble/cache-interop';
-import { RedisClient, createClient, ClientOpts, AbortError, AggregateError, ReplyError, RedisError } from 'redis';
+import {
+  RedisClient,
+  createClient,
+  ClientOpts as RedisClientOptions,
+  AbortError,
+  AggregateError,
+  ReplyError,
+  RedisError,
+} from 'redis';
+import { RedisConnection } from './redis-connection';
+
+type Options = {
+  /** Existing connection, IoRedis options or a valid dsn */
+  connection: RedisConnection | RedisClientOptions | string;
+};
 
 export class RedisCacheAdapter<TBase = string, KBase = CacheKey>
   extends AbstractCacheAdapter<TBase, KBase>
   implements CacheInterface<TBase, KBase> {
   private readonly redis: RedisClient;
+  private conn: RedisConnection;
 
-  public readonly db: number | string;
-
-  constructor(options: ClientOpts) {
+  /**
+   * @throws Error if redis connection can't be created
+   */
+  constructor(options: Options) {
     super();
-    const { db = 0, ...rest } = options;
-    this.db = db;
-    this.redis = createClient({ db, ...rest });
+    const { connection } = options;
+    if (connection instanceof RedisConnection) {
+      this.conn = connection;
+    } else {
+      this.conn = new RedisConnection(connection);
+    }
+    this.redis = this.conn.getWrappedConnection();
   }
 
   get = async <T = TBase, K extends KBase = KBase>(key: K, options?: GetOptions<T>): Promise<CacheItemInterface<T>> => {
@@ -194,7 +215,7 @@ export class RedisCacheAdapter<TBase = string, KBase = CacheKey>
     });
   };
 
-  getStorage(): RedisClient {
-    return this.redis;
+  getConnection(): ConnectionInterface<RedisClient> {
+    return this.conn;
   }
 }

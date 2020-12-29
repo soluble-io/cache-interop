@@ -11,7 +11,6 @@ import {
   TrueOrFalseOrUndefined,
   isCacheValueProviderFn,
   isNonEmptyString,
-  isParsableNumeric,
   CacheProviderException,
   UnexpectedErrorException,
   GetOptions,
@@ -19,19 +18,32 @@ import {
   DeleteOptions,
 } from '@soluble/cache-interop';
 import IORedis from 'ioredis';
+import { ConnectionInterface } from '@soluble/cache-interop';
+import { IoredisConnection } from './ioredis-connection';
+
+type Options = {
+  /** Existing connection, IoRedis options or a valid dsn */
+  connection: IoredisConnection | IORedis.RedisOptions | string;
+};
 
 export class IoRedisCacheAdapter<TBase = string, KBase = CacheKey>
   extends AbstractCacheAdapter<TBase, KBase>
   implements CacheInterface<TBase, KBase> {
+  private readonly conn: IoredisConnection;
   private readonly redis: IORedis.Redis;
 
-  public readonly db: number;
-
-  constructor(options: IORedis.RedisOptions) {
+  /**
+   * @throws Error
+   */
+  constructor(options: Options) {
     super();
-    const { db = 0, ...rest } = options;
-    this.db = db;
-    this.redis = new IORedis({ db, ...rest });
+    const { connection } = options;
+    if (connection instanceof IoredisConnection) {
+      this.conn = connection;
+    } else {
+      this.conn = new IoredisConnection(connection);
+    }
+    this.redis = this.conn.getWrappedConnection();
   }
 
   get = async <T = TBase, K extends KBase = KBase>(key: K, options?: GetOptions<T>): Promise<CacheItemInterface<T>> => {
@@ -177,29 +189,7 @@ export class IoRedisCacheAdapter<TBase = string, KBase = CacheKey>
     );
   };
 
-  getStorage(): IORedis.Redis {
-    return this.redis;
-  }
-
-  static createFromDSN(dsn: string): IoRedisCacheAdapter {
-    return new IoRedisCacheAdapter<string>(IoRedisCacheAdapter.getOptionsFromDSN(dsn));
-  }
-
-  /**
-   * Cause the ioredis one is buggy... with some characters
-   */
-  static getOptionsFromDSN(dsn: string): IORedis.RedisOptions {
-    const regexp = /^redis:\/\/((?<username>.*)?:(?<password>.*)@)?(?<host>.*):(?<port>[0-9]{2,5})(\/(?<db>\d))?$/;
-    const matches = dsn.match(regexp);
-    if (matches === null || matches.length < 2 || !matches.groups) {
-      throw new Error('Invalid IORedis DSN');
-    }
-    const options: Record<string, number | string> = {};
-    for (const [key, value] of Object.entries(matches.groups)) {
-      if (value) {
-        options[key] = isParsableNumeric(value) ? Number.parseInt(value, 10) : value;
-      }
-    }
-    return options;
+  getConnection(): ConnectionInterface<IORedis.Redis> {
+    return this.conn;
   }
 }

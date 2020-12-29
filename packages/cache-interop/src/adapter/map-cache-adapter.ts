@@ -17,6 +17,8 @@ import { DateProvider } from '../expiry/date-provider.interface';
 import { EsDateProvider } from '../expiry/es-date-provider';
 import { CacheException, CacheProviderException } from '../exceptions';
 import { EvictionPolicyInterface, ExpiresAtPolicy } from '../eviction';
+import { ConnectionInterface } from '../connection/connection.interface';
+import { NullConnection } from '../connection/null-connection';
 
 type Options = {
   evictionPolicy?: EvictionPolicyInterface;
@@ -32,10 +34,12 @@ export class MapCacheAdapter<TBase = string, KBase = CacheKey>
   private map: Map<KBase, { expiresAt: number; data: unknown }>;
   private dateProvider: DateProvider;
   private evictionPolicy: EvictionPolicyInterface;
+  private conn: NullConnection;
   constructor(options?: Options) {
     super();
     const { evictionPolicy } = { ...defaultOptions, ...(options ?? {}) };
     this.map = new Map();
+    this.conn = new NullConnection();
     this.evictionPolicy = evictionPolicy;
     this.dateProvider = new EsDateProvider();
   }
@@ -128,7 +132,7 @@ export class MapCacheAdapter<TBase = string, KBase = CacheKey>
     return true;
   };
 
-  getStorage(): Map<KBase, { expiresAt: number; data: unknown }> {
-    return this.map;
+  getConnection(): ConnectionInterface<null> {
+    return this.conn;
   }
 }
