@@ -1,5 +1,11 @@
 # @soluble/dsn-parser
 
+## 1.1.1
+
+### Patch Changes
+
+- [`63a0b86`](https://github.com/soluble-io/cache-interop/commit/63a0b8690e0af5b60751c76149c7f56479200217) [#65](https://github.com/soluble-io/cache-interop/pull/65) Thanks [@belgattitude](https://github.com/belgattitude)! - Fix missing type export for ParseDsnOptions
+
 ## 1.1.0
 
 ### Minor Changes
