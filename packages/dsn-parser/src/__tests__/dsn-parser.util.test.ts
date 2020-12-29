@@ -1,4 +1,35 @@
-import { isNonEmptyString, isValidNetworkPort } from '../dsn-parser.util';
+import { removeUndefined, isNonEmptyString, isValidNetworkPort, mergeDsnOverrides } from '../dsn-parser.util';
+
+describe('removeUndefined', () => {
+  it('should work as expected', () => {
+    expect(removeUndefined({ k: 1, u: undefined })).toStrictEqual({
+      k: 1,
+    });
+  });
+});
+
+describe('mergeDsnOverrides', () => {
+  it('should replace host and left params intact', () => {
+    const testDsn = {
+      driver: 'redis',
+      host: 'localhost',
+      params: {
+        k: 1,
+      },
+    };
+    expect(
+      mergeDsnOverrides(testDsn, {
+        host: 'test.local',
+      })
+    ).toStrictEqual({
+      driver: 'redis',
+      host: 'test.local',
+      params: {
+        k: 1,
+      },
+    });
+  });
+});
 
 describe('isValidNetworkPort', () => {
   it('should work as expected', () => {

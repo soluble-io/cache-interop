@@ -71,6 +71,30 @@ if (parsed.success) {
 }
 ```
 
+## Options
+
+```typescript
+const dsn = 'mySql://localhost:6379/db';
+const parsed = parseDsn(dsn, {
+  lowercaseDriver: true,
+  overrides: {
+    db: 'db3',
+    port: undefined,
+  },
+});
+
+assert.deepEqual(parsed.value, {
+  driver: 'mysql',
+  host: 'localhost',
+  db: 'db3',
+});
+```
+
+| Params            | Type                   | Description                               |
+| ----------------- | ---------------------- | ----------------------------------------- |
+| `lowercaseDriver` | `<boolean>`            | Driver name in lowercase, default `false` |
+| `overrides`       | `DSN must be a string` |                                           |
+
 ## DSN parsing
 
 ### Requirements

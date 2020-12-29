@@ -117,7 +117,7 @@ describe('parseDsn', () => {
       });
     });
   });
-  describe('when options are provided', () => {
+  describe('when lowerCaseDriver option is provided', () => {
     it('should lowercase the driver if lowercaseDriver is true', () => {
       const dsn = 'PGSQL://localhost';
       expect(parseDsn(dsn, { lowercaseDriver: true })).toStrictEqual({
@@ -145,6 +145,40 @@ describe('parseDsn', () => {
         value: {
           driver: 'PGSQL',
           host: 'localhost',
+        },
+      });
+    });
+  });
+
+  //
+  describe('when overrides option is provided', () => {
+    it('should replace parsed values', () => {
+      const dsn = 'redis://username:password@www.example.com:6379/0';
+      const overrides = {
+        port: 3306,
+        db: '2',
+        host: 'localhost',
+        pass: 'pass',
+        user: 'user',
+        driver: 'mysql',
+      };
+      expect(parseDsn(dsn, { overrides })).toStrictEqual({
+        success: true,
+        value: overrides,
+      });
+    });
+    it('should not allow to clear undefined', () => {
+      const dsn = 'redis://username:password@localhost';
+      const overrides = {
+        pass: undefined,
+        user: 'replaced',
+      };
+      expect(parseDsn(dsn, { overrides })).toStrictEqual({
+        success: true,
+        value: {
+          driver: 'redis',
+          host: 'localhost',
+          user: 'replaced',
         },
       });
     });
