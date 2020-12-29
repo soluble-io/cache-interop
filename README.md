@@ -1,9 +1,7 @@
-<p align="center">
-  <a href="https://github.com/soluble-io/cache-interop">
-    <h1 align="center">CacheInterop</h1>
-  </a>
-</p>
-
+<div align="center">
+  <h1 align="center"><a aria-label="soluble/cache-interop" href="https://github.com/soluble-io/cache-interop">cache-interop</a></h1>
+  <p align="center">Interoperable cache adapters for node and browsers.</p>
+</div>
 <p align="center">
   <a aria-label="Codecov" href="https://codecov.io/gh/soluble-io/cache-interop">
     <img alt="Codecov" src="https://img.shields.io/codecov/c/github/soluble-io/cache-interop?logo=codecov&style=for-the-badge&labelColor=000000" />
@@ -17,15 +15,16 @@
   <a aria-label="CodeClimate technical debt" href="https://codeclimate.com/github/soluble-io/cache-interop">
     <img alt="Techdebt" src="https://img.shields.io/codeclimate/tech-debt/soluble-io/cache-interop?label=TechDebt&logo=code-climate&style=for-the-badge&labelColor=000000" />
   </a>
+  <a aria-label="Downloads" href="https://npm.im/@soluble/cache-interop">
+    <img alt="Downloads" src="https://img.shields.io/npm/dy/@soluble/cache-interop?style=for-the-badge&labelColor=000000" />
+  </a>
   <a aria-label="Licence" href="https://github.com/soluble-io/cache-interop/blob/main/LICENSE">
     <img alt="Licence" src="https://img.shields.io/npm/l/@soluble/cache-ioredis?style=for-the-badge&labelColor=000000" />
   </a>
 </p>
 
-> This project is in early architectural definition ;)
+> **This project is in early architectural definition ;)**
 
-
-Collection of cache adapters for nodejs.   
 
 ## Features
 
@@ -34,6 +33,9 @@ Collection of cache adapters for nodejs.
 - [x] Don't throw errors.
 - [x] Written in typescript.
 - [x] Fully tested with [e2e](./packages/cache-e2e-tests/test/all-adapters-base.test.ts) tests.
+
+
+
 
 ## Roadmap
 
@@ -66,6 +68,33 @@ const { value, error } = await cache.getOrSet('key', fetchApi(), { ttl: 3600 });
 if (value !== null) {
   // do something
 }
+```
+
+// or
+
+```typescript
+import { JsonSerializer } from '@soluble/cache-interop';
+import { RedisCacheAdapter } from '@soluble/cache-redis';
+
+const cache = new RedisCacheAdapter({
+  connection: 'redis://localhost:6375',
+  serializers: new JsonSerializer(),
+});
+
+const getData = async (params: {id: number}) => ( 
+   // any db call, fetch, ... 
+);
+
+const result = await cache.getOrSet('k', getData({id: 1}), {
+  ttl: 3600 
+});
+
+if (result.success) {
+  const { value, status, expiresAt } = result;   
+} else {
+  const { reason, message } = result.error;
+}
+
 ```
 
 | GetOrSetOptions | target | default | description            |
