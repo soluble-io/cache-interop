@@ -1,5 +1,11 @@
 # @soluble/dsn-parser
 
+## 1.1.0
+
+### Minor Changes
+
+- [`23aa0d6`](https://github.com/soluble-io/cache-interop/commit/23aa0d663a1c6883822f41deb44f4c7679b7613f) [#63](https://github.com/soluble-io/cache-interop/pull/63) Thanks [@belgattitude](https://github.com/belgattitude)! - Add overrides option
+
 ## 1.0.0
 
 ### Major Changes
