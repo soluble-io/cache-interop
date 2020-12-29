@@ -1,5 +1,11 @@
 import type { ParserResult } from './dsn-parser.type';
-import { createErrorResult, isNonEmptyString, isValidNetworkPort } from './dsn-parser.util';
+import {
+  createErrorResult,
+  isNonEmptyString,
+  isValidNetworkPort,
+  mergeDsnOverrides,
+  removeUndefined,
+} from './dsn-parser.util';
 import { parseQueryParams } from './query-param-parser';
 
 const dsnRegexp = new RegExp(
@@ -7,13 +13,16 @@ const dsnRegexp = new RegExp(
   'i'
 );
 
-type ParseDsnOptions = {
+export type ParseDsnOptions = {
   /** Whether to lowercase parsed driver name, default: false */
   lowercaseDriver?: boolean;
+  /** Overrides parsed values by those one (except query params) */
+  overrides?: Omit<Partial<ParsedDsn>, 'params'>;
 };
 
 const defaultOptions = {
   lowercaseDriver: false,
+  overrides: {},
 };
 
 export type ParsedDsn = {
@@ -54,7 +63,7 @@ export const parseDsn = (dsn: string, options?: ParseDsnOptions): ParserResult =
       }
     }
   });
-  const val = (parsed as unknown) as ParsedDsn;
+  const val = removeUndefined(mergeDsnOverrides(parsed as ParsedDsn, opts.overrides)) as ParsedDsn;
   if (val?.port && !isValidNetworkPort(val.port)) {
     return createErrorResult('INVALID_PORT', `Invalid port: ${val.port}`);
   }
