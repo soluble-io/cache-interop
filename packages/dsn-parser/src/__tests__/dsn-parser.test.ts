@@ -150,7 +150,6 @@ describe('parseDsn', () => {
     });
   });
 
-  //
   describe('when overrides option is provided', () => {
     it('should replace parsed values', () => {
       const dsn = 'redis://username:password@www.example.com:6379/0';
@@ -162,7 +161,7 @@ describe('parseDsn', () => {
         user: 'user',
         driver: 'mysql',
       };
-      expect(parseDsn(dsn, { overrides })).toStrictEqual({
+      expect(parseDsn(dsn, { overrides: overrides })).toStrictEqual({
         success: true,
         value: overrides,
       });
@@ -179,6 +178,16 @@ describe('parseDsn', () => {
           driver: 'redis',
           host: 'localhost',
           user: 'replaced',
+        },
+      });
+    });
+    it('should set overrides as {} if undefined', () => {
+      const dsn = 'redis://localhost';
+      expect(parseDsn(dsn, { overrides: undefined })).toStrictEqual({
+        success: true,
+        value: {
+          driver: 'redis',
+          host: 'localhost',
         },
       });
     });
