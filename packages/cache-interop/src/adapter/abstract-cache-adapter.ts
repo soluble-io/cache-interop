@@ -14,6 +14,7 @@ import { executeValueProviderFn, isCacheValueProviderFn } from '../utils';
 import { CacheItem } from '../cache-item';
 import { CacheException } from '../exceptions';
 import { getGetOrSetCacheDisabledParams } from '../utils/cache-options-utils';
+import { ConnectionInterface } from '../connection/connection.interface';
 
 const defaultGetOrSetOptions: GetOrSetOptions = {
   disableCache: {
@@ -68,7 +69,7 @@ export abstract class AbstractCacheAdapter<TBase = string, KBase = CacheKey> imp
 
   abstract clear(): Promise<true | CacheException>;
 
-  abstract getStorage(): unknown;
+  abstract getConnection(): ConnectionInterface<unknown>;
 
   getOrSet = async <T = TBase, K extends KBase = KBase>(
     key: K,
