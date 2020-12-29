@@ -10,6 +10,6 @@
     }
   },
 
-  "references": [{ "path": "../cache-interop/tsconfig.json" }, { "path": "../dsn-parser/tsconfig.json" }],
+  "references": [{ "path": "../cache-interop" }, { "path": "../dsn-parser" }],
   "exclude": ["node_modules", "dist"]
 }
