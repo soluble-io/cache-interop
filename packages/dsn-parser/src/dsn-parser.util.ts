@@ -31,12 +31,8 @@ export const removeUndefined = (obj: Record<string, unknown>): Record<string, un
 
 export const mergeDsnOverrides = (
   parsedDsn: ParsedDsn,
-  overrides: Exclude<ParseDsnOptions['overrides'], undefined>,
-  options?: {
-    removeUndefinedProps: boolean;
-  }
+  overrides: Exclude<ParseDsnOptions['overrides'], undefined>
 ): ParsedDsn => {
-  const { removeUndefinedProps = true } = options || {};
   const merged: Record<string, unknown> = {};
   const { params, ...restDsn } = parsedDsn;
   Object.entries(restDsn).forEach(([key, value]) => {
