@@ -27,7 +27,7 @@ export const getTlsOptions = (driver: string, host: string): ConnectionOptions |
 };
 
 /**
- * Converts a soluble/dsn-parser dsn into Redis.Options
+ * Converts a soluble/dsn-parser dsn into compatible IORedis.Options
  * @link https://github.com/soluble-io/cache-interop/tree/main/packages/dsn-parser
  *
  * @throws Error id dsn is invalid or cannot be parsed

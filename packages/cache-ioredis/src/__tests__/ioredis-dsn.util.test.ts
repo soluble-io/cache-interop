@@ -52,6 +52,13 @@ describe('ioredis-dsn utils', () => {
           host: 'localhost',
         });
       });
+      it('should honour overrides', () => {
+        const dsn = 'redis://localhost:6379';
+        expect(getIoRedisOptionsFromDsn(dsn, { port: 2014 })).toStrictEqual({
+          host: 'localhost',
+          port: 2014,
+        });
+      });
     });
 
     describe('when dsn is not parsable', () => {
