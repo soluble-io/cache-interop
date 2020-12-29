@@ -196,6 +196,15 @@ describe('parseDsn', () => {
   // ########################################################
   // Errors
   // ########################################################
+  describe('when a dsn lacks hostname', () => {
+    it('should return a PARSE_ERROR', () => {
+      expect(parseDsn('redis://')).toStrictEqual({
+        success: false,
+        reason: 'PARSE_ERROR',
+        message: 'Cannot parse DSN',
+      });
+    });
+  });
   describe('when a dsn is not parsable', () => {
     it('should return a PARSE_ERROR', () => {
       expect(parseDsn('redis:///0')).toStrictEqual({

@@ -56,7 +56,8 @@
     ]
   },
   "dependencies": {
-    "@soluble/cache-interop": "^0.4.2"
+    "@soluble/cache-interop": "^0.4.2",
+    "@soluble/dsn-parser": "^1.2.0"
   },
   "devDependencies": {
     "@types/ioredis": "^4.17.10",
