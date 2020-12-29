@@ -1,5 +1,11 @@
 # @soluble/dsn-parser
 
+## 1.1.2
+
+### Patch Changes
+
+- [`9f9c565`](https://github.com/soluble-io/cache-interop/commit/9f9c565e9a9f956342c2ab5c1d62daff308609b5) [#67](https://github.com/soluble-io/cache-interop/pull/67) Thanks [@belgattitude](https://github.com/belgattitude)! - Fix possible runtime error if overrides is undefined
+
 ## 1.1.1
 
 ### Patch Changes
