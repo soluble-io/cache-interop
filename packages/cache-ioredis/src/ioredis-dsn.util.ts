@@ -9,7 +9,7 @@ export const getDbIndex = (db: number | string | undefined): number | null => {
   if (typeof db === 'number') {
     return db;
   }
-  const dbIdx = Number.parseInt(db.replace(/^db(\d){1,5}$/, '$1'));
+  const dbIdx = Number.parseInt(db.replace(/^db(\d){1,5}$/, '$1'), 10);
   if (Number.isSafeInteger(dbIdx)) {
     return dbIdx;
   }
