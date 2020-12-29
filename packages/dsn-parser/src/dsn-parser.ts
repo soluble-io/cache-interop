@@ -9,7 +9,7 @@ import {
 import { parseQueryParams } from './query-param-parser';
 
 const dsnRegexp = new RegExp(
-  `^(?<driver>([a-z0-9_-]+)):\\/\\/((?<user>.+)?:(?<pass>.+)@)?(?<host>[^\\/:]+?)(:(?<port>\\d+)?)?(\\/(?<db>\\w))?(\\?(?<params>.+))?$`,
+  `^(?<driver>([a-z0-9_-]+)):\\/\\/((?<user>.+)?:(?<pass>.+)@)?(?<host>[^\\/:]+?)(:(?<port>\\d+)?)?(\\/(?<db>([\\.#@$a-z0-9_-])+))?(\\?(?<params>.+))?$`,
   'i'
 );
 
