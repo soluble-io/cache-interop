@@ -8,4 +8,7 @@ export * from './types';
 export * from './utils';
 export * from './eviction';
 export type { ConnectionInterface } from './connection/connection.interface';
+export type { ConnectedAdapterInterface } from './connection/connected-adapter.interface';
+export { isConnectedAdapter } from './connection/is-connected-adapter';
+
 export { NullConnection } from './connection/null-connection';

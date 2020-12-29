@@ -16,10 +16,11 @@ import {
   GetOptions,
   HasOptions,
   DeleteOptions,
+  ConnectedAdapterInterface,
 } from '@soluble/cache-interop';
 import IORedis from 'ioredis';
-import { ConnectionInterface } from '@soluble/cache-interop';
 import { IoredisConnection } from './ioredis-connection';
+import { ConnectionInterface } from '../../cache-interop/src';
 
 type Options = {
   /** Existing connection, IoRedis options or a valid dsn */
@@ -28,7 +29,7 @@ type Options = {
 
 export class IoRedisCacheAdapter<TBase = string, KBase = CacheKey>
   extends AbstractCacheAdapter<TBase, KBase>
-  implements CacheInterface<TBase, KBase> {
+  implements CacheInterface<TBase, KBase>, ConnectedAdapterInterface<IORedis.Redis> {
   private readonly conn: IoredisConnection;
   private readonly redis: IORedis.Redis;
 

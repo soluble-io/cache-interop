@@ -1,4 +1,10 @@
-import { CacheException, CacheInterface, CacheProviderException, MapCacheAdapter } from '@soluble/cache-interop';
+import {
+  CacheException,
+  CacheInterface,
+  CacheProviderException,
+  isConnectedAdapter,
+  MapCacheAdapter,
+} from '@soluble/cache-interop';
 import { IoRedisCacheAdapter } from '@soluble/cache-ioredis';
 import { RedisCacheAdapter } from '@soluble/cache-redis';
 import { E2eDockerContainers } from '../config/docker-container.config';
@@ -54,7 +60,9 @@ describe.each(adapters)('Adapter: %s', (name, adapterFactory) => {
     cache = await adapterFactory();
   });
   afterAll(async () => {
-    await cache.getConnection().quit();
+    if (isConnectedAdapter(cache)) {
+      await cache.getConnection().quit();
+    }
   });
 
   afterEach(async () => {

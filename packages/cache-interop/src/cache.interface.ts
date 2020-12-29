@@ -1,6 +1,5 @@
 import { CacheItemInterface } from './cache-item.interface';
 import { CacheException, InvalidArgumentException } from './exceptions';
-import { ConnectionInterface } from './connection/connection.interface';
 
 export type GetOptions<T> = {
   defaultValue?: T;
@@ -149,6 +148,4 @@ export interface CacheInterface<TBase = string, KBase = CacheKey> {
     value: T | CacheValueProviderFn<T>,
     options?: GetOrSetOptions
   ): Promise<CacheItemInterface<T>>;
-
-  getConnection(): ConnectionInterface<unknown>;
 }

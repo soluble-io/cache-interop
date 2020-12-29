@@ -17,10 +17,10 @@ import {
   HasOptions,
   DeleteOptions,
   ConnectionInterface,
+  ConnectedAdapterInterface,
 } from '@soluble/cache-interop';
 import {
   RedisClient,
-  createClient,
   ClientOpts as RedisClientOptions,
   AbortError,
   AggregateError,
@@ -36,7 +36,7 @@ type Options = {
 
 export class RedisCacheAdapter<TBase = string, KBase = CacheKey>
   extends AbstractCacheAdapter<TBase, KBase>
-  implements CacheInterface<TBase, KBase> {
+  implements CacheInterface<TBase, KBase>, ConnectedAdapterInterface<RedisClient> {
   private readonly redis: RedisClient;
   private conn: RedisConnection;
 

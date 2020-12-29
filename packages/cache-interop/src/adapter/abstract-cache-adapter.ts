@@ -69,8 +69,6 @@ export abstract class AbstractCacheAdapter<TBase = string, KBase = CacheKey> imp
 
   abstract clear(): Promise<true | CacheException>;
 
-  abstract getConnection(): ConnectionInterface<unknown>;
-
   getOrSet = async <T = TBase, K extends KBase = KBase>(
     key: K,
     value: T | CacheValueProviderFn<T>,
