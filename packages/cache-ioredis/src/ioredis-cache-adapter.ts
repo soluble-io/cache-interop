@@ -17,10 +17,10 @@ import {
   HasOptions,
   DeleteOptions,
   ConnectedAdapterInterface,
+  ConnectionInterface,
 } from '@soluble/cache-interop';
 import IORedis from 'ioredis';
 import { IoredisConnection } from './ioredis-connection';
-import { ConnectionInterface } from '../../cache-interop/src';
 
 type Options = {
   /** Existing connection, IoRedis options or a valid dsn */
