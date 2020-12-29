@@ -24,6 +24,8 @@ const config = {
     '<rootDir>/cache-ioredis/src/**/*.{ts,js}',
     '<rootDir>/cache-redis/src/**/*.{ts,js}',
     '!**/*.test.ts',
+    '!**/*.d.ts',
+    '!**/index.ts',
   ],
   globals: {
     'ts-jest': {

@@ -18,7 +18,7 @@ const config = {
   testMatch: ['<rootDir>/cache-ioredis/src/**/*.test.ts'],
   moduleNameMapper: pathsToModuleNameMapper(compilerOptions.paths, { prefix: '<rootDir>/' }),
   coverageDirectory: '<rootDir>/cache-ioredis/coverage',
-  collectCoverageFrom: ['<rootDir>/cache-ioredis/src/**/*.{ts,js}', '!**/*.test.ts'],
+  collectCoverageFrom: ['<rootDir>/cache-ioredis/src/**/*.{ts,js}', '!**/*.test.ts', '!**/index.ts', '!**/*.d.ts'],
   globals: {
     'ts-jest': {
       diagnostics: true,
