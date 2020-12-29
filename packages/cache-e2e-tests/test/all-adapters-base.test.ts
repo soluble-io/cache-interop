@@ -13,7 +13,9 @@ const adapters = [
     'IoRedisCacheAdapter/Redis5',
     async () => {
       const { dsn } = await E2eDockerContainers.getContainer('redis5');
-      return IoRedisCacheAdapter.createFromDSN(dsn);
+      return new IoRedisCacheAdapter({
+        connection: dsn,
+      });
     },
   ],
 
@@ -21,7 +23,9 @@ const adapters = [
     'IoRedisCacheAdapter/Redis6',
     async () => {
       const { dsn } = await E2eDockerContainers.getContainer('redis6');
-      return IoRedisCacheAdapter.createFromDSN(dsn);
+      return new IoRedisCacheAdapter({
+        connection: dsn,
+      });
     },
   ],
   [
@@ -29,7 +33,7 @@ const adapters = [
     async () => {
       const { dsn } = await E2eDockerContainers.getContainer('redis5');
       return new RedisCacheAdapter({
-        url: dsn,
+        connection: dsn,
       });
     },
   ],
@@ -38,7 +42,7 @@ const adapters = [
     async () => {
       const { dsn } = await E2eDockerContainers.getContainer('redis6');
       return new RedisCacheAdapter({
-        url: dsn,
+        connection: dsn,
       });
     },
   ],
@@ -50,23 +54,7 @@ describe.each(adapters)('Adapter: %s', (name, adapterFactory) => {
     cache = await adapterFactory();
   });
   afterAll(async () => {
-    switch (name) {
-      case 'RedisCacheAdapter/Redis5':
-      case 'RedisCacheAdapter/Redis6':
-        await new Promise((resolve, reject) => {
-          (cache as RedisCacheAdapter).getStorage().quit((err, reply) => {
-            if (err) {
-              reject(err.message);
-            }
-            resolve(reply);
-          });
-        });
-        break;
-      case 'IoRedisCacheAdapter/Redis5':
-      case 'IoRedisCacheAdapter/Redis6':
-        await (cache as IoRedisCacheAdapter).getStorage().quit();
-        break;
-    }
+    await cache.getConnection().quit();
   });
 
   afterEach(async () => {
