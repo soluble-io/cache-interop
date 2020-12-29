@@ -38,6 +38,7 @@
     ]
   },
   "devDependencies": {
+    "@soluble/dsn-parser": "^1.2.0",
     "@types/ioredis": "^4.17.10",
     "ioredis": "^4.19.4"
   },

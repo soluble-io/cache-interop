@@ -11,6 +11,8 @@
     "rootDir": ".",
     "baseUrl": "..",
     "paths": {
+      "@soluble/dsn-parser": ["dsn-parser/src"],
+      "@soluble/dsn-parser/*": ["dsn-parser/src/*"],
       "@soluble/cache-interop": ["cache-interop/src"],
       "@soluble/cache-interop/*": ["cache-interop/src/*"],
       "@soluble/cache-ioredis": ["cache-ioredis/src"],
