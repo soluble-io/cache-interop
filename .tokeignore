@@ -1,7 +1,9 @@
 node_modules
-!**/*.ts
+/docs
 *.yml
 *.yaml
 *.json
 *.js
 *.md
+*.sh
+.*
