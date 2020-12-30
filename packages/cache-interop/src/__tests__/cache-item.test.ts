@@ -1,39 +1,65 @@
 import { CacheItem } from '../cache-item';
+import { CacheException } from '../exceptions';
 
-describe('CacheItem.constructor', () => {
-  it('should return allow access through getters', () => {
-    const item = new CacheItem({
-      value: 'val',
-      key: 'k',
-      hit: false,
-      stats: {
-        counts: {
-          fetched: 1,
-          hit: 1,
-          persisted: 1,
-          miss: 1,
-          error: 0,
+describe('CacheItem', () => {
+  describe('Constructor', () => {
+    it('should set ok values', () => {
+      const item = new CacheItem<string>({
+        success: true,
+        isHit: true,
+        data: 'hello',
+        key: 'k',
+      });
+      expect(item).toMatchObject({
+        data: 'hello',
+        error: null,
+        isSuccess: true,
+        isPersisted: null,
+        isHit: true,
+        metadata: {
+          key: 'k',
         },
-      },
+      });
     });
-    expect(item).toMatchObject({
-      key: 'k',
-      hit: false,
-      value: 'val',
-    });
-  });
-});
 
-describe('CacheItem.createFromMiss', () => {
-  it('should return a hit false', () => {
-    const item = CacheItem.createFromMiss({
-      key: 'k',
-      value: 'pilou',
+    it('should set persisted', () => {
+      const item = new CacheItem<string>({
+        success: true,
+        isHit: false,
+        data: 'hello',
+        key: 'k',
+        isPersisted: true,
+      });
+      expect(item).toMatchObject({
+        data: 'hello',
+        error: null,
+        isSuccess: true,
+        isPersisted: true,
+        isHit: false,
+        metadata: {
+          key: 'k',
+        },
+      });
     });
-    expect(item).toMatchObject({
-      key: 'k',
-      value: 'pilou',
-      hit: false,
+
+    it('should set err values', () => {
+      const item = new CacheItem<string>({
+        success: false,
+        key: 'k',
+        error: new CacheException({
+          message: 'Test',
+        }),
+      });
+      expect(item).toMatchObject({
+        data: null,
+        isSuccess: false,
+        isHit: false,
+        isPersisted: null,
+        metadata: {
+          key: 'k',
+        },
+      });
+      expect(item.error).toBeInstanceOf(CacheException);
     });
   });
 });

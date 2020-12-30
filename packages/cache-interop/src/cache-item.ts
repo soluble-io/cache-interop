@@ -1,110 +1,41 @@
-import { CacheExpiresAt, CacheItemInterface, CacheItemMetadata, CacheItemStats } from './cache-item.interface';
+import { CacheItemInterface, CacheItemMetadata } from './cache-item.interface';
 import { CacheException } from './exceptions/cache.exception';
 import { CacheKey } from './cache.interface';
 
-type CacheItemProps<T, K = CacheKey> = {
-  hit: boolean;
-  value?: T;
-  metadata?: CacheItemMetadata;
+export type CacheItemPropsOk<T, K extends CacheKey = CacheKey> = {
+  success: true;
+  data: T | null;
   key: K;
-  error?: CacheException;
-  stats: CacheItemStats;
+  error?: never;
+  isHit: boolean;
+  isPersisted?: boolean;
 };
 
-export class CacheItem<T, KBase = CacheKey> implements CacheItemInterface<T, KBase> {
-  public readonly hit: boolean;
-  public get value(): T | null {
-    return this._value;
-  }
-  public readonly metadata: CacheItemMetadata;
-  public readonly key: KBase;
-  public readonly error: CacheException | false;
-  public readonly stats: CacheItemStats;
+export type CacheItemPropsErr<K extends CacheKey = CacheKey> = {
+  success: false;
+  error: CacheException;
+  key: K;
+  data?: never;
+  isHit?: never;
+  isPersisted?: boolean;
+};
 
-  private _value: T | null;
+type CacheItemProps<T, K extends CacheKey = CacheKey> = CacheItemPropsOk<T, K> | CacheItemPropsErr<K>;
+
+export class CacheItem<T, KBase extends CacheKey = CacheKey> implements CacheItemInterface<T, KBase> {
+  public readonly isSuccess: boolean;
+  public readonly data: T | null;
+  public readonly error: CacheException | null;
+  public readonly metadata: CacheItemMetadata<KBase>;
+  public readonly isHit: boolean;
+  public readonly isPersisted: boolean | null;
 
   constructor(props: CacheItemProps<T, KBase>) {
-    const { hit, value = null, metadata = {}, error, key, stats } = props;
-    this._value = value;
-    this.hit = hit;
-    this.metadata = metadata;
-    this.error = error ?? false;
-    this.key = key;
-    this.stats = stats;
-  }
-
-  static createFromMiss<T, K extends CacheKey = CacheKey>(props: {
-    key: K;
-    expiresAt?: CacheExpiresAt;
-    fetched?: boolean;
-    value?: T;
-    error?: CacheException;
-  }): CacheItemInterface<T, K> {
-    return new CacheItem<T, K>({
-      hit: false,
-      key: props.key,
-      value: props.value,
-      metadata: {
-        ...(props.expiresAt ? { expiresAt: props.expiresAt } : {}),
-      },
-      error: props.error,
-      stats: {
-        counts: {
-          error: props?.error ? 1 : 0,
-          fetched: props?.fetched ? 1 : 0,
-          hit: 0,
-          miss: 1,
-          persisted: 0,
-        },
-      },
-    });
-  }
-
-  static createFromHit<T, K extends CacheKey = CacheKey>(props: {
-    key: K;
-    value: T;
-    fetched?: boolean;
-    persisted?: boolean;
-    expiresAt?: CacheExpiresAt;
-  }): CacheItemInterface<T, K> {
-    return new CacheItem<T, K>({
-      hit: true,
-      value: props.value,
-      key: props.key,
-      metadata: {
-        ...(props.expiresAt ? { expiresAt: props.expiresAt } : {}),
-      },
-      stats: {
-        counts: {
-          hit: 1,
-          persisted: props.persisted ? 1 : 0,
-          miss: 0,
-          error: 0,
-          fetched: props.fetched ? 1 : 0,
-        },
-      },
-    });
-  }
-
-  static createFromError<T, K extends CacheKey = CacheKey>(props: {
-    key: K;
-    error: CacheException;
-    persisted?: boolean;
-    fetched?: boolean;
-  }): CacheItemInterface<T, K> {
-    return new CacheItem<T, K>({
-      hit: false,
-      error: props.error,
-      key: props.key,
-      stats: {
-        counts: {
-          error: 1,
-          miss: 0,
-          persisted: props.persisted ? 1 : 0,
-          fetched: props.fetched ? 1 : 0,
-          hit: 0,
-        },
-      },
-    });
+    this.isSuccess = props.success;
+    this.data = props.success ? props.data : null;
+    this.error = props.success ? null : props.error;
+    this.metadata = { key: props.key };
+    this.isHit = props.success ? props.isHit : false;
+    this.isPersisted = props.isPersisted ?? null;
   }
 }
