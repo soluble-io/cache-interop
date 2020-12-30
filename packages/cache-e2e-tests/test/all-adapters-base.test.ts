@@ -173,40 +173,38 @@ describe.each(adapters)('Adapter: %s', (name, adapterFactory) => {
     describe('when value is not in cache', () => {
       it('should return empty non-error cacheitem', async () => {
         expect(await cache.get('k')).toMatchObject({
-          key: 'k',
-          hit: false,
-          error: false,
-          value: null,
+          isSuccess: true,
+          isHit: false,
+          error: undefined,
+          data: null,
+          metadata: {
+            key: 'k',
+          },
         });
       });
     });
     describe('when value is in cache', () => {
       it('should return cacheitem with data', async () => {
-        await cache.set('k', 'hello world');
+        await cache.set('k', 'hello');
         expect(await cache.get('k')).toMatchObject({
-          key: 'k',
-          hit: true,
-          error: false,
-          value: 'hello world',
+          isSuccess: true,
+          isHit: true,
+          data: 'hello',
         });
       });
     });
     describe('when a defaultValue is given', () => {
       it('should return defaultValue if nothing in cache', async () => {
         expect(await cache.get('k', { defaultValue: 'default' })).toMatchObject({
-          key: 'k',
-          hit: false,
-          error: false,
-          value: 'default',
+          isHit: false,
+          data: 'default',
         });
       });
       it('should give priority to existing cache entry', async () => {
         await cache.set('k', 'initial');
         expect(await cache.get('k', { defaultValue: 'default' })).toMatchObject({
-          key: 'k',
-          hit: true,
-          error: false,
-          value: 'initial',
+          isHit: true,
+          data: 'initial',
         });
       });
     });
@@ -214,10 +212,8 @@ describe.each(adapters)('Adapter: %s', (name, adapterFactory) => {
       it('should always return a cache hit', async () => {
         await cache.set('k', 'hello world', { ttl: 0 });
         expect(await cache.get('k')).toMatchObject({
-          key: 'k',
-          hit: true,
-          error: false,
-          value: 'hello world',
+          isHit: true,
+          data: 'hello world',
         });
       });
     });
@@ -226,10 +222,9 @@ describe.each(adapters)('Adapter: %s', (name, adapterFactory) => {
         await cache.set('k', 'hello world', { ttl: 1 });
         await sleep(1001);
         expect(await cache.get('k')).toMatchObject({
-          key: 'k',
-          hit: false,
-          error: false,
-          value: null,
+          isSuccess: true,
+          isHit: false,
+          data: null,
         });
       });
     });
@@ -243,10 +238,10 @@ describe.each(adapters)('Adapter: %s', (name, adapterFactory) => {
               disableCache: true,
             })
           ).toMatchObject({
-            key: 'k',
-            hit: false,
-            error: false,
-            value: null,
+            isSuccess: true,
+            isHit: false,
+            data: null,
+            error: undefined,
           });
         });
       });
@@ -259,10 +254,9 @@ describe.each(adapters)('Adapter: %s', (name, adapterFactory) => {
               disableCache: true,
             })
           ).toMatchObject({
-            key: 'k',
-            hit: false,
-            error: false,
-            value: 'default',
+            isSuccess: true,
+            isHit: false,
+            data: 'default',
           });
         });
       });
@@ -485,10 +479,9 @@ describe.each(adapters)('Adapter: %s', (name, adapterFactory) => {
           expect((await cache.get('k')).data).toStrictEqual('hello');
           await sleep(1001);
           expect(await cache.get('k')).toMatchObject({
-            key: 'k',
-            hit: false,
-            error: false,
-            value: null,
+            isSuccess: true,
+            isHit: false,
+            data: null,
           });
         });
       });
@@ -575,10 +568,14 @@ describe.each(adapters)('Adapter: %s', (name, adapterFactory) => {
       it('should execute the function and persist its return value', async () => {
         const fct = jest.fn(async (_) => 'hello');
         expect(await cache.getOrSet('k', fct)).toMatchObject({
-          key: 'k',
-          hit: true,
-          error: false,
-          value: 'hello',
+          isSuccess: true,
+          isHit: false,
+          isPersisted: true,
+          data: 'hello',
+          error: undefined,
+          metadata: {
+            key: 'k',
+          },
         });
         expect(fct).toHaveBeenCalledTimes(1);
         expect((await cache.get('k')).data).toStrictEqual('hello');
@@ -589,10 +586,9 @@ describe.each(adapters)('Adapter: %s', (name, adapterFactory) => {
         const fct = jest.fn(async (_) => 'value_from_promise');
         await cache.set('k', 'initial_value');
         expect(await cache.getOrSet('k', fct)).toMatchObject({
-          key: 'k',
-          hit: true,
-          error: false,
-          value: 'initial_value',
+          isHit: true,
+          isPersisted: null,
+          data: 'initial_value',
         });
         expect(fct).toHaveBeenCalledTimes(0);
       });
@@ -608,11 +604,11 @@ describe.each(adapters)('Adapter: %s', (name, adapterFactory) => {
               disableCache: true,
             })
           ).toMatchObject({
-            key: 'k',
-            // @todo redefine what hit is
-            // hit: false,
-            error: false,
-            value: 'from_promise',
+            isSuccess: true,
+            isHit: false,
+            isPersisted: false,
+            data: 'from_promise',
+            error: undefined,
           });
           expect(fct).toHaveBeenCalledTimes(1);
           expect((await cache.get('k')).data).toStrictEqual('initial_value');
