@@ -18,7 +18,7 @@ describe('redis-connection.factory', () => {
         const conn = createRedisNativeConnection(instanceDsn);
         const connected = conn.connected;
         await conn.quit();
-        expect(connected).toStrictEqual(true);
+        expect(connected).toStrictEqual(false);
       });
     });
   });
