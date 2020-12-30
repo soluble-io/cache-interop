@@ -21,3 +21,5 @@ export type ParserErrorResult = {
 };
 
 export type ParserResult = ParserSuccessResult | ParserErrorResult;
+
+export type ParsableDsn = string;
