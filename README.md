@@ -3,7 +3,9 @@
   <p align="center">Interoperable cache adapters for node and browsers.</p>
 </div>
 <p align="center">
-<img src="build" src="https://img.shields.io/github/checks-status/soluble-io/cache-interop/main?label=Build&logo=github&style=for-the-badge&labelColor=000000" />
+  <a aria-label="Build" href="https://codecov.io/gh/soluble-io/cache-interop">
+    <img alt="build" src="https://img.shields.io/github/workflow/status/soluble-io/cache-interop/CI/main?label=CI&logo=github&style=for-the-badge&labelColor=000000" />
+  </a>
   <a aria-label="Codecov" href="https://codecov.io/gh/soluble-io/cache-interop">
     <img alt="Codecov" src="https://img.shields.io/codecov/c/github/soluble-io/cache-interop?logo=codecov&style=for-the-badge&labelColor=000000" />
   </a>
