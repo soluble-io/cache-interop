@@ -1,23 +1,20 @@
 import { ConnectionInterface } from '@soluble/cache-interop';
 
-import { RedisClient, ClientOpts as RedisClientOptions } from 'redis';
-import { createRedisConnection } from './redis-connection.factory';
+import { RedisClient } from 'redis';
 
 export class RedisConnection implements ConnectionInterface<RedisClient> {
   private readonly redis: RedisClient;
 
-  /**
-   * @param options - dsn or redis.ClientOpts
-   */
-  constructor(options: RedisClientOptions | string) {
-    this.redis = createRedisConnection(options);
+  constructor(redis: RedisClient) {
+    this.redis = redis;
   }
 
   async quit(): Promise<boolean> {
     return new Promise((resolve, reject) => {
       this.redis.quit((err, reply) => {
-        if (err) {
+        if (err instanceof Error) {
           reject(err.message);
+          return;
         }
         resolve(reply === 'OK');
       });

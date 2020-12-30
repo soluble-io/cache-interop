@@ -1,15 +1,11 @@
 import IORedis from 'ioredis';
-import { createIORedisConnection } from './ioredis-connection.factory';
 import { ConnectionInterface } from '@soluble/cache-interop';
 
 export class IoredisConnection implements ConnectionInterface<IORedis.Redis> {
   private readonly ioRedis: IORedis.Redis;
 
-  /**
-   * @param options dsn or IORedis.RedisOptions
-   */
-  constructor(options: IORedis.RedisOptions | string) {
-    this.ioRedis = createIORedisConnection(options);
+  constructor(ioRedis: IORedis.Redis) {
+    this.ioRedis = ioRedis;
   }
 
   async quit(): Promise<boolean> {

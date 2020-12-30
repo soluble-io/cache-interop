@@ -28,10 +28,11 @@ import {
   RedisError,
 } from 'redis';
 import { RedisConnection } from './redis-connection';
+import { createRedisConnection } from './redis-connection.factory';
 
 type Options = {
   /** Existing connection, IoRedis options or a valid dsn */
-  connection: RedisConnection | RedisClientOptions | string;
+  connection: RedisConnection | RedisClientOptions | string | RedisClient;
 };
 
 export class RedisCacheAdapter<TBase = string, KBase = CacheKey>
@@ -46,11 +47,7 @@ export class RedisCacheAdapter<TBase = string, KBase = CacheKey>
   constructor(options: Options) {
     super();
     const { connection } = options;
-    if (connection instanceof RedisConnection) {
-      this.conn = connection;
-    } else {
-      this.conn = new RedisConnection(connection);
-    }
+    this.conn = connection instanceof RedisConnection ? connection : createRedisConnection(connection);
     this.redis = this.conn.getWrappedConnection();
   }
 

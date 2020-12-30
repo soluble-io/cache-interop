@@ -64,7 +64,6 @@ describe.each(adapters)('Adapter: %s', (name, adapterFactory) => {
       await cache.getConnection().quit();
     }
   });
-
   afterEach(async () => {
     await cache.clear();
   });

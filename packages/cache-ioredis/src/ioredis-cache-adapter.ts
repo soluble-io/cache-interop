@@ -21,10 +21,11 @@ import {
 } from '@soluble/cache-interop';
 import IORedis from 'ioredis';
 import { IoredisConnection } from './ioredis-connection';
+import { createIoRedisConnection } from './ioredis-connection.factory';
 
 type Options = {
   /** Existing connection, IoRedis options or a valid dsn */
-  connection: IoredisConnection | IORedis.RedisOptions | string;
+  connection: IoredisConnection | IORedis.RedisOptions | string | IORedis.Redis;
 };
 
 export class IoRedisCacheAdapter<TBase = string, KBase = CacheKey>
@@ -39,11 +40,7 @@ export class IoRedisCacheAdapter<TBase = string, KBase = CacheKey>
   constructor(options: Options) {
     super();
     const { connection } = options;
-    if (connection instanceof IoredisConnection) {
-      this.conn = connection;
-    } else {
-      this.conn = new IoredisConnection(connection);
-    }
+    this.conn = connection instanceof IoredisConnection ? connection : createIoRedisConnection(connection);
     this.redis = this.conn.getWrappedConnection();
   }
 
