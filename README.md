@@ -21,7 +21,7 @@
   <a aria-label="Downloads" href="https://npm.im/@soluble/cache-interop">
     <img alt="Downloads" src="https://img.shields.io/npm/dt/@soluble/cache-interop?style=for-the-badge&labelColor=000000" />
   </a>
-  <a aria-label="Ts LoC" href="https://github.com/soluble-io/cache-interop/search?q=language%3Atypescript">  
+  <a aria-label="Ts LoC" href="https://github.com/soluble-io/cache-interop/search?l=typescript">  
     <img alt="TS LoC" src="https://img.shields.io/tokei/lines/github/soluble-io/cache-interop?logo=typescript&style=for-the-badge&labelColor=000000" />
   </a>
   <a aria-label="Licence" href="https://github.com/soluble-io/cache-interop/blob/main/LICENSE">
