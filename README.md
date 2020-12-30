@@ -64,9 +64,9 @@ const cache = new IoRedisCacheAdapter({
   connection: 'redis://localhost:6375',
 });
 
-const fetchApi = async () => myFetch('/api').then(r => JSON.stringify(r));
+const asyncFetch = () => myFetch('/api').then(r => JSON.stringify(r));
 
-const { value, error } = await cache.getOrSet('key', fetchApi(), { ttl: 3600 });
+const { value, error } = await cache.getOrSet('key', asyncFetch(), { ttl: 3600 });
 
 if (value !== null) {
   // do something
