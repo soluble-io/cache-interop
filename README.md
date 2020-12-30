@@ -3,7 +3,7 @@
   <p align="center">Interoperable cache adapters for node and browsers.</p>
 </div>
 <p align="center">
-  <a aria-label="Build" href="https://codecov.io/gh/soluble-io/cache-interop">
+  <a aria-label="Build" href="https://github.com/soluble-io/cache-interop/actions?query=workflow%3ACI">
     <img alt="build" src="https://img.shields.io/github/workflow/status/soluble-io/cache-interop/CI/main?label=CI&logo=github&style=for-the-badge&labelColor=000000" />
   </a>
   <a aria-label="Codecov" href="https://codecov.io/gh/soluble-io/cache-interop">
@@ -20,6 +20,9 @@
   </a>
   <a aria-label="Downloads" href="https://npm.im/@soluble/cache-interop">
     <img alt="Downloads" src="https://img.shields.io/npm/dt/@soluble/cache-interop?style=for-the-badge&labelColor=000000" />
+  </a>
+  <a aria-label="Ts LoC" href="https://github.com/soluble-io/cache-interop/search?q=language%3Atypescript">  
+    <img alt="TS LoC" src="https://img.shields.io/tokei/lines/github/soluble-io/cache-interop?logo=typescript&style=for-the-badge&labelColor=000000" />
   </a>
   <a aria-label="Licence" href="https://github.com/soluble-io/cache-interop/blob/main/LICENSE">
     <img alt="Licence" src="https://img.shields.io/npm/l/@soluble/cache-ioredis?style=for-the-badge&labelColor=000000" />
