@@ -18,7 +18,7 @@
     <img alt="Codecov" src="https://img.shields.io/codecov/c/github/soluble-io/cache-interop?label=unit&logo=codecov&flag=dsn_parser_unit&style=for-the-badge&labelColor=000000" />
   </a>
   <a aria-label="Typings">
-    <img alt="Typings" src="https://img.shields.io/static/v1?label=typings&message=3.5%2B&logo=typescript&style=for-the-badge&labelColor=000000&color=9cf" />
+    <img alt="Typings" src="https://img.shields.io/static/v1?label=typings&message=3.7%2B&logo=typescript&style=for-the-badge&labelColor=000000&color=9cf" />
   </a>
   <a aria-label="Licence" href="https://github.com/soluble-io/cache-interop/blob/main/LICENSE">
     <img alt="Licence" src="https://img.shields.io/npm/l/@soluble/cache-ioredis?style=for-the-badge&labelColor=000000" />
@@ -94,6 +94,20 @@ assert.deepEqual(parsed.value, {
 | ----------------- | ---------------------- | ----------------------------------------- |
 | `lowercaseDriver` | `<boolean>`            | Driver name in lowercase, default `false` |
 | `overrides`       | `DSN must be a string` |                                           |
+
+### Assertion
+
+```typescript
+import { assertParsableDsn, ParsableDsn } from '@soluble/dsn-parser';
+
+try {
+  assertParsableDsn('redis:/');
+  // Type is narrowed to string (ParsableDsn) if it
+  // didn't throw.
+} catch (e) {
+  assert.equal(e.message, 'Cannot parse DSN (PARSE_ERROR)');
+}
+```
 
 ## DSN parsing
 

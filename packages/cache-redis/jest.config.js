@@ -5,8 +5,8 @@ const { compilerOptions } = require('./tsconfig.jest.json');
 /** @typedef {import('ts-jest')} */
 /** @type {import('@jest/types').Config.InitialOptions} */
 const config = {
-  name: 'cache-ioredis/unit',
-  displayName: 'cache-ioredis/unit',
+  name: 'cache-redis/unit',
+  displayName: 'cache-redis/unit',
   testRunner: 'jest-circus/runner',
   testEnvironment: 'node',
   verbose: true,
@@ -15,10 +15,10 @@ const config = {
   },
   rootDir: '../',
   transformIgnorePatterns: ['[/\\\\]node_modules[/\\\\].+\\.(js|ts)$'],
-  testMatch: ['<rootDir>/cache-ioredis/src/**/*.test.ts'],
+  testMatch: ['<rootDir>/cache-redis/src/**/*.test.ts'],
   moduleNameMapper: pathsToModuleNameMapper(compilerOptions.paths, { prefix: '<rootDir>/' }),
-  coverageDirectory: '<rootDir>/cache-ioredis/coverage',
-  collectCoverageFrom: ['<rootDir>/cache-ioredis/src/**/*.{ts,js}', '!**/*.test.ts', '!**/index.ts', '!**/*.d.ts'],
+  coverageDirectory: '<rootDir>/cache-redis/coverage',
+  collectCoverageFrom: ['<rootDir>/cache-redis/src/**/*.{ts,js}', '!**/*.test.ts', '!**/index.ts', '!**/*.d.ts'],
   globals: {
     'ts-jest': {
       diagnostics: true,

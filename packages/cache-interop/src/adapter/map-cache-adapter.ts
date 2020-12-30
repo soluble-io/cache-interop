@@ -127,8 +127,4 @@ export class MapCacheAdapter<TBase = string, KBase = CacheKey>
     this.map.clear();
     return true;
   };
-
-  getStorage(): Map<KBase, { expiresAt: number; data: unknown }> {
-    return this.map;
-  }
 }

@@ -23,6 +23,7 @@ const config = {
     '<rootDir>/cache-interop/src/**/*.{ts,js}',
     '<rootDir>/cache-ioredis/src/**/*.{ts,js}',
     '<rootDir>/cache-redis/src/**/*.{ts,js}',
+    '<rootDir>/dsn-parser/src/**/*.{ts,js}',
     '!**/*.test.ts',
     '!**/*.d.ts',
     '!**/index.ts',

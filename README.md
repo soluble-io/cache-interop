@@ -3,6 +3,7 @@
   <p align="center">Interoperable cache adapters for node and browsers.</p>
 </div>
 <p align="center">
+<img src="build" src="https://img.shields.io/github/checks-status/soluble-io/cache-interop/main?label=Build&logo=github&style=for-the-badge&labelColor=000000" />
   <a aria-label="Codecov" href="https://codecov.io/gh/soluble-io/cache-interop">
     <img alt="Codecov" src="https://img.shields.io/codecov/c/github/soluble-io/cache-interop?logo=codecov&style=for-the-badge&labelColor=000000" />
   </a>
@@ -16,7 +17,7 @@
     <img alt="Techdebt" src="https://img.shields.io/codeclimate/tech-debt/soluble-io/cache-interop?label=TechDebt&logo=code-climate&style=for-the-badge&labelColor=000000" />
   </a>
   <a aria-label="Downloads" href="https://npm.im/@soluble/cache-interop">
-    <img alt="Downloads" src="https://img.shields.io/npm/dy/@soluble/cache-interop?style=for-the-badge&labelColor=000000" />
+    <img alt="Downloads" src="https://img.shields.io/npm/dt/@soluble/cache-interop?style=for-the-badge&labelColor=000000" />
   </a>
   <a aria-label="Licence" href="https://github.com/soluble-io/cache-interop/blob/main/LICENSE">
     <img alt="Licence" src="https://img.shields.io/npm/l/@soluble/cache-ioredis?style=for-the-badge&labelColor=000000" />
@@ -33,8 +34,6 @@
 - [x] Don't throw errors.
 - [x] Written in typescript.
 - [x] Fully tested with [e2e](./packages/cache-e2e-tests/test/all-adapters-base.test.ts) tests.
-
-
 
 
 ## Roadmap
@@ -59,7 +58,9 @@
 ```typescript
 import { IoRedisCacheAdapter } from '@soluble/cache-ioredis';
 
-const cache = new IoRedisCacheAdapter({...});
+const cache = new IoRedisCacheAdapter({
+  connection: 'redis://localhost:6375',
+});
 
 const fetchApi = async () => myFetch('/api').then(r => JSON.stringify(r));
 
@@ -70,32 +71,6 @@ if (value !== null) {
 }
 ```
 
-// or
-
-```typescript
-import { JsonSerializer } from '@soluble/cache-interop';
-import { RedisCacheAdapter } from '@soluble/cache-redis';
-
-const cache = new RedisCacheAdapter({
-  connection: 'redis://localhost:6375',
-  serializers: new JsonSerializer(),
-});
-
-const getData = async (params: {id: number}) => ( 
-   // any db call, fetch, ... 
-);
-
-const result = await cache.getOrSet('k', getData({id: 1}), {
-  ttl: 3600 
-});
-
-if (result.success) {
-  const { value, status, expiresAt } = result;   
-} else {
-  const { reason, message } = result.error;
-}
-
-```
 
 | GetOrSetOptions | target | default | description            |
 |-----------------|--------|---------|------------------------|

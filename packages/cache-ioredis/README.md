@@ -37,12 +37,43 @@ $ yarn add @soluble/cache-ioredis ioredis
 $ yarn add @types/ioredis --dev
 ```
 
-### Usage
+## Usage
 
 ```typescript
 import { IoRedisCacheAdapter } from '@soluble/cache-ioredis';
 
-const dsn = 'redis://user:pass@redis.com:6379/8';
+const cache = new IoRedisCacheAdapter({
+  connection: 'redis://:pass@localhost:6379/8',
+});
 
-const cache = IoRedisCacheAdapter.createFromDSN(dsn);
+const { result } = await cache.getOrSet('key', asyncPromise, {
+  ttl: 30,
+});
+
+if (await cache.has('key')) {
+  await cache.delete('key');
+}
 ```
+
+## Constructor
+
+### Connection
+
+IORedisAdapter `connection` param can be a dsn as string, an IORedisConnection,
+the native [IORedis.RedisOptions](https://github.com/luin/ioredis) or an existing [IORedis.Redis](https://github.com/luin/ioredis) connection.
+
+> In some circumstances, DSN overrides can be applied thanks to the `getIoRedisOptionsFromDsn` function:
+>
+> ```typescript
+> import { IoRedisCacheAdapter, getIoRedisOptionsFromDsn } from '@soluble/cache-ioredis';
+>
+> const dsn = 'redis://localhost:6379/db2';
+>
+> const cache = new IoRedisCacheAdapter({
+>   connection: getIoRedisOptionsFromDsn(dsn, {
+>     overrides: {
+>       db: 'db8',
+>     },
+>   }),
+> });
+> ```
