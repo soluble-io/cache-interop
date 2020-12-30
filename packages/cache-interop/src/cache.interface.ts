@@ -14,6 +14,8 @@ export type DeleteOptions = {
 export type HasOptions = {
   /** Whether to disable caching, by default false */
   disableCache?: boolean;
+  /** Callback since Cache.has can't really return CacheException... */
+  onError?: (error: CacheException) => void;
 };
 
 export type SetOptions = {
