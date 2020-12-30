@@ -41,7 +41,7 @@ export class IoRedisCacheAdapter<TBase = string, KBase = CacheKey>
     super();
     const { connection } = options;
     this.conn = connection instanceof IoredisConnection ? connection : createIoRedisConnection(connection);
-    this.redis = this.conn.getWrappedConnection();
+    this.redis = this.conn.getNativeConnection();
   }
 
   get = async <T = TBase, K extends KBase = KBase>(key: K, options?: GetOptions<T>): Promise<CacheItemInterface<T>> => {

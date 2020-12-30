@@ -25,7 +25,7 @@ export class RedisConnection implements ConnectionInterface<RedisClient> {
    * Access directly the wrapped ioredis connection
    * Warning: this is not guarantee by cache-interop API stability
    */
-  getWrappedConnection(): RedisClient {
+  getNativeConnection(): RedisClient {
     return this.redis;
   }
 }

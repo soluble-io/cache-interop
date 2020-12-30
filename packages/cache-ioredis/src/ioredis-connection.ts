@@ -16,7 +16,7 @@ export class IoredisConnection implements ConnectionInterface<IORedis.Redis> {
    * Access directly the wrapped ioredis connection
    * Warning: this is not guarantee by cache-interop API stability
    */
-  getWrappedConnection(): IORedis.Redis {
+  getNativeConnection(): IORedis.Redis {
     return this.ioRedis;
   }
 }

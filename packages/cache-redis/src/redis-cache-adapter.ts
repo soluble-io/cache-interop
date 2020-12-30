@@ -48,7 +48,7 @@ export class RedisCacheAdapter<TBase = string, KBase = CacheKey>
     super();
     const { connection } = options;
     this.conn = connection instanceof RedisConnection ? connection : createRedisConnection(connection);
-    this.redis = this.conn.getWrappedConnection();
+    this.redis = this.conn.getNativeConnection();
   }
 
   get = async <T = TBase, K extends KBase = KBase>(key: K, options?: GetOptions<T>): Promise<CacheItemInterface<T>> => {

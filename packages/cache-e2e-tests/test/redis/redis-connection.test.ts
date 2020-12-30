@@ -26,7 +26,7 @@ describe('redis-connection.factory', () => {
     describe('When conn is a valid string', () => {
       it('should be able to talk to the server and quit', async () => {
         const conn = createRedisConnection(instanceDsn);
-        const native = conn.getWrappedConnection();
+        const native = conn.getNativeConnection();
 
         const echo = async () =>
           new Promise((resolve, reject) => {

@@ -26,7 +26,7 @@ describe('ioredis-connection.factory', () => {
     describe('When conn is a valid string', () => {
       it('should be able to talk to the server and quit', async () => {
         const conn = createIoRedisConnection(instanceDsn);
-        const native = conn.getWrappedConnection();
+        const native = conn.getNativeConnection();
 
         const ping = await native.echo('cool');
         expect(ping).toStrictEqual('cool');

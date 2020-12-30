@@ -6,5 +6,5 @@ export interface ConnectionInterface<T> {
    * Accessing the underlying connection is not guaranteed by
    * api stability.
    */
-  getWrappedConnection(): T;
+  getNativeConnection(): T;
 }
