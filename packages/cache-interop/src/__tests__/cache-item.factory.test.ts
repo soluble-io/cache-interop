@@ -18,7 +18,7 @@ describe('CacheItemFactory', () => {
         metadata: {
           key: 'k',
         },
-        error: null,
+        error: undefined,
       });
     });
   });

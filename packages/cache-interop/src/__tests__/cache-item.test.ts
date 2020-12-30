@@ -12,7 +12,7 @@ describe('CacheItem', () => {
       });
       expect(item).toMatchObject({
         data: 'hello',
-        error: null,
+        error: undefined,
         isSuccess: true,
         isPersisted: null,
         isHit: true,
@@ -32,7 +32,7 @@ describe('CacheItem', () => {
       });
       expect(item).toMatchObject({
         data: 'hello',
-        error: null,
+        error: undefined,
         isSuccess: true,
         isPersisted: true,
         isHit: false,
