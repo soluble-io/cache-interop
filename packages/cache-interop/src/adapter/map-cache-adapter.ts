@@ -63,7 +63,7 @@ export class MapCacheAdapter<TBase = string, KBase extends CacheKey = CacheKey>
       return CacheItemFactory.fromOk<T | null, K>({
         key,
         data: expired ? null : (data as T),
-        isHit: expired,
+        isHit: !expired,
       });
     }
     return CacheItemFactory.fromCacheMiss<T, K>({
