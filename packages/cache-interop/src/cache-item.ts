@@ -25,7 +25,7 @@ type CacheItemProps<T, K extends CacheKey = CacheKey> = CacheItemPropsOk<T, K> |
 export class CacheItem<T, KBase extends CacheKey = CacheKey> implements CacheItemInterface<T, KBase> {
   public readonly isSuccess: boolean;
   public readonly data: T | null;
-  public readonly error: CacheException | null;
+  public readonly error: CacheException | undefined;
   public readonly metadata: CacheItemMetadata<KBase>;
   public readonly isHit: boolean;
   public readonly isPersisted: boolean | null;
@@ -33,7 +33,7 @@ export class CacheItem<T, KBase extends CacheKey = CacheKey> implements CacheIte
   constructor(props: CacheItemProps<T, KBase>) {
     this.isSuccess = props.success;
     this.data = props.success ? props.data : null;
-    this.error = props.success ? null : props.error;
+    this.error = props.success ? undefined : props.error;
     this.metadata = { key: props.key };
     this.isHit = props.success ? props.isHit : false;
     this.isPersisted = props.isPersisted ?? null;
