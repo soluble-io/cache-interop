@@ -10,11 +10,26 @@
   <img alt="Typescript" src="https://img.shields.io/badge/Typescript-4.+-blue?logo=typescript&style=for-the-badge&labelColor=000000" />
 </p>
 
+## Requirements
+
+Node 12+ and docker are required to run E2E tests.
+
+## Install
+
+```bash
+$ yarn install
+```
+
 ## Run tests
 
 ```bash
 $ yarn test:e2e
 ```
+
+## Environments
+
+The `test:e2e` uses [node-testcontainers](https://github.com/testcontainers/testcontainers-node) under the hood to
+spin redis 5 and redis 6 instances.
 
 ## Contribute
 
