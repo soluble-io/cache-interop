@@ -36,8 +36,6 @@
 - [x] Fully tested with [e2e](./packages/cache-e2e-tests/test/all-adapters-base.test.ts) tests.
 
 
-
-
 ## Roadmap
 
 - [ ] Finalize v1 API
@@ -60,7 +58,9 @@
 ```typescript
 import { IoRedisCacheAdapter } from '@soluble/cache-ioredis';
 
-const cache = new IoRedisCacheAdapter({...});
+const cache = new IoRedisCacheAdapter({
+  connection: 'redis://localhost:6375',
+});
 
 const fetchApi = async () => myFetch('/api').then(r => JSON.stringify(r));
 
@@ -71,32 +71,6 @@ if (value !== null) {
 }
 ```
 
-// or
-
-```typescript
-import { JsonSerializer } from '@soluble/cache-interop';
-import { RedisCacheAdapter } from '@soluble/cache-redis';
-
-const cache = new RedisCacheAdapter({
-  connection: 'redis://localhost:6375',
-  serializers: new JsonSerializer(),
-});
-
-const getData = async (params: {id: number}) => ( 
-   // any db call, fetch, ... 
-);
-
-const result = await cache.getOrSet('k', getData({id: 1}), {
-  ttl: 3600 
-});
-
-if (result.success) {
-  const { value, status, expiresAt } = result;   
-} else {
-  const { reason, message } = result.error;
-}
-
-```
 
 | GetOrSetOptions | target | default | description            |
 |-----------------|--------|---------|------------------------|

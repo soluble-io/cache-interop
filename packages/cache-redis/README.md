@@ -37,7 +37,7 @@ $ yarn add @soluble/cache-redis redis
 $ yarn add @types/ioredis --dev
 ```
 
-### Usage
+## Usage
 
 ```typescript
 import { RedisCacheAdapter } from '@soluble/cache-redis';
@@ -46,3 +46,44 @@ const dsn = 'redis://user:pass@redis.com:6379/8';
 
 const cache = new RedisCacheAdapter({ url: dsn });
 ```
+
+## Usage
+
+```typescript
+import { RedisCacheAdapter } from '@soluble/cache-redis';
+
+const cache = new RedisCacheAdapter({
+  connection: 'redis://:pass@localhost:6379/8',
+});
+
+const { result } = await cache.getOrSet('key', asyncPromise, {
+  ttl: 30,
+});
+
+if (await cache.has('key')) {
+  await cache.delete('key');
+}
+```
+
+## Constructor
+
+### Connection
+
+RedisAdapter `connection` param can be a dsn as string, a RedisConnection,
+the native [ClientOpts](https://github.com/NodeRedis/node-redis) or an existing [RedisClient](https://github.com/NodeRedis/node-redis) connection.
+
+> In some circumstances, DSN overrides can be applied thanks to the `getIoRedisOptionsFromDsn` function:
+>
+> ```typescript
+> import { RedisCacheAdapter, getRedisOptionsFromDsn } from '@soluble/cache-redis';
+>
+> const dsn = 'redis://localhost:6379/db2';
+>
+> const cache = new RedisCacheAdapter({
+>   connection: getRedisOptionsFromDsn(dsn, {
+>     overrides: {
+>       db: 'db8',
+>     },
+>   }),
+> });
+> ```
