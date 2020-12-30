@@ -1,5 +1,23 @@
 # @soluble/cache-ioredis
 
+## 0.5.0
+
+### Minor Changes
+
+- [`83de083`](https://github.com/soluble-io/cache-interop/commit/83de083c47bc1650c5c0b48163992f5bafb7345f) [#72](https://github.com/soluble-io/cache-interop/pull/72) Thanks [@belgattitude](https://github.com/belgattitude)! - Introduce ConnectionInterface, remove getStorage (BC)
+
+* [`5990f14`](https://github.com/soluble-io/cache-interop/commit/5990f148e3b8e2614c09a6ac0ff99c2c2ab67fd0) [#72](https://github.com/soluble-io/cache-interop/pull/72) Thanks [@belgattitude](https://github.com/belgattitude)! - Add close() method for ConnectionInterface
+
+- [`83de083`](https://github.com/soluble-io/cache-interop/commit/83de083c47bc1650c5c0b48163992f5bafb7345f) [#72](https://github.com/soluble-io/cache-interop/pull/72) Thanks [@belgattitude](https://github.com/belgattitude)! - Adapter constructors accepts a dsn as string
+
+* [`83de083`](https://github.com/soluble-io/cache-interop/commit/83de083c47bc1650c5c0b48163992f5bafb7345f) [#72](https://github.com/soluble-io/cache-interop/pull/72) Thanks [@belgattitude](https://github.com/belgattitude)! - Adapter constructor now requires options (BC)
+
+### Patch Changes
+
+- Updated dependencies [[`83de083`](https://github.com/soluble-io/cache-interop/commit/83de083c47bc1650c5c0b48163992f5bafb7345f), [`5990f14`](https://github.com/soluble-io/cache-interop/commit/5990f148e3b8e2614c09a6ac0ff99c2c2ab67fd0), [`3e3c2af`](https://github.com/soluble-io/cache-interop/commit/3e3c2af8dbdf99c4f1feb2826f220f205ac65c9c), [`83de083`](https://github.com/soluble-io/cache-interop/commit/83de083c47bc1650c5c0b48163992f5bafb7345f), [`83de083`](https://github.com/soluble-io/cache-interop/commit/83de083c47bc1650c5c0b48163992f5bafb7345f)]:
+  - @soluble/cache-interop@0.5.0
+  - @soluble/dsn-parser@1.3.0
+
 ## 0.4.1
 
 ### Patch Changes
