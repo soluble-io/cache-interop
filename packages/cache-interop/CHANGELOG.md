@@ -1,5 +1,17 @@
 # @soluble/cache-interop
 
+## 0.5.0
+
+### Minor Changes
+
+- [`83de083`](https://github.com/soluble-io/cache-interop/commit/83de083c47bc1650c5c0b48163992f5bafb7345f) [#72](https://github.com/soluble-io/cache-interop/pull/72) Thanks [@belgattitude](https://github.com/belgattitude)! - Introduce ConnectionInterface, remove getStorage (BC)
+
+* [`5990f14`](https://github.com/soluble-io/cache-interop/commit/5990f148e3b8e2614c09a6ac0ff99c2c2ab67fd0) [#72](https://github.com/soluble-io/cache-interop/pull/72) Thanks [@belgattitude](https://github.com/belgattitude)! - Add close() method for ConnectionInterface
+
+- [`83de083`](https://github.com/soluble-io/cache-interop/commit/83de083c47bc1650c5c0b48163992f5bafb7345f) [#72](https://github.com/soluble-io/cache-interop/pull/72) Thanks [@belgattitude](https://github.com/belgattitude)! - Adapter constructors accepts a dsn as string
+
+* [`83de083`](https://github.com/soluble-io/cache-interop/commit/83de083c47bc1650c5c0b48163992f5bafb7345f) [#72](https://github.com/soluble-io/cache-interop/pull/72) Thanks [@belgattitude](https://github.com/belgattitude)! - Adapter constructor now requires options (BC)
+
 ## 0.4.2
 
 ### Patch Changes

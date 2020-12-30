@@ -1,5 +1,11 @@
 # @soluble/dsn-parser
 
+## 1.3.0
+
+### Minor Changes
+
+- [`3e3c2af`](https://github.com/soluble-io/cache-interop/commit/3e3c2af8dbdf99c4f1feb2826f220f205ac65c9c) [#72](https://github.com/soluble-io/cache-interop/pull/72) Thanks [@belgattitude](https://github.com/belgattitude)! - Add assertParsableDsn assertion
+
 ## 1.2.0
 
 ### Minor Changes
