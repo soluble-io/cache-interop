@@ -6,6 +6,7 @@ import {
   InvalidCacheKeyException,
   UnexpectedErrorException,
   UnsupportedValueException,
+  CacheProviderException,
 } from '../exceptions';
 
 export class ErrorHelper {
@@ -22,8 +23,8 @@ export class ErrorHelper {
     return new InvalidCacheKeyException({ key: key, message: this.formatMsg(method, 'INVALID_KEY') });
   }
 
-  getCacheProviderException(method: keyof CacheInterface, previous?: Error): CacheException {
-    return new CacheException({
+  getCacheProviderException(method: keyof CacheInterface, previous?: Error): CacheProviderException {
+    return new CacheProviderException({
       message: this.formatMsg(method, 'EXECUTE_ASYNC_ERROR', previous?.message),
       previousError: previous,
     });
