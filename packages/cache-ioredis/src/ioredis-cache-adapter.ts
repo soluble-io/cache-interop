@@ -4,20 +4,19 @@ import {
   AbstractCacheAdapter,
   CacheItemInterface,
   CacheException,
-  CacheItem,
   executeValueProviderFn,
   CacheValueProviderFn,
   SetOptions,
-  TrueOrFalseOrUndefined,
-  isCacheValueProviderFn,
-  isNonEmptyString,
   CacheProviderException,
   UnexpectedErrorException,
   GetOptions,
   HasOptions,
   DeleteOptions,
-  ConnectedAdapterInterface,
+  ConnectedCacheInterface,
   ConnectionInterface,
+  CacheItemFactory,
+  Guards,
+  InvalidCacheKeyException,
 } from '@soluble/cache-interop';
 import IORedis from 'ioredis';
 import { IoredisConnection } from './ioredis-connection';
@@ -28,9 +27,9 @@ type Options = {
   connection: IoredisConnection | IORedis.RedisOptions | string | IORedis.Redis;
 };
 
-export class IoRedisCacheAdapter<TBase = string, KBase = CacheKey>
+export class IoRedisCacheAdapter<TBase = string, KBase extends CacheKey = CacheKey>
   extends AbstractCacheAdapter<TBase, KBase>
-  implements CacheInterface<TBase, KBase>, ConnectedAdapterInterface<IORedis.Redis> {
+  implements CacheInterface<TBase, KBase>, ConnectedCacheInterface<IORedis.Redis> {
   private readonly conn: IoredisConnection;
   private readonly redis: IORedis.Redis;
 
@@ -45,38 +44,39 @@ export class IoRedisCacheAdapter<TBase = string, KBase = CacheKey>
   }
 
   get = async <T = TBase, K extends KBase = KBase>(key: K, options?: GetOptions<T>): Promise<CacheItemInterface<T>> => {
-    if (typeof key !== 'string') {
-      // @todo remove this
-      throw new Error('Error @todo check for possible values');
+    if (!Guards.isValidCacheKey(key)) {
+      return CacheItemFactory.fromInvalidCacheKey(key);
     }
+
     const { defaultValue = null, disableCache = false } = options ?? {};
     if (disableCache) {
-      return CacheItem.createFromMiss({
+      return CacheItemFactory.fromCacheMiss<T, K>({
         key,
-        value: defaultValue !== null ? defaultValue : undefined,
+        defaultValue,
       });
     }
-    let value: T;
+    let data: T;
     try {
-      value = ((await this.redis.get(key)) as unknown) as T;
+      data = ((await this.redis.get(key)) as unknown) as T;
     } catch (e) {
-      return CacheItem.createFromError<T>({
+      return CacheItemFactory.fromErr<K>({
         key,
         error: new CacheException({
           previousError: e,
-          message: '[IoRedisCacheAdapter.get()] Cannot get data from cache',
+          message: `[IoRedisCacheAdapter.get()] Cache error: ${e?.message}`,
         }),
       });
     }
-    if (value === null) {
-      return CacheItem.createFromMiss<T>({
-        key: key,
-        value: defaultValue !== null ? defaultValue : undefined,
+    if (data === null) {
+      return CacheItemFactory.fromCacheMiss<T, K>({
+        key,
+        defaultValue,
       });
     }
-    return CacheItem.createFromHit<T>({
+    return CacheItemFactory.fromOk<T, K>({
       key,
-      value,
+      data,
+      isHit: true,
     });
   };
   set = async <T = TBase, K extends KBase = KBase>(
@@ -84,16 +84,18 @@ export class IoRedisCacheAdapter<TBase = string, KBase = CacheKey>
     value: T | CacheValueProviderFn<T>,
     options?: SetOptions
   ): Promise<boolean | CacheException> => {
+    if (!Guards.isValidCacheKey(key)) {
+      return new InvalidCacheKeyException(key);
+    }
     const { ttl = 0, disableCache = false } = options ?? {};
     if (disableCache) {
       return false;
     }
     let v = value;
-    if (isCacheValueProviderFn(value)) {
+    if (Guards.isCacheValueProviderFn(value)) {
       try {
         v = await executeValueProviderFn<T>(value);
       } catch (e) {
-        // @todo decide what to do, a cache miss ?
         return new CacheProviderException({
           previousError: e,
           message: "Can't fetch the provided function",
@@ -103,10 +105,11 @@ export class IoRedisCacheAdapter<TBase = string, KBase = CacheKey>
     if (v === null) return true;
 
     return new Promise((resolve) => {
-      if (!isNonEmptyString(v)) {
+      // @todo decide what to do when value returned is not a string
+      if (!Guards.isNonEmptyString(v)) {
         throw new Error('IORedisCacheAdapter currently support only string values');
       }
-      if (!isNonEmptyString(key)) {
+      if (!Guards.isNonEmptyString(key)) {
         throw new Error('IORedisCacheAdapter currently support only string keys');
       }
       const resolver = (response: unknown) => {
@@ -126,9 +129,10 @@ export class IoRedisCacheAdapter<TBase = string, KBase = CacheKey>
     });
   };
 
-  has = async <K extends KBase = KBase>(key: K, options?: HasOptions): Promise<TrueOrFalseOrUndefined> => {
-    if (!isNonEmptyString(key)) {
-      throw new Error('IORedisCacheAdapter currently support only string keys');
+  has = async <K extends KBase = KBase>(key: K, options?: HasOptions): Promise<boolean | undefined> => {
+    if (!Guards.isValidCacheKey(key)) {
+      options?.onError?.(new InvalidCacheKeyException(key));
+      return undefined;
     }
     const { disableCache = false } = options ?? {};
     if (disableCache) {
@@ -138,8 +142,8 @@ export class IoRedisCacheAdapter<TBase = string, KBase = CacheKey>
   };
 
   delete = async <K extends KBase = KBase>(key: K, options?: DeleteOptions): Promise<boolean | CacheException> => {
-    if (!isNonEmptyString(key)) {
-      throw new Error('IORedisCacheAdapter currently support only string keys');
+    if (!Guards.isValidCacheKey(key)) {
+      return new InvalidCacheKeyException(key);
     }
     const { disableCache = false } = options ?? {};
     if (disableCache) {

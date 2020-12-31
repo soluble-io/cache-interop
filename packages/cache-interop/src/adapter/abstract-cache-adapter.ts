@@ -7,14 +7,13 @@ import {
   GetOrSetOptions,
   HasOptions,
   SetOptions,
-  TrueOrFalseOrUndefined,
 } from '../cache.interface';
 import { CacheItemInterface } from '../cache-item.interface';
-import { executeValueProviderFn, isCacheValueProviderFn } from '../utils';
-import { CacheItem } from '../cache-item';
-import { CacheException } from '../exceptions';
+import { executeValueProviderFn } from '../utils';
+import { CacheException, CacheProviderException } from '../exceptions';
 import { getGetOrSetCacheDisabledParams } from '../utils/cache-options-utils';
-import { ConnectionInterface } from '../connection/connection.interface';
+import { CacheItemFactory } from '../cache-item.factory';
+import { Guards } from '../validation/guards';
 
 const defaultGetOrSetOptions: GetOrSetOptions = {
   disableCache: {
@@ -23,7 +22,8 @@ const defaultGetOrSetOptions: GetOrSetOptions = {
   },
 } as const;
 
-export abstract class AbstractCacheAdapter<TBase = string, KBase = CacheKey> implements CacheInterface<TBase, KBase> {
+export abstract class AbstractCacheAdapter<TBase = string, KBase extends CacheKey = CacheKey>
+  implements CacheInterface<TBase, KBase> {
   abstract set<T = TBase, K extends KBase = KBase>(
     key: K,
     value: T | CacheValueProviderFn<T>,
@@ -32,7 +32,7 @@ export abstract class AbstractCacheAdapter<TBase = string, KBase = CacheKey> imp
 
   abstract get<T = TBase, K extends KBase = KBase>(key: K, options?: GetOptions<T>): Promise<CacheItemInterface<T>>;
 
-  abstract has<K extends KBase = KBase>(key: K, options?: HasOptions): Promise<TrueOrFalseOrUndefined>;
+  abstract has<K extends KBase = KBase>(key: K, options?: HasOptions): Promise<boolean | undefined>;
 
   abstract delete<K extends KBase = KBase>(key: K, options?: DeleteOptions): Promise<boolean | CacheException>;
 
@@ -76,21 +76,21 @@ export abstract class AbstractCacheAdapter<TBase = string, KBase = CacheKey> imp
   ): Promise<CacheItemInterface<T>> => {
     const { disableCache = false, ...setOptions } = { ...defaultGetOrSetOptions, ...(options ?? {}) };
     const { read: disableRead, write: disableWrite } = getGetOrSetCacheDisabledParams(disableCache);
-    const cacheItem = await this.get<T, K>(key, { disableCache: disableRead });
-    if (cacheItem.hit) {
-      return cacheItem;
+    const item = await this.get<T, K>(key, { disableCache: disableRead });
+    if (item.data !== null) {
+      return item;
     }
 
     let v: T | CacheValueProviderFn<T>;
     let fetched = false;
-    if (isCacheValueProviderFn(value)) {
+    if (Guards.isCacheValueProviderFn(value)) {
       try {
         v = await executeValueProviderFn<T>(value);
         fetched = true;
       } catch (e) {
-        return CacheItem.createFromError<T, string>({
-          key: typeof key === 'string' ? key : 'Unsupported Key',
-          error: new CacheException({
+        return CacheItemFactory.fromErr({
+          key: key,
+          error: new CacheProviderException({
             message: 'Could not execute async function provider',
             previousError: e,
           }),
@@ -100,13 +100,12 @@ export abstract class AbstractCacheAdapter<TBase = string, KBase = CacheKey> imp
       v = value;
     }
     const stored = await this.set(key, v, { ...setOptions, disableCache: disableWrite });
-    const { ttl = null } = options ?? {};
 
-    return CacheItem.createFromHit<T, string>({
-      key: typeof key === 'string' ? key : 'Unsupported Key',
-      fetched: fetched,
-      persisted: stored === true,
-      value: v as T,
+    return CacheItemFactory.fromOk<T, K>({
+      key: key,
+      data: v,
+      isHit: !fetched,
+      isPersisted: stored instanceof CacheException ? false : stored,
     });
   };
 }

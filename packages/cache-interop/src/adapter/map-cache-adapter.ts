@@ -5,18 +5,17 @@ import {
   GetOptions,
   SetOptions,
   HasOptions,
-  TrueOrFalseOrUndefined,
   DeleteOptions,
 } from '../cache.interface';
-import { isCacheValueProviderFn, isNonEmptyString } from '../utils/typeguards';
 import { AbstractCacheAdapter } from './abstract-cache-adapter';
 import { CacheItemInterface } from '../cache-item.interface';
-import { CacheItem } from '../cache-item';
 import { executeValueProviderFn } from '../utils/value-provider';
 import { DateProvider } from '../expiry/date-provider.interface';
 import { EsDateProvider } from '../expiry/es-date-provider';
-import { CacheException, CacheProviderException } from '../exceptions';
+import { CacheException, CacheProviderException, InvalidCacheKeyException } from '../exceptions';
 import { EvictionPolicyInterface, ExpiresAtPolicy } from '../eviction';
+import { CacheItemFactory } from '../cache-item.factory';
+import { Guards } from '../validation/guards';
 
 type Options = {
   evictionPolicy?: EvictionPolicyInterface;
@@ -26,7 +25,7 @@ const defaultOptions = {
   evictionPolicy: new ExpiresAtPolicy(),
 };
 
-export class MapCacheAdapter<TBase = string, KBase = CacheKey>
+export class MapCacheAdapter<TBase = string, KBase extends CacheKey = CacheKey>
   extends AbstractCacheAdapter<TBase, KBase>
   implements CacheInterface<TBase, KBase> {
   private map: Map<KBase, { expiresAt: number; data: unknown }>;
@@ -41,31 +40,33 @@ export class MapCacheAdapter<TBase = string, KBase = CacheKey>
   }
 
   get = async <T = TBase, K extends KBase = KBase>(key: K, options?: GetOptions<T>): Promise<CacheItemInterface<T>> => {
-    if (typeof key !== 'string') {
-      // @todo remove this
-      throw new Error('Error @todo check for possible values');
+    if (!Guards.isValidCacheKey(key)) {
+      return CacheItemFactory.fromInvalidCacheKey(key);
     }
+
     const { defaultValue = null, disableCache = false } = options ?? {};
     if (disableCache) {
-      return CacheItem.createFromMiss({
-        key,
-        value: defaultValue !== null ? defaultValue : undefined,
+      return CacheItemFactory.fromOk<T | null>({
+        key: key,
+        data: defaultValue !== null ? defaultValue : null,
+        isHit: false,
       });
     }
     const cached = this.map.get(key);
     const { expiresAt = null } = cached ?? {};
     const expired = expiresAt !== null ? this.evictionPolicy.isExpired(expiresAt) : false;
 
-    if (cached !== undefined && !expired) {
+    if (cached !== undefined) {
       const { data } = cached;
-      return CacheItem.createFromHit<T>({
+      return CacheItemFactory.fromOk<T | null, K>({
         key,
-        value: data as T,
+        data: expired ? null : (data as T),
+        isHit: !expired,
       });
     }
-    return CacheItem.createFromMiss<T>({
-      key: key,
-      value: defaultValue !== null ? defaultValue : undefined,
+    return CacheItemFactory.fromCacheMiss<T, K>({
+      key,
+      defaultValue,
     });
   };
 
@@ -74,12 +75,15 @@ export class MapCacheAdapter<TBase = string, KBase = CacheKey>
     value: T | CacheValueProviderFn<T>,
     options?: SetOptions
   ): Promise<boolean | CacheException> => {
+    if (!Guards.isValidCacheKey(key)) {
+      return new InvalidCacheKeyException(key);
+    }
     const { disableCache = false, ttl = 0 } = options ?? {};
     if (disableCache) {
       return false;
     }
     let v = value;
-    if (isCacheValueProviderFn(value)) {
+    if (Guards.isCacheValueProviderFn(value)) {
       try {
         v = await executeValueProviderFn<T>(value);
       } catch (e) {
@@ -95,9 +99,10 @@ export class MapCacheAdapter<TBase = string, KBase = CacheKey>
     return true;
   };
 
-  has = async <K extends KBase = KBase>(key: K, options?: HasOptions): Promise<TrueOrFalseOrUndefined> => {
-    if (!isNonEmptyString(key)) {
-      throw new Error('MapCacheAdapter currently support only string keys');
+  has = async <K extends KBase = KBase>(key: K, options?: HasOptions): Promise<boolean | undefined> => {
+    if (!Guards.isValidCacheKey(key)) {
+      options?.onError?.(new InvalidCacheKeyException(key));
+      return undefined;
     }
     const { disableCache = false } = options ?? {};
     if (disableCache) {
@@ -111,8 +116,8 @@ export class MapCacheAdapter<TBase = string, KBase = CacheKey>
   };
 
   delete = async <K extends KBase = KBase>(key: K, options?: DeleteOptions): Promise<boolean | CacheException> => {
-    if (!isNonEmptyString(key)) {
-      throw new Error('MapCacheAdapter currently support only string keys');
+    if (!Guards.isValidCacheKey(key)) {
+      return new InvalidCacheKeyException(key);
     }
     const { disableCache = false } = options ?? {};
     if (disableCache) {

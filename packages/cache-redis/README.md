@@ -30,21 +30,15 @@
   </a>
 </p>
 
+# About | [Documentation](https://github.com/soluble-io/cache-interop/)
+
+Cache adapter for node [redis](https://github.com/NodeRedis/node-redis) client.
+
 ## Install
 
 ```bash
 $ yarn add @soluble/cache-redis redis
-$ yarn add @types/ioredis --dev
-```
-
-## Usage
-
-```typescript
-import { RedisCacheAdapter } from '@soluble/cache-redis';
-
-const dsn = 'redis://user:pass@redis.com:6379/8';
-
-const cache = new RedisCacheAdapter({ url: dsn });
+$ yarn add @types/redis --dev
 ```
 
 ## Usage
@@ -56,7 +50,7 @@ const cache = new RedisCacheAdapter({
   connection: 'redis://:pass@localhost:6379/8',
 });
 
-const { result } = await cache.getOrSet('key', asyncPromise, {
+const { data, error } = await cache.getOrSet('key', asyncPromise, {
   ttl: 30,
 });
 

@@ -4,20 +4,19 @@ import {
   AbstractCacheAdapter,
   CacheItemInterface,
   CacheException,
-  CacheItem,
   executeValueProviderFn,
   CacheValueProviderFn,
   SetOptions,
-  TrueOrFalseOrUndefined,
-  isCacheValueProviderFn,
-  isNonEmptyString,
   CacheProviderException,
   UnexpectedErrorException,
   GetOptions,
   HasOptions,
   DeleteOptions,
   ConnectionInterface,
-  ConnectedAdapterInterface,
+  ConnectedCacheInterface,
+  CacheItemFactory,
+  Guards,
+  InvalidCacheKeyException,
 } from '@soluble/cache-interop';
 import {
   RedisClient,
@@ -35,9 +34,9 @@ type Options = {
   connection: RedisConnection | RedisClientOptions | string | RedisClient;
 };
 
-export class RedisCacheAdapter<TBase = string, KBase = CacheKey>
+export class RedisCacheAdapter<TBase = string, KBase extends CacheKey = CacheKey>
   extends AbstractCacheAdapter<TBase, KBase>
-  implements CacheInterface<TBase, KBase>, ConnectedAdapterInterface<RedisClient> {
+  implements CacheInterface<TBase, KBase>, ConnectedCacheInterface<RedisClient> {
   private readonly redis: RedisClient;
   private conn: RedisConnection;
 
@@ -52,41 +51,41 @@ export class RedisCacheAdapter<TBase = string, KBase = CacheKey>
   }
 
   get = async <T = TBase, K extends KBase = KBase>(key: K, options?: GetOptions<T>): Promise<CacheItemInterface<T>> => {
-    if (typeof key !== 'string') {
-      // @todo remove this
-      throw new Error('Error @todo check for possible values');
+    if (!Guards.isValidCacheKey(key)) {
+      return CacheItemFactory.fromInvalidCacheKey(key);
     }
     const { disableCache = false, defaultValue = null } = options ?? {};
     if (disableCache) {
-      return CacheItem.createFromMiss<T>({
-        key: key,
-        value: defaultValue !== null ? defaultValue : undefined,
+      return CacheItemFactory.fromCacheMiss<T, K>({
+        key,
+        defaultValue,
       });
     }
     return new Promise((resolve) => {
-      this.redis.get(key, (err, value) => {
+      this.redis.get(key, (err, data) => {
         if (err !== null) {
           resolve(
-            CacheItem.createFromError<T>({
+            CacheItemFactory.fromErr<K>({
               key,
               error: new CacheException({
                 previousError: err,
-                message: '[RedisCacheAdapter.get()] Cannot get data from cache',
+                message: `[RedisCacheAdapter.get()] Cache error: ${err.message}`,
               }),
             })
           );
-        } else if (value === null) {
+        } else if (data === null) {
           resolve(
-            CacheItem.createFromMiss<T>({
+            CacheItemFactory.fromCacheMiss<T, K>({
               key,
-              value: defaultValue !== null ? defaultValue : undefined,
+              defaultValue,
             })
           );
         } else {
           resolve(
-            CacheItem.createFromHit<T>({
+            CacheItemFactory.fromOk<T, K>({
               key,
-              value: (value as unknown) as T,
+              data: (data as unknown) as T,
+              isHit: true,
             })
           );
         }
@@ -98,12 +97,15 @@ export class RedisCacheAdapter<TBase = string, KBase = CacheKey>
     value: T | CacheValueProviderFn<T>,
     options?: SetOptions
   ): Promise<boolean | CacheException> => {
+    if (!Guards.isValidCacheKey(key)) {
+      return new InvalidCacheKeyException(key);
+    }
     const { disableCache = false, ttl = 0 } = options ?? {};
     if (disableCache) {
       return false;
     }
     let v = value;
-    if (isCacheValueProviderFn(value)) {
+    if (Guards.isCacheValueProviderFn(value)) {
       try {
         v = await executeValueProviderFn<T>(value);
       } catch (e) {
@@ -117,10 +119,11 @@ export class RedisCacheAdapter<TBase = string, KBase = CacheKey>
     if (v === null) return true;
 
     return new Promise((resolve) => {
-      if (!isNonEmptyString(v)) {
+      // @todo decide what to do when value returned is not a string
+      if (!Guards.isNonEmptyString(v)) {
         throw new Error('IORedisCacheAdapter currently support only string values');
       }
-      if (!isNonEmptyString(key)) {
+      if (!Guards.isNonEmptyString(key)) {
         throw new Error('IORedisCacheAdapter currently support only string keys');
       }
       const resolver = (err: RedisError | null, reply: unknown) => {
@@ -142,9 +145,10 @@ export class RedisCacheAdapter<TBase = string, KBase = CacheKey>
     });
   };
 
-  has = async <K extends KBase = KBase>(key: K, options?: HasOptions): Promise<TrueOrFalseOrUndefined> => {
-    if (!isNonEmptyString(key)) {
-      throw new Error('RedisCacheAdapter currently support only string keys');
+  has = async <K extends KBase = KBase>(key: K, options?: HasOptions): Promise<boolean | undefined> => {
+    if (!Guards.isValidCacheKey(key)) {
+      options?.onError?.(new InvalidCacheKeyException(key));
+      return undefined;
     }
     const { disableCache = false } = options ?? {};
     if (disableCache) {
@@ -162,8 +166,8 @@ export class RedisCacheAdapter<TBase = string, KBase = CacheKey>
   };
 
   delete = async <K extends KBase = KBase>(key: K, options?: DeleteOptions): Promise<boolean | CacheException> => {
-    if (!isNonEmptyString(key)) {
-      throw new Error('RedisCacheAdapter currently support only string keys');
+    if (!Guards.isValidCacheKey(key)) {
+      return new InvalidCacheKeyException(key);
     }
     const { disableCache = false } = options ?? {};
     if (disableCache) {

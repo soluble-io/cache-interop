@@ -25,7 +25,10 @@
   </a>
 </p>
 
+# About
+
 A DSN parser with minimal validation that handles special characters like `/` in the password field (most libs won't).
+Works in browser and node.
 
 ## Install
 
@@ -37,8 +40,8 @@ $ yarn add @soluble/dsn-parser
 
 - [x] Portable, no assumption on driver (i.e: `redis`, `pgsql`...)
 - [x] Support for optional query params.
-- [x] Validation reasons, no `try...catch`.
-- [x] Node and browser support.
+- [x] Validation reasons rather than `try...catch`.
+- [x] Provides `assertParsableDsn` assertion for convenience.
 
 ## Usage
 

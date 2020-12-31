@@ -14,6 +14,8 @@ export type DeleteOptions = {
 export type HasOptions = {
   /** Whether to disable caching, by default false */
   disableCache?: boolean;
+  /** Callback since Cache.has can't really return CacheException... */
+  onError?: (error: CacheException) => void;
 };
 
 export type SetOptions = {
@@ -41,8 +43,6 @@ export type CacheProviderAsyncFn<T> = (params?: CacheValueProviderParams) => Pro
 export type CacheProviderSyncFn<T> = (params?: CacheValueProviderParams) => T;
 export type CacheValueProviderFn<T> = CacheProviderAsyncFn<T> | CacheProviderSyncFn<T>;
 
-export type TrueOrFalseOrUndefined = true | false | undefined;
-
 export type CacheKey = string;
 
 export interface CacheInterface<TBase = string, KBase = CacheKey> {
@@ -53,8 +53,6 @@ export interface CacheInterface<TBase = string, KBase = CacheKey> {
    * @param options - An object holding GetOptions
    *
    * @returns A promise returning a CacheItemInterface, or defaultValue in case of cache miss.
-   * @throws InvalidArgumentException
-   *         MUST be thrown if the $key string is not a legal value.
    */
   get<T = TBase, K extends KBase = KBase>(key: K, options?: GetOptions<T>): Promise<CacheItemInterface<T>>;
 
@@ -64,9 +62,6 @@ export interface CacheInterface<TBase = string, KBase = CacheKey> {
    * @param key - The key of the item to store.
    * @param value - The value of the item to store or a function returning the value. Must be serializable.
    * @param options - An object holding SetOptions
-   *
-   * @throws InvalidArgumentException
-   *         MUST be thrown if the $key string is not a legal value.
    */
   set<T = TBase, K extends KBase = KBase>(
     key: K,
@@ -81,9 +76,6 @@ export interface CacheInterface<TBase = string, KBase = CacheKey> {
    *
    * @return True if the item was successfully removed, false if it did not exists.
    *         CacheException if there was an error.
-   *
-   * @throws InvalidArgumentException
-   *         MUST be thrown if the $key string is not a legal value.
    */
   delete<K extends KBase = KBase>(key: K, options?: DeleteOptions): Promise<boolean | CacheException>;
 
@@ -100,11 +92,8 @@ export interface CacheInterface<TBase = string, KBase = CacheKey> {
    * @return True if the item exists in the cache and was removed, false otherwise.
    *         Undefined is used to determine if the operation was successful.
    *         If cacheDisabled option is set to true, it will always return false.
-   *
-   * @throws InvalidArgumentException
-   *         MUST be thrown if the $key string is not a legal value.
    */
-  has<K extends KBase = KBase>(key: K, options?: HasOptions): Promise<TrueOrFalseOrUndefined>;
+  has<K extends KBase = KBase>(key: K, options?: HasOptions): Promise<boolean | undefined>;
 
   /**
    * Obtains multiple cache items by their unique keys.

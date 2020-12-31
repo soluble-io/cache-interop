@@ -30,6 +30,10 @@
   </a>
 </p>
 
+# About | [Documentation](https://github.com/soluble-io/cache-interop/)
+
+Cache adapter for node [IoRedis](https://github.com/luin/ioredis) client.
+
 ## Install
 
 ```bash
@@ -46,7 +50,7 @@ const cache = new IoRedisCacheAdapter({
   connection: 'redis://:pass@localhost:6379/8',
 });
 
-const { result } = await cache.getOrSet('key', asyncPromise, {
+const { data, error } = await cache.getOrSet('key', asyncPromise, {
   ttl: 30,
 });
 

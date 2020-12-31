@@ -9,6 +9,9 @@
   <a aria-label="Downloads" href="https://npm.im/@soluble/cache-interop">
     <img alt="Downloads" src="https://img.shields.io/npm/dy/@soluble/cache-interop?style=for-the-badge&labelColor=000000" />
   </a>
+  <a aria-label="Size" href="https://bundlephobia.com/result?p=@soluble/cache-interop">
+    <img alt="Size" src="https://img.shields.io/bundlephobia/minzip/@soluble/cache-interop?label=MinGZIP&style=for-the-badge&labelColor=000000" />
+  </a>
   <a aria-label="Coverage" href="https://codecov.io/gh/soluble-io/cache-interop">
     <img alt="Codecov" src="https://img.shields.io/codecov/c/github/soluble-io/cache-interop?label=Coverage&logo=codecov&style=for-the-badge&labelColor=000000" />
   </a>
@@ -29,8 +32,55 @@
   </a>
 </p>
 
+# About | [Documentation](https://https://github.com/soluble-io/cache-interop/)
+
+Package holding cache-interop contracts.
+You may want to look for official [adapter implementations](https://github.com/soluble-io/cache-interop/) instead.
+
 ## Install
 
 ```bash
 $ yarn add @soluble/cache-interop
+```
+
+## Interfaces
+
+### CacheInterface
+
+```typescript
+import { CacheInterface, ConnectedCacheInterface } from '@soluble/cache-interop';
+
+class MyCache implements CacheInterface, ConnectedCacheInterface {
+  //...
+}
+```
+
+## Utilities
+
+### Guards
+
+> Typescript typeguards
+
+```typescript
+import { Guards } from '@soluble/cache-interop';
+
+if (Guards.isConnectedCache(cache)) {
+  await cache.getConnection().quit();
+}
+
+Guards.isValidCacheKey(key);
+
+Guards.isCacheValueProviderFn(async () => {});
+
+Guards.isNonEmptyString('Hi!');
+```
+
+### Asserts
+
+> Typescript assertions
+
+```typescript
+import { Asserts } from '@soluble/cache-interop';
+
+Asserts.assertValidCacheKey(key);
 ```

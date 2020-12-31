@@ -2,7 +2,8 @@ import {
   CacheException,
   CacheInterface,
   CacheProviderException,
-  isConnectedAdapter,
+  Guards,
+  InvalidCacheKeyException,
   MapCacheAdapter,
 } from '@soluble/cache-interop';
 import { IoRedisCacheAdapter } from '@soluble/cache-ioredis';
@@ -60,7 +61,7 @@ describe.each(adapters)('Adapter: %s', (name, adapterFactory) => {
     cache = await adapterFactory();
   });
   afterAll(async () => {
-    if (isConnectedAdapter(cache)) {
+    if (Guards.isConnectedCache(cache)) {
       await cache.getConnection().quit();
     }
   });
@@ -79,7 +80,7 @@ describe.each(adapters)('Adapter: %s', (name, adapterFactory) => {
       });
       it('should persist the value', async () => {
         await cache.set('k2', 'cool2');
-        expect((await cache.get('k2')).value).toStrictEqual('cool2');
+        expect((await cache.get('k2')).data).toStrictEqual('cool2');
       });
     });
     describe('when setting a null value', () => {
@@ -88,7 +89,7 @@ describe.each(adapters)('Adapter: %s', (name, adapterFactory) => {
       });
       it('should persist the value', async () => {
         await cache.set('k2', null);
-        expect((await cache.get('k2')).value).toBeNull();
+        expect((await cache.get('k2')).data).toBeNull();
       });
     });
     describe('when disableCache is true', () => {
@@ -98,7 +99,7 @@ describe.each(adapters)('Adapter: %s', (name, adapterFactory) => {
             disableCache: true,
           })
         ).toStrictEqual(false);
-        expect((await cache.get('k')).value).toStrictEqual(null);
+        expect((await cache.get('k')).data).toStrictEqual(null);
       });
       it('should not execute the function provider', async () => {
         const fct = jest.fn((_) => 'cool');
@@ -118,7 +119,7 @@ describe.each(adapters)('Adapter: %s', (name, adapterFactory) => {
       it('should persist the value', async () => {
         const fct = jest.fn((_) => 'cool');
         await cache.set('k2', fct);
-        expect((await cache.get('k2')).value).toStrictEqual('cool');
+        expect((await cache.get('k2')).data).toStrictEqual('cool');
       });
     });
     describe('when value is a function returning null', () => {
@@ -130,7 +131,7 @@ describe.each(adapters)('Adapter: %s', (name, adapterFactory) => {
       it('should persist the value', async () => {
         const fct = jest.fn((_) => null);
         await cache.set('k2', fct);
-        expect((await cache.get('k2')).value).toBeNull();
+        expect((await cache.get('k2')).data).toBeNull();
       });
     });
     describe('when function throws', () => {
@@ -173,40 +174,38 @@ describe.each(adapters)('Adapter: %s', (name, adapterFactory) => {
     describe('when value is not in cache', () => {
       it('should return empty non-error cacheitem', async () => {
         expect(await cache.get('k')).toMatchObject({
-          key: 'k',
-          hit: false,
-          error: false,
-          value: null,
+          isSuccess: true,
+          isHit: false,
+          error: undefined,
+          data: null,
+          metadata: {
+            key: 'k',
+          },
         });
       });
     });
     describe('when value is in cache', () => {
       it('should return cacheitem with data', async () => {
-        await cache.set('k', 'hello world');
+        await cache.set('k', 'hello');
         expect(await cache.get('k')).toMatchObject({
-          key: 'k',
-          hit: true,
-          error: false,
-          value: 'hello world',
+          isSuccess: true,
+          isHit: true,
+          data: 'hello',
         });
       });
     });
     describe('when a defaultValue is given', () => {
       it('should return defaultValue if nothing in cache', async () => {
         expect(await cache.get('k', { defaultValue: 'default' })).toMatchObject({
-          key: 'k',
-          hit: false,
-          error: false,
-          value: 'default',
+          isHit: false,
+          data: 'default',
         });
       });
       it('should give priority to existing cache entry', async () => {
         await cache.set('k', 'initial');
         expect(await cache.get('k', { defaultValue: 'default' })).toMatchObject({
-          key: 'k',
-          hit: true,
-          error: false,
-          value: 'initial',
+          isHit: true,
+          data: 'initial',
         });
       });
     });
@@ -214,10 +213,8 @@ describe.each(adapters)('Adapter: %s', (name, adapterFactory) => {
       it('should always return a cache hit', async () => {
         await cache.set('k', 'hello world', { ttl: 0 });
         expect(await cache.get('k')).toMatchObject({
-          key: 'k',
-          hit: true,
-          error: false,
-          value: 'hello world',
+          isHit: true,
+          data: 'hello world',
         });
       });
     });
@@ -226,10 +223,9 @@ describe.each(adapters)('Adapter: %s', (name, adapterFactory) => {
         await cache.set('k', 'hello world', { ttl: 1 });
         await sleep(1001);
         expect(await cache.get('k')).toMatchObject({
-          key: 'k',
-          hit: false,
-          error: false,
-          value: null,
+          isSuccess: true,
+          isHit: false,
+          data: null,
         });
       });
     });
@@ -243,10 +239,10 @@ describe.each(adapters)('Adapter: %s', (name, adapterFactory) => {
               disableCache: true,
             })
           ).toMatchObject({
-            key: 'k',
-            hit: false,
-            error: false,
-            value: null,
+            isSuccess: true,
+            isHit: false,
+            data: null,
+            error: undefined,
           });
         });
       });
@@ -259,10 +255,9 @@ describe.each(adapters)('Adapter: %s', (name, adapterFactory) => {
               disableCache: true,
             })
           ).toMatchObject({
-            key: 'k',
-            hit: false,
-            error: false,
-            value: 'default',
+            isSuccess: true,
+            isHit: false,
+            data: 'default',
           });
         });
       });
@@ -283,9 +278,9 @@ describe.each(adapters)('Adapter: %s', (name, adapterFactory) => {
     describe('when value is in cache', () => {
       it('should return true and delete the entry', async () => {
         await cache.set('k', 'cool');
-        expect((await cache.get('k')).value).toStrictEqual('cool');
+        expect((await cache.get('k')).data).toStrictEqual('cool');
         expect(await cache.delete('k')).toStrictEqual(true);
-        expect((await cache.get('k')).value).toStrictEqual(null);
+        expect((await cache.get('k')).data).toStrictEqual(null);
       });
     });
     describe('when disableCache is set to true', () => {
@@ -296,7 +291,7 @@ describe.each(adapters)('Adapter: %s', (name, adapterFactory) => {
             disableCache: true,
           });
           expect(ret).toStrictEqual(false);
-          expect((await cache.get('k')).value).toStrictEqual('hello');
+          expect((await cache.get('k')).data).toStrictEqual('hello');
         });
         describe('when no item exists', () => {
           it('should return false', async () => {
@@ -342,8 +337,8 @@ describe.each(adapters)('Adapter: %s', (name, adapterFactory) => {
         ]);
         expect((await cache.getMultiple(['k1', 'k2'])).size).toStrictEqual(2);
         expect(await cache.clear()).toStrictEqual(true);
-        expect((await cache.get('k1')).value).toBeNull();
-        expect((await cache.get('k2')).value).toBeNull();
+        expect((await cache.get('k1')).data).toBeNull();
+        expect((await cache.get('k2')).data).toBeNull();
       });
     });
   });
@@ -451,10 +446,10 @@ describe.each(adapters)('Adapter: %s', (name, adapterFactory) => {
             ['k-async-ok', true],
           ])
         );
-        expect((await cache.get('k-string')).value).toStrictEqual('hello');
-        expect((await cache.get('k-null')).value).toStrictEqual(null);
-        expect((await cache.get('k-fn-ok')).value).toStrictEqual('sync');
-        expect((await cache.get('k-async-ok')).value).toStrictEqual('async');
+        expect((await cache.get('k-string')).data).toStrictEqual('hello');
+        expect((await cache.get('k-null')).data).toStrictEqual(null);
+        expect((await cache.get('k-fn-ok')).data).toStrictEqual('sync');
+        expect((await cache.get('k-async-ok')).data).toStrictEqual('async');
       });
     });
     describe('when keyVals throws errors', () => {
@@ -473,22 +468,21 @@ describe.each(adapters)('Adapter: %s', (name, adapterFactory) => {
         expect(ret.get('k-string')).toStrictEqual(true);
         expect(ret.get('k-fn-err')).toBeInstanceOf(CacheProviderException);
         expect(ret.get('k-async-err')).toBeInstanceOf(CacheProviderException);
-        expect((await cache.get('k-string')).value).toStrictEqual('hello');
-        expect((await cache.get('k-fn-err')).value).toStrictEqual(null);
-        expect((await cache.get('k-async-err')).value).toStrictEqual(null);
+        expect((await cache.get('k-string')).data).toStrictEqual('hello');
+        expect((await cache.get('k-fn-err')).data).toStrictEqual(null);
+        expect((await cache.get('k-async-err')).data).toStrictEqual(null);
       });
       describe('when ttl option is given', () => {
         it('should set ttl so entries will be discarded', async () => {
           await cache.setMultiple([['k', 'hello']], {
             ttl: 1,
           });
-          expect((await cache.get('k')).value).toStrictEqual('hello');
+          expect((await cache.get('k')).data).toStrictEqual('hello');
           await sleep(1001);
           expect(await cache.get('k')).toMatchObject({
-            key: 'k',
-            hit: false,
-            error: false,
-            value: null,
+            isSuccess: true,
+            isHit: false,
+            data: null,
           });
         });
       });
@@ -505,8 +499,8 @@ describe.each(adapters)('Adapter: %s', (name, adapterFactory) => {
           );
           expect(ret.get('k1')).toStrictEqual(false);
           expect(ret.get('k2')).toStrictEqual(false);
-          expect((await cache.get('k1')).value).toStrictEqual(null);
-          expect((await cache.get('k2')).value).toStrictEqual(null);
+          expect((await cache.get('k1')).data).toStrictEqual(null);
+          expect((await cache.get('k2')).data).toStrictEqual(null);
         });
         it('should never execute function provider', async () => {
           const fn = jest.fn(async (_) => 'cool');
@@ -531,9 +525,9 @@ describe.each(adapters)('Adapter: %s', (name, adapterFactory) => {
         await cache.setMultiple([['key2', 'val2']]);
         const resp = await cache.getMultiple(['key1', 'key2', 'key-not-exists']);
         expect(resp.size).toBe(3);
-        expect(resp.get('key1')?.value).toStrictEqual('val1');
-        expect(resp.get('key2')?.value).toStrictEqual('val2');
-        expect(resp.get('key-not-exists')?.value).toBeNull();
+        expect(resp.get('key1')?.data).toStrictEqual('val1');
+        expect(resp.get('key2')?.data).toStrictEqual('val2');
+        expect(resp.get('key-not-exists')?.data).toBeNull();
       });
     });
     describe('when some entries exists and defaultValue is provided', () => {
@@ -544,9 +538,9 @@ describe.each(adapters)('Adapter: %s', (name, adapterFactory) => {
           defaultValue: 'the_default_value',
         });
         expect(resp.size).toBe(3);
-        expect(resp.get('key1')?.value).toStrictEqual('val1');
-        expect(resp.get('key2')?.value).toStrictEqual('val2');
-        expect(resp.get('key-not-exists')?.value).toStrictEqual('the_default_value');
+        expect(resp.get('key1')?.data).toStrictEqual('val1');
+        expect(resp.get('key2')?.data).toStrictEqual('val2');
+        expect(resp.get('key-not-exists')?.data).toStrictEqual('the_default_value');
       });
     });
     describe('when disableCache is set to true', () => {
@@ -558,9 +552,9 @@ describe.each(adapters)('Adapter: %s', (name, adapterFactory) => {
           disableCache: true,
         });
         expect(resp.size).toBe(3);
-        expect(resp.get('key1')?.value).toStrictEqual('the_default_value');
-        expect(resp.get('key2')?.value).toStrictEqual('the_default_value');
-        expect(resp.get('key-not-exists')?.value).toStrictEqual('the_default_value');
+        expect(resp.get('key1')?.data).toStrictEqual('the_default_value');
+        expect(resp.get('key2')?.data).toStrictEqual('the_default_value');
+        expect(resp.get('key-not-exists')?.data).toStrictEqual('the_default_value');
       });
     });
   });
@@ -575,13 +569,17 @@ describe.each(adapters)('Adapter: %s', (name, adapterFactory) => {
       it('should execute the function and persist its return value', async () => {
         const fct = jest.fn(async (_) => 'hello');
         expect(await cache.getOrSet('k', fct)).toMatchObject({
-          key: 'k',
-          hit: true,
-          error: false,
-          value: 'hello',
+          isSuccess: true,
+          isHit: false,
+          isPersisted: true,
+          data: 'hello',
+          error: undefined,
+          metadata: {
+            key: 'k',
+          },
         });
         expect(fct).toHaveBeenCalledTimes(1);
-        expect((await cache.get('k')).value).toStrictEqual('hello');
+        expect((await cache.get('k')).data).toStrictEqual('hello');
       });
     });
     describe('when key is already in cache', () => {
@@ -589,10 +587,9 @@ describe.each(adapters)('Adapter: %s', (name, adapterFactory) => {
         const fct = jest.fn(async (_) => 'value_from_promise');
         await cache.set('k', 'initial_value');
         expect(await cache.getOrSet('k', fct)).toMatchObject({
-          key: 'k',
-          hit: true,
-          error: false,
-          value: 'initial_value',
+          isHit: true,
+          isPersisted: null,
+          data: 'initial_value',
         });
         expect(fct).toHaveBeenCalledTimes(0);
       });
@@ -608,15 +605,43 @@ describe.each(adapters)('Adapter: %s', (name, adapterFactory) => {
               disableCache: true,
             })
           ).toMatchObject({
-            key: 'k',
-            // @todo redefine what hit is
-            // hit: false,
-            error: false,
-            value: 'from_promise',
+            isSuccess: true,
+            isHit: false,
+            isPersisted: false,
+            data: 'from_promise',
+            error: undefined,
           });
           expect(fct).toHaveBeenCalledTimes(1);
-          expect((await cache.get('k')).value).toStrictEqual('initial_value');
+          expect((await cache.get('k')).data).toStrictEqual('initial_value');
         });
+      });
+    });
+  });
+
+  /**
+   * ##############################################################
+   * # Check for invalid cache key
+   * ##############################################################
+   */
+  describe('InvalidCacheKeys', () => {
+    const key = ({ errKey: true } as unknown) as string;
+    describe('For set(), get() and delete()', () => {
+      it('should return InvalidCacheKeyException', async () => {
+        await expect(cache.delete(key)).resolves.toBeInstanceOf(InvalidCacheKeyException);
+        await expect(cache.set(key, 'cool')).resolves.toBeInstanceOf(InvalidCacheKeyException);
+        await expect(cache.delete(key)).resolves.toBeInstanceOf(InvalidCacheKeyException);
+      });
+    });
+    describe('For has() method', () => {
+      it('should return undefined', async () => {
+        await expect(cache.has(key)).resolves.toStrictEqual(undefined);
+      });
+      it('should call onError', async () => {
+        const fn = jest.fn();
+        cache.has(key, {
+          onError: fn,
+        });
+        expect(fn).toHaveBeenCalledTimes(1);
       });
     });
   });
