@@ -7,8 +7,6 @@ import {
   executeValueProviderFn,
   CacheValueProviderFn,
   SetOptions,
-  CacheProviderException,
-  UnexpectedErrorException,
   GetOptions,
   HasOptions,
   DeleteOptions,
@@ -39,6 +37,7 @@ export class RedisCacheAdapter<TBase = string, KBase extends CacheKey = CacheKey
   implements CacheInterface<TBase, KBase>, ConnectedCacheInterface<RedisClient> {
   private readonly redis: RedisClient;
   private conn: RedisConnection;
+  readonly adapterName: string;
 
   /**
    * @throws Error if redis connection can't be created
@@ -46,6 +45,7 @@ export class RedisCacheAdapter<TBase = string, KBase extends CacheKey = CacheKey
   constructor(options: Options) {
     super();
     const { connection } = options;
+    this.adapterName = RedisCacheAdapter.prototype.constructor.name;
     this.conn = connection instanceof RedisConnection ? connection : createRedisConnection(connection);
     this.redis = this.conn.getNativeConnection();
   }
@@ -67,10 +67,7 @@ export class RedisCacheAdapter<TBase = string, KBase extends CacheKey = CacheKey
           resolve(
             CacheItemFactory.fromErr<K>({
               key,
-              error: new CacheException({
-                previousError: err,
-                message: `[RedisCacheAdapter.get()] Cache error: ${err.message}`,
-              }),
+              error: this.errorHelper.getCacheException('get', 'READ_ERROR', err),
             })
           );
         } else if (data === null) {
@@ -98,7 +95,7 @@ export class RedisCacheAdapter<TBase = string, KBase extends CacheKey = CacheKey
     options?: SetOptions
   ): Promise<boolean | CacheException> => {
     if (!Guards.isValidCacheKey(key)) {
-      return new InvalidCacheKeyException(key);
+      return new InvalidCacheKeyException({ key });
     }
     const { disableCache = false, ttl = 0 } = options ?? {};
     if (disableCache) {
@@ -109,11 +106,7 @@ export class RedisCacheAdapter<TBase = string, KBase extends CacheKey = CacheKey
       try {
         v = await executeValueProviderFn<T>(value);
       } catch (e) {
-        // @todo decide what to do, a cache miss ?
-        return new CacheProviderException({
-          previousError: e,
-          message: "Can't fetch the provided function",
-        });
+        this.errorHelper.getCacheException('set', 'EXECUTE_ASYNC_ERROR', e);
       }
     }
     if (v === null) return true;
@@ -147,7 +140,7 @@ export class RedisCacheAdapter<TBase = string, KBase extends CacheKey = CacheKey
 
   has = async <K extends KBase = KBase>(key: K, options?: HasOptions): Promise<boolean | undefined> => {
     if (!Guards.isValidCacheKey(key)) {
-      options?.onError?.(new InvalidCacheKeyException(key));
+      options?.onError?.(new InvalidCacheKeyException({ key }));
       return undefined;
     }
     const { disableCache = false } = options ?? {};
@@ -167,7 +160,7 @@ export class RedisCacheAdapter<TBase = string, KBase extends CacheKey = CacheKey
 
   delete = async <K extends KBase = KBase>(key: K, options?: DeleteOptions): Promise<boolean | CacheException> => {
     if (!Guards.isValidCacheKey(key)) {
-      return new InvalidCacheKeyException(key);
+      return new InvalidCacheKeyException({ key });
     }
     const { disableCache = false } = options ?? {};
     if (disableCache) {
@@ -177,12 +170,7 @@ export class RedisCacheAdapter<TBase = string, KBase extends CacheKey = CacheKey
     return new Promise((resolve) => {
       this.redis.del(key, (cbError, cbCount) => {
         if (cbError !== null) {
-          resolve(
-            new CacheException({
-              message: cbError.message,
-              previousError: cbError,
-            })
-          );
+          resolve(this.errorHelper.getCacheException('delete', 'WRITE_ERROR', cbError));
         } else {
           resolve(cbCount === 1);
         }
@@ -195,23 +183,13 @@ export class RedisCacheAdapter<TBase = string, KBase extends CacheKey = CacheKey
       let response: true | CacheException | null = null;
       this.redis.flushdb((err, res) => {
         if (err !== null) {
-          response = new CacheException({
-            message: `Cannot clear cache: ${err.message}`,
-            previousError: err,
-          });
+          response = this.errorHelper.getCacheException('clear', 'WRITE_ERROR', err);
         } else if (res !== 'OK') {
-          response = new UnexpectedErrorException({
-            message: `Redis should return 'OK' if not error was set`,
-          });
+          response = this.errorHelper.getUnexpectedErrorException('clear');
         } else {
           response = true;
         }
-        resolve(
-          response ??
-            new UnexpectedErrorException({
-              message: 'Redis.flushdb() should return a valid response',
-            })
-        );
+        resolve(response ?? this.errorHelper.getUnexpectedErrorException('clear'));
       });
     });
   };

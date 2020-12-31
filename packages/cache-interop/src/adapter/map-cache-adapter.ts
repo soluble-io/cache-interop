@@ -31,8 +31,10 @@ export class MapCacheAdapter<TBase = string, KBase extends CacheKey = CacheKey>
   private map: Map<KBase, { expiresAt: number; data: unknown }>;
   private dateProvider: DateProvider;
   private evictionPolicy: EvictionPolicyInterface;
+  public readonly adapterName: string;
   constructor(options?: Options) {
     super();
+    this.adapterName = MapCacheAdapter.prototype.constructor.name;
     const { evictionPolicy } = { ...defaultOptions, ...(options ?? {}) };
     this.map = new Map();
     this.evictionPolicy = evictionPolicy;
