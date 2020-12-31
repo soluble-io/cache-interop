@@ -7,19 +7,16 @@ export class NativeJsonSerializer implements SerializerInterface {
    */
   decode<TOutput extends JsonType>(value: string): TOutput {
     let decoded: TOutput | null;
-    try {
-      decoded = JSON.parse(value) as TOutput;
-    } catch (e) {
-      console.log('@todo decide what kind of exception');
-      throw e;
-    }
-    return decoded;
+    return JSON.parse(value) as TOutput;
   }
 
   /**
    * @throws TypeError
    */
   encode<TInput extends JsonType>(value: TInput): string {
+    if (value === undefined) {
+      throw new TypeError('Cannot encode undefined value');
+    }
     return JSON.stringify(value);
   }
 }
