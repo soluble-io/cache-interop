@@ -43,8 +43,6 @@ export type CacheProviderAsyncFn<T> = (params?: CacheValueProviderParams) => Pro
 export type CacheProviderSyncFn<T> = (params?: CacheValueProviderParams) => T;
 export type CacheValueProviderFn<T> = CacheProviderAsyncFn<T> | CacheProviderSyncFn<T>;
 
-export type TrueOrFalseOrUndefined = true | false | undefined;
-
 export type CacheKey = string;
 
 export interface CacheInterface<TBase = string, KBase = CacheKey> {
@@ -95,7 +93,7 @@ export interface CacheInterface<TBase = string, KBase = CacheKey> {
    *         Undefined is used to determine if the operation was successful.
    *         If cacheDisabled option is set to true, it will always return false.
    */
-  has<K extends KBase = KBase>(key: K, options?: HasOptions): Promise<TrueOrFalseOrUndefined>;
+  has<K extends KBase = KBase>(key: K, options?: HasOptions): Promise<boolean | undefined>;
 
   /**
    * Obtains multiple cache items by their unique keys.

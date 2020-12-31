@@ -5,7 +5,6 @@ import {
   GetOptions,
   SetOptions,
   HasOptions,
-  TrueOrFalseOrUndefined,
   DeleteOptions,
 } from '../cache.interface';
 import { isCacheValueProviderFn } from '../utils/typeguards';
@@ -101,7 +100,7 @@ export class MapCacheAdapter<TBase = string, KBase extends CacheKey = CacheKey>
     return true;
   };
 
-  has = async <K extends KBase = KBase>(key: K, options?: HasOptions): Promise<TrueOrFalseOrUndefined> => {
+  has = async <K extends KBase = KBase>(key: K, options?: HasOptions): Promise<boolean | undefined> => {
     if (!Guards.isValidCacheKey(key)) {
       options?.onError?.(new InvalidCacheKeyException(key));
       return undefined;

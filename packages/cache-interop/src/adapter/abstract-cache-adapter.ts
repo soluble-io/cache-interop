@@ -7,7 +7,6 @@ import {
   GetOrSetOptions,
   HasOptions,
   SetOptions,
-  TrueOrFalseOrUndefined,
 } from '../cache.interface';
 import { CacheItemInterface } from '../cache-item.interface';
 import { executeValueProviderFn, isCacheValueProviderFn } from '../utils';
@@ -32,7 +31,7 @@ export abstract class AbstractCacheAdapter<TBase = string, KBase extends CacheKe
 
   abstract get<T = TBase, K extends KBase = KBase>(key: K, options?: GetOptions<T>): Promise<CacheItemInterface<T>>;
 
-  abstract has<K extends KBase = KBase>(key: K, options?: HasOptions): Promise<TrueOrFalseOrUndefined>;
+  abstract has<K extends KBase = KBase>(key: K, options?: HasOptions): Promise<boolean | undefined>;
 
   abstract delete<K extends KBase = KBase>(key: K, options?: DeleteOptions): Promise<boolean | CacheException>;
 

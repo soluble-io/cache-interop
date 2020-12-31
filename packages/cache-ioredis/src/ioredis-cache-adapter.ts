@@ -7,7 +7,6 @@ import {
   executeValueProviderFn,
   CacheValueProviderFn,
   SetOptions,
-  TrueOrFalseOrUndefined,
   isCacheValueProviderFn,
   isNonEmptyString,
   CacheProviderException,
@@ -132,7 +131,7 @@ export class IoRedisCacheAdapter<TBase = string, KBase extends CacheKey = CacheK
     });
   };
 
-  has = async <K extends KBase = KBase>(key: K, options?: HasOptions): Promise<TrueOrFalseOrUndefined> => {
+  has = async <K extends KBase = KBase>(key: K, options?: HasOptions): Promise<boolean | undefined> => {
     if (!Guards.isValidCacheKey(key)) {
       options?.onError?.(new InvalidCacheKeyException(key));
       return undefined;
