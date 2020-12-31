@@ -1,5 +1,26 @@
 # @soluble/cache-ioredis
 
+## 0.6.0
+
+### Minor Changes
+
+- [`77a2181`](https://github.com/soluble-io/cache-interop/commit/77a2181544160a130e292780a7936be7db4bea8e) [#77](https://github.com/soluble-io/cache-interop/pull/77) Thanks [@belgattitude](https://github.com/belgattitude)! - Added isSuccess, isHit in payload
+
+* [`77a2181`](https://github.com/soluble-io/cache-interop/commit/77a2181544160a130e292780a7936be7db4bea8e) [#77](https://github.com/soluble-io/cache-interop/pull/77) Thanks [@belgattitude](https://github.com/belgattitude)! - Add onError option to has() method
+
+- [`77a2181`](https://github.com/soluble-io/cache-interop/commit/77a2181544160a130e292780a7936be7db4bea8e) [#77](https://github.com/soluble-io/cache-interop/pull/77) Thanks [@belgattitude](https://github.com/belgattitude)! - CacheItem returns {data} rather than {value} (BC)
+
+* [`77a2181`](https://github.com/soluble-io/cache-interop/commit/77a2181544160a130e292780a7936be7db4bea8e) [#77](https://github.com/soluble-io/cache-interop/pull/77) Thanks [@belgattitude](https://github.com/belgattitude)! - Export of Guards and Asserts
+
+- [`77a2181`](https://github.com/soluble-io/cache-interop/commit/77a2181544160a130e292780a7936be7db4bea8e) [#77](https://github.com/soluble-io/cache-interop/pull/77) Thanks [@belgattitude](https://github.com/belgattitude)! - Add InvalidCacheKeyException checks
+
+* [`5df5706`](https://github.com/soluble-io/cache-interop/commit/5df5706fa91cd390323450ea1aeec4aafff12224) [#77](https://github.com/soluble-io/cache-interop/pull/77) Thanks [@belgattitude](https://github.com/belgattitude)! - Fix typing exports
+
+### Patch Changes
+
+- Updated dependencies [[`77a2181`](https://github.com/soluble-io/cache-interop/commit/77a2181544160a130e292780a7936be7db4bea8e), [`77a2181`](https://github.com/soluble-io/cache-interop/commit/77a2181544160a130e292780a7936be7db4bea8e), [`77a2181`](https://github.com/soluble-io/cache-interop/commit/77a2181544160a130e292780a7936be7db4bea8e), [`77a2181`](https://github.com/soluble-io/cache-interop/commit/77a2181544160a130e292780a7936be7db4bea8e), [`77a2181`](https://github.com/soluble-io/cache-interop/commit/77a2181544160a130e292780a7936be7db4bea8e), [`5df5706`](https://github.com/soluble-io/cache-interop/commit/5df5706fa91cd390323450ea1aeec4aafff12224)]:
+  - @soluble/cache-interop@0.6.0
+
 ## 0.5.0
 
 ### Minor Changes
