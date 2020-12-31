@@ -9,6 +9,9 @@
   <a aria-label="Downloads" href="https://npm.im/@soluble/cache-interop">
     <img alt="Downloads" src="https://img.shields.io/npm/dy/@soluble/cache-interop?style=for-the-badge&labelColor=000000" />
   </a>
+  <a aria-label="Size" href="https://bundlephobia.com/result?p=@soluble/cache-interop">
+    <img alt="Size" src="https://img.shields.io/bundlephobia/minzip/@soluble/cache-interop?label=MinGZIP&style=for-the-badge&labelColor=000000" />
+  </a>
   <a aria-label="Coverage" href="https://codecov.io/gh/soluble-io/cache-interop">
     <img alt="Codecov" src="https://img.shields.io/codecov/c/github/soluble-io/cache-interop?label=Coverage&logo=codecov&style=for-the-badge&labelColor=000000" />
   </a>
@@ -28,6 +31,8 @@
     <img alt="Licence" src="https://img.shields.io/npm/l/@soluble/cache-interop?style=for-the-badge&labelColor=000000" />
   </a>
 </p>
+
+## About
 
 ## Install
 
