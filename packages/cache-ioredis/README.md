@@ -30,6 +30,10 @@
   </a>
 </p>
 
+# About | [Documentation](https://github.com/soluble-io/cache-interop/)
+
+Cache adapter for node [IoRedis](https://github.com/luin/ioredis) client.
+
 ## Install
 
 ```bash

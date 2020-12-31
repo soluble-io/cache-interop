@@ -32,10 +32,51 @@
   </a>
 </p>
 
-## About
+# About | [Documentation](https://https://github.com/soluble-io/cache-interop/)
+
+Package holding cache-interop contracts.
+You may want to look for official [adapter implementations](https://github.com/soluble-io/cache-interop/) instead.
 
 ## Install
 
 ```bash
 $ yarn add @soluble/cache-interop
+```
+
+## Interfaces
+
+### CacheInterface
+
+```typescript
+import { CacheInterface, ConnectedCacheInterface } from '@soluble/cache-interop';
+
+class MyCache implements CacheInterface, ConnectedCacheInterface {
+  //...
+}
+```
+
+## Utilities
+
+### Guards
+
+> Typescript typeguards
+
+```typescript
+import { Guards } from '@soluble/cache-interop';
+
+if (Guards.isConnectedCache(cache)) {
+  await cache.getConnection().quit();
+}
+
+Guards.isValidCacheKey(key);
+```
+
+### Asserts
+
+> Typescript assertions
+
+```typescript
+import { Asserts } from '@soluble/cache-interop';
+
+Asserts.assertValidCacheKey(key);
 ```
