@@ -6,13 +6,17 @@ export { CacheItem } from './cache-item';
 export { CacheItemFactory } from './cache-item.factory';
 
 export * from './adapter';
-export * from './exceptions';
 export * from './serializer';
 export * from './eviction';
 
 // Value provider
 
 export { executeValueProviderFn } from './utils';
+
+// Errors & Exceptions
+
+export * from './exceptions';
+export { ErrorFormatter } from './error/error-formatter';
 
 // Connection related
 
