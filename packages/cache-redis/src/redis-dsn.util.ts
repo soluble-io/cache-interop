@@ -16,7 +16,7 @@ export const getTlsOptions = (driver: string, host: string): ConnectionOptions |
  * Converts a soluble/dsn-parser dsn into Redis.Options
  * @link https://github.com/soluble-io/cache-interop/tree/main/packages/dsn-parser
  *
- * @throws Error id dsn is invalid or cannot be parsed
+ * @throws Error if dsn is invalid or cannot be parsed
  */
 export const getRedisOptionsFromDsn = (dsn: string, overrides?: ParseDsnOptions['overrides']): RedisClientOptions => {
   const parsed = parseDsn(dsn, {
