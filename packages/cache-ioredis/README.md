@@ -46,7 +46,7 @@ const cache = new IoRedisCacheAdapter({
   connection: 'redis://:pass@localhost:6379/8',
 });
 
-const { result } = await cache.getOrSet('key', asyncPromise, {
+const { data, error } = await cache.getOrSet('key', asyncPromise, {
   ttl: 30,
 });
 
