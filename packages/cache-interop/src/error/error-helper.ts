@@ -1,7 +1,12 @@
 import { ErrorFormatter } from './error-formatter';
 import { CacheInterface } from '../cache.interface';
 import { ErrorReasons } from './error.constants';
-import { CacheException, InvalidCacheKeyException, UnsupportedValueException } from '../exceptions';
+import {
+  CacheException,
+  InvalidCacheKeyException,
+  UnexpectedErrorException,
+  UnsupportedValueException,
+} from '../exceptions';
 
 export class ErrorHelper {
   private readonly formatter: ErrorFormatter;
@@ -33,6 +38,12 @@ export class ErrorHelper {
     }
     return new UnsupportedValueException({
       message: this.formatMsg(method, 'UNSUPPORTED_VALUE', `type: ${typeof v}, val: ${json}`),
+    });
+  }
+
+  getUnexpectedErrorException(method: keyof CacheInterface, previous?: Error): UnexpectedErrorException {
+    return new UnexpectedErrorException({
+      message: this.formatMsg(method, 'UNEXPECTED_ERROR', previous?.message),
     });
   }
 

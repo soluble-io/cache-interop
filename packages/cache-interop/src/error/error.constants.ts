@@ -6,6 +6,7 @@ export const errorReasons = {
   EXECUTE_ASYNC_ERROR: "Can't execute async provider",
   UNEXPECTED_REPLY: 'Unexpected response from driver',
   UNSUPPORTED_VALUE: 'Unsupported value',
+  UNEXPECTED_ERROR: 'Unexpected error',
 } as const;
 
 export type ErrorReasons = keyof typeof errorReasons;
