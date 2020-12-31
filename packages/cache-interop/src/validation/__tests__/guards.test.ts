@@ -3,6 +3,29 @@ import { CacheInterface } from '../../cache.interface';
 import { ConnectedCacheInterface } from '../../connection/connected-cache.interface';
 
 describe('Guards tests', () => {
+  describe('isNonEmptyString', () => {
+    it('should work as expected in when trim === true', () => {
+      expect(Guards.isNonEmptyString('cool')).toBeTruthy();
+      expect(Guards.isNonEmptyString(1)).toBeFalsy();
+      expect(Guards.isNonEmptyString('  ')).toBeFalsy();
+      expect(Guards.isNonEmptyString('')).toBeFalsy();
+      expect(Guards.isNonEmptyString(null)).toBeFalsy();
+      expect(Guards.isNonEmptyString({})).toBeFalsy();
+    });
+    it('should work as expected in when trim === false', () => {
+      expect(Guards.isNonEmptyString('cool ', false)).toBeTruthy();
+      expect(Guards.isNonEmptyString('  ', false)).toBeTruthy();
+    });
+  });
+
+  describe('isCacheValueProviderFn', () => {
+    it('should work as exepted', () => {
+      expect(Guards.isCacheValueProviderFn(() => {})).toStrictEqual(true);
+      expect(Guards.isCacheValueProviderFn(async () => {})).toStrictEqual(true);
+      expect(Guards.isCacheValueProviderFn(null)).toStrictEqual(false);
+      expect(Guards.isCacheValueProviderFn(new Promise(() => {}))).toStrictEqual(true);
+    });
+  });
   describe('isConnectedCacheInterface', () => {
     describe('when a CacheInterface is given', () => {
       it('should return false', () => {

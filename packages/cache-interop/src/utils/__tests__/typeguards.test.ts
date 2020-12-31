@@ -1,4 +1,4 @@
-import { isNonEmptyString, isSafeInteger } from '../typeguards';
+import { isSafeInteger } from '../typeguards';
 
 describe('Typeguards tests', () => {
   describe('isSafeInteger', () => {
@@ -15,21 +15,6 @@ describe('Typeguards tests', () => {
       expect(isSafeInteger({})).toBeFalsy();
       expect(isSafeInteger([])).toBeFalsy();
       expect(isSafeInteger(new Date())).toBeFalsy();
-    });
-  });
-
-  describe('isNonEmptyString', () => {
-    it('should work as expected in when trim === true', () => {
-      expect(isNonEmptyString('cool')).toBeTruthy();
-      expect(isNonEmptyString(1)).toBeFalsy();
-      expect(isNonEmptyString('  ')).toBeFalsy();
-      expect(isNonEmptyString('')).toBeFalsy();
-      expect(isNonEmptyString(null)).toBeFalsy();
-      expect(isNonEmptyString({})).toBeFalsy();
-    });
-    it('should work as expected in when trim === false', () => {
-      expect(isNonEmptyString('cool ', false)).toBeTruthy();
-      expect(isNonEmptyString('  ', false)).toBeTruthy();
     });
   });
 });

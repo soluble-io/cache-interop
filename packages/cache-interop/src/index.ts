@@ -8,9 +8,11 @@ export { CacheItemFactory } from './cache-item.factory';
 export * from './adapter';
 export * from './exceptions';
 export * from './serializer';
-export * from './types';
-export * from './utils';
 export * from './eviction';
+
+// Value provider
+
+export { executeValueProviderFn } from './utils';
 
 // Connection related
 

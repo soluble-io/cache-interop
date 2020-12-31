@@ -9,10 +9,11 @@ import {
   SetOptions,
 } from '../cache.interface';
 import { CacheItemInterface } from '../cache-item.interface';
-import { executeValueProviderFn, isCacheValueProviderFn } from '../utils';
+import { executeValueProviderFn } from '../utils';
 import { CacheException, CacheProviderException } from '../exceptions';
 import { getGetOrSetCacheDisabledParams } from '../utils/cache-options-utils';
 import { CacheItemFactory } from '../cache-item.factory';
+import { Guards } from '../validation/guards';
 
 const defaultGetOrSetOptions: GetOrSetOptions = {
   disableCache: {
@@ -82,7 +83,7 @@ export abstract class AbstractCacheAdapter<TBase = string, KBase extends CacheKe
 
     let v: T | CacheValueProviderFn<T>;
     let fetched = false;
-    if (isCacheValueProviderFn(value)) {
+    if (Guards.isCacheValueProviderFn(value)) {
       try {
         v = await executeValueProviderFn<T>(value);
         fetched = true;

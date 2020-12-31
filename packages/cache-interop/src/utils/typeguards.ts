@@ -26,14 +26,6 @@ export function isSyncFn<T>(fn: unknown): fn is SyncFn<T> {
   return typeof fn === 'function' && !isAsyncFn(fn);
 }
 
-export function isCacheValueProviderFn<T>(fn: unknown): fn is CacheValueProviderFn<T> {
-  return isAsyncFn(fn) || isSyncFn(fn);
-}
-
-export function isNonEmptyString(value: unknown, trim = true): value is string {
-  return typeof value === 'string' && (trim ? value.trim() : value).length > 0;
-}
-
 export function isSafeInteger(value: unknown): value is number {
   return typeof value === 'number' && Number.isSafeInteger(value);
 }

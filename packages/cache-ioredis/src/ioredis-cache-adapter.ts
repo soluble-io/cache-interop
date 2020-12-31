@@ -7,8 +7,6 @@ import {
   executeValueProviderFn,
   CacheValueProviderFn,
   SetOptions,
-  isCacheValueProviderFn,
-  isNonEmptyString,
   CacheProviderException,
   UnexpectedErrorException,
   GetOptions,
@@ -94,7 +92,7 @@ export class IoRedisCacheAdapter<TBase = string, KBase extends CacheKey = CacheK
       return false;
     }
     let v = value;
-    if (isCacheValueProviderFn(value)) {
+    if (Guards.isCacheValueProviderFn(value)) {
       try {
         v = await executeValueProviderFn<T>(value);
       } catch (e) {
@@ -108,10 +106,10 @@ export class IoRedisCacheAdapter<TBase = string, KBase extends CacheKey = CacheK
 
     return new Promise((resolve) => {
       // @todo decide what to do when value returned is not a string
-      if (!isNonEmptyString(v)) {
+      if (!Guards.isNonEmptyString(v)) {
         throw new Error('IORedisCacheAdapter currently support only string values');
       }
-      if (!isNonEmptyString(key)) {
+      if (!Guards.isNonEmptyString(key)) {
         throw new Error('IORedisCacheAdapter currently support only string keys');
       }
       const resolver = (response: unknown) => {

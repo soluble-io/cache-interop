@@ -7,7 +7,6 @@ import {
   HasOptions,
   DeleteOptions,
 } from '../cache.interface';
-import { isCacheValueProviderFn } from '../utils/typeguards';
 import { AbstractCacheAdapter } from './abstract-cache-adapter';
 import { CacheItemInterface } from '../cache-item.interface';
 import { executeValueProviderFn } from '../utils/value-provider';
@@ -84,7 +83,7 @@ export class MapCacheAdapter<TBase = string, KBase extends CacheKey = CacheKey>
       return false;
     }
     let v = value;
-    if (isCacheValueProviderFn(value)) {
+    if (Guards.isCacheValueProviderFn(value)) {
       try {
         v = await executeValueProviderFn<T>(value);
       } catch (e) {
