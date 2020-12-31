@@ -150,9 +150,7 @@ export class RedisCacheAdapter<TBase = string, KBase extends CacheKey = CacheKey
 
   has = async <K extends KBase = KBase>(key: K, options?: HasOptions): Promise<TrueOrFalseOrUndefined> => {
     if (!Guards.isValidCacheKey(key)) {
-      if (options?.onError) {
-        options.onError(new InvalidCacheKeyException(key));
-      }
+      options?.onError?.(new InvalidCacheKeyException(key));
       return undefined;
     }
     const { disableCache = false } = options ?? {};
