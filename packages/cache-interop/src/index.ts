@@ -1,7 +1,7 @@
 export * from './cache.interface';
 
 // Cache Items
-export type { CacheItemInterface } from './cache-item.interface';
+export * from './cache-item.interface';
 export { CacheItem } from './cache-item';
 export { CacheItemFactory } from './cache-item.factory';
 
@@ -14,8 +14,8 @@ export * from './eviction';
 
 // Connection related
 
-export type { ConnectedCacheInterface } from './connection/connected-cache.interface';
-export type { ConnectionInterface } from './connection/connection.interface';
+export * from './connection/connected-cache.interface';
+export * from './connection/connection.interface';
 
 // Typeguards and Assertions related
 
