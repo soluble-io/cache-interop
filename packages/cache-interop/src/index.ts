@@ -12,13 +12,13 @@ export * from './types';
 export * from './utils';
 export * from './eviction';
 
-// Connection
+// Connection related
 
+export type { ConnectedCacheInterface } from './connection/connected-cache.interface';
 export type { ConnectionInterface } from './connection/connection.interface';
-export type { ConnectedAdapterInterface } from './connection/connected-adapter.interface';
-export { isConnectedAdapter } from './connection/is-connected-adapter';
 export { NullConnection } from './connection/null-connection';
 
-// Typeguards and Assertions
+// Typeguards and Assertions related
+
 export { Guards } from './validation/guards';
 export { Asserts } from './validation/asserts';

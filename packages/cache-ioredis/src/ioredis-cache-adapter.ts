@@ -15,7 +15,7 @@ import {
   GetOptions,
   HasOptions,
   DeleteOptions,
-  ConnectedAdapterInterface,
+  ConnectedCacheInterface,
   ConnectionInterface,
   CacheItemFactory,
   Guards,
@@ -32,7 +32,7 @@ type Options = {
 
 export class IoRedisCacheAdapter<TBase = string, KBase extends CacheKey = CacheKey>
   extends AbstractCacheAdapter<TBase, KBase>
-  implements CacheInterface<TBase, KBase>, ConnectedAdapterInterface<IORedis.Redis> {
+  implements CacheInterface<TBase, KBase>, ConnectedCacheInterface<IORedis.Redis> {
   private readonly conn: IoredisConnection;
   private readonly redis: IORedis.Redis;
 

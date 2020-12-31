@@ -16,7 +16,7 @@ import {
   HasOptions,
   DeleteOptions,
   ConnectionInterface,
-  ConnectedAdapterInterface,
+  ConnectedCacheInterface,
   CacheItemFactory,
   Guards,
   InvalidCacheKeyException,
@@ -39,7 +39,7 @@ type Options = {
 
 export class RedisCacheAdapter<TBase = string, KBase extends CacheKey = CacheKey>
   extends AbstractCacheAdapter<TBase, KBase>
-  implements CacheInterface<TBase, KBase>, ConnectedAdapterInterface<RedisClient> {
+  implements CacheInterface<TBase, KBase>, ConnectedCacheInterface<RedisClient> {
   private readonly redis: RedisClient;
   private conn: RedisConnection;
 

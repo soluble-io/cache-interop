@@ -1,5 +1,5 @@
 import { ConnectionInterface } from './connection.interface';
 
-export interface ConnectedAdapterInterface<T> {
+export interface ConnectedCacheInterface<T> {
   getConnection(): ConnectionInterface<T>;
 }

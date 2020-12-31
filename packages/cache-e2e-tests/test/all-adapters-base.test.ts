@@ -2,7 +2,7 @@ import {
   CacheException,
   CacheInterface,
   CacheProviderException,
-  isConnectedAdapter,
+  Guards,
   MapCacheAdapter,
 } from '@soluble/cache-interop';
 import { IoRedisCacheAdapter } from '@soluble/cache-ioredis';
@@ -60,7 +60,7 @@ describe.each(adapters)('Adapter: %s', (name, adapterFactory) => {
     cache = await adapterFactory();
   });
   afterAll(async () => {
-    if (isConnectedAdapter(cache)) {
+    if (Guards.isConnectedCache(cache)) {
       await cache.getConnection().quit();
     }
   });
