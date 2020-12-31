@@ -69,6 +69,10 @@ if (Guards.isConnectedCache(cache)) {
 }
 
 Guards.isValidCacheKey(key);
+
+Guards.isCacheValueProviderFn(async () => {});
+
+Guards.isNonEmptyString('Hi!');
 ```
 
 ### Asserts
