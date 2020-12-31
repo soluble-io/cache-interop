@@ -1,4 +1,5 @@
 export const errorReasons = {
+  INVALID_KEY: 'Invalid key argument',
   WRITE_ERROR: "Can't write to the cache",
   READ_ERROR: "Can't read from the cache",
   COMMAND_ERROR: "Can't execute operation",

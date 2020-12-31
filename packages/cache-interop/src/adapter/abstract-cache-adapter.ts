@@ -14,6 +14,7 @@ import { CacheException, CacheProviderException } from '../exceptions';
 import { getGetOrSetCacheDisabledParams } from '../utils/cache-options-utils';
 import { CacheItemFactory } from '../cache-item.factory';
 import { Guards } from '../validation/guards';
+import { ErrorHelper } from '../error/error-helper';
 
 const defaultGetOrSetOptions: GetOrSetOptions = {
   disableCache: {
@@ -24,6 +25,17 @@ const defaultGetOrSetOptions: GetOrSetOptions = {
 
 export abstract class AbstractCacheAdapter<TBase = string, KBase extends CacheKey = CacheKey>
   implements CacheInterface<TBase, KBase> {
+  protected _errorHelper: ErrorHelper | undefined;
+
+  abstract adapterName: string;
+
+  get errorHelper(): ErrorHelper {
+    if (!this._errorHelper) {
+      this._errorHelper = new ErrorHelper(this.adapterName);
+    }
+    return this._errorHelper;
+  }
+
   abstract set<T = TBase, K extends KBase = KBase>(
     key: K,
     value: T | CacheValueProviderFn<T>,

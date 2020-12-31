@@ -7,7 +7,6 @@ import {
   executeValueProviderFn,
   CacheValueProviderFn,
   SetOptions,
-  CacheProviderException,
   GetOptions,
   HasOptions,
   DeleteOptions,
@@ -15,9 +14,7 @@ import {
   ConnectionInterface,
   CacheItemFactory,
   Guards,
-  ErrorFormatter,
   InvalidCacheKeyException,
-  UnsupportedValueException,
 } from '@soluble/cache-interop';
 import IORedis from 'ioredis';
 import { IoredisConnection } from './ioredis-connection';
@@ -33,22 +30,21 @@ export class IoRedisCacheAdapter<TBase = string, KBase extends CacheKey = CacheK
   implements CacheInterface<TBase, KBase>, ConnectedCacheInterface<IORedis.Redis> {
   private readonly conn: IoredisConnection;
   private readonly redis: IORedis.Redis;
-  private getErrMsg: ErrorFormatter['getMsg'];
-
+  readonly adapterName: string;
   /**
    * @throws Error
    */
   constructor(options: Options) {
     super();
     const { connection } = options;
+    this.adapterName = IoRedisCacheAdapter.prototype.constructor.name;
     this.conn = connection instanceof IoredisConnection ? connection : createIoRedisConnection(connection);
     this.redis = this.conn.getNativeConnection();
-    this.getErrMsg = new ErrorFormatter(IoRedisCacheAdapter.prototype.constructor.name).getMsg;
   }
 
   get = async <T = TBase, K extends KBase = KBase>(key: K, options?: GetOptions<T>): Promise<CacheItemInterface<T>> => {
     if (!Guards.isValidCacheKey(key)) {
-      return CacheItemFactory.fromInvalidCacheKey(key);
+      return CacheItemFactory.fromInvalidCacheKey<K>(key);
     }
 
     const { defaultValue = null, disableCache = false } = options ?? {};
@@ -64,10 +60,7 @@ export class IoRedisCacheAdapter<TBase = string, KBase extends CacheKey = CacheK
     } catch (e) {
       return CacheItemFactory.fromErr<K>({
         key,
-        error: new CacheException({
-          previousError: e,
-          message: this.getErrMsg('get', 'READ_ERROR', e?.message),
-        }),
+        error: this.errorHelper.getCacheException('get', 'READ_ERROR', e),
       });
     }
     if (data === null) {
@@ -82,13 +75,14 @@ export class IoRedisCacheAdapter<TBase = string, KBase extends CacheKey = CacheK
       isHit: true,
     });
   };
+
   set = async <T = TBase, K extends KBase = KBase>(
     key: K,
     value: T | CacheValueProviderFn<T>,
     options?: SetOptions
   ): Promise<boolean | CacheException> => {
     if (!Guards.isValidCacheKey(key)) {
-      return new InvalidCacheKeyException({ key });
+      return this.errorHelper.getInvalidCacheKeyException('set', key);
     }
     const { ttl = 0, disableCache = false } = options ?? {};
     if (disableCache) {
@@ -99,31 +93,26 @@ export class IoRedisCacheAdapter<TBase = string, KBase extends CacheKey = CacheK
       try {
         v = await executeValueProviderFn<T>(value);
       } catch (e) {
-        return new CacheProviderException({
-          previousError: e,
-          message: this.getErrMsg('set', 'EXECUTE_ASYNC_ERROR', e?.message),
-        });
+        return this.errorHelper.getCacheProviderException('set', e);
       }
     }
     if (v === null) return true;
 
     if (!Guards.isValidRedisValue(v)) {
-      return new UnsupportedValueException({ message: this.getErrMsg('set', 'UNSUPPORTED_VALUE', typeof v) });
+      return this.errorHelper.getUnsupportedValueException('set', v);
     }
 
     const setOp = ttl > 0 ? this.redis.setex(key, ttl, v) : this.redis.set(key, v);
     return setOp
       .then((reply) => reply === 'OK')
       .catch((e) => {
-        return new CacheException({
-          message: this.getErrMsg('set', 'WRITE_ERROR', e?.message),
-        });
+        return this.errorHelper.getCacheException('set', 'WRITE_ERROR', e);
       });
   };
 
   has = async <K extends KBase = KBase>(key: K, options?: HasOptions): Promise<boolean | undefined> => {
     if (!Guards.isValidCacheKey(key)) {
-      options?.onError?.(new InvalidCacheKeyException({ key }));
+      options?.onError?.(this.errorHelper.getInvalidCacheKeyException('has', key));
       return undefined;
     }
     const { disableCache = false } = options ?? {};
@@ -134,9 +123,7 @@ export class IoRedisCacheAdapter<TBase = string, KBase extends CacheKey = CacheK
       .exists(key)
       .then((count) => count === 1)
       .catch((e) => {
-        options?.onError?.(
-          new InvalidCacheKeyException({ key, message: this.getErrMsg('has', 'COMMAND_ERROR', e?.message) })
-        );
+        options?.onError?.(this.errorHelper.getCacheException('has', 'COMMAND_ERROR', e));
         return undefined;
       });
   };
@@ -153,7 +140,7 @@ export class IoRedisCacheAdapter<TBase = string, KBase extends CacheKey = CacheK
       .del(key)
       .then((count) => count === 1)
       .catch((e) => {
-        return new InvalidCacheKeyException({ key, message: this.getErrMsg('delete', 'WRITE_ERROR', e?.message) });
+        return this.errorHelper.getCacheException('delete', 'WRITE_ERROR', e);
       });
   };
 
@@ -162,10 +149,7 @@ export class IoRedisCacheAdapter<TBase = string, KBase extends CacheKey = CacheK
       .flushdb()
       .then((reply): true => true)
       .catch((e) => {
-        return new CacheException({
-          message: this.getErrMsg('clear', 'COMMAND_ERROR', e?.message),
-          previousError: e,
-        });
+        return this.errorHelper.getCacheException('clear', 'COMMAND_ERROR', e);
       });
   };
 

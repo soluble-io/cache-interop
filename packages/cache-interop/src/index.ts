@@ -17,6 +17,7 @@ export { executeValueProviderFn } from './utils';
 
 export * from './exceptions';
 export { ErrorFormatter } from './error/error-formatter';
+export { ErrorHelper } from './error/error-helper';
 
 // Connection related
 
