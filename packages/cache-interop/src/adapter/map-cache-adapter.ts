@@ -106,6 +106,7 @@ export class MapCacheAdapter<TBase = string, KBase extends CacheKey = CacheKey>
       if (options?.onError) {
         options.onError(new InvalidCacheKeyException(key));
       }
+      return undefined;
     }
     const { disableCache = false } = options ?? {};
     if (disableCache) {

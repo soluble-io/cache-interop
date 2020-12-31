@@ -137,6 +137,7 @@ export class IoRedisCacheAdapter<TBase = string, KBase extends CacheKey = CacheK
       if (options?.onError) {
         options.onError(new InvalidCacheKeyException(key));
       }
+      return undefined;
     }
     const { disableCache = false } = options ?? {};
     if (disableCache) {
