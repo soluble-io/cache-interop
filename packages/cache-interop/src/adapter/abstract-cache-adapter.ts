@@ -77,7 +77,7 @@ export abstract class AbstractCacheAdapter<TBase = string, KBase extends CacheKe
     const { disableCache = false, ...setOptions } = { ...defaultGetOrSetOptions, ...(options ?? {}) };
     const { read: disableRead, write: disableWrite } = getGetOrSetCacheDisabledParams(disableCache);
     const item = await this.get<T, K>(key, { disableCache: disableRead });
-    if (item.data !== null) {
+    if (item.data !== null || item.error instanceof CacheException) {
       return item;
     }
 
