@@ -16,7 +16,6 @@ export * from './eviction';
 
 export type { ConnectedCacheInterface } from './connection/connected-cache.interface';
 export type { ConnectionInterface } from './connection/connection.interface';
-export { NullConnection } from './connection/null-connection';
 
 // Typeguards and Assertions related
 
