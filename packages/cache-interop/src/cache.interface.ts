@@ -55,8 +55,6 @@ export interface CacheInterface<TBase = string, KBase = CacheKey> {
    * @param options - An object holding GetOptions
    *
    * @returns A promise returning a CacheItemInterface, or defaultValue in case of cache miss.
-   * @throws InvalidArgumentException
-   *         MUST be thrown if the $key string is not a legal value.
    */
   get<T = TBase, K extends KBase = KBase>(key: K, options?: GetOptions<T>): Promise<CacheItemInterface<T>>;
 
@@ -66,9 +64,6 @@ export interface CacheInterface<TBase = string, KBase = CacheKey> {
    * @param key - The key of the item to store.
    * @param value - The value of the item to store or a function returning the value. Must be serializable.
    * @param options - An object holding SetOptions
-   *
-   * @throws InvalidArgumentException
-   *         MUST be thrown if the $key string is not a legal value.
    */
   set<T = TBase, K extends KBase = KBase>(
     key: K,
@@ -83,9 +78,6 @@ export interface CacheInterface<TBase = string, KBase = CacheKey> {
    *
    * @return True if the item was successfully removed, false if it did not exists.
    *         CacheException if there was an error.
-   *
-   * @throws InvalidArgumentException
-   *         MUST be thrown if the $key string is not a legal value.
    */
   delete<K extends KBase = KBase>(key: K, options?: DeleteOptions): Promise<boolean | CacheException>;
 
@@ -102,9 +94,6 @@ export interface CacheInterface<TBase = string, KBase = CacheKey> {
    * @return True if the item exists in the cache and was removed, false otherwise.
    *         Undefined is used to determine if the operation was successful.
    *         If cacheDisabled option is set to true, it will always return false.
-   *
-   * @throws InvalidArgumentException
-   *         MUST be thrown if the $key string is not a legal value.
    */
   has<K extends KBase = KBase>(key: K, options?: HasOptions): Promise<TrueOrFalseOrUndefined>;
 
