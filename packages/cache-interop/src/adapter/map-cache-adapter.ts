@@ -76,7 +76,7 @@ export class MapCacheAdapter<TBase = string, KBase extends CacheKey = CacheKey>
     options?: SetOptions
   ): Promise<boolean | CacheException> => {
     if (!Guards.isValidCacheKey(key)) {
-      return new InvalidCacheKeyException(key);
+      return new InvalidCacheKeyException({ key });
     }
     const { disableCache = false, ttl = 0 } = options ?? {};
     if (disableCache) {
@@ -101,7 +101,7 @@ export class MapCacheAdapter<TBase = string, KBase extends CacheKey = CacheKey>
 
   has = async <K extends KBase = KBase>(key: K, options?: HasOptions): Promise<boolean | undefined> => {
     if (!Guards.isValidCacheKey(key)) {
-      options?.onError?.(new InvalidCacheKeyException(key));
+      options?.onError?.(new InvalidCacheKeyException({ key }));
       return undefined;
     }
     const { disableCache = false } = options ?? {};
@@ -117,7 +117,7 @@ export class MapCacheAdapter<TBase = string, KBase extends CacheKey = CacheKey>
 
   delete = async <K extends KBase = KBase>(key: K, options?: DeleteOptions): Promise<boolean | CacheException> => {
     if (!Guards.isValidCacheKey(key)) {
-      return new InvalidCacheKeyException(key);
+      return new InvalidCacheKeyException({ key });
     }
     const { disableCache = false } = options ?? {};
     if (disableCache) {
