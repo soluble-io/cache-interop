@@ -3,6 +3,7 @@ import {
   CacheInterface,
   CacheProviderException,
   Guards,
+  InvalidCacheKeyException,
   MapCacheAdapter,
 } from '@soluble/cache-interop';
 import { IoRedisCacheAdapter } from '@soluble/cache-ioredis';
@@ -613,6 +614,34 @@ describe.each(adapters)('Adapter: %s', (name, adapterFactory) => {
           expect(fct).toHaveBeenCalledTimes(1);
           expect((await cache.get('k')).data).toStrictEqual('initial_value');
         });
+      });
+    });
+  });
+
+  /**
+   * ##############################################################
+   * # Check for invalid cache key
+   * ##############################################################
+   */
+  describe('InvalidCacheKeys', () => {
+    const key = ({ errKey: true } as unknown) as string;
+    describe('For set(), get() and delete()', () => {
+      it('should return InvalidCacheKeyException', async () => {
+        await expect(cache.delete(key)).resolves.toBeInstanceOf(InvalidCacheKeyException);
+        await expect(cache.set(key, 'cool')).resolves.toBeInstanceOf(InvalidCacheKeyException);
+        await expect(cache.delete(key)).resolves.toBeInstanceOf(InvalidCacheKeyException);
+      });
+    });
+    describe('For has() method', () => {
+      it('should return undefined', async () => {
+        await expect(cache.has(key)).resolves.toStrictEqual(undefined);
+      });
+      it('should call onError', async () => {
+        const fn = jest.fn();
+        cache.has(key, {
+          onError: fn,
+        });
+        expect(fn).toHaveBeenCalledTimes(1);
       });
     });
   });
