@@ -130,7 +130,7 @@ export class IoRedisCacheAdapter<TBase = string, KBase extends CacheKey = CacheK
 
   delete = async <K extends KBase = KBase>(key: K, options?: DeleteOptions): Promise<boolean | CacheException> => {
     if (!Guards.isValidCacheKey(key)) {
-      return new InvalidCacheKeyException({ key });
+      return this.errorHelper.getInvalidCacheKeyException('set', key);
     }
     const { disableCache = false } = options ?? {};
     if (disableCache) {
