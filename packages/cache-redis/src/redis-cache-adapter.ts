@@ -26,6 +26,7 @@ import {
 } from 'redis';
 import { RedisConnection } from './redis-connection';
 import { createRedisConnection } from './redis-connection.factory';
+import { promisify } from 'util';
 
 type Options = {
   /** Existing connection, IoRedis options or a valid dsn */
@@ -54,7 +55,7 @@ export class RedisCacheAdapter<TBase = string, KBase extends CacheKey = CacheKey
     if (!Guards.isValidCacheKey(key)) {
       return CacheItemFactory.fromInvalidCacheKey(key);
     }
-    const { disableCache = false, defaultValue = null } = options ?? {};
+    const { defaultValue = null, disableCache = false } = options ?? {};
     if (disableCache) {
       return CacheItemFactory.fromCacheMiss<T, K>({
         key,
@@ -95,9 +96,9 @@ export class RedisCacheAdapter<TBase = string, KBase extends CacheKey = CacheKey
     options?: SetOptions
   ): Promise<boolean | CacheException> => {
     if (!Guards.isValidCacheKey(key)) {
-      return new InvalidCacheKeyException({ key });
+      return this.errorHelper.getInvalidCacheKeyException('set', key);
     }
-    const { disableCache = false, ttl = 0 } = options ?? {};
+    const { ttl = 0, disableCache = false } = options ?? {};
     if (disableCache) {
       return false;
     }
@@ -106,92 +107,67 @@ export class RedisCacheAdapter<TBase = string, KBase extends CacheKey = CacheKey
       try {
         v = await executeValueProviderFn<T>(value);
       } catch (e) {
-        this.errorHelper.getCacheException('set', 'EXECUTE_ASYNC_ERROR', e);
+        return this.errorHelper.getCacheProviderException('set', e);
       }
     }
     if (v === null) return true;
 
-    return new Promise((resolve) => {
-      // @todo decide what to do when value returned is not a string
-      if (!Guards.isNonEmptyString(v)) {
-        throw new Error('IORedisCacheAdapter currently support only string values');
-      }
-      if (!Guards.isNonEmptyString(key)) {
-        throw new Error('IORedisCacheAdapter currently support only string keys');
-      }
-      const resolver = (err: RedisError | null, reply: unknown) => {
-        if (err !== null) {
-          resolve(
-            new CacheException({
-              message: '[RedisCacheAdapter.set()] Cannot write to cache',
-              previousError: err,
-            })
-          );
-        }
-        resolve(true);
-      };
-      if (ttl > 0) {
-        this.redis.setex(key, ttl, v, resolver);
-      } else {
-        this.redis.set(key, v, resolver);
-      }
-    });
+    if (!Guards.isValidRedisValue(v)) {
+      return this.errorHelper.getUnsupportedValueException('set', v);
+    }
+
+    const setAsync = promisify(this.redis.set).bind(this.redis);
+    const setExAsync = promisify(this.redis.setex).bind(this.redis);
+
+    const setOp = ttl > 0 ? setExAsync(key, ttl, v) : setAsync(key, v);
+    return setOp
+      .then((reply) => reply === 'OK')
+      .catch((e) => {
+        return this.errorHelper.getCacheException('set', 'WRITE_ERROR', e);
+      });
   };
 
   has = async <K extends KBase = KBase>(key: K, options?: HasOptions): Promise<boolean | undefined> => {
     if (!Guards.isValidCacheKey(key)) {
-      options?.onError?.(new InvalidCacheKeyException({ key }));
+      options?.onError?.(this.errorHelper.getInvalidCacheKeyException('has', key));
       return undefined;
     }
     const { disableCache = false } = options ?? {};
     if (disableCache) {
       return false;
     }
-    return new Promise((resolve) =>
-      this.redis.exists(key, (err: RedisError | null, count) => {
-        if (err !== null) {
-          // @todo see how error can be logged or returned
-          resolve(undefined);
-        }
-        resolve(count === 1);
-      })
-    );
+    const existsAsync = promisify(this.redis.exists).bind(this.redis) as (k: string) => Promise<number>;
+    return existsAsync(key)
+      .then((count) => count === 1)
+      .catch((e) => {
+        options?.onError?.(this.errorHelper.getCacheException('has', 'COMMAND_ERROR', e));
+        return undefined;
+      });
   };
 
   delete = async <K extends KBase = KBase>(key: K, options?: DeleteOptions): Promise<boolean | CacheException> => {
     if (!Guards.isValidCacheKey(key)) {
-      return new InvalidCacheKeyException({ key });
+      return this.errorHelper.getInvalidCacheKeyException('set', key);
     }
     const { disableCache = false } = options ?? {};
     if (disableCache) {
       return false;
     }
-
-    return new Promise((resolve) => {
-      this.redis.del(key, (cbError, cbCount) => {
-        if (cbError !== null) {
-          resolve(this.errorHelper.getCacheException('delete', 'WRITE_ERROR', cbError));
-        } else {
-          resolve(cbCount === 1);
-        }
+    const asyncDel = promisify(this.redis.del).bind(this.redis) as (k: string) => Promise<number>;
+    return asyncDel(key)
+      .then((count) => count === 1)
+      .catch((e) => {
+        return this.errorHelper.getCacheException('delete', 'WRITE_ERROR', e);
       });
-    });
   };
 
   clear = async (): Promise<true | CacheException> => {
-    return new Promise((resolve) => {
-      let response: true | CacheException | null = null;
-      this.redis.flushdb((err, res) => {
-        if (err !== null) {
-          response = this.errorHelper.getCacheException('clear', 'WRITE_ERROR', err);
-        } else if (res !== 'OK') {
-          response = this.errorHelper.getUnexpectedErrorException('clear');
-        } else {
-          response = true;
-        }
-        resolve(response ?? this.errorHelper.getUnexpectedErrorException('clear'));
+    const asyncFlushDb = promisify(this.redis.flushdb).bind(this.redis);
+    return asyncFlushDb()
+      .then((reply): true => true)
+      .catch((e) => {
+        return this.errorHelper.getCacheException('clear', 'COMMAND_ERROR', e);
       });
-    });
   };
 
   getConnection(): ConnectionInterface<RedisClient> {
