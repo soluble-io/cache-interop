@@ -5,8 +5,10 @@ import { CacheException } from '../exceptions';
 
 type CacheOrConnectedCache = CacheInterface | ConnectedCacheInterface<unknown>;
 
-// @todo find a way string | Buffer | number | any[]
-type ValidRedisValue = string | number;
+// @todo find a way to get the best support
+//  - [ioredis] accepts: string | number | Buffer | number | any[]
+//  - [node-redis] accepts: string
+type ValidRedisValue = string;
 
 export class Guards {
   static isValidCacheKey<K extends CacheKey = CacheKey>(key: unknown): key is K {
