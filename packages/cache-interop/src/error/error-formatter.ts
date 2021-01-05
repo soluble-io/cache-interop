@@ -1,12 +1,15 @@
 import { CacheInterface } from '../cache.interface';
 import { ErrorReasons, errorReasons } from './error.constants';
 import { Guards } from '../validation/guards';
-type Method = keyof CacheInterface;
-type MethodWithKey = [method: Method, key: string];
+
+export type Method = keyof CacheInterface;
+export type MethodWithKey = [method: Method, key: string];
+
+export type CallerMethod = Method | MethodWithKey;
 
 export class ErrorFormatter {
   constructor(public readonly adapterName: string, private readonly limitDetail = 40) {}
-  getMsg = (method: Method | MethodWithKey, reason: ErrorReasons, detail?: string | null, msg?: string): string => {
+  getMsg = (method: CallerMethod, reason: ErrorReasons, detail?: string | null, msg?: string): string => {
     const message = msg || errorReasons[reason];
     const extra = Guards.isNonEmptyString(detail) ? `(${this.truncate(detail)})` : '';
     const [m, k = ''] = typeof method === 'string' ? [method] : method;
