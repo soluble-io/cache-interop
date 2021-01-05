@@ -5,4 +5,4 @@
 '@soluble/cache-redis': minor
 ---
 
-Add support for uniform error messages
+Uniform error messages
