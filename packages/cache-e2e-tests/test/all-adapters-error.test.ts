@@ -2,6 +2,7 @@ import { CacheException, CacheInterface, ConnectedCacheInterface, ErrorFormatter
 import { IoRedisCacheAdapter } from '@soluble/cache-ioredis';
 import { RedisCacheAdapter } from '@soluble/cache-redis';
 import IORedis from 'ioredis';
+import { createClient } from 'redis';
 
 type ConnectableCache = CacheInterface & ConnectedCacheInterface<unknown>;
 
@@ -18,16 +19,21 @@ const adapters = [
       });
     },
   ],
-  /**
   [
-    'RedisCacheAdapter/Redis5',
-    async (dsn: string) => {
+    'RedisCacheAdapter',
+    async (port: number) => {
       return new RedisCacheAdapter({
-        connection: dsn,
+        connection: createClient({
+          host: 'localhost',
+          port: port,
+          max_attempts: 1,
+          connect_timeout: 10,
+          disable_resubscribing: true,
+          no_ready_check: true,
+        }),
       });
     },
   ],
-   */
 ] as [name: string, factory: (port: number) => Promise<ConnectableCache>][];
 
 const invalidPortForTests = 65440;
@@ -35,13 +41,21 @@ const invalidPortForTests = 65440;
 describe.each(adapters)('Adapter: %s', (name, adapterFactory) => {
   let cache: ConnectableCache;
   beforeAll(async () => {
-    cache = await adapterFactory(invalidPortForTests);
+    try {
+      cache = await adapterFactory(invalidPortForTests);
+    } catch (e) {
+      console.log('Cannot connect anyway !!', cache);
+    }
   });
   afterAll(async () => {
-    await cache.getConnection().quit();
+    try {
+      await cache.getConnection().quit();
+    } catch (e) {
+      console.warn("Can't close connection");
+    }
   });
 
-  describe('when cache connection is invalid', () => {
+  describe('when connection fails', () => {
     const errFmt = new ErrorFormatter(name);
     describe('Adapter.get()', () => {
       it('should return error with proper message', async () => {
