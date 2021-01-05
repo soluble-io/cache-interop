@@ -12,12 +12,19 @@ describe('ErrorFormatter', () => {
       const fmt = new ErrorFormatter('RedisAdapter');
       expect(fmt.getMsg('get', 'READ_ERROR')).toBe("[RedisAdapter.get()] READ_ERROR: Can't read from the cache");
     });
-    it('should allow detail', () => {
+    it('should accept a detail parameter', () => {
       const fmt = new ErrorFormatter('Adapter');
       expect(fmt.getMsg('get', 'READ_ERROR', 'cause...')).toBe(
         "[Adapter.get()] READ_ERROR: Can't read from the cache (cause...)"
       );
     });
+    it('should add the key in method if provided', () => {
+      const fmt = new ErrorFormatter('Adapter');
+      expect(fmt.getMsg(['get', 'key'], 'READ_ERROR', 'cause...')).toBe(
+        "[Adapter.get(key)] READ_ERROR: Can't read from the cache (cause...)"
+      );
+    });
+
     it('should allow replacing message', () => {
       const fmt = new ErrorFormatter('Adapter');
       expect(fmt.getMsg('get', 'READ_ERROR', null, 'Hello')).toBe('[Adapter.get()] READ_ERROR: Hello');
