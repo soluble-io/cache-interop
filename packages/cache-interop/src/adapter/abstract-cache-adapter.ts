@@ -104,7 +104,7 @@ export abstract class AbstractCacheAdapter<TBase = string, KBase extends CacheKe
           key: key,
           error: new CacheProviderException({
             message: 'Could not execute async function provider',
-            previousError: e,
+            previous: e,
           }),
         });
       }

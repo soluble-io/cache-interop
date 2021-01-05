@@ -9,7 +9,7 @@ export class InvalidCacheKeyException extends InvalidArgumentException {
   static readonly defaultMessage = 'InvalidArgument for cacheKey';
   private safeKey: string;
   constructor(props: Props) {
-    const { key, message, previousError } = props;
+    const { key, message, previous } = props;
     let safeKey: string;
     try {
       safeKey = JSON.stringify(key);
@@ -17,7 +17,7 @@ export class InvalidCacheKeyException extends InvalidArgumentException {
       safeKey = 'unknown';
     }
     const msg = message ? message : `${InvalidCacheKeyException.defaultMessage} (${safeKey})`;
-    super({ message: msg, previousError });
+    super({ message: msg, previous });
     this.safeKey = safeKey;
     Object.setPrototypeOf(this, InvalidCacheKeyException.prototype);
     this.name = InvalidCacheKeyException.prototype.constructor.name;

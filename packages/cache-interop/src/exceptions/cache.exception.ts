@@ -1,34 +1,34 @@
 export type CacheExceptionProps = {
   message?: string;
-  previousError?: Error | null;
+  previous?: Error | null;
 };
 
 export class CacheException extends Error {
   public readonly props: CacheExceptionProps;
   public readonly stackTrace: string | null;
-  private _previousError!: Error | null;
+  private _previous!: Error | null;
 
-  get previousError(): Error | null {
-    return this._previousError ?? null;
+  get previous(): Error | null {
+    return this._previous ?? null;
   }
 
-  set previousError(previousError: Error | null) {
-    this._previousError = previousError;
-    if (previousError !== null) {
+  set previous(previous: Error | null) {
+    this._previous = previous;
+    if (previous !== null) {
       this.message = `${this.message}, innerException: ${
-        previousError.message.length > 0 ? previousError.message : previousError.name
+        previous.message.length > 0 ? previous.message : previous.name
       }`.trim();
     }
   }
 
   constructor(props: CacheExceptionProps) {
-    const { message, previousError = null } = props;
+    const { message, previous = null } = props;
     super(message);
     this.props = props;
     Object.setPrototypeOf(this, CacheException.prototype);
     this.name = CacheException.prototype.constructor.name;
-    this.stackTrace = previousError?.stack ?? null;
-    this.previousError = previousError ?? null;
+    this.stackTrace = previous?.stack ?? null;
+    this.previous = previous ?? null;
   }
 
   getName(): string {

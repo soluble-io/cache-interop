@@ -26,7 +26,7 @@ export class ErrorHelper {
   getCacheProviderException(method: keyof CacheInterface, previous?: Error): CacheProviderException {
     return new CacheProviderException({
       message: this.formatMsg(method, 'EXECUTE_ASYNC_ERROR', previous?.message),
-      previousError: previous,
+      previous: previous,
     });
   }
 
@@ -49,6 +49,6 @@ export class ErrorHelper {
   }
 
   getCacheException(method: keyof CacheInterface, reason: ErrorReasons, previous?: Error): CacheException {
-    return new CacheException({ message: this.formatMsg(method, reason, previous?.message), previousError: previous });
+    return new CacheException({ message: this.formatMsg(method, reason, previous?.message), previous: previous });
   }
 }

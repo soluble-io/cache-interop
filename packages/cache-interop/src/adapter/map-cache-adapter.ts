@@ -91,7 +91,7 @@ export class MapCacheAdapter<TBase = string, KBase extends CacheKey = CacheKey>
       } catch (e) {
         // @todo decide what do do, a cache miss ?
         return new CacheProviderException({
-          previousError: e,
+          previous: e,
           message: "Can't fetch the provided function",
         });
       }
