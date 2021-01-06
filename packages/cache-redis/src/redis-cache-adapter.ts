@@ -63,32 +63,40 @@ export class RedisCacheAdapter<TBase = string, KBase extends CacheKey = CacheKey
         defaultValue,
       });
     }
-    return new Promise((resolve) => {
-      this.redis.get(key, (err, data) => {
-        if (err !== null) {
-          resolve(
-            CacheItemFactory.fromErr<K>({
-              key,
-              error: this.errorHelper.getCacheException('get', 'READ_ERROR', err),
-            })
-          );
-        } else if (data === null) {
-          resolve(
-            CacheItemFactory.fromCacheMiss<T, K>({
-              key,
-              defaultValue,
-            })
-          );
-        } else {
-          resolve(
-            CacheItemFactory.fromOk<T, K>({
-              key,
-              data: (data as unknown) as T,
-              isHit: true,
-            })
-          );
-        }
+    let data: T;
+    try {
+      data = ((await this.asyncRedis.get(key)) as unknown) as T;
+      /*
+      const pm = async () => {
+        return new Promise((resolve, reject) => {
+          this.redis.get(key, (err, reply) => {
+            if (err) {
+              reject('Ta mère');
+            }
+            resolve(reply);
+          });
+        });
+      };
+
+      data = await pm();
+      *
+       */
+    } catch (e) {
+      return CacheItemFactory.fromErr<K>({
+        key,
+        error: this.errorHelper.getCacheException('get', 'READ_ERROR', e),
       });
+    }
+    if (data === null) {
+      return CacheItemFactory.fromCacheMiss<T, K>({
+        key,
+        defaultValue,
+      });
+    }
+    return CacheItemFactory.fromOk<T, K>({
+      key,
+      data,
+      isHit: true,
     });
   };
   set = async <T = TBase, K extends KBase = KBase>(
@@ -97,7 +105,7 @@ export class RedisCacheAdapter<TBase = string, KBase extends CacheKey = CacheKey
     options?: SetOptions
   ): Promise<boolean | CacheException> => {
     if (!Guards.isValidCacheKey(key)) {
-      return this.errorHelper.getInvalidCacheKeyException('set', key);
+      return this.errorHelper.getInvalidCacheKeyException(['set', key]);
     }
     const { ttl = 0, disableCache = false } = options ?? {};
     if (disableCache) {
@@ -127,7 +135,7 @@ export class RedisCacheAdapter<TBase = string, KBase extends CacheKey = CacheKey
 
   has = async <K extends KBase = KBase>(key: K, options?: HasOptions): Promise<boolean | undefined> => {
     if (!Guards.isValidCacheKey(key)) {
-      options?.onError?.(this.errorHelper.getInvalidCacheKeyException('has', key));
+      options?.onError?.(this.errorHelper.getInvalidCacheKeyException(['has', key]));
       return undefined;
     }
     const { disableCache = false } = options ?? {};
@@ -145,7 +153,7 @@ export class RedisCacheAdapter<TBase = string, KBase extends CacheKey = CacheKey
 
   delete = async <K extends KBase = KBase>(key: K, options?: DeleteOptions): Promise<boolean | CacheException> => {
     if (!Guards.isValidCacheKey(key)) {
-      return this.errorHelper.getInvalidCacheKeyException('set', key);
+      return this.errorHelper.getInvalidCacheKeyException(['delete', key]);
     }
     const { disableCache = false } = options ?? {};
     if (disableCache) {
@@ -168,7 +176,7 @@ export class RedisCacheAdapter<TBase = string, KBase extends CacheKey = CacheKey
       });
   };
 
-  getConnection(): ConnectionInterface<RedisClient> {
+  getConnection = (): ConnectionInterface<RedisClient> => {
     return this.conn;
-  }
+  };
 }

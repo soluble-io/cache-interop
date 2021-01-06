@@ -82,7 +82,7 @@ export class IoRedisCacheAdapter<TBase = string, KBase extends CacheKey = CacheK
     options?: SetOptions
   ): Promise<boolean | CacheException> => {
     if (!Guards.isValidCacheKey(key)) {
-      return this.errorHelper.getInvalidCacheKeyException('set', key);
+      return this.errorHelper.getInvalidCacheKeyException(['set', key]);
     }
     const { ttl = 0, disableCache = false } = options ?? {};
     if (disableCache) {
@@ -112,7 +112,7 @@ export class IoRedisCacheAdapter<TBase = string, KBase extends CacheKey = CacheK
 
   has = async <K extends KBase = KBase>(key: K, options?: HasOptions): Promise<boolean | undefined> => {
     if (!Guards.isValidCacheKey(key)) {
-      options?.onError?.(this.errorHelper.getInvalidCacheKeyException('has', key));
+      options?.onError?.(this.errorHelper.getInvalidCacheKeyException(['has', key]));
       return undefined;
     }
     const { disableCache = false } = options ?? {};
@@ -130,7 +130,7 @@ export class IoRedisCacheAdapter<TBase = string, KBase extends CacheKey = CacheK
 
   delete = async <K extends KBase = KBase>(key: K, options?: DeleteOptions): Promise<boolean | CacheException> => {
     if (!Guards.isValidCacheKey(key)) {
-      return this.errorHelper.getInvalidCacheKeyException('set', key);
+      return this.errorHelper.getInvalidCacheKeyException(['delete', key]);
     }
     const { disableCache = false } = options ?? {};
     if (disableCache) {
@@ -153,7 +153,7 @@ export class IoRedisCacheAdapter<TBase = string, KBase extends CacheKey = CacheK
       });
   };
 
-  getConnection(): ConnectionInterface<IORedis.Redis> {
+  getConnection = (): ConnectionInterface<IORedis.Redis> => {
     return this.conn;
-  }
+  };
 }
