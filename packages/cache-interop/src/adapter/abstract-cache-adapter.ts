@@ -10,7 +10,7 @@ import {
 } from '../cache.interface';
 import { CacheItemInterface } from '../cache-item.interface';
 import { executeValueProviderFn } from '../utils';
-import { CacheException, CacheProviderException } from '../exceptions';
+import { CacheException } from '../exceptions';
 import { getGetOrSetCacheDisabledParams } from '../utils/cache-options-utils';
 import { CacheItemFactory } from '../cache-item.factory';
 import { Guards } from '../validation/guards';
@@ -31,7 +31,7 @@ export abstract class AbstractCacheAdapter<TBase = string, KBase extends CacheKe
 
   get errorHelper(): ErrorHelper {
     if (!this._errorHelper) {
-      this._errorHelper = new ErrorHelper(this.adapterName);
+      this._errorHelper = new ErrorHelper(this.adapterName ?? 'AbstractCacheAdapter');
     }
     return this._errorHelper;
   }
@@ -102,10 +102,7 @@ export abstract class AbstractCacheAdapter<TBase = string, KBase extends CacheKe
       } catch (e) {
         return CacheItemFactory.fromErr({
           key: key,
-          error: new CacheProviderException({
-            message: 'Could not execute async function provider',
-            previous: e,
-          }),
+          error: this.errorHelper.getCacheProviderException(['getOrSet', key], e),
         });
       }
     } else {
