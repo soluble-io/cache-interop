@@ -27,6 +27,8 @@ const adapters = [
           host: 'localhost',
           port: port,
           max_attempts: 1,
+          /** Will make the client fails early */
+          enable_offline_queue: false,
           connect_timeout: 10,
           disable_resubscribing: true,
           no_ready_check: true,
@@ -44,7 +46,7 @@ describe.each(adapters)('Adapter: %s', (name, adapterFactory) => {
     try {
       cache = await adapterFactory(invalidPortForTests);
     } catch (e) {
-      console.log('Cannot connect anyway !!', cache);
+      console.error('Cannot connect anyway !!', cache);
     }
   });
   afterAll(async () => {
