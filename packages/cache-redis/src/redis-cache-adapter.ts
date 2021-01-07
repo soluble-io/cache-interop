@@ -72,16 +72,11 @@ export class RedisCacheAdapter<TBase = string, KBase extends CacheKey = CacheKey
         error: this.errorHelper.getCacheException('get', 'READ_ERROR', e),
       });
     }
-    if (data === null) {
-      return CacheItemFactory.fromCacheMiss<T, K>({
-        key,
-        defaultValue,
-      });
-    }
+    const noData = data === null;
     return CacheItemFactory.fromOk<T, K>({
       key,
-      data,
-      isHit: true,
+      data: noData ? defaultValue : data,
+      isHit: !noData,
     });
   };
 
