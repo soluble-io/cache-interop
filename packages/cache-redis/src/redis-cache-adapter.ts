@@ -66,21 +66,6 @@ export class RedisCacheAdapter<TBase = string, KBase extends CacheKey = CacheKey
     let data: T;
     try {
       data = ((await this.asyncRedis.get(key)) as unknown) as T;
-      /*
-      const pm = async () => {
-        return new Promise((resolve, reject) => {
-          this.redis.get(key, (err, reply) => {
-            if (err) {
-              reject('Ta mère');
-            }
-            resolve(reply);
-          });
-        });
-      };
-
-      data = await pm();
-      *
-       */
     } catch (e) {
       return CacheItemFactory.fromErr<K>({
         key,
@@ -99,6 +84,7 @@ export class RedisCacheAdapter<TBase = string, KBase extends CacheKey = CacheKey
       isHit: true,
     });
   };
+
   set = async <T = TBase, K extends KBase = KBase>(
     key: K,
     value: T | CacheValueProviderFn<T>,
