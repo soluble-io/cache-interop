@@ -64,9 +64,10 @@ if (await cache.has('key')) {
 ### Connection
 
 IORedisAdapter `connection` param can be a dsn as string, an IORedisConnection,
-the native [IORedis.RedisOptions](https://github.com/luin/ioredis) or an existing [IORedis.Redis](https://github.com/luin/ioredis) connection.
+the native [IORedis.RedisOptions](https://github.com/luin/ioredis/blob/master/API.md#new-redisport-host-options) connection.
 
-> In some circumstances, DSN overrides can be applied thanks to the `getIoRedisOptionsFromDsn` function:
+> You can use the `getIoRedisOptionsFromDsn` function to initiate a connection
+> with native parameters.
 >
 > ```typescript
 > import { IoRedisCacheAdapter, getIoRedisOptionsFromDsn } from '@soluble/cache-ioredis';
@@ -75,9 +76,8 @@ the native [IORedis.RedisOptions](https://github.com/luin/ioredis) or an existin
 >
 > const cache = new IoRedisCacheAdapter({
 >   connection: getIoRedisOptionsFromDsn(dsn, {
->     overrides: {
->       db: 'db8',
->     },
+>     // here all io-redis params.
+>     connectTimeout: 1,
 >   }),
 > });
 > ```

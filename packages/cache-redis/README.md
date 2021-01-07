@@ -63,10 +63,11 @@ if (await cache.has('key')) {
 
 ### Connection
 
-RedisAdapter `connection` param can be a dsn as string, a RedisConnection,
-the native [ClientOpts](https://github.com/NodeRedis/node-redis) or an existing [RedisClient](https://github.com/NodeRedis/node-redis) connection.
+RedisAdapter `connection` param can be a DSN, a RedisConnection,
+the native [ClientOpts](https://github.com/NodeRedis/node-redis#options-object-properties) or an existing [RedisClient](https://github.com/NodeRedis/node-redis) connection.
 
-> In some circumstances, DSN overrides can be applied thanks to the `getIoRedisOptionsFromDsn` function:
+> You can use the `getRedisOptionsFromDsn` function to initiate a connection
+> with native parameters.
 >
 > ```typescript
 > import { RedisCacheAdapter, getRedisOptionsFromDsn } from '@soluble/cache-redis';
@@ -75,7 +76,7 @@ the native [ClientOpts](https://github.com/NodeRedis/node-redis) or an existing 
 >
 > const cache = new RedisCacheAdapter({
 >   connection: getRedisOptionsFromDsn(dsn, {
->     db: 'db0',
+>     // here all node-redis client options
 >     enable_offline_queue: false,
 >   }),
 > });
