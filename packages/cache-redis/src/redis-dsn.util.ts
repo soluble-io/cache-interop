@@ -25,7 +25,7 @@ export const getTlsOptions = (driver: string, host: string): ConnectionOptions |
  */
 export const getRedisOptionsFromDsn = (
   dsn: string,
-  clientOptions?: Partial<Omit<RedisClientOptions, 'url'>>,
+  clientOptions?: Partial<Omit<RedisClientOptions, 'url'>> & { url?: never },
   dsnOverrides?: ParseDsnOptions['overrides']
 ): RedisClientOptions => {
   const parsed = parseDsn(dsn, {
