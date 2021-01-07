@@ -14,19 +14,28 @@ export const getTlsOptions = (driver: string, host: string): ConnectionOptions |
 
 /**
  * Converts a soluble/dsn-parser dsn into Redis.Options
+ *
+ * @param dsn - Parsable DSN, i.e: redis://localhost:6379/db1
+ * @param clientOptions - node redis client options object
+ *
  * @link https://github.com/soluble-io/cache-interop/tree/main/packages/dsn-parser
+ * @link https://github.com/NodeRedis/node-redis#options-object-properties
  *
  * @throws Error if dsn is invalid or cannot be parsed
  */
-export const getRedisOptionsFromDsn = (dsn: string, overrides?: ParseDsnOptions['overrides']): RedisClientOptions => {
+export const getRedisOptionsFromDsn = (
+  dsn: string,
+  clientOptions?: Partial<Omit<RedisClientOptions, 'url'>>,
+  dsnOverrides?: ParseDsnOptions['overrides']
+): RedisClientOptions => {
   const parsed = parseDsn(dsn, {
     lowercaseDriver: true,
-    overrides: overrides || {},
+    overrides: dsnOverrides || {},
   });
   if (!parsed.success) {
     throw new Error(`Can't parse DSN, reason ${parsed.reason}`);
   }
-  const { driver, host, port, user, pass, db } = { ...parsed.value, ...(overrides ?? {}) };
+  const { driver, host, port, user, pass, db } = { ...parsed.value, ...(dsnOverrides ?? {}) };
 
   if (!['redis', 'rediss'].includes(driver)) {
     throw new Error(`Unsupported driver '${driver}', must be redis or rediss`);
@@ -35,11 +44,14 @@ export const getRedisOptionsFromDsn = (dsn: string, overrides?: ParseDsnOptions[
   const tlsOptions = getTlsOptions(driver, host);
 
   return {
-    host,
-    ...(port !== undefined ? { port: port } : {}),
-    ...(user !== undefined ? { username: user } : {}),
-    ...(pass !== undefined ? { auth_pass: pass } : {}),
-    ...(tlsOptions !== null ? { tls: tlsOptions } : {}),
-    ...(db !== undefined ? { db } : {}),
+    ...{
+      host,
+      ...(port !== undefined ? { port: port } : {}),
+      ...(user !== undefined ? { username: user } : {}),
+      ...(pass !== undefined ? { auth_pass: pass } : {}),
+      ...(tlsOptions !== null ? { tls: tlsOptions } : {}),
+      ...(db !== undefined ? { db } : {}),
+    },
+    ...(clientOptions ?? {}),
   };
 };

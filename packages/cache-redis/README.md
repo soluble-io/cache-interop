@@ -75,9 +75,8 @@ the native [ClientOpts](https://github.com/NodeRedis/node-redis) or an existing 
 >
 > const cache = new RedisCacheAdapter({
 >   connection: getRedisOptionsFromDsn(dsn, {
->     overrides: {
->       db: 'db8',
->     },
+>     db: 'db0',
+>     enable_offline_queue: false,
 >   }),
 > });
 > ```

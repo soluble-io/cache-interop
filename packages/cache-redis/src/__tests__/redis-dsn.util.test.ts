@@ -36,9 +36,31 @@ describe('redis-dsn utils', () => {
           host: 'localhost',
         });
       });
-      it('should honour overrides', () => {
+    });
+
+    describe('when redisClient options are given', () => {
+      it('should return custom redis client options', () => {
         const dsn = 'redis://localhost:6379';
-        expect(getRedisOptionsFromDsn(dsn, { port: 2014 })).toStrictEqual({
+        expect(getRedisOptionsFromDsn(dsn, { no_ready_check: true })).toStrictEqual({
+          host: 'localhost',
+          no_ready_check: true,
+          port: 6379,
+        });
+      });
+
+      it('should take precedence on dsnOverrides', () => {
+        const dsn = 'redis://localhost:6379';
+        expect(getRedisOptionsFromDsn(dsn, { port: 2015 }, { port: 2014 })).toStrictEqual({
+          host: 'localhost',
+          port: 2015,
+        });
+      });
+    });
+
+    describe('when dsnOverrides are given', () => {
+      it('should overwrite port when override say so', () => {
+        const dsn = 'redis://localhost:6379';
+        expect(getRedisOptionsFromDsn(dsn, undefined, { port: 2014 })).toStrictEqual({
           host: 'localhost',
           port: 2014,
         });
