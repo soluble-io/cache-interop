@@ -12,7 +12,7 @@ export class RedisConnection implements ConnectionInterface<RedisClient> {
 
   quit = async (): Promise<boolean> => {
     const asyncQuit = promisify(this.redis.quit).bind(this.redis);
-    return await asyncQuit()
+    return asyncQuit()
       .then((reply) => reply === 'OK')
       .catch((e) => {
         return false;
