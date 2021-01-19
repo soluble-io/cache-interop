@@ -1,5 +1,13 @@
 # @soluble/cache-interop
 
+## 0.7.0
+
+### Minor Changes
+
+- [`bdcc971`](https://github.com/soluble-io/cache-interop/commit/bdcc97160db3364be2b7eda9c92313c63123867d) [#79](https://github.com/soluble-io/cache-interop/pull/79) Thanks [@belgattitude](https://github.com/belgattitude)! - Refactor previousError into previous for exceptions
+
+* [`69279ff`](https://github.com/soluble-io/cache-interop/commit/69279ffe93b090828200e6e4394a3d5818c6a27f) [#79](https://github.com/soluble-io/cache-interop/pull/79) Thanks [@belgattitude](https://github.com/belgattitude)! - Uniform error messages
+
 ## 0.6.0
 
 ### Minor Changes
