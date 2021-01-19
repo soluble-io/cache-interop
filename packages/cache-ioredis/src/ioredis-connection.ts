@@ -8,9 +8,9 @@ export class IoredisConnection implements ConnectionInterface<IORedis.Redis> {
     this.ioRedis = ioRedis;
   }
 
-  async quit(): Promise<boolean> {
+  quit = async (): Promise<boolean> => {
     return this.ioRedis.quit().then((resp) => resp === 'OK');
-  }
+  };
 
   /**
    * Access directly the wrapped ioredis connection

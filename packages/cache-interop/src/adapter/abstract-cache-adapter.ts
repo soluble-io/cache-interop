@@ -10,10 +10,11 @@ import {
 } from '../cache.interface';
 import { CacheItemInterface } from '../cache-item.interface';
 import { executeValueProviderFn } from '../utils';
-import { CacheException, CacheProviderException } from '../exceptions';
+import { CacheException } from '../exceptions';
 import { getGetOrSetCacheDisabledParams } from '../utils/cache-options-utils';
 import { CacheItemFactory } from '../cache-item.factory';
 import { Guards } from '../validation/guards';
+import { ErrorHelper } from '../error/error-helper';
 
 const defaultGetOrSetOptions: GetOrSetOptions = {
   disableCache: {
@@ -24,6 +25,17 @@ const defaultGetOrSetOptions: GetOrSetOptions = {
 
 export abstract class AbstractCacheAdapter<TBase = string, KBase extends CacheKey = CacheKey>
   implements CacheInterface<TBase, KBase> {
+  protected _errorHelper: ErrorHelper | undefined;
+
+  abstract adapterName: string;
+
+  get errorHelper(): ErrorHelper {
+    if (!this._errorHelper) {
+      this._errorHelper = new ErrorHelper(this.adapterName ?? 'AbstractCacheAdapter');
+    }
+    return this._errorHelper;
+  }
+
   abstract set<T = TBase, K extends KBase = KBase>(
     key: K,
     value: T | CacheValueProviderFn<T>,
@@ -77,7 +89,7 @@ export abstract class AbstractCacheAdapter<TBase = string, KBase extends CacheKe
     const { disableCache = false, ...setOptions } = { ...defaultGetOrSetOptions, ...(options ?? {}) };
     const { read: disableRead, write: disableWrite } = getGetOrSetCacheDisabledParams(disableCache);
     const item = await this.get<T, K>(key, { disableCache: disableRead });
-    if (item.data !== null) {
+    if (item.data !== null || item.error instanceof CacheException) {
       return item;
     }
 
@@ -90,10 +102,7 @@ export abstract class AbstractCacheAdapter<TBase = string, KBase extends CacheKe
       } catch (e) {
         return CacheItemFactory.fromErr({
           key: key,
-          error: new CacheProviderException({
-            message: 'Could not execute async function provider',
-            previousError: e,
-          }),
+          error: this.errorHelper.getCacheProviderException(['getOrSet', key], e),
         });
       }
     } else {

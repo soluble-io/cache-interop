@@ -1,6 +1,7 @@
 import { Guards } from '../guards';
 import { CacheInterface } from '../../cache.interface';
 import { ConnectedCacheInterface } from '../../connection/connected-cache.interface';
+import { CacheException, UnsupportedValueException } from '../../exceptions';
 
 describe('Guards tests', () => {
   describe('isNonEmptyString', () => {
@@ -18,8 +19,32 @@ describe('Guards tests', () => {
     });
   });
 
+  describe('isValidRedisValue', () => {
+    it('should work as expected', () => {
+      expect(Guards.isValidRedisValue(1)).toStrictEqual(true);
+      expect(Guards.isValidRedisValue(-3.2)).toStrictEqual(true);
+      expect(Guards.isValidRedisValue('')).toStrictEqual(true);
+      expect(Guards.isValidRedisValue('Hello')).toStrictEqual(true);
+      expect(Guards.isValidRedisValue(() => {})).toStrictEqual(false);
+      expect(Guards.isValidRedisValue(NaN)).toStrictEqual(false);
+      expect(Guards.isValidRedisValue(new Date())).toStrictEqual(false);
+      expect(Guards.isValidRedisValue(/.*/)).toStrictEqual(false);
+    });
+  });
+
+  describe('isCacheException', () => {
+    it('should work as expected', () => {
+      expect(Guards.isCacheException(new CacheException({ message: 't' }))).toStrictEqual(true);
+      expect(Guards.isCacheException(new UnsupportedValueException({ message: 't' }))).toStrictEqual(true);
+      expect(Guards.isCacheException(() => {})).toStrictEqual(false);
+      expect(Guards.isCacheException(NaN)).toStrictEqual(false);
+      expect(Guards.isCacheException(new Date())).toStrictEqual(false);
+      expect(Guards.isCacheException(/.*/)).toStrictEqual(false);
+    });
+  });
+
   describe('isCacheValueProviderFn', () => {
-    it('should work as exepted', () => {
+    it('should work as expected', () => {
       expect(Guards.isCacheValueProviderFn(() => {})).toStrictEqual(true);
       expect(Guards.isCacheValueProviderFn(async () => {})).toStrictEqual(true);
       expect(Guards.isCacheValueProviderFn(null)).toStrictEqual(false);

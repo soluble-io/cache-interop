@@ -1,6 +1,7 @@
 import { parseDsn, ParseDsnOptions } from '@soluble/dsn-parser';
 import IORedis from 'ioredis';
 import type { ConnectionOptions } from 'tls';
+import { ClientOpts as RedisClientOptions } from 'redis';
 
 export const getDbIndex = (db: number | string | undefined): number | null => {
   if (typeof db === 'undefined') {
@@ -26,6 +27,8 @@ export const getTlsOptions = (driver: string, host: string): ConnectionOptions |
   };
 };
 
+type IORedisOptions = IORedis.RedisOptions;
+
 /**
  * Converts a soluble/dsn-parser dsn into compatible IORedis.Options
  * @link https://github.com/soluble-io/cache-interop/tree/main/packages/dsn-parser
@@ -34,16 +37,17 @@ export const getTlsOptions = (driver: string, host: string): ConnectionOptions |
  */
 export const getIoRedisOptionsFromDsn = (
   dsn: string,
-  overrides?: ParseDsnOptions['overrides']
+  clientOptions?: Partial<IORedisOptions>,
+  dsnOverrides?: ParseDsnOptions['overrides']
 ): IORedis.RedisOptions => {
   const parsed = parseDsn(dsn, {
     lowercaseDriver: true,
-    overrides: overrides || {},
+    overrides: dsnOverrides || {},
   });
   if (!parsed.success) {
     throw new Error(`Can't parse DSN, reason ${parsed.reason}`);
   }
-  const { driver, host, port, user, pass, db } = { ...parsed.value, ...(overrides ?? {}) };
+  const { driver, host, port, user, pass, db } = { ...parsed.value, ...(dsnOverrides ?? {}) };
 
   if (!['redis', 'rediss'].includes(driver)) {
     throw new Error(`Unsupported driver '${driver}', must be redis or rediss`);
@@ -53,11 +57,14 @@ export const getIoRedisOptionsFromDsn = (
   const dbIndex = getDbIndex(db);
 
   return {
-    host,
-    ...(port !== undefined ? { port: port } : {}),
-    ...(user !== undefined ? { username: user } : {}),
-    ...(pass !== undefined ? { password: pass } : {}),
-    ...(tlsOptions !== null ? { tls: tlsOptions } : {}),
-    ...(dbIndex !== null ? { db: dbIndex } : {}),
+    ...{
+      host,
+      ...(port !== undefined ? { port: port } : {}),
+      ...(user !== undefined ? { username: user } : {}),
+      ...(pass !== undefined ? { password: pass } : {}),
+      ...(tlsOptions !== null ? { tls: tlsOptions } : {}),
+      ...(dbIndex !== null ? { db: dbIndex } : {}),
+    },
+    ...(clientOptions ?? {}),
   };
 };

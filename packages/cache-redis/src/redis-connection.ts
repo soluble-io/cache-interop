@@ -1,6 +1,7 @@
 import { ConnectionInterface } from '@soluble/cache-interop';
 
 import { RedisClient } from 'redis';
+import { promisify } from 'util';
 
 export class RedisConnection implements ConnectionInterface<RedisClient> {
   private readonly redis: RedisClient;
@@ -9,17 +10,14 @@ export class RedisConnection implements ConnectionInterface<RedisClient> {
     this.redis = redis;
   }
 
-  async quit(): Promise<boolean> {
-    return new Promise((resolve, reject) => {
-      this.redis.quit((err, reply) => {
-        if (err instanceof Error) {
-          reject(err.message);
-          return;
-        }
-        resolve(reply === 'OK');
+  quit = async (): Promise<boolean> => {
+    const asyncQuit = promisify(this.redis.quit).bind(this.redis);
+    return asyncQuit()
+      .then((reply) => reply === 'OK')
+      .catch((e) => {
+        return false;
       });
-    });
-  }
+  };
 
   /**
    * Access directly the wrapped ioredis connection
