@@ -1,5 +1,11 @@
 # @soluble/cache-e2e-tests
 
+## 0.7.0
+
+### Minor Changes
+
+- [`69279ff`](https://github.com/soluble-io/cache-interop/commit/69279ffe93b090828200e6e4394a3d5818c6a27f) [#79](https://github.com/soluble-io/cache-interop/pull/79) Thanks [@belgattitude](https://github.com/belgattitude)! - Uniform error messages
+
 ## 0.6.0
 
 ### Minor Changes
