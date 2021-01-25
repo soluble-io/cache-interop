@@ -2,8 +2,8 @@ import { GenericContainer, StoppedTestContainer, StartedTestContainer, TestConta
 
 // Here configure all docker containers you need
 const registeredE2eContainers = {
-  redis5: { name: 'redis:5-alpine', port: 6379 },
-  redis6: { name: 'redis:6-alpine', port: 6379 },
+  redis5: { image: 'redis:5-alpine', port: 6379 },
+  redis6: { image: 'redis:6-alpine', port: 6379 },
 } as const;
 
 type ContainerKey = keyof typeof registeredE2eContainers;
@@ -15,9 +15,8 @@ export class E2eDockerContainers {
 
   static async getContainer(key: ContainerKey): Promise<E2eContainer> {
     if (!E2eDockerContainers._instances.has(key)) {
-      const { name, port } = registeredE2eContainers[key];
-      const [image, tag] = name.split(':');
-      const container = await new GenericContainer(image, tag).withExposedPorts(port).start();
+      const { image, port } = registeredE2eContainers[key];
+      const container = await new GenericContainer(image).withExposedPorts(port).start();
       const dsn = `redis://${container.getHost()}:${container.getMappedPort(port)}`;
       console.log('STARTED', key, dsn);
       E2eDockerContainers._instances.set(key, {
