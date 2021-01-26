@@ -3,7 +3,7 @@ export const errorReasons = {
   WRITE_ERROR: "Can't write to the cache",
   READ_ERROR: "Can't read from the cache",
   COMMAND_ERROR: "Can't execute operation",
-  EXECUTE_ASYNC_ERROR: "Can't execute async provider",
+  VALUE_PROVIDER_ERROR: "Can't execute the cache value provider function",
   UNEXPECTED_REPLY: 'Unexpected response from driver',
   UNSUPPORTED_VALUE: 'Unsupported value',
   UNEXPECTED_ERROR: 'Unexpected error',
