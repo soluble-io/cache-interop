@@ -15,6 +15,9 @@ describe('ioredis-dsn utils', () => {
       expect(getDbIndex('a')).toBeNull();
       expect(getDbIndex('dba12')).toBeNull();
     });
+    it('should return null if db index is undefined', () => {
+      expect(getDbIndex(undefined)).toBeNull();
+    });
   });
 
   describe('getTlsOptions', () => {

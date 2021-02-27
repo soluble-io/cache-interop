@@ -3,7 +3,7 @@ import IORedis from 'ioredis';
 import type { ConnectionOptions } from 'tls';
 
 export const getDbIndex = (db: number | string | undefined): number | null => {
-  if (typeof db === 'undefined') {
+  if (db === undefined) {
     return null;
   }
   if (typeof db === 'number') {
