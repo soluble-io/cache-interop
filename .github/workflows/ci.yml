@@ -10,10 +10,6 @@ on:
       - ".changeset/**"
 
   pull_request:
-    types:
-      - opened
-      - synchronize
-      - reopened
     paths-ignore:
       - "docs/**"
       - ".changeset/**"
