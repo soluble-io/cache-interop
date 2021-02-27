@@ -1,7 +1,6 @@
 import { parseDsn, ParseDsnOptions } from '@soluble/dsn-parser';
 import IORedis from 'ioredis';
 import type { ConnectionOptions } from 'tls';
-import { ClientOpts as RedisClientOptions } from 'redis';
 
 export const getDbIndex = (db: number | string | undefined): number | null => {
   if (typeof db === 'undefined') {
