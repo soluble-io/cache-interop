@@ -1,5 +1,17 @@
 # @soluble/cache-ioredis
 
+## 0.7.1
+
+### Patch Changes
+
+- [`ea6c8f2`](https://github.com/soluble-io/cache-interop/commit/ea6c8f2a98760335ae3aa97604017b120d2f7f42) [#85](https://github.com/soluble-io/cache-interop/pull/85) Thanks [@belgattitude](https://github.com/belgattitude)! - Minor improvement in getDbIndex for undefined values
+
+* [`6fdaa04`](https://github.com/soluble-io/cache-interop/commit/6fdaa04c012895da9aff374db5d1f7a3da78bdd5) [#82](https://github.com/soluble-io/cache-interop/pull/82) Thanks [@belgattitude](https://github.com/belgattitude)! - Typescript 4.2.2 support
+
+* Updated dependencies [[`6fdaa04`](https://github.com/soluble-io/cache-interop/commit/6fdaa04c012895da9aff374db5d1f7a3da78bdd5)]:
+  - @soluble/cache-interop@0.7.1
+  - @soluble/dsn-parser@1.3.1
+
 ## 0.7.0
 
 ### Minor Changes
