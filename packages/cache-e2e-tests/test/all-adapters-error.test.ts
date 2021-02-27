@@ -63,7 +63,7 @@ describe.each(adapters)('Adapter: %s', (name, adapterFactory) => {
       it('should return error with proper message', async () => {
         const { error } = await cache.get('k');
         expect(error).toBeInstanceOf(CacheException);
-        const expected = errFmt.getMsg('get', 'READ_ERROR');
+        const expected = errFmt.getMsg(['get', 'k'], 'READ_ERROR');
         expect(error?.message).toMatch(expected);
       });
     });
@@ -73,7 +73,7 @@ describe.each(adapters)('Adapter: %s', (name, adapterFactory) => {
         expect(item).not.toBeUndefined();
         const { error } = item as any;
         expect(error).toBeInstanceOf(CacheException);
-        const expected = errFmt.getMsg('get', 'READ_ERROR');
+        const expected = errFmt.getMsg(['get', 'k'], 'READ_ERROR');
         expect(error?.message).toMatch(expected);
       });
     });
@@ -86,7 +86,7 @@ describe.each(adapters)('Adapter: %s', (name, adapterFactory) => {
           },
         });
         expect(error).toStrictEqual(undefined);
-        const expected = errFmt.getMsg('has', 'COMMAND_ERROR');
+        const expected = errFmt.getMsg(['has', 'k'], 'COMMAND_ERROR');
         expect((err as any)?.message).toMatch(expected);
       });
     });
@@ -95,7 +95,7 @@ describe.each(adapters)('Adapter: %s', (name, adapterFactory) => {
       it('should return error with proper message', async () => {
         const error = await cache.set('k', 'cool');
         expect(error).toBeInstanceOf(CacheException);
-        const expected = errFmt.getMsg('set', 'WRITE_ERROR');
+        const expected = errFmt.getMsg(['set', 'k'], 'WRITE_ERROR');
         expect((error as any)?.message).toMatch(expected);
       });
     });
@@ -106,7 +106,7 @@ describe.each(adapters)('Adapter: %s', (name, adapterFactory) => {
         const firstRet = (await cache.setMultiple([['k', 'value']])).get('k');
         expect(firstRet).not.toBeUndefined();
         expect(firstRet).toBeInstanceOf(CacheException);
-        const expected = errFmt.getMsg('set', 'WRITE_ERROR');
+        const expected = errFmt.getMsg(['set', 'k'], 'WRITE_ERROR');
         expect((firstRet as any)?.message).toMatch(expected);
       });
     });
@@ -114,7 +114,7 @@ describe.each(adapters)('Adapter: %s', (name, adapterFactory) => {
       it('should return error with proper message', async () => {
         const error = await cache.delete('k');
         expect(error).toBeInstanceOf(CacheException);
-        const expected = errFmt.getMsg('delete', 'WRITE_ERROR');
+        const expected = errFmt.getMsg(['delete', 'k'], 'WRITE_ERROR');
         expect((error as any)?.message).toMatch(expected);
       });
     });
@@ -123,7 +123,7 @@ describe.each(adapters)('Adapter: %s', (name, adapterFactory) => {
       it('should return error with proper message', async () => {
         const firstErr = (await cache.deleteMultiple(['k'])).get('k');
         expect(firstErr).toBeInstanceOf(CacheException);
-        const expected = errFmt.getMsg('delete', 'WRITE_ERROR');
+        const expected = errFmt.getMsg(['delete', 'k'], 'WRITE_ERROR');
         expect((firstErr as any)?.message).toMatch(expected);
       });
     });
@@ -141,7 +141,8 @@ describe.each(adapters)('Adapter: %s', (name, adapterFactory) => {
       it('should return error with proper message', async () => {
         const { error } = await cache.getOrSet('k', () => 'cool');
         expect(error).toBeInstanceOf(CacheException);
-        const expected = errFmt.getMsg('get', 'READ_ERROR');
+        console.log('error', error);
+        const expected = errFmt.getMsg(['getOrSet', 'k'], 'READ_ERROR');
         expect((error as any)?.message).toMatch(expected);
       });
     });

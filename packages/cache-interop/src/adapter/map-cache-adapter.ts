@@ -43,9 +43,8 @@ export class MapCacheAdapter<TBase = string, KBase extends CacheKey = CacheKey>
 
   get = async <T = TBase, K extends KBase = KBase>(key: K, options?: GetOptions<T>): Promise<CacheItemInterface<T>> => {
     if (!Guards.isValidCacheKey(key)) {
-      return CacheItemFactory.fromInvalidCacheKey(key);
+      return CacheItemFactory.fromInvalidCacheKey<K>(key);
     }
-
     const { defaultValue = null, disableCache = false } = options ?? {};
     if (disableCache) {
       return CacheItemFactory.fromOk<T | null>({
@@ -78,7 +77,7 @@ export class MapCacheAdapter<TBase = string, KBase extends CacheKey = CacheKey>
     options?: SetOptions
   ): Promise<boolean | CacheException> => {
     if (!Guards.isValidCacheKey(key)) {
-      return new InvalidCacheKeyException({ key });
+      return this.errorHelper.getInvalidCacheKeyException(['set', key]);
     }
     const { disableCache = false, ttl = 0 } = options ?? {};
     if (disableCache) {
@@ -89,11 +88,7 @@ export class MapCacheAdapter<TBase = string, KBase extends CacheKey = CacheKey>
       try {
         v = await executeValueProviderFn<T>(value);
       } catch (e) {
-        // @todo decide what do do, a cache miss ?
-        return new CacheProviderException({
-          previous: e,
-          message: "Can't fetch the provided function",
-        });
+        return this.errorHelper.getCacheProviderException(['set', key], e);
       }
     }
     const expiresAt = ttl === 0 ? 0 : this.dateProvider.getUnixTime() + ttl;
@@ -103,7 +98,7 @@ export class MapCacheAdapter<TBase = string, KBase extends CacheKey = CacheKey>
 
   has = async <K extends KBase = KBase>(key: K, options?: HasOptions): Promise<boolean | undefined> => {
     if (!Guards.isValidCacheKey(key)) {
-      options?.onError?.(new InvalidCacheKeyException({ key }));
+      options?.onError?.(this.errorHelper.getInvalidCacheKeyException(['has', key]));
       return undefined;
     }
     const { disableCache = false } = options ?? {};
@@ -119,7 +114,7 @@ export class MapCacheAdapter<TBase = string, KBase extends CacheKey = CacheKey>
 
   delete = async <K extends KBase = KBase>(key: K, options?: DeleteOptions): Promise<boolean | CacheException> => {
     if (!Guards.isValidCacheKey(key)) {
-      return new InvalidCacheKeyException({ key });
+      return this.errorHelper.getInvalidCacheKeyException(['delete', key]);
     }
     const { disableCache = false } = options ?? {};
     if (disableCache) {

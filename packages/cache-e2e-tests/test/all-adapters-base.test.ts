@@ -25,7 +25,6 @@ const adapters = [
       });
     },
   ],
-
   [
     'IoRedisCacheAdapter/Redis6',
     async () => {
@@ -142,6 +141,7 @@ describe.each(adapters)('Adapter: %s', (name, adapterFactory) => {
         const ret = await cache.set('k', fct);
         expect(fct).toHaveBeenCalledTimes(1);
         expect(ret).toBeInstanceOf(CacheProviderException);
+        expect((ret as CacheProviderException).message).toMatch('cooooo');
       });
     });
 
