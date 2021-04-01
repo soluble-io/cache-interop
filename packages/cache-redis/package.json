@@ -1,7 +1,7 @@
 {
   "name": "@soluble/cache-redis",
   "description": "Node redis cache interop adapter",
-  "version": "0.7.0",
+  "version": "0.7.1",
   "license": "MIT",
   "homepage": "https://github.com/soluble-io/cache-interop/tree/main/packages/cache-redis",
   "repository": {
@@ -57,14 +57,14 @@
     ]
   },
   "dependencies": {
-    "@soluble/cache-interop": "^0.7.0"
+    "@soluble/cache-interop": "^0.7.1"
   },
   "devDependencies": {
     "@types/redis": "^2.8.28",
     "redis": "^3.0.2",
-    "ts-jest": "^26.5.2",
+    "ts-jest": "^26.5.4",
     "tslib": "^2.1.0",
-    "typescript": "^4.2.2"
+    "typescript": "^4.2.3"
   },
   "peerDependencies": {
     "@types/redis": ">=2.8.28",

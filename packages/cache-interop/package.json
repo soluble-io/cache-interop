@@ -1,7 +1,7 @@
 {
   "name": "@soluble/cache-interop",
   "description": "Async cache interop contracts",
-  "version": "0.7.0",
+  "version": "0.7.1",
   "license": "MIT",
   "homepage": "https://github.com/soluble-io/cache-interop/tree/main/packages/cache-interop",
   "repository": {
@@ -57,9 +57,9 @@
   },
   "devDependencies": {
     "dayjs": "^1.10.4",
-    "ts-jest": "^26.5.2",
+    "ts-jest": "^26.5.4",
     "tslib": "^2.1.0",
-    "typescript": "^4.2.2"
+    "typescript": "^4.2.3"
   },
   "peerDependencies": {
     "ioredis": "^4.18.0"

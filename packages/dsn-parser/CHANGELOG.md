@@ -1,5 +1,11 @@
 # @soluble/dsn-parser
 
+## 1.3.1
+
+### Patch Changes
+
+- [`6fdaa04`](https://github.com/soluble-io/cache-interop/commit/6fdaa04c012895da9aff374db5d1f7a3da78bdd5) [#82](https://github.com/soluble-io/cache-interop/pull/82) Thanks [@belgattitude](https://github.com/belgattitude)! - Typescript 4.2.2 support
+
 ## 1.3.0
 
 ### Minor Changes
