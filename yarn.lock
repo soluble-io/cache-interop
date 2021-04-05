@@ -926,10 +926,10 @@
     resolve-from "^5.0.0"
     semver "^5.4.1"
 
-"@changesets/assemble-release-plan@^4.0.0", "@changesets/assemble-release-plan@^4.1.0":
-  version "4.1.0"
-  resolved "https://registry.yarnpkg.com/@changesets/assemble-release-plan/-/assemble-release-plan-4.1.0.tgz#091e5e768dfe51835937e71d1ebaca1c9d6de55b"
-  integrity sha512-dMqe2L5Pn4UGTW89kOuuCuZD3pQFZj1Sxv92ZW4S98sXGsxcb2PdW+PeHbQ7tawkCYCOvzhXxAlN4OdF2DlDKQ==
+"@changesets/assemble-release-plan@^4.0.0", "@changesets/assemble-release-plan@^4.1.1":
+  version "4.1.1"
+  resolved "https://registry.yarnpkg.com/@changesets/assemble-release-plan/-/assemble-release-plan-4.1.1.tgz#01894f4e1fd856d50c67d7806786d176110b34ee"
+  integrity sha512-cX7riE3ZHTHY9up7WTPWE4l9Rb7wWJVvO3Flcl5Mv/NEh46QHS1ys/GMHhLrFxq7V7VvASKkZVukCsg+CZAEGA==
   dependencies:
     "@babel/runtime" "^7.10.4"
     "@changesets/errors" "^0.1.4"
@@ -947,14 +947,14 @@
     "@changesets/types" "^3.0.0"
     dotenv "^8.1.0"
 
-"@changesets/cli@^2.14.1":
-  version "2.14.1"
-  resolved "https://registry.yarnpkg.com/@changesets/cli/-/cli-2.14.1.tgz#ef6ba9f69e4dd5f6cde4220e032200e3039a52f8"
-  integrity sha512-ydU2ZUP/s7nHQmz8TrliT+kE2dJUpZYKh8MBHrkV6suchCBhT4DmoP4VDF9M4215r18iPbMpE1TjskzXGXB8eQ==
+"@changesets/cli@^2.15.0":
+  version "2.15.0"
+  resolved "https://registry.yarnpkg.com/@changesets/cli/-/cli-2.15.0.tgz#63cf147738d019ce150973f6c268edc5ba6cc8df"
+  integrity sha512-5ybu6D0qFIVSDvPGI+SnlbCqF2CMKGHGSmajJpgCgmG9VxyvjsyAfWLTpIdtYKrEDxQADslwaHjFbGiWpG0QUw==
   dependencies:
     "@babel/runtime" "^7.10.4"
     "@changesets/apply-release-plan" "^4.2.0"
-    "@changesets/assemble-release-plan" "^4.1.0"
+    "@changesets/assemble-release-plan" "^4.1.1"
     "@changesets/config" "^1.5.0"
     "@changesets/errors" "^0.1.4"
     "@changesets/get-dependents-graph" "^1.2.0"
@@ -2540,14 +2540,6 @@
     "@typescript-eslint/typescript-estree" "4.20.0"
     debug "^4.1.1"
 
-"@typescript-eslint/scope-manager@4.19.0":
-  version "4.19.0"
-  resolved "https://registry.yarnpkg.com/@typescript-eslint/scope-manager/-/scope-manager-4.19.0.tgz#5e0b49eca4df7684205d957c9856f4e720717a4f"
-  integrity sha512-GGy4Ba/hLXwJXygkXqMzduqOMc+Na6LrJTZXJWVhRrSuZeXmu8TAnniQVKgj8uTRKe4igO2ysYzH+Np879G75g==
-  dependencies:
-    "@typescript-eslint/types" "4.19.0"
-    "@typescript-eslint/visitor-keys" "4.19.0"
-
 "@typescript-eslint/scope-manager@4.20.0":
   version "4.20.0"
   resolved "https://registry.yarnpkg.com/@typescript-eslint/scope-manager/-/scope-manager-4.20.0.tgz#953ecbf3b00845ece7be66246608be9d126d05ca"
@@ -2556,28 +2548,10 @@
     "@typescript-eslint/types" "4.20.0"
     "@typescript-eslint/visitor-keys" "4.20.0"
 
-"@typescript-eslint/types@4.19.0":
-  version "4.19.0"
-  resolved "https://registry.yarnpkg.com/@typescript-eslint/types/-/types-4.19.0.tgz#5181d5d2afd02e5b8f149ebb37ffc8bd7b07a568"
-  integrity sha512-A4iAlexVvd4IBsSTNxdvdepW0D4uR/fwxDrKUa+iEY9UWvGREu2ZyB8ylTENM1SH8F7bVC9ac9+si3LWNxcBuA==
-
 "@typescript-eslint/types@4.20.0":
   version "4.20.0"
   resolved "https://registry.yarnpkg.com/@typescript-eslint/types/-/types-4.20.0.tgz#c6cf5ef3c9b1c8f699a9bbdafb7a1da1ca781225"
   integrity sha512-cYY+1PIjei1nk49JAPnH1VEnu7OYdWRdJhYI5wiKOUMhLTG1qsx5cQxCUTuwWCmQoyriadz3Ni8HZmGSofeC+w==
-
-"@typescript-eslint/typescript-estree@4.19.0":
-  version "4.19.0"
-  resolved "https://registry.yarnpkg.com/@typescript-eslint/typescript-estree/-/typescript-estree-4.19.0.tgz#8a709ffa400284ab72df33376df085e2e2f61147"
-  integrity sha512-3xqArJ/A62smaQYRv2ZFyTA+XxGGWmlDYrsfZG68zJeNbeqRScnhf81rUVa6QG4UgzHnXw5VnMT5cg75dQGDkA==
-  dependencies:
-    "@typescript-eslint/types" "4.19.0"
-    "@typescript-eslint/visitor-keys" "4.19.0"
-    debug "^4.1.1"
-    globby "^11.0.1"
-    is-glob "^4.0.1"
-    semver "^7.3.2"
-    tsutils "^3.17.1"
 
 "@typescript-eslint/typescript-estree@4.20.0":
   version "4.20.0"
@@ -2591,14 +2565,6 @@
     is-glob "^4.0.1"
     semver "^7.3.2"
     tsutils "^3.17.1"
-
-"@typescript-eslint/visitor-keys@4.19.0":
-  version "4.19.0"
-  resolved "https://registry.yarnpkg.com/@typescript-eslint/visitor-keys/-/visitor-keys-4.19.0.tgz#cbea35109cbd9b26e597644556be4546465d8f7f"
-  integrity sha512-aGPS6kz//j7XLSlgpzU2SeTqHPsmRYxFztj2vPuMMFJXZudpRSehE3WCV+BaxwZFvfAqMoSd86TEuM0PQ59E/A==
-  dependencies:
-    "@typescript-eslint/types" "4.19.0"
-    eslint-visitor-keys "^2.0.0"
 
 "@typescript-eslint/visitor-keys@4.20.0":
   version "4.20.0"
@@ -4495,10 +4461,10 @@ delegates@^1.0.0:
   resolved "https://registry.yarnpkg.com/delegates/-/delegates-1.0.0.tgz#84c6e159b81904fdca59a0ef44cd870d31250f9a"
   integrity sha1-hMbhWbgZBP3KWaDvRM2HDTElD5o=
 
-denque@^1.1.0, denque@^1.4.1:
-  version "1.4.1"
-  resolved "https://registry.yarnpkg.com/denque/-/denque-1.4.1.tgz#6744ff7641c148c3f8a69c307e51235c1f4a37cf"
-  integrity sha512-OfzPuSZKGcgr96rf1oODnfjqBFmr1DVoc/TrItj3Ohe0Ah1C5WX5Baquw/9U9KovnQ88EqmJbD66rKYUQYN1tQ==
+denque@^1.1.0, denque@^1.5.0:
+  version "1.5.0"
+  resolved "https://registry.yarnpkg.com/denque/-/denque-1.5.0.tgz#773de0686ff2d8ec2ff92914316a47b73b1c73de"
+  integrity sha512-CYiCSgIF1p6EUByQPlGkKnP1M9g0ZV3qMIrqMqZqdwazygIA/YP2vrbcyl1h/WppKJTdl1F85cXIle+394iDAQ==
 
 depd@^1.1.2:
   version "1.1.2"
@@ -4891,10 +4857,10 @@ eslint-plugin-jest-formatting@^2.0.1:
   resolved "https://registry.yarnpkg.com/eslint-plugin-jest-formatting/-/eslint-plugin-jest-formatting-2.0.1.tgz#8f4297bf5b6c2cdd9b2c20a57892f0302b52c20a"
   integrity sha512-t6oc6GcXqzQ4lwatnVoKxGTLqo8kFIdA5kpaS3mrkwnTNxhsgFo9reMFdrtNtllx72ohNUsXsay7RJR/LLLk3Q==
 
-eslint-plugin-jest@^24.3.2:
-  version "24.3.2"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-jest/-/eslint-plugin-jest-24.3.2.tgz#30a8b2dea6278d0da1d6fb9d6cd530aaf58050a1"
-  integrity sha512-cicWDr+RvTAOKS3Q/k03+Z3odt3VCiWamNUHWd6QWbVQWcYJyYgUTu8x0mx9GfeDEimawU5kQC+nQ3MFxIM6bw==
+eslint-plugin-jest@^24.3.4:
+  version "24.3.4"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-jest/-/eslint-plugin-jest-24.3.4.tgz#6d90c3554de0302e879603dd6405474c98849f19"
+  integrity sha512-3n5oY1+fictanuFkTWPwSlehugBTAgwLnYLFsCllzE3Pl1BwywHl5fL0HFxmMjoQY8xhUDk8uAWc3S4JOHGh3A==
   dependencies:
     "@typescript-eslint/experimental-utils" "^4.0.1"
 
@@ -6348,10 +6314,10 @@ interpret@^1.0.0:
   resolved "https://registry.yarnpkg.com/interpret/-/interpret-1.4.0.tgz#665ab8bc4da27a774a40584e812e3e0fa45b1a1e"
   integrity sha512-agE4QfB2Lkp9uICn7BAqoscw4SZP9kTE2hxiFI3jBPmXJfdqiahTbUuKGsMoN2GtqL9AxhYioAcVvgsb1HvRbA==
 
-ioredis@^4.24.6:
-  version "4.24.6"
-  resolved "https://registry.yarnpkg.com/ioredis/-/ioredis-4.24.6.tgz#e46dd45257848510c40b0d50f7c2cc266026552e"
-  integrity sha512-HxZHYYSC7URouhGKI7l7PhVuSMk6VcdnBMjUcIkW4DhKVqzutF7eixZHKHf51X0SCnbI0eljMtToEydCMIrA2g==
+ioredis@^4.25.0:
+  version "4.25.0"
+  resolved "https://registry.yarnpkg.com/ioredis/-/ioredis-4.25.0.tgz#bc78d1fcda9d2b6f120f47c5764672734810b369"
+  integrity sha512-UoeqXpZB05aerGD3gB9NiigMsAyph+N+GWH8+3lX1+26caVV03GkL6JoLxS2HCxyvqCWbNsVSZTAp5W12qe23A==
   dependencies:
     cluster-key-slot "^1.1.0"
     debug "^4.3.1"
@@ -10065,7 +10031,7 @@ redent@^3.0.0:
     indent-string "^4.0.0"
     strip-indent "^3.0.0"
 
-redis-commands@1.7.0, redis-commands@^1.5.0:
+redis-commands@1.7.0, redis-commands@^1.7.0:
   version "1.7.0"
   resolved "https://registry.yarnpkg.com/redis-commands/-/redis-commands-1.7.0.tgz#15a6fea2d58281e27b1cd1acfb4b293e278c3a89"
   integrity sha512-nJWqw3bTFy21hX/CPKHth6sfhZbdiHP6bTawSgQBlKOVRG7EZkfHbbHwQJnrE4vsQf0CMNE+3gJ4Fmm16vdVlQ==
@@ -10082,13 +10048,13 @@ redis-parser@^3.0.0:
   dependencies:
     redis-errors "^1.0.0"
 
-redis@^3.0.2:
-  version "3.0.2"
-  resolved "https://registry.yarnpkg.com/redis/-/redis-3.0.2.tgz#bd47067b8a4a3e6a2e556e57f71cc82c7360150a"
-  integrity sha512-PNhLCrjU6vKVuMOyFu7oSP296mwBkcE6lrAjruBYG5LgdSqtRBoVQIylrMyVZD/lkF24RSNNatzvYag6HRBHjQ==
+redis@^3.1.0:
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/redis/-/redis-3.1.0.tgz#39daec130d74b78decca93513c61db0af5d86ce6"
+  integrity sha512-//lAOcEtNIKk2ekZibes5oyWKYUVWMvMB71lyD/hS9KRePNkB7AU3nXGkArX6uDKEb2N23EyJBthAv6pagD0uw==
   dependencies:
-    denque "^1.4.1"
-    redis-commands "^1.5.0"
+    denque "^1.5.0"
+    redis-commands "^1.7.0"
     redis-errors "^1.2.0"
     redis-parser "^3.0.0"
 
