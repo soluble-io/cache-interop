@@ -42,8 +42,6 @@
     "fix:staged": "lint-staged --allow-empty",
     "fix:all": "run-p fix:all:*",
     "fix:all:code": "eslint . --ext .ts,.tsx,.js,.jsx --fix",
-    "deps:check": "ncu --reject @soluble/cache-interop --dep prod,dev,optional",
-    "deps:update": "ncu --reject @soluble/cache-interop --dep prod,dev,optional -u",
     "coverage:publish": "codecov --root=../../ -F cacheInterop"
   },
   "lint-staged": {
