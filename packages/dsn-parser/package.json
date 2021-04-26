@@ -45,8 +45,6 @@
     "fix:staged": "lint-staged --allow-empty",
     "fix:all": "run-p fix:all:*",
     "fix:all:code": "eslint . --ext .ts,.tsx,.js,.jsx --fix",
-    "deps:check": "ncu --reject @soluble/cache-interop --dep prod,dev,optional",
-    "deps:update": "ncu --reject @soluble/cache-interop --dep prod,dev,optional -u",
     "coverage:publish": "codecov --root=../../ -F dsn_parser_unit"
   },
   "lint-staged": {
@@ -59,9 +57,9 @@
     ]
   },
   "devDependencies": {
-    "ts-jest": "^26.5.4",
-    "tslib": "^2.1.0",
-    "typescript": "^4.2.3"
+    "ts-jest": "^26.5.5",
+    "tslib": "^2.2.0",
+    "typescript": "^4.2.4"
   },
   "engines": {
     "node": ">=10.13"
