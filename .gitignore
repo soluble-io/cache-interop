@@ -1,8 +1,13 @@
 # dependencies
 node_modules
 tsconfig.tsbuildinfo
-/.pnp
-.pnp.js
+.yarn/*
+!.yarn/patches
+!.yarn/releases
+!.yarn/plugins
+!.yarn/sdks
+!.yarn/versions
+.pnp.*
 
 # production output
 /dist

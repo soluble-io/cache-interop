@@ -1,5 +1,13 @@
 # Dependencies
 /node_modules
+tsconfig.tsbuildinfo
+.yarn/*
+!.yarn/patches
+!.yarn/releases
+!.yarn/plugins
+!.yarn/sdks
+!.yarn/versions
+.pnp.*
 
 # Production
 /build
