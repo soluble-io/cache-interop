@@ -12,25 +12,25 @@
     "url": "https://github.com/belgattitude"
   },
   "workspaces": {
-    "packages": ["packages/*"],
-    "nohoist": []
+    "packages": [
+      "packages/*"
+    ]
   },
   "scripts": {
     "postinstall": "husky install",
     "build": "lerna run build",
-    "clean": "yarn workspaces run clean",
-    "test": "run-s test:* --",
-    "test:unit": "lerna run test:unit --stream -- $@",
-    "test:e2e": "lerna run test:e2e --stream -- $@",
+    "clean": "yarn workspaces foreach -ptv run clean",
+    "test": "run-s 'test:*'",
+    "test:unit": "yarn workspaces foreach -ptv --exclude '@soluble/*e2e*' run test:unit",
+    "test:e2e": "yarn workspaces foreach -ptv --include '@soluble/*e2e*' run test:e2e",
     "changeset": "changeset",
     "version-packages": "changeset version",
     "release": "yarn build && changeset publish",
-    "typecheck": "lerna run typecheck --stream --parallel",
-    "lint": "yarn workspaces run lint",
-    "fix:staged": "yarn workspaces run fix:staged",
-    "deduplicate": "yarn-deduplicate yarn.lock",
-    "reinstall": "lerna clean --yes && lerna run clean && npx rimraf@^3.0 --no-glob ./yarn.lock ./node_modules && yarn install && yarn deduplicate",
-    "coverage:publish": "codecov && lerna run coverage:publish -- -f coverage/clover.xml",
+    "typecheck": "yarn workspaces foreach -ptv run typecheck",
+    "lint": "yarn workspaces foreach -ptv run lint",
+    "fix:staged": "yarn workspaces foreach -ptv run fix:staged",
+    "reinstall": "yarn clean && yarn workspaces foreach -ptv run clean && npx rimraf@^3.0 --no-glob ./yarn.lock ./node_modules && yarn install",
+    "coverage:publish": "codecov && yarn workspaces foreach -ptv run coverage:publish -- -f coverage/clover.xml",
     "deps:check": "npm-check-updates --deep --dep prod,dev,optional",
     "deps:update": "npm-check-updates -u --deep --dep prod,dev,optional",
     "docs:start": "yarn --cwd ./docs start"
@@ -67,8 +67,7 @@
     "testcontainers": "^7.10.0",
     "ts-jest": "^26.5.6",
     "tslib": "^2.2.0",
-    "typescript": "^4.2.4",
-    "yarn-deduplicate": "^3.1.0"
+    "typescript": "^4.2.4"
   },
   "engines": {
     "node": ">=10.13",

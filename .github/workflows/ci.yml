@@ -30,25 +30,21 @@ jobs:
 
       - name: Get yarn cache directory path
         id: yarn-cache-dir-path
-        run: echo "::set-output name=dir::$(yarn cache dir)"
+        run: echo "::set-output name=dir::$(yarn config get cacheFolder)"
 
-      - uses: actions/cache@v2
+      - name: Restore yarn cache
+        uses: actions/cache@v2
         id: yarn-cache # use this to check for `cache-hit` (`steps.yarn-cache.outputs.cache-hit != 'true'`)
         with:
           path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
-          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          key: yarn-cache-folder-os-${{ runner.os }}-node-${{ env.node-version }}-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
-            ${{ runner.os }}-yarn-
+            yarn-cache-folder-os-${{ runner.os }}-node-${{ env.node-version }}-
+            yarn-cache-folder-os-${{ runner.os }}-
 
       - name: Install dependencies
         run: |
-          yarn install --frozen-lockfile
-
-      - name: Check yarn.lock
-        run: sh ./scripts/check-git-pristine-yarn-lock.sh
-
-      - name: Check packages duplicates
-        run: yarn deduplicate --list --fail
+          yarn install --immutable
 
       - name: Linting
         run: |
