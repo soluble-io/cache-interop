@@ -1,15 +1,40 @@
 # Contributing
 
-Fork this repo and contribute a P/R.
+Contributions are welcome, just fork this repo and provide a pull request.
+
+This repository follows some conventions:
+
+- **Conventional commits**: in other words prefix your commit messages with
+  one of the keys present in [commitlint.config.js](./commitlint.config.js). They
+  can be useful for reviewers or release managers.
+  
+  >*If you're not familiar with conventional commits or struggling when trying to commit
+  (a git hook enforces valid prefixes), 
+  check out [this link](https://www.conventionalcommits.org/en/v1.0.0/).*
+  
+- **Code style**: To maintain consistency eslint/prettier will be applied on pre-commit for you
+  through a git hook. Try to not disable hooks when committing, the CI will catch linter errors.
+
+- **Test**: When applicable pull requests should include tests (unit/e2e). Refer to notes below about how to
+  run them locally.
+
+- **CI**: A github action will help you to locate most if not all possible failures or breaking 
+  changes. Check successful runs in your github pull request.
+  
+- **Versions/Changelog**: To ease versioning and proper changelog generation this repo uses
+  [atlassion/changesets](https://github.com/atlassian/changesets). Type `yarn changeset` at the
+  project root, follow the instructions and include the generated changeset file. Changesets aren't
+  necessary in all situation (i.e: dev dependencies update...)
 
 ## Running tests
 
-Tests are separated in unit and e2e, you can launch them separately:
+Tests are separated in unit and e2e. You can run the whole suites by `yarn test` in the project root.
+Tu run them separately:
 
 ### Unit tests
 
 The convention for unit tests is to place them in their respective packages and 
-colocate them in a `__test__` subfolder. You can run
+colocate them in a `__tests__` subfolder. You can run
 them by:
 
 ```bash
@@ -18,12 +43,12 @@ $ yarn test:unit
 
 ### E2E tests
 
-E2E tests are packaged separately in [./packages/cache-e2e-tests/test](https://github.com/soluble-io/cache-interop/tree/main/packages/cache-e2e-tests) 
-to allow coverage of all adapters.
+E2E tests will run on all adapters and are found in [./packages/cache-e2e-tests/test](https://github.com/soluble-io/cache-interop/tree/main/packages/cache-e2e-tests), to run
+them locally you'll need to install docker.
 
-> Note that `test:e2e` requires docker installed on your machine. 
-> If you don't want to to install docker, you can rely
-> on the [github action](https://github.com/soluble-io/cache-interop/blob/main/.github/workflows/ci.yml). 
+```bash
+$ yarn test:e2e
+```
 
 ## Structure
 
