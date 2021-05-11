@@ -18,7 +18,7 @@
   },
   "scripts": {
     "postinstall": "husky install",
-    "build": "yarn workspace foreach -ptv run build",
+    "build": "yarn workspaces foreach -ptv run build",
     "clean": "yarn workspaces foreach -ptv run clean",
     "test": "run-s 'test:*'",
     "test:unit": "yarn workspaces foreach -ptv --exclude '@soluble/*e2e*' run test:unit",
