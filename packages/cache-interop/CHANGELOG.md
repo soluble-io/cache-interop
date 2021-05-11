@@ -1,5 +1,11 @@
 # @soluble/cache-interop
 
+## 0.7.2
+
+### Patch Changes
+
+- [#106](https://github.com/soluble-io/cache-interop/pull/106) [`819f727`](https://github.com/soluble-io/cache-interop/commit/819f7276f9c0e6c11c213a8f5fcce6146a5a05b8) Thanks [@belgattitude](https://github.com/belgattitude)! - CacheInterop does not need ioredis as peerDependency
+
 ## 0.7.1
 
 ### Patch Changes
