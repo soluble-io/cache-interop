@@ -33,7 +33,9 @@
     "coverage:publish": "codecov && yarn workspaces foreach -ptv run coverage:publish -- -f coverage/clover.xml",
     "deps:check": "npm-check-updates --deep --dep prod,dev,optional",
     "deps:update": "npm-check-updates -u --deep --dep prod,dev,optional",
-    "docs:start": "yarn --cwd ./docs start"
+    "docs:install": "cd ./docs && yarn install",
+    "docs:start": "cd ./docs && yarn start",
+    "docs:build": "cd ./docs && yarn build"
   },
   "dependencies": {
     "@changesets/changelog-github": "^0.4.0",
