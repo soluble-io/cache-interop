@@ -55,7 +55,7 @@
     ]
   },
   "dependencies": {
-    "@soluble/cache-interop": "^0.7.1"
+    "@soluble/cache-interop": "^0.7.2"
   },
   "devDependencies": {
     "@types/redis": "^2.8.28",
