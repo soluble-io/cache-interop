@@ -2427,7 +2427,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react@npm:*, @types/react@npm:^17.0.5":
+"@types/react@npm:*":
   version: 17.0.5
   resolution: "@types/react@npm:17.0.5"
   dependencies:
@@ -2435,6 +2435,17 @@ __metadata:
     "@types/scheduler": "*"
     csstype: ^3.0.2
   checksum: 86bfb0be783b95771aa61a5e480f3d878a8cb9b9eeea0d02eee7978dc9899a7cba3b346a2c9bd7460d353231fcdee8af7b7e20ad036f706fbe55e1f6519efa3e
+  languageName: node
+  linkType: hard
+
+"@types/react@npm:^17.0.6":
+  version: 17.0.6
+  resolution: "@types/react@npm:17.0.6"
+  dependencies:
+    "@types/prop-types": "*"
+    "@types/scheduler": "*"
+    csstype: ^3.0.2
+  checksum: dd687a9620d90cc7b9e50ed06ec73beb589fcb7ddfec7b166307af79cee7c521c1f2f1084ffd4ad6eaf7c937cfa446cc0b03cc3cd18e85e952501da2f2e0e0c3
   languageName: node
   linkType: hard
 
@@ -3430,7 +3441,7 @@ __metadata:
     "@docusaurus/preset-classic": 2.0.0-beta.0
     "@mdx-js/react": ^1.6.22
     "@tsconfig/docusaurus": ^1.0.2
-    "@types/react": ^17.0.5
+    "@types/react": ^17.0.6
     "@types/react-helmet": ^6.1.1
     "@types/react-router-dom": ^5.1.7
     clsx: ^1.1.1
