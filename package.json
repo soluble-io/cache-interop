@@ -13,16 +13,17 @@
   },
   "workspaces": {
     "packages": [
+      "docs",
       "packages/*"
     ]
   },
   "scripts": {
     "postinstall": "is-ci || husky install",
-    "build": "yarn workspaces foreach -ptv run build",
+    "build": "yarn workspaces foreach -ptv --exclude 'cache-interop-docs' run build",
     "clean": "yarn workspaces foreach -ptv run clean",
     "test": "run-s 'test:*'",
-    "test:unit": "yarn workspaces foreach -ptv --exclude '@soluble/*e2e*' run test:unit",
-    "test:e2e": "yarn workspaces foreach -ptv --include '@soluble/*e2e*' run test:e2e",
+    "test:unit": "yarn workspaces foreach -ptv --exclude '@soluble/*e2e*' --exclude 'cache-interop-docs' run test:unit",
+    "test:e2e": "yarn workspaces foreach -ptv --include '@soluble/*e2e*' --exclude 'cache-interop-docs' run test:e2e",
     "changeset": "changeset",
     "version-packages": "changeset version",
     "release": "yarn build && changeset publish",
@@ -76,5 +77,12 @@
     "node": ">=10.13",
     "yarn": ">=1.19.0 <2.0.0",
     "npm": "please-use-yarn"
+  },
+  "devDependencies": {
+    "@docusaurus/module-type-aliases": "^2.0.0-beta.0",
+    "@tsconfig/docusaurus": "^1.0.2",
+    "@types/react": "^17.0.11",
+    "@types/react-helmet": "^6.1.1",
+    "@types/react-router-dom": "^5.1.7"
   }
 }
