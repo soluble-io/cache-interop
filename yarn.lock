@@ -2848,7 +2848,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@mdx-js/react@npm:^1.6.21":
+"@mdx-js/react@npm:^1.6.21, @mdx-js/react@npm:^1.6.22":
   version: 1.6.22
   resolution: "@mdx-js/react@npm:1.6.22"
   peerDependencies:
@@ -3123,12 +3123,12 @@ __metadata:
     "@docusaurus/module-type-aliases": ^2.0.0-beta.0
     "@tsconfig/docusaurus": ^1.0.2
     "@types/jest": ^26.0.23
-    "@types/node": ^15.12.1
+    "@types/node": ^15.12.2
     "@types/react": ^17.0.11
     "@types/react-helmet": ^6.1.1
     "@types/react-router-dom": ^5.1.7
-    "@typescript-eslint/eslint-plugin": ^4.26.0
-    "@typescript-eslint/parser": ^4.26.0
+    "@typescript-eslint/eslint-plugin": ^4.26.1
+    "@typescript-eslint/parser": ^4.26.1
     cross-env: ^7.0.3
     eslint: ^7.28.0
     eslint-config-prettier: ^8.3.0
@@ -3143,16 +3143,16 @@ __metadata:
     jest-circus: ^27.0.4
     jest-cli: ^27.0.4
     lint-staged: ^11.0.0
-    microbundle: ^0.13.1
+    microbundle: ^0.13.3
     moq.ts: ^7.3.4
     npm-check-updates: ^11.6.0
     npm-run-all: ^4.1.5
     prettier: ^2.3.1
     rimraf: ^3.0.2
-    rollup: ^2.51.0
+    rollup: ^2.51.2
     testcontainers: ^7.11.1
     ts-jest: ^27.0.3
-    tslib: ^2.2.0
+    tslib: ^2.3.0
     typescript: ^4.3.2
   languageName: unknown
   linkType: soft
@@ -3608,7 +3608,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:*, @types/node@npm:^15.12.1":
+"@types/node@npm:*, @types/node@npm:^15.12.2":
   version: 15.12.2
   resolution: "@types/node@npm:15.12.2"
   checksum: 0dff080f306e4d5cd968bd43315238a227b1f54f4bb59fa9cee976535678f00755834c0288315029ae12f78b3db43efb5bfb700cf8aae882f184eb700229f974
@@ -3820,7 +3820,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@typescript-eslint/eslint-plugin@npm:^4.26.0":
+"@typescript-eslint/eslint-plugin@npm:^4.26.1":
   version: 4.26.1
   resolution: "@typescript-eslint/eslint-plugin@npm:4.26.1"
   dependencies:
@@ -3858,7 +3858,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@typescript-eslint/parser@npm:^4.26.0":
+"@typescript-eslint/parser@npm:^4.26.1":
   version: 4.26.1
   resolution: "@typescript-eslint/parser@npm:4.26.1"
   dependencies:
@@ -5347,14 +5347,14 @@ __metadata:
   dependencies:
     "@docusaurus/core": 2.0.0-beta.0
     "@docusaurus/preset-classic": 2.0.0-beta.0
-    "@mdx-js/react": ^1.6.21
+    "@mdx-js/react": ^1.6.22
     "@svgr/webpack": ^5.5.0
     clsx: ^1.1.1
     file-loader: ^6.2.0
     lint-staged: ^11.0.0
     prettier: ^2.3.1
-    react: ^17.0.1
-    react-dom: ^17.0.1
+    react: ^17.0.2
+    react-dom: ^17.0.2
     typescript: ^4.3.2
     url-loader: ^4.1.1
   languageName: unknown
@@ -12240,7 +12240,7 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
-"microbundle@npm:^0.13.1":
+"microbundle@npm:^0.13.3":
   version: 0.13.3
   resolution: "microbundle@npm:0.13.3"
   dependencies:
@@ -15155,7 +15155,7 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
-"react-dom@npm:^17.0.1":
+"react-dom@npm:^17.0.2":
   version: 17.0.2
   resolution: "react-dom@npm:17.0.2"
   dependencies:
@@ -15326,7 +15326,7 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
-"react@npm:^17.0.1":
+"react@npm:^17.0.2":
   version: 17.0.2
   resolution: "react@npm:17.0.2"
   dependencies:
@@ -16084,7 +16084,7 @@ resolve@1.17.0:
   languageName: node
   linkType: hard
 
-"rollup@npm:^2.35.1, rollup@npm:^2.51.0":
+"rollup@npm:^2.35.1, rollup@npm:^2.51.2":
   version: 2.51.2
   resolution: "rollup@npm:2.51.2"
   dependencies:
@@ -17880,7 +17880,7 @@ resolve@1.17.0:
   languageName: node
   linkType: hard
 
-"tslib@npm:^2.0.3, tslib@npm:^2.1.0, tslib@npm:^2.2.0, tslib@npm:^2.3.0":
+"tslib@npm:^2.0.3, tslib@npm:^2.1.0, tslib@npm:^2.3.0":
   version: 2.3.0
   resolution: "tslib@npm:2.3.0"
   checksum: 8869694c26e4a7b56d449662fd54a4f9ba872c889d991202c74462bd99f10e61d5bd63199566c4284c0f742277736292a969642cc7b590f98727a7cae9529122
