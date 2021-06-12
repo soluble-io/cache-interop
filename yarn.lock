@@ -3102,6 +3102,10 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@soluble/cache-e2e-tests@workspace:packages/cache-e2e-tests"
   dependencies:
+    "@soluble/cache-interop": "workspace:*"
+    "@soluble/cache-ioredis": "workspace:*"
+    "@soluble/cache-redis": "workspace:*"
+    "@soluble/dsn-parser": "workspace:*"
     "@types/ioredis": ^4.26.4
     "@types/redis": ^2.8.29
     ioredis: ^4.27.5
@@ -3169,7 +3173,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@soluble/cache-ioredis@workspace:packages/cache-ioredis":
+"@soluble/cache-ioredis@workspace:*, @soluble/cache-ioredis@workspace:packages/cache-ioredis":
   version: 0.0.0-use.local
   resolution: "@soluble/cache-ioredis@workspace:packages/cache-ioredis"
   dependencies:
@@ -3187,7 +3191,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@soluble/cache-redis@workspace:packages/cache-redis":
+"@soluble/cache-redis@workspace:*, @soluble/cache-redis@workspace:packages/cache-redis":
   version: 0.0.0-use.local
   resolution: "@soluble/cache-redis@workspace:packages/cache-redis"
   dependencies:
