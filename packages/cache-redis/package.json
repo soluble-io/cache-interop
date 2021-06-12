@@ -55,7 +55,8 @@
     ]
   },
   "dependencies": {
-    "@soluble/cache-interop": "^0.7.2"
+    "@soluble/cache-interop": "workspace:*",
+    "@soluble/dsn-parser": "workspace:*"
   },
   "devDependencies": {
     "@types/redis": "^2.8.29",
