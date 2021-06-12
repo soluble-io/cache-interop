@@ -1,5 +1,5 @@
 {
-  "name": "cache-interop",
+  "name": "cache-interop-docs",
   "version": "0.0.0",
   "private": true,
   "scripts": {
@@ -9,7 +9,9 @@
     "swizzle": "docusaurus swizzle",
     "deploy": "docusaurus deploy",
     "serve": "docusaurus serve",
-    "clear": "docusaurus clear"
+    "clean": "docusaurus clear",
+    "typecheck": "tsc --project tsconfig.json --noEmit",
+    "fix:staged": "lint-staged --allow-empty"
   },
   "browserslist": {
     "production": [
@@ -31,12 +33,22 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2"
   },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "prettier --write",
+      "eslint --fix"
+    ],
+    "*.{yaml,json,md,html}": [
+      "prettier --write"
+    ]
+  },
   "devDependencies": {
     "@docusaurus/module-type-aliases": "^2.0.0-beta.0",
     "@tsconfig/docusaurus": "^1.0.2",
-    "@types/react": "^17.0.9",
+    "@types/react": "^17.0.11",
     "@types/react-helmet": "^6.1.1",
     "@types/react-router-dom": "^5.1.7",
+    "lint-staged": "^11.0.0",
     "typescript": "^4.3.2"
   }
 }
