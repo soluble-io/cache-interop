@@ -1,30 +1,31 @@
+/** @type {import('@docusaurus/types').DocusaurusConfig} */
 module.exports = {
   title: 'My Site',
-  tagline: 'The tagline of my site',
+  tagline: 'Dinosaurs are cool',
   url: 'https://your-docusaurus-test-site.com',
   baseUrl: '/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
-  organizationName: 'soluble-io', // Usually your GitHub org/user name.
-  projectName: 'cache-interop', // Usually your repo name.
+  organizationName: 'facebook', // Usually your GitHub org/user name.
+  projectName: 'docusaurus', // Usually your repo name.
   themeConfig: {
     navbar: {
-      title: 'Cache-interop',
+      title: 'My Site',
       logo: {
         alt: 'My Site Logo',
         src: 'img/logo.svg',
       },
       items: [
         {
-          to: 'docs/',
-          activeBasePath: 'docs',
-          label: 'Docs',
+          type: 'doc',
+          docId: 'intro',
           position: 'left',
+          label: 'Tutorial',
         },
-        { to: 'blog', label: 'Blog', position: 'left' },
+        { to: '/blog', label: 'Blog', position: 'left' },
         {
-          href: 'https://github.com/soluble-io/cache-interop',
+          href: 'https://github.com/facebook/docusaurus',
           label: 'GitHub',
           position: 'right',
         },
@@ -37,12 +38,8 @@ module.exports = {
           title: 'Docs',
           items: [
             {
-              label: 'Style Guide',
-              to: 'docs/',
-            },
-            {
-              label: 'Second Doc',
-              to: 'docs/doc2/',
+              label: 'Tutorial',
+              to: '/docs/intro',
             },
           ],
         },
@@ -68,7 +65,7 @@ module.exports = {
           items: [
             {
               label: 'Blog',
-              to: 'blog',
+              to: '/blog',
             },
             {
               label: 'GitHub',

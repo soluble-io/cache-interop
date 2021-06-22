@@ -3,6 +3,7 @@ import { promisify } from 'util';
 
 export type AsyncRedisClient = ReturnType<typeof getAsyncRedisClient>;
 
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export const getAsyncRedisClient = (redis: RedisClient) => {
   return {
     get: promisify(redis.get).bind(redis),
