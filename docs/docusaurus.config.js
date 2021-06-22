@@ -1,14 +1,14 @@
 /** @type {import('@docusaurus/types').DocusaurusConfig} */
 module.exports = {
-  title: 'My Site',
-  tagline: 'Dinosaurs are cool',
-  url: 'https://your-docusaurus-test-site.com',
+  title: 'Cache interop',
+  tagline: 'Interoperable cache adapters for nodejs',
+  url: 'https://github.com/soluble-io/cache-interop',
   baseUrl: '/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
-  organizationName: 'facebook', // Usually your GitHub org/user name.
-  projectName: 'docusaurus', // Usually your repo name.
+  organizationName: 'soluble-io', // Usually your GitHub org/user name.
+  projectName: 'cache-interop', // Usually your repo name.
   themeConfig: {
     navbar: {
       title: 'My Site',
