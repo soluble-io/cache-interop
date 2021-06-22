@@ -76,7 +76,7 @@ const { data, error } = await cache.getOrSet(
   // Cache key
   'cacheKey1',
   // Async function
-  asyncFetch(), 
+  asyncFetch, 
   // GetOrSetOptions
   { ttl: 3600 }
 );
