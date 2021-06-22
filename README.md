@@ -42,7 +42,7 @@
 - [x] Don't throw errors.
 - [x] Written in typescript.
 - [x] Fully tested with [e2e](./packages/cache-e2e-tests/test/all-adapters-base.test.ts) tests.
-
+- [x] Adapters: node-redis, ioredis.
 
 ## Roadmap
 
@@ -53,7 +53,6 @@
     - [ ] Cache manager
       - [ ] Chainable cache adapter (allows lru as L1, redis as L2)
 - [ ] Adapters
-    - [ ] adapter for node-redis
     - [ ] lru-cache
 - [ ] Documentation          
 
@@ -89,6 +88,9 @@ if (data !== null) {
 ### DisableCache
 
 
+### Class diagram
+
+![](./docs/static/img/cache-interop-class-diagram.jpg)
 
 ## Adapters
 
