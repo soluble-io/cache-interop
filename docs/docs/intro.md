@@ -39,11 +39,11 @@ sidebar_position: 1
 
 ## Features
 
-- [x] Simple but powerful [API](./packages/cache-interop/src/cache.interface.ts).
+- [x] Simple but powerful API
 - [x] Work with `async`/`await`.
 - [x] Don't throw errors.
 - [x] Written in typescript.
-- [x] Fully tested with [e2e](./packages/cache-e2e-tests/test/all-adapters-base.test.ts) tests.
+- [x] Fully tested with e2e.
 - [x] Adapters: node-redis, ioredis.
 
 ## Roadmap
@@ -110,11 +110,11 @@ try {
 
 ## Adapters
 
-| package                                            | target           | description                                                              |
-| -------------------------------------------------- | ---------------- | ------------------------------------------------------------------------ |
-| [@soluble/cache-interop](./packages/cache-interop) | `node`,`browser` | Interoperability interfaces & contracts                                  |
-| [@soluble/cache-ioredis](./packages/cache-ioredis) | `node`           | Adapter for node [ioredis](https://github.com/luin/ioredis) driver       |
-| [@soluble/cache-redis](./packages/cache-redis)     | `node`           | Adapter for node [redis](https://github.com/NodeRedis/node-redis) driver |
+| package                | target           | description                                                              |
+| ---------------------- | ---------------- | ------------------------------------------------------------------------ |
+| @soluble/cache-interop | `node`,`browser` | Interoperability interfaces & contracts                                  |
+| @soluble/cache-ioredis | `node`           | Adapter for node [ioredis](https://github.com/luin/ioredis) driver       |
+| @soluble/cache-redis   | `node`           | Adapter for node [redis](https://github.com/NodeRedis/node-redis) driver |
 
 ## Structure
 
