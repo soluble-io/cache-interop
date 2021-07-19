@@ -1,8 +1,10 @@
+// @ts-check
+'use strict';
+
 const { defaults: tsjPreset } = require('ts-jest/presets');
 
-/** @typedef {import('ts-jest')} */
+/** @typedef {import('ts-jest/dist/types')} */
 /** @type {import('@jest/types').Config.InitialOptions} */
-
 module.exports = {
   name: 'cache-dsn-parser/unit',
   displayName: 'cache-dsn-parser/unit',
