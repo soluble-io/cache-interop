@@ -81,4 +81,7 @@ jobs:
         run: |
           yarn build
 
+      - name: Temp test to see if tar is available
+        run: |
+          yarn build-publishable-release
 
