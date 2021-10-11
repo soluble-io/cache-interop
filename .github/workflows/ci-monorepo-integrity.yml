@@ -57,9 +57,9 @@ jobs:
         run: |
           yarn dedupe --check
 
-      - name: Check monorepo dependency graph
-        run: |
-          yarn check:install
+      #- name: Check monorepo dependency graph
+      #  run: |
+      #    yarn check:install
 
 
 
