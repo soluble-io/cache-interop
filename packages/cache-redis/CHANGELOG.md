@@ -1,5 +1,11 @@
 # @soluble/cache-node-redis
 
+## 0.8.2
+
+### Patch Changes
+
+- [#135](https://github.com/soluble-io/cache-interop/pull/135) [`09f1e7e`](https://github.com/soluble-io/cache-interop/commit/09f1e7ee680c600914de04d99cce68f7c9bc804c) Thanks [@belgattitude](https://github.com/belgattitude)! - Fix release 0.8.1
+
 ## 0.8.1
 
 ### Patch Changes
