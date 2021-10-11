@@ -5,7 +5,7 @@ on:
       - main
 jobs:
   release:
-    if: github.repository == '@soluble-io/cache-interop'
+    if: github.repository == 'soluble-io/cache-interop'
     name: Release
     runs-on: ubuntu-latest
     steps:
