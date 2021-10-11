@@ -3163,7 +3163,7 @@ __metadata:
     jest: ^27.0.6
     redis: ^3.1.2
     ts-jest: ^27.0.4
-    typescript: ^4.3.5
+    typescript: 4.3.5
   languageName: unknown
   linkType: soft
 
@@ -3203,7 +3203,7 @@ __metadata:
     testcontainers: ^7.14.0
     ts-jest: ^27.0.4
     tslib: ^2.3.0
-    typescript: ^4.3.5
+    typescript: 4.3.5
   languageName: unknown
   linkType: soft
 
@@ -3215,7 +3215,7 @@ __metadata:
     jest: ^27.0.6
     ts-jest: ^27.0.4
     tslib: ^2.3.0
-    typescript: ^4.3.5
+    typescript: 4.3.5
   languageName: unknown
   linkType: soft
 
@@ -3230,7 +3230,7 @@ __metadata:
     jest: ^27.0.6
     ts-jest: ^27.0.4
     tslib: ^2.3.0
-    typescript: ^4.3.5
+    typescript: 4.3.5
   peerDependencies:
     "@types/ioredis": ">=4.0"
     ioredis: ">=4.0"
@@ -3248,7 +3248,7 @@ __metadata:
     redis: ^3.1.2
     ts-jest: ^27.0.4
     tslib: ^2.3.0
-    typescript: ^4.3.5
+    typescript: 4.3.5
   peerDependencies:
     "@types/redis": ">=2.8.28"
     redis: ">=3.0"
@@ -3262,7 +3262,7 @@ __metadata:
     jest: ^27.0.6
     ts-jest: ^27.0.4
     tslib: ^2.3.0
-    typescript: ^4.3.5
+    typescript: 4.3.5
   languageName: unknown
   linkType: soft
 
@@ -5878,7 +5878,7 @@ __metadata:
     prettier: ^2.3.2
     react: ^17.0.2
     react-dom: ^17.0.2
-    typescript: ^4.3.5
+    typescript: 4.3.5
     url-loader: ^4.1.1
   languageName: unknown
   linkType: soft
@@ -18988,7 +18988,17 @@ resolve@1.17.0:
   languageName: node
   linkType: hard
 
-"typescript@^4.1.3, typescript@^4.3.2, typescript@^4.3.5":
+typescript@4.3.5:
+  version: 4.3.5
+  resolution: "typescript@npm:4.3.5"
+  bin:
+    tsc: bin/tsc
+    tsserver: bin/tsserver
+  checksum: bab033b5e2b0790dd35b77fd005df976ef80b8d84fd2c6e63cc31808151875beae9216e5a315fe7068e8499905c3c354248fe83272cdfc13b7705635f0c66c97
+  languageName: node
+  linkType: hard
+
+"typescript@^4.1.3, typescript@^4.3.2":
   version: 4.4.3
   resolution: "typescript@npm:4.4.3"
   bin:
@@ -18998,7 +19008,17 @@ resolve@1.17.0:
   languageName: node
   linkType: hard
 
-"typescript@patch:typescript@^4.1.3#~builtin<compat/typescript>, typescript@patch:typescript@^4.3.2#~builtin<compat/typescript>, typescript@patch:typescript@^4.3.5#~builtin<compat/typescript>":
+"typescript@patch:typescript@4.3.5#~builtin<compat/typescript>":
+  version: 4.3.5
+  resolution: "typescript@patch:typescript@npm%3A4.3.5#~builtin<compat/typescript>::version=4.3.5&hash=ddd1e8"
+  bin:
+    tsc: bin/tsc
+    tsserver: bin/tsserver
+  checksum: 61fc1a2ca5037420de5bbe17c6ddc4cbcc0d52301ed94f0a7b5821c55ff9eb96307f0816f745ca8f0fc87ed92f3951cde6d97cd6fd6bc6920c02ea63b5b26259
+  languageName: node
+  linkType: hard
+
+"typescript@patch:typescript@^4.1.3#~builtin<compat/typescript>, typescript@patch:typescript@^4.3.2#~builtin<compat/typescript>":
   version: 4.4.3
   resolution: "typescript@patch:typescript@npm%3A4.4.3#~builtin<compat/typescript>::version=4.4.3&hash=ddd1e8"
   bin:
