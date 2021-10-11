@@ -1,5 +1,11 @@
 # @soluble/cache-ioredis
 
+## 0.8.1
+
+### Patch Changes
+
+- [#133](https://github.com/soluble-io/cache-interop/pull/133) [`171eb6d`](https://github.com/soluble-io/cache-interop/commit/171eb6d446a9319aa0cf758fb9f4d452e979e248) Thanks [@belgattitude](https://github.com/belgattitude)! - Fix peerDependencies for @types/\*
+
 ## 0.8.0
 
 ### Minor Changes
