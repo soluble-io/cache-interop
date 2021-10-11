@@ -2,7 +2,7 @@
   "compilerOptions": {
     "target": "ES2020",
     "module": "esnext",
-    "lib": ["esnext"],
+    "lib": ["esnext", "dom"],
     "moduleResolution": "node",
     "importHelpers": true,
     "sourceMap": true,

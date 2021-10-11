@@ -36,9 +36,10 @@
     "deps:update": "npm-check-updates -u --deep --dep prod,dev,optional",
     "docs:install": "cd ./docs && yarn install",
     "docs:start": "cd ./docs && yarn start",
-    "docs:build": "cd ./docs && yarn build"
+    "docs:build": "cd ./docs && yarn build",
+    "check:install": "yarn doctor ."
   },
-  "dependencies": {
+  "devDependencies": {
     "@changesets/changelog-github": "^0.4.0",
     "@changesets/cli": "^2.16.0",
     "@commitlint/cli": "^12.1.4",
@@ -46,6 +47,7 @@
     "@types/node": "^16.4.0",
     "@typescript-eslint/eslint-plugin": "^4.28.4",
     "@typescript-eslint/parser": "^4.28.4",
+    "@yarnpkg/doctor": "^3.0.0",
     "cross-env": "^7.0.3",
     "eslint": "^7.31.0",
     "eslint-config-prettier": "^8.3.0",
@@ -70,16 +72,12 @@
     "testcontainers": "^7.14.0",
     "ts-jest": "^27.0.4",
     "tslib": "^2.3.0",
-    "typescript": "^4.3.5"
+    "typescript": "4.3.5"
   },
   "engines": {
     "node": ">=10.13",
     "yarn": ">=1.19.0 <2.0.0",
     "npm": "please-use-yarn"
   },
-  "devDependencies": {
-    "@types/react": "^17.0.14",
-    "@types/react-router-dom": "^5.1.8"
-  },
-  "packageManager": "yarn@3.0.0-rc.12"
+  "packageManager": "yarn@3.1.0-rc.8"
 }
