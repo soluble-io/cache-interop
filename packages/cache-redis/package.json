@@ -1,7 +1,7 @@
 {
   "name": "@soluble/cache-redis",
   "description": "Node redis cache interop adapter",
-  "version": "0.8.0",
+  "version": "0.8.1",
   "license": "MIT",
   "homepage": "https://github.com/soluble-io/cache-interop/tree/main/packages/cache-redis",
   "repository": {
