@@ -1,5 +1,16 @@
 # @soluble/cache-ioredis
 
+## 0.8.0
+
+### Minor Changes
+
+- [#110](https://github.com/soluble-io/cache-interop/pull/110) [`ea33ecc`](https://github.com/soluble-io/cache-interop/commit/ea33ecccf5324c75f680799122e7e776563943bf) Thanks [@belgattitude](https://github.com/belgattitude)! - Require node >= 12, drop support for older versions
+
+### Patch Changes
+
+- Updated dependencies [[`ea33ecc`](https://github.com/soluble-io/cache-interop/commit/ea33ecccf5324c75f680799122e7e776563943bf)]:
+  - @soluble/cache-interop@0.8.0
+
 ## 0.7.1
 
 ### Patch Changes
