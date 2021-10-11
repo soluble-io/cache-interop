@@ -1,7 +1,7 @@
 {
   "name": "@soluble/cache-interop",
   "description": "Async cache interop contracts",
-  "version": "0.7.2",
+  "version": "0.8.0",
   "license": "MIT",
   "homepage": "https://github.com/soluble-io/cache-interop/tree/main/packages/cache-interop",
   "repository": {
