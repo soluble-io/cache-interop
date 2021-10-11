@@ -3,4 +3,4 @@
 '@soluble/cache-redis': patch
 ---
 
-Fix peerDependencies for @types/\*
+peerDependencies for @types/* should be optional 
