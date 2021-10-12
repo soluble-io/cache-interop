@@ -42,7 +42,7 @@
 - [x] Don't throw errors.
 - [x] Written in typescript.
 - [x] Fully tested with [e2e](./packages/cache-e2e-tests/test/all-adapters-base.test.ts) tests.
-
+- [x] Adapters: node-redis, ioredis.
 
 ## Roadmap
 
@@ -53,7 +53,6 @@
     - [ ] Cache manager
       - [ ] Chainable cache adapter (allows lru as L1, redis as L2)
 - [ ] Adapters
-    - [ ] adapter for node-redis
     - [ ] lru-cache
 - [ ] Documentation          
 
@@ -65,18 +64,38 @@
 
 ```typescript
 import { IoRedisCacheAdapter } from '@soluble/cache-ioredis';
+import { InternalServerError, NotFound } from "@tsed/exceptions";
 
 const cache = new IoRedisCacheAdapter({
   connection: 'redis://localhost:6375',
 });
 
-const asyncFetch = () => myFetch('/api').then(r => JSON.stringify(r));
+const asyncFetch = async () => myFetch('/api').then(r => JSON.stringify(r));
 
-const { data, error } = await cache.getOrSet('key', asyncFetch(), { ttl: 3600 });
+const { data, error } = await cache.getOrSet(
+  // Cache key
+  'cacheKey1',
+  // Async function
+  asyncFetch, 
+  // GetOrSetOptions
+  { ttl: 3600 }
+);
 
-if (data !== null) {
-  // do something
+if (error instanceof Error) {
+  throw new InternalServerError(error.message, error);
 }
+
+if (data === null) {
+  throw new NotFound('Not found');
+}
+
+let parsed: UnPromisify<ReturnType<typeof asyncFetch>>;
+try {
+  parsed = JSON.parse(data);
+} catch (e) {
+  throw new SerializerException(e.message);
+}
+
 ```
 
 
@@ -89,6 +108,9 @@ if (data !== null) {
 ### DisableCache
 
 
+### Class diagram
+
+![](./docs/static/img/cache-interop-class-diagram.jpg)
 
 ## Adapters
 

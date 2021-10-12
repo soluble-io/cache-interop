@@ -1,10 +1,12 @@
+// @ts-check
+'use strict';
+
 const { pathsToModuleNameMapper } = require('ts-jest/utils');
 const { defaults: tsjPreset } = require('ts-jest/presets');
 const { compilerOptions } = require('./tsconfig.jest.json');
 
-/** @typedef {import('ts-jest')} */
+/** @typedef {import('ts-jest/dist/types')} */
 /** @type {import('@jest/types').Config.InitialOptions} */
-
 module.exports = {
   name: 'cache-interop/unit',
   displayName: 'cache-interop/unit',

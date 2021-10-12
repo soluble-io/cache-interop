@@ -1,24 +1,38 @@
-name: release
+name: CI-monorepo-integrity
+
 on:
   push:
     branches:
+      - dev
       - main
-jobs:
-  release:
-    if: github.repository == 'soluble-io/cache-interop'
-    name: Release
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout Repo
-        uses: actions/checkout@v2
-        with:
-          # This makes Actions fetch all Git history so that Changesets can generate changelogs with the correct commits
-          fetch-depth: 0
+    paths:
+      - "yarn.lock"
+      - ".yarnrc.yml"
+      - ".github/workflows/**"
 
-      - name: Setup Node.js 14.x
+  pull_request:
+    types:
+      - opened
+      - synchronize
+      - reopened
+    paths:
+      - "yarn.lock"
+      - ".yarnrc.yml"
+      - ".github/workflows/**"
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [14.x]
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v2
         with:
-          node-version: 14.x
+          node-version: ${{ matrix.node-version }}
 
       # Why not using setup-node 2.2+ cache option (yet) ?
       # see https://github.com/belgattitude/nextjs-monorepo-example/pull/369
@@ -35,16 +49,17 @@ jobs:
           restore-keys: |
             yarn-cache-folder-
 
-      - name: Install Dependencies
-        run: yarn install --immutable
-        env:
-          HUSKY: 0
+      - name: Install dependencies
+        run: |
+          yarn install --immutable
 
-      - name: Create Release Pull Request or Publish to npm
-        id: changesets
-        uses: changesets/action@master
-        with:
-          publish: yarn release
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - name: Check for duplicate dependencies in lock file
+        run: |
+          yarn dedupe --check
+
+      #- name: Check monorepo dependency graph
+      #  run: |
+      #    yarn check:install
+
+
+

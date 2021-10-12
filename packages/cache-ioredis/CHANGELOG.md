@@ -1,5 +1,28 @@
 # @soluble/cache-ioredis
 
+## 0.8.2
+
+### Patch Changes
+
+- [#135](https://github.com/soluble-io/cache-interop/pull/135) [`09f1e7e`](https://github.com/soluble-io/cache-interop/commit/09f1e7ee680c600914de04d99cce68f7c9bc804c) Thanks [@belgattitude](https://github.com/belgattitude)! - Fix release 0.8.1
+
+## 0.8.1
+
+### Patch Changes
+
+- [#133](https://github.com/soluble-io/cache-interop/pull/133) [`171eb6d`](https://github.com/soluble-io/cache-interop/commit/171eb6d446a9319aa0cf758fb9f4d452e979e248) Thanks [@belgattitude](https://github.com/belgattitude)! - Fix peerDependencies for @types/\*
+
+## 0.8.0
+
+### Minor Changes
+
+- [#110](https://github.com/soluble-io/cache-interop/pull/110) [`ea33ecc`](https://github.com/soluble-io/cache-interop/commit/ea33ecccf5324c75f680799122e7e776563943bf) Thanks [@belgattitude](https://github.com/belgattitude)! - Require node >= 12, drop support for older versions
+
+### Patch Changes
+
+- Updated dependencies [[`ea33ecc`](https://github.com/soluble-io/cache-interop/commit/ea33ecccf5324c75f680799122e7e776563943bf)]:
+  - @soluble/cache-interop@0.8.0
+
 ## 0.7.1
 
 ### Patch Changes
