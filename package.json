@@ -24,7 +24,7 @@
     "clean": "yarn workspaces foreach -ptv run clean",
     "test": "run-s 'test:*'",
     "test:unit": "yarn workspaces foreach -ptv --exclude '@soluble/*e2e*' --exclude 'cache-interop-docs' run test:unit",
-    "test:e2e": "yarn workspaces foreach -ptv --include '@soluble/*e2e*' --exclude 'cache-interop-docs' run test:e2e",
+    "test:e2e": "yarn clean && yarn workspaces foreach -ptv --include '@soluble/*e2e*' --exclude 'cache-interop-docs' run test:e2e",
     "changeset": "changeset",
     "version-packages": "changeset version",
     "release": "yarn build-publishable-release && changeset publish",

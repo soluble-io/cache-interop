@@ -38,7 +38,7 @@
     "build": "cross-env NODE_ENV=production microbundle --tsconfig tsconfig.build.json --target node --compress",
     "?build-publishable-release": "Workaround for changeset and workspace protocol: https://github.com/atlassian/changesets/pull/585",
     "build-publishable-release": "yarn build && rimraf ./_release && yarn pack && mkdir ./_release && tar zxvf ./package.tgz --directory ./_release && rm ./package.tgz",
-    "clean": "rimraf --no-glob ./dist ./build ./coverage ./out",
+    "clean": "rimraf --no-glob ./dist ./build ./coverage ./out ./_release",
     "test": "run-s test:unit -- {@}",
     "test:unit": "jest --config jest.config.js --color $@",
     "typecheck": "tsc --noEmit",
