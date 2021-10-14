@@ -63,8 +63,8 @@
     "@soluble/dsn-parser": "workspace:*"
   },
   "devDependencies": {
-    "@types/ioredis": "4.27.6",
-    "ioredis": "4.27.11",
+    "@types/ioredis": "4.27.7",
+    "ioredis": "4.28.0",
     "jest": "27.2.5",
     "ts-jest": "27.0.5",
     "tslib": "2.3.1",
