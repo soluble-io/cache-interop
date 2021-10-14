@@ -63,7 +63,7 @@
     "jest-circus": "27.2.5",
     "jest-cli": "27.2.5",
     "lint-staged": "11.2.3",
-    "microbundle": "0.14.0",
+    "microbundle": "0.14.1",
     "moq.ts": "7.3.4",
     "npm-check-updates": "11.8.5",
     "npm-run-all": "4.1.5",
