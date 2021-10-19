@@ -16,7 +16,7 @@ module.exports = {
   transform: {
     ...tsjPreset.transform,
   },
-  transformIgnorePatterns: ['[/\\\\]node_modules[/\\\\].+\\.(js|jsx|ts|tsx)$', '^.+\\.module\\.(css|sass|scss|less)$'],
+
   modulePaths: [],
   globals: {
     'ts-jest': {

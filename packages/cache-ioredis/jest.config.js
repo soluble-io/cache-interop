@@ -17,7 +17,7 @@ const config = {
     ...tsjPreset.transform,
   },
   rootDir: '../',
-  transformIgnorePatterns: ['[/\\\\]node_modules[/\\\\].+\\.(js|ts)$'],
+
   testMatch: ['<rootDir>/cache-ioredis/src/**/*.test.ts'],
   moduleNameMapper: pathsToModuleNameMapper(compilerOptions.paths, { prefix: '<rootDir>/' }),
   coverageDirectory: '<rootDir>/cache-ioredis/coverage',
