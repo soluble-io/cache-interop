@@ -17,7 +17,7 @@ const config = {
   transform: {
     ...tsjPreset.transform,
   },
-  transformIgnorePatterns: ['[/\\\\]node_modules[/\\\\].+\\.(js|ts)$'],
+
   rootDir: '../',
   testMatch: ['<rootDir>/cache-e2e-tests/**/*.test.ts'],
   moduleNameMapper: pathsToModuleNameMapper(compilerOptions.paths, { prefix: '<rootDir>/' }),
