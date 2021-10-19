@@ -16,7 +16,10 @@ on:
 
 jobs:
   test:
+    # containers must run in Linux based operating systems
     runs-on: ubuntu-latest
+    timeout-minutes: 15
+
     strategy:
       matrix:
         node-version: [12.x, 14.x, 16.x]
