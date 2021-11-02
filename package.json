@@ -79,5 +79,5 @@
     "yarn": ">=1.19.0",
     "npm": "please-use-yarn"
   },
-  "packageManager": "yarn@3.1.0-rc.9"
+  "packageManager": "yarn@3.1.0"
 }
