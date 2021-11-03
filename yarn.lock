@@ -2312,7 +2312,7 @@ __metadata:
     "@soluble/cache-ioredis": "workspace:*"
     "@soluble/cache-redis": "workspace:*"
     "@soluble/dsn-parser": "workspace:*"
-    "@types/ioredis": 4.27.8
+    "@types/ioredis": 4.28.1
     "@types/jest": 27.0.2
     "@types/redis": 2.8.32
     ioredis: 4.28.0
@@ -2380,7 +2380,7 @@ __metadata:
   dependencies:
     "@soluble/cache-interop": "workspace:*"
     "@soluble/dsn-parser": "workspace:*"
-    "@types/ioredis": 4.27.8
+    "@types/ioredis": 4.28.1
     ioredis: 4.28.0
     jest: 27.3.1
     ts-jest: 27.0.7
@@ -2596,12 +2596,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/ioredis@npm:4.27.8":
-  version: 4.27.8
-  resolution: "@types/ioredis@npm:4.27.8"
+"@types/ioredis@npm:4.28.1":
+  version: 4.28.1
+  resolution: "@types/ioredis@npm:4.28.1"
   dependencies:
     "@types/node": "*"
-  checksum: c718933d6e082e40598ab767fe95e837e2bff9c0e6e526091e777402d7dd482592f16aaf35bc6d8e5a276aab6fcb93c667512156416c35398a8b1cdfdf601482
+  checksum: 2d5adc6ce3078a0dc59911b6e50214fbcedf7bf139b6fde8e466132d8f15c90b3f55ecbd1d16e93541dc0abaa666ce924608d6e34ed4d0ee9903aab51d1c9900
   languageName: node
   linkType: hard
 
