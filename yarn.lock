@@ -2355,7 +2355,7 @@ __metadata:
     prettier: 2.4.1
     rimraf: 3.0.2
     rollup: 2.59.0
-    testcontainers: 7.21.0
+    testcontainers: 7.22.0
     ts-jest: 27.0.7
     tslib: 2.3.1
     typescript: 4.3.5
@@ -12476,9 +12476,9 @@ resolve@1.17.0:
   languageName: node
   linkType: hard
 
-"testcontainers@npm:7.21.0":
-  version: 7.21.0
-  resolution: "testcontainers@npm:7.21.0"
+"testcontainers@npm:7.22.0":
+  version: 7.22.0
+  resolution: "testcontainers@npm:7.22.0"
   dependencies:
     "@types/archiver": ^5.1.1
     "@types/dockerode": ^3.2.5
@@ -12492,7 +12492,7 @@ resolve@1.17.0:
     slash: ^3.0.0
     ssh-remote-port-forward: ^1.0.4
     tar-fs: ^2.1.1
-  checksum: df63b390f485a7ddca7b322e89ad5fdc0d6ab21c604ea72e780f3bbf20e397af02897f3657e0f7efe787d6e39956cec4af51914ab3fb5b965ea068eb3a6b0654
+  checksum: 7d7595950ce3105f03cfabb1cd3513586e7172f7ca63f297bfd60e9588625bc7c7e9ec6f41869cc83fec8e44e07b9f9ae18f2eecd2f5f19a258cfff5a85bab03
   languageName: node
   linkType: hard
 
