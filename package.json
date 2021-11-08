@@ -61,7 +61,7 @@
     "is-ci": "3.0.1",
     "jest": "27.3.1",
     "jest-cli": "27.3.1",
-    "lint-staged": "11.2.3",
+    "lint-staged": "11.2.6",
     "microbundle": "0.14.1",
     "moq.ts": "7.3.4",
     "npm-check-updates": "12.0.0",
