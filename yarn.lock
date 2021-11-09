@@ -2349,7 +2349,7 @@ __metadata:
     lint-staged: 11.2.6
     microbundle: 0.14.1
     moq.ts: 7.3.4
-    npm-check-updates: 12.0.1
+    npm-check-updates: 12.0.2
     npm-run-all: 4.1.5
     prettier: 2.4.1
     rimraf: 3.0.2
@@ -9316,9 +9316,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"npm-check-updates@npm:12.0.1":
-  version: 12.0.1
-  resolution: "npm-check-updates@npm:12.0.1"
+"npm-check-updates@npm:12.0.2":
+  version: 12.0.2
+  resolution: "npm-check-updates@npm:12.0.2"
   dependencies:
     chalk: ^4.1.2
     cint: ^8.2.1
@@ -9351,7 +9351,7 @@ __metadata:
   bin:
     ncu: build/src/bin/cli.js
     npm-check-updates: build/src/bin/cli.js
-  checksum: d5a2f783da928704642f317b3de0b459b1baf314fa04b4759189e6e37f38ef81e18861d36447ea9faa8a716a867ad137737887dd69377e7e48457b18ea255a48
+  checksum: 2059f40703bb2326238576b23037cf4e69b321e1e3f9cf07d77dab199cdfd0c6c7aea045fb43c42ba5f23044fe30bc6eee1a94abe32438040e1efcac3c0fa225
   languageName: node
   linkType: hard
 
