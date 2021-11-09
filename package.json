@@ -64,7 +64,7 @@
     "lint-staged": "11.2.6",
     "microbundle": "0.14.1",
     "moq.ts": "7.3.4",
-    "npm-check-updates": "12.0.1",
+    "npm-check-updates": "12.0.2",
     "npm-run-all": "4.1.5",
     "prettier": "2.4.1",
     "rimraf": "3.0.2",
