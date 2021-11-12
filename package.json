@@ -30,7 +30,6 @@
     "typecheck": "yarn workspaces foreach -ptv run typecheck",
     "lint": "yarn workspaces foreach -ptv run lint",
     "fix:staged": "yarn workspaces foreach -t run fix:staged",
-    "reinstall": "yarn clean && yarn workspaces foreach -ptv run clean && npx rimraf@^3.0 --no-glob ./yarn.lock ./node_modules && yarn install",
     "coverage:publish": "codecov && yarn workspaces foreach -ptv run coverage:publish -- -f coverage/clover.xml",
     "deps:check": "npm-check-updates --deep --dep prod,dev,optional",
     "deps:update": "npm-check-updates -u --deep --dep prod,dev,optional",
