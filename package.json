@@ -1,5 +1,5 @@
 {
-  "name": "@soluble/cache-interop-monorepo",
+  "name": "cache-interop-monorepo",
   "private": true,
   "license": "MIT",
   "homepage": "https://github.com/soluble-io/cache-interop",

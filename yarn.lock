@@ -2337,48 +2337,6 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@soluble/cache-interop-monorepo@workspace:.":
-  version: 0.0.0-use.local
-  resolution: "@soluble/cache-interop-monorepo@workspace:."
-  dependencies:
-    "@changesets/changelog-github": 0.4.1
-    "@changesets/cli": 2.18.0
-    "@commitlint/cli": 14.1.0
-    "@commitlint/config-conventional": 14.1.0
-    "@types/node": 16.11.7
-    "@typescript-eslint/eslint-plugin": 5.3.1
-    "@typescript-eslint/parser": 5.3.1
-    cross-env: 7.0.3
-    eslint: 7.32.0
-    eslint-config-prettier: 8.3.0
-    eslint-plugin-import: 2.25.3
-    eslint-plugin-jest: 25.2.4
-    eslint-plugin-jest-formatting: 3.0.0
-    eslint-plugin-prettier: 4.0.0
-    eslint-plugin-sonarjs: 0.10.0
-    husky: 7.0.4
-    is-ci: 3.0.1
-    jest: 27.3.1
-    jest-cli: 27.3.1
-    lint-staged: 11.2.6
-    microbundle: 0.14.1
-    moq.ts: 7.3.4
-    npm-check-updates: 12.0.2
-    npm-run-all: 4.1.5
-    prettier: 2.4.1
-    rimraf: 3.0.2
-    rollup: 2.60.0
-    ts-jest: 27.0.7
-    tslib: 2.3.1
-    typescript: 4.4.4
-  dependenciesMeta:
-    cpu-features:
-      built: false
-    nan:
-      built: false
-  languageName: unknown
-  linkType: soft
-
 "@soluble/cache-interop@workspace:*, @soluble/cache-interop@workspace:^, @soluble/cache-interop@workspace:packages/cache-interop":
   version: 0.0.0-use.local
   resolution: "@soluble/cache-interop@workspace:packages/cache-interop"
@@ -3672,6 +3630,48 @@ __metadata:
   checksum: a07327c27a4152c04eb0a831c63c00390d90f94d51bb80624a66f4e14a6b6360bbf02a84421267bd4d00ca73ac9773287d8d7169e8d2eafe378d2ce140579db8
   languageName: node
   linkType: hard
+
+"cache-interop-monorepo@workspace:.":
+  version: 0.0.0-use.local
+  resolution: "cache-interop-monorepo@workspace:."
+  dependencies:
+    "@changesets/changelog-github": 0.4.1
+    "@changesets/cli": 2.18.0
+    "@commitlint/cli": 14.1.0
+    "@commitlint/config-conventional": 14.1.0
+    "@types/node": 16.11.7
+    "@typescript-eslint/eslint-plugin": 5.3.1
+    "@typescript-eslint/parser": 5.3.1
+    cross-env: 7.0.3
+    eslint: 7.32.0
+    eslint-config-prettier: 8.3.0
+    eslint-plugin-import: 2.25.3
+    eslint-plugin-jest: 25.2.4
+    eslint-plugin-jest-formatting: 3.0.0
+    eslint-plugin-prettier: 4.0.0
+    eslint-plugin-sonarjs: 0.10.0
+    husky: 7.0.4
+    is-ci: 3.0.1
+    jest: 27.3.1
+    jest-cli: 27.3.1
+    lint-staged: 11.2.6
+    microbundle: 0.14.1
+    moq.ts: 7.3.4
+    npm-check-updates: 12.0.2
+    npm-run-all: 4.1.5
+    prettier: 2.4.1
+    rimraf: 3.0.2
+    rollup: 2.60.0
+    ts-jest: 27.0.7
+    tslib: 2.3.1
+    typescript: 4.4.4
+  dependenciesMeta:
+    cpu-features:
+      built: false
+    nan:
+      built: false
+  languageName: unknown
+  linkType: soft
 
 "cacheable-request@npm:^6.0.0":
   version: 6.1.0
