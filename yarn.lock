@@ -2301,6 +2301,7 @@ __metadata:
     ioredis: 4.28.0
     jest: 27.3.1
     redis: 3.1.2
+    testcontainers: 7.22.1
     ts-jest: 27.0.7
     typescript: 4.3.5
   languageName: unknown
@@ -2337,7 +2338,6 @@ __metadata:
     prettier: 2.4.1
     rimraf: 3.0.2
     rollup: 2.60.0
-    testcontainers: 7.22.0
     ts-jest: 27.0.7
     tslib: 2.3.1
     typescript: 4.3.5
@@ -11332,9 +11332,9 @@ resolve@1.17.0:
   languageName: node
   linkType: hard
 
-"testcontainers@npm:7.22.0":
-  version: 7.22.0
-  resolution: "testcontainers@npm:7.22.0"
+"testcontainers@npm:7.22.1":
+  version: 7.22.1
+  resolution: "testcontainers@npm:7.22.1"
   dependencies:
     "@types/archiver": ^5.1.1
     "@types/dockerode": ^3.2.5
@@ -11348,7 +11348,7 @@ resolve@1.17.0:
     slash: ^3.0.0
     ssh-remote-port-forward: ^1.0.4
     tar-fs: ^2.1.1
-  checksum: 7d7595950ce3105f03cfabb1cd3513586e7172f7ca63f297bfd60e9588625bc7c7e9ec6f41869cc83fec8e44e07b9f9ae18f2eecd2f5f19a258cfff5a85bab03
+  checksum: 70ef2e22bdd9b13a24f212d23674d32f788d3c32994210f10bc81755231cdbfbe0b505542f0d05fd92c27dfd10102714ec62e8b25c4462263b6dfcfedb4cf540
   languageName: node
   linkType: hard
 

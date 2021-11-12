@@ -1,8 +1,11 @@
 {
+  "extends": "./tsconfig.paths.json",
   "compilerOptions": {
+    "baseUrl": ".",
     "target": "ES2020",
     "module": "esnext",
-    "lib": ["esnext", "dom"],
+    "lib": ["esnext"],
+    "incremental": true,
     "moduleResolution": "node",
     "importHelpers": true,
     "sourceMap": true,
@@ -22,5 +25,10 @@
     "esModuleInterop": true,
     "isolatedModules": true,
     "resolveJsonModule": true
-  }
+  },
+  "exclude": [
+    "**/dist",
+    "**/_release",
+    "**/node_modules",
+  ]
 }
