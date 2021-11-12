@@ -1,5 +1,11 @@
 # @soluble/dsn-parser
 
+## 1.3.2-canary.1
+
+### Patch Changes
+
+- [#195](https://github.com/soluble-io/cache-interop/pull/195) [`b96c7a3`](https://github.com/soluble-io/cache-interop/commit/b96c7a376498a68aec8d378e9cdbf66b639cd887) Thanks [@belgattitude](https://github.com/belgattitude)! - Fix publishing
+
 ## 1.3.2-canary.0
 
 ### Patch Changes
