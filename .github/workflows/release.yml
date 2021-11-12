@@ -14,6 +14,9 @@ jobs:
         with:
           # This makes Actions fetch all Git history so that Changesets can generate changelogs with the correct commits
           fetch-depth: 0
+          # Allow changeset P/R to trigger ci workflow in conjunction with GITHUB_TOKEN
+          # see https://github.com/changesets/action/issues/70
+          persist-credentials: false
 
       - name: Setup Node.js 14.x
         uses: actions/setup-node@v2
@@ -46,5 +49,8 @@ jobs:
         with:
           publish: yarn release
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # The regular GITHUB_TOKEN won't allow the created "Version Packages" pr to
+          # trigger the regular CI workflow. This limitation can be circumvented by
+          # setting a custom PAT token from a GH account and setting it the secrets.
+          GITHUB_TOKEN: ${{ secrets.CACHE_INTEROP_RELEASE_BOT_GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
