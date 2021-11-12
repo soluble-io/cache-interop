@@ -2343,6 +2343,7 @@ __metadata:
   dependencies:
     dayjs: 1.10.7
     jest: 27.3.1
+    microbundle: 0.14.1
     ts-jest: 27.0.7
     tslib: 2.3.1
     typescript: 4.4.4
@@ -2358,6 +2359,7 @@ __metadata:
     "@types/ioredis": 4.28.1
     ioredis: 4.28.0
     jest: 27.3.1
+    microbundle: 0.14.1
     ts-jest: 27.0.7
     tslib: 2.3.1
     typescript: 4.4.4
@@ -2380,6 +2382,7 @@ __metadata:
     "@soluble/dsn-parser": "workspace:^"
     "@types/redis": 2.8.32
     jest: 27.3.1
+    microbundle: 0.14.1
     redis: 3.1.2
     ts-jest: 27.0.7
     tslib: 2.3.1
@@ -2400,6 +2403,7 @@ __metadata:
   resolution: "@soluble/dsn-parser@workspace:packages/dsn-parser"
   dependencies:
     jest: 27.3.1
+    microbundle: 0.14.1
     ts-jest: 27.0.7
     tslib: 2.3.1
     typescript: 4.4.4
@@ -3652,19 +3656,11 @@ __metadata:
     eslint-plugin-sonarjs: 0.10.0
     husky: 7.0.4
     is-ci: 3.0.1
-    jest: 27.3.1
-    jest-cli: 27.3.1
     lint-staged: 11.2.6
-    microbundle: 0.14.1
-    moq.ts: 7.3.4
     npm-check-updates: 12.0.2
     npm-run-all: 4.1.5
     prettier: 2.4.1
     rimraf: 3.0.2
-    rollup: 2.60.0
-    ts-jest: 27.0.7
-    tslib: 2.3.1
-    typescript: 4.4.4
   dependenciesMeta:
     cpu-features:
       built: false
@@ -6812,7 +6808,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"jest-cli@npm:27.3.1, jest-cli@npm:^27.3.1":
+"jest-cli@npm:^27.3.1":
   version: 27.3.1
   resolution: "jest-cli@npm:27.3.1"
   dependencies:
@@ -8226,15 +8222,6 @@ __metadata:
   bin:
     mkdirp: bin/cmd.js
   checksum: a96865108c6c3b1b8e1d5e9f11843de1e077e57737602de1b82030815f311be11f96f09cce59bd5b903d0b29834733e5313f9301e3ed6d6f6fba2eae0df4298f
-  languageName: node
-  linkType: hard
-
-"moq.ts@npm:7.3.4":
-  version: 7.3.4
-  resolution: "moq.ts@npm:7.3.4"
-  dependencies:
-    tslib: 2.1.0
-  checksum: 00397b87b0ba63ecd03621d40661b3648375ac888e7568fdffbb824f2dfca9baa90651042b29354c4f4328c2f5e9a3653a70bd98a7adc0bb94637a1b6e4cf421
   languageName: node
   linkType: hard
 
@@ -10198,7 +10185,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"rollup@npm:2.60.0, rollup@npm:^2.35.1":
+"rollup@npm:^2.35.1":
   version: 2.60.0
   resolution: "rollup@npm:2.60.0"
   dependencies:
@@ -11305,13 +11292,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tslib@npm:2.1.0, tslib@npm:~2.1.0":
-  version: 2.1.0
-  resolution: "tslib@npm:2.1.0"
-  checksum: aa189c8179de0427b0906da30926fd53c59d96ec239dff87d6e6bc831f608df0cbd6f77c61dabc074408bd0aa0b9ae4ec35cb2c15f729e32f37274db5730cb78
-  languageName: node
-  linkType: hard
-
 "tslib@npm:2.3.1, tslib@npm:^2, tslib@npm:^2.0.3":
   version: 2.3.1
   resolution: "tslib@npm:2.3.1"
@@ -11323,6 +11303,13 @@ __metadata:
   version: 1.14.1
   resolution: "tslib@npm:1.14.1"
   checksum: dbe628ef87f66691d5d2959b3e41b9ca0045c3ee3c7c7b906cc1e328b39f199bb1ad9e671c39025bd56122ac57dfbf7385a94843b1cc07c60a4db74795829acd
+  languageName: node
+  linkType: hard
+
+"tslib@npm:~2.1.0":
+  version: 2.1.0
+  resolution: "tslib@npm:2.1.0"
+  checksum: aa189c8179de0427b0906da30926fd53c59d96ec239dff87d6e6bc831f608df0cbd6f77c61dabc074408bd0aa0b9ae4ec35cb2c15f729e32f37274db5730cb78
   languageName: node
   linkType: hard
 
