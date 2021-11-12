@@ -5,4 +5,4 @@
 '@soluble/dsn-parser': patch
 ---
 
-Fix changeset publishing with workspace:^
+Fix changeset publishing with workspace:^ protocol
