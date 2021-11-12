@@ -1,14 +1,8 @@
 {
-  "extends": "../../tsconfig.json",
+  "extends": "../../tsconfig.base.json",
   "compilerOptions": {
-    "outDir": "./out",
-    "paths": {
-      "@soluble/dsn-parser": ["./packages/dsn-parser/src"],
-      "@soluble/dsn-parser/*": ["./packages/dsn-parser/src/*"],
-      "@soluble/cache-interop": ["../cache-interop/src"],
-      "@soluble/cache-interop/*": ["../cache-interop/src/*"]
-    }
-  },
-  "references": [{ "path": "../cache-interop" }, { "path": "../dsn-parser" }],
-  "exclude": ["node_modules", "dist"]
+    "baseUrl": ".",
+    "noEmit": true,
+    "useUnknownInCatchVariables": false
+  }
 }

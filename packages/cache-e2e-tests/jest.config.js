@@ -3,7 +3,19 @@
 
 const { pathsToModuleNameMapper } = require('ts-jest/utils');
 const { defaults: tsjPreset } = require('ts-jest/presets');
-const { compilerOptions } = require('./tsconfig');
+const {
+  compilerOptions: { paths: tsConfigPaths },
+} = require('../../tsconfig.paths.json');
+
+// Take the paths from tsconfig automatically from base tsconfig.json
+// @link https://kulshekhar.github.io/ts-jest/docs/paths-mapping
+const getTsConfigBasePaths = () => {
+  return tsConfigPaths
+    ? pathsToModuleNameMapper(tsConfigPaths, {
+        prefix: '<rootDir>/packages/',
+      })
+    : {};
+};
 
 /** @typedef {import('ts-jest/dist/types')} */
 /** @type {import('@jest/types').Config.InitialOptions} */
@@ -17,10 +29,11 @@ const config = {
   transform: {
     ...tsjPreset.transform,
   },
-  transformIgnorePatterns: ['[/\\\\]node_modules[/\\\\].+\\.(js|ts)$'],
+  moduleNameMapper: {
+    ...getTsConfigBasePaths(),
+  },
   rootDir: '../',
   testMatch: ['<rootDir>/cache-e2e-tests/**/*.test.ts'],
-  moduleNameMapper: pathsToModuleNameMapper(compilerOptions.paths, { prefix: '<rootDir>/' }),
   coverageDirectory: '<rootDir>/cache-e2e-tests/coverage',
   collectCoverageFrom: [
     '<rootDir>/cache-interop/src/**/*.{ts,js}',
@@ -38,4 +51,5 @@ const config = {
     },
   },
 };
+
 module.exports = config;

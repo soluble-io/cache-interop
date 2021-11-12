@@ -3,9 +3,7 @@
   "compilerOptions": {
     "target": "ESNext",
     "module": "ESNext",
-    "rootDir": "./src",
-    "baseUrl": "./src",
-    "composite": false,
+    "baseUrl": ".",
     "noEmit": false,
     "declaration": true,
     "declarationMap": false,

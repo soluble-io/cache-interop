@@ -1,5 +1,41 @@
 # @soluble/cache-ioredis
 
+## 0.8.3-canary.3
+
+### Patch Changes
+
+- [#199](https://github.com/soluble-io/cache-interop/pull/199) [`f35435f`](https://github.com/soluble-io/cache-interop/commit/f35435f1454f3bfbebfef0a0ef1619228b00a915) Thanks [@belgattitude](https://github.com/belgattitude)! - Fix changeset publishing with workspace:^
+
+- Updated dependencies [[`f35435f`](https://github.com/soluble-io/cache-interop/commit/f35435f1454f3bfbebfef0a0ef1619228b00a915)]:
+  - @soluble/cache-interop@0.8.1-canary.2
+  - @soluble/dsn-parser@1.3.2-canary.2
+
+## 0.8.3-canary.2
+
+### Patch Changes
+
+- [#197](https://github.com/soluble-io/cache-interop/pull/197) [`7c189a3`](https://github.com/soluble-io/cache-interop/commit/7c189a32ef666b1a71c5d3eeb65cf3c9bed7e04c) Thanks [@belgattitude](https://github.com/belgattitude)! - Fix publishing
+
+## 0.8.3-canary.1
+
+### Patch Changes
+
+- [#195](https://github.com/soluble-io/cache-interop/pull/195) [`b96c7a3`](https://github.com/soluble-io/cache-interop/commit/b96c7a376498a68aec8d378e9cdbf66b639cd887) Thanks [@belgattitude](https://github.com/belgattitude)! - Fix publishing
+
+- Updated dependencies [[`b96c7a3`](https://github.com/soluble-io/cache-interop/commit/b96c7a376498a68aec8d378e9cdbf66b639cd887)]:
+  - @soluble/cache-interop@0.8.1-canary.1
+  - @soluble/dsn-parser@1.3.2-canary.1
+
+## 0.8.3-canary.0
+
+### Patch Changes
+
+- [#193](https://github.com/soluble-io/cache-interop/pull/193) [`d81e0f2`](https://github.com/soluble-io/cache-interop/commit/d81e0f25418adb9f603efb7bf38b60d2d8ce409c) Thanks [@belgattitude](https://github.com/belgattitude)! - Improve release builds
+
+- Updated dependencies [[`d81e0f2`](https://github.com/soluble-io/cache-interop/commit/d81e0f25418adb9f603efb7bf38b60d2d8ce409c)]:
+  - @soluble/cache-interop@0.8.1-canary.0
+  - @soluble/dsn-parser@1.3.2-canary.0
+
 ## 0.8.2
 
 ### Patch Changes

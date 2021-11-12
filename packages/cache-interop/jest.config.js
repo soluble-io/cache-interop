@@ -3,7 +3,19 @@
 
 const { pathsToModuleNameMapper } = require('ts-jest/utils');
 const { defaults: tsjPreset } = require('ts-jest/presets');
-const { compilerOptions } = require('./tsconfig.jest.json');
+const {
+  compilerOptions: { paths: tsConfigPaths },
+} = require('../../tsconfig.paths.json');
+
+// Take the paths from tsconfig automatically from base tsconfig.json
+// @link https://kulshekhar.github.io/ts-jest/docs/paths-mapping
+const getTsConfigBasePaths = () => {
+  return tsConfigPaths
+    ? pathsToModuleNameMapper(tsConfigPaths, {
+        prefix: '<rootDir>/',
+      })
+    : {};
+};
 
 /** @typedef {import('ts-jest/dist/types')} */
 /** @type {import('@jest/types').Config.InitialOptions} */
@@ -18,7 +30,9 @@ module.exports = {
   transform: {
     ...tsjPreset.transform,
   },
-  transformIgnorePatterns: ['[/\\\\]node_modules[/\\\\].+\\.(js|jsx|ts|tsx)$', '^.+\\.module\\.(css|sass|scss|less)$'],
+  moduleNameMapper: {
+    ...getTsConfigBasePaths(),
+  },
   modulePaths: [],
   globals: {
     'ts-jest': {

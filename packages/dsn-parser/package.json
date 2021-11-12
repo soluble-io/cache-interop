@@ -1,7 +1,7 @@
 {
   "name": "@soluble/dsn-parser",
   "description": "Utility parser for DSN",
-  "version": "1.3.1",
+  "version": "1.3.2-canary.2",
   "license": "MIT",
   "homepage": "https://github.com/soluble-io/cache-interop/tree/main/packages/dsn-parser",
   "repository": {
@@ -33,14 +33,14 @@
   ],
   "sideEffects": false,
   "scripts": {
-    "start": "cross-env NODE_ENV=development tsdx watch",
-    "build": "cross-env NODE_ENV=production microbundle --tsconfig tsconfig.build.json --target node --compress",
-    "?build-publishable-release": "When https://github.com/atlassian/changesets/pull/585 is closed we can remove",
+    "start": "cross-env NODE_ENV=development microbundle watch",
+    "build": "rimraf ./dist && cross-env NODE_ENV=production microbundle --tsconfig tsconfig.build.json --format esm,cjs,umd --target node --compress",
+    "?build-publishable-release": "When https://github.com/atlassian/changesets/issues/432 has a solution we can remove this trick",
     "build-publishable-release": "yarn build",
     "clean": "rimraf --no-glob ./dist ./build ./coverage ./out",
     "test": "run-s test:unit -- {@}",
     "test:unit": "jest --config jest.config.js --color $@",
-    "typecheck": "tsc --noEmit",
+    "typecheck": "tsc --project tsconfig.json --noEmit",
     "typecheck:build": "tsc --project tsconfig.build.json --noEmit",
     "lint": "run-p lint:code",
     "lint:code": "eslint . --ext .ts,.tsx,.js,.jsx",
@@ -59,10 +59,10 @@
     ]
   },
   "devDependencies": {
-    "jest": "27.2.5",
-    "ts-jest": "27.0.5",
+    "jest": "27.3.1",
+    "ts-jest": "27.0.7",
     "tslib": "2.3.1",
-    "typescript": "4.3.5"
+    "typescript": "4.4.4"
   },
   "engines": {
     "node": ">=10.13"

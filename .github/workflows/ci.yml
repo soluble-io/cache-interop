@@ -16,7 +16,10 @@ on:
 
 jobs:
   test:
+    # containers must run in Linux based operating systems
     runs-on: ubuntu-latest
+    timeout-minutes: 15
+
     strategy:
       matrix:
         node-version: [12.x, 14.x, 16.x]
@@ -47,7 +50,7 @@ jobs:
         run: |
           yarn install --immutable
 
-      - name: Linting
+      - name: Linter
         run: |
           yarn lint
 
@@ -77,11 +80,10 @@ jobs:
           bash <(curl -s https://codecov.io/bash) -F dsn_parser_unit -s ./packages/dsn-parser/coverage
           bash <(curl -s https://codecov.io/bash) -F e2e -s ./packages/cache-e2e-tests/coverage
 
-      - name: Build all
-        run: |
-          yarn build
-
-      - name: Temp test to see if tar is available
+      - name: build
+        # Till https://github.com/atlassian/changesets/issues/432 has a solution we can remove this
+        # custom step and replace with a regular build command
         run: |
           yarn build-publishable-release
+
 

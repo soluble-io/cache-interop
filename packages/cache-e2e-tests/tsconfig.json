@@ -1,25 +1,15 @@
 {
-  "extends": "../../tsconfig.json",
+  "extends": "../../tsconfig.base.json",
   "compilerOptions": {
-    "target": "es6",
+    "target": "es2017",
     "module": "commonjs",
     "noImplicitAny": false,
     "declaration": false,
     "noEmit": true,
     "noUnusedLocals": false,
     "noUnusedParameters": false,
-    "baseUrl": "..",
-    "paths": {
-      "@soluble/dsn-parser": ["dsn-parser/src"],
-      "@soluble/dsn-parser/*": ["dsn-parser/src/*"],
-      "@soluble/cache-interop": ["cache-interop/src"],
-      "@soluble/cache-interop/*": ["cache-interop/src/*"],
-      "@soluble/cache-ioredis": ["cache-ioredis/src"],
-      "@soluble/cache-ioredis/*": ["cache-ioredis/src/*"],
-      "@soluble/cache-redis": ["cache-redis/src"],
-      "@soluble/cache-redis/*": ["cache-redis/src/*"]
-    }
+    "useUnknownInCatchVariables": false,
+    "baseUrl": "."
   },
-  "include": ["test"],
-  "exclude": ["node_modules"]
+  "include": ["test"]
 }
