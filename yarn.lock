@@ -2341,6 +2341,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@soluble/cache-interop@workspace:packages/cache-interop"
   dependencies:
+    cross-env: 7.0.3
     dayjs: 1.10.7
     jest: 27.3.1
     microbundle: 0.14.1
@@ -2357,6 +2358,7 @@ __metadata:
     "@soluble/cache-interop": "workspace:^"
     "@soluble/dsn-parser": "workspace:^"
     "@types/ioredis": 4.28.1
+    cross-env: 7.0.3
     ioredis: 4.28.0
     jest: 27.3.1
     microbundle: 0.14.1
@@ -2381,6 +2383,7 @@ __metadata:
     "@soluble/cache-interop": "workspace:^"
     "@soluble/dsn-parser": "workspace:^"
     "@types/redis": 2.8.32
+    cross-env: 7.0.3
     jest: 27.3.1
     microbundle: 0.14.1
     redis: 3.1.2
@@ -2402,6 +2405,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@soluble/dsn-parser@workspace:packages/dsn-parser"
   dependencies:
+    cross-env: 7.0.3
     jest: 27.3.1
     microbundle: 0.14.1
     ts-jest: 27.0.7
@@ -3646,7 +3650,6 @@ __metadata:
     "@types/node": 16.11.7
     "@typescript-eslint/eslint-plugin": 5.3.1
     "@typescript-eslint/parser": 5.3.1
-    cross-env: 7.0.3
     eslint: 7.32.0
     eslint-config-prettier: 8.3.0
     eslint-plugin-import: 2.25.3
