@@ -1,5 +1,11 @@
 # @soluble/cache-interop
 
+## 0.8.1-canary.0
+
+### Patch Changes
+
+- [#193](https://github.com/soluble-io/cache-interop/pull/193) [`d81e0f2`](https://github.com/soluble-io/cache-interop/commit/d81e0f25418adb9f603efb7bf38b60d2d8ce409c) Thanks [@belgattitude](https://github.com/belgattitude)! - Improve release builds
+
 ## 0.8.0
 
 ### Minor Changes

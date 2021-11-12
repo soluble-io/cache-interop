@@ -1,7 +1,7 @@
 {
   "name": "@soluble/cache-ioredis",
   "description": "IORedis cache interop adapter",
-  "version": "0.8.2",
+  "version": "0.8.3-canary.0",
   "license": "MIT",
   "homepage": "https://github.com/soluble-io/cache-interop/tree/main/packages/cache-ioredis",
   "repository": {
