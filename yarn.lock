@@ -2344,7 +2344,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@soluble/cache-interop@workspace:*, @soluble/cache-interop@workspace:packages/cache-interop":
+"@soluble/cache-interop@workspace:*, @soluble/cache-interop@workspace:^, @soluble/cache-interop@workspace:packages/cache-interop":
   version: 0.0.0-use.local
   resolution: "@soluble/cache-interop@workspace:packages/cache-interop"
   dependencies:
@@ -2360,8 +2360,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@soluble/cache-ioredis@workspace:packages/cache-ioredis"
   dependencies:
-    "@soluble/cache-interop": "workspace:*"
-    "@soluble/dsn-parser": "workspace:*"
+    "@soluble/cache-interop": "workspace:^"
+    "@soluble/dsn-parser": "workspace:^"
     "@types/ioredis": 4.28.1
     ioredis: 4.28.0
     jest: 27.3.1
@@ -2383,8 +2383,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@soluble/cache-redis@workspace:packages/cache-redis"
   dependencies:
-    "@soluble/cache-interop": "workspace:*"
-    "@soluble/dsn-parser": "workspace:*"
+    "@soluble/cache-interop": "workspace:^"
+    "@soluble/dsn-parser": "workspace:^"
     "@types/redis": 2.8.32
     jest: 27.3.1
     redis: 3.1.2
@@ -2402,7 +2402,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@soluble/dsn-parser@workspace:*, @soluble/dsn-parser@workspace:packages/dsn-parser":
+"@soluble/dsn-parser@workspace:*, @soluble/dsn-parser@workspace:^, @soluble/dsn-parser@workspace:packages/dsn-parser":
   version: 0.0.0-use.local
   resolution: "@soluble/dsn-parser@workspace:packages/dsn-parser"
   dependencies:

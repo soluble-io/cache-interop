@@ -59,8 +59,8 @@
     ]
   },
   "dependencies": {
-    "@soluble/cache-interop": "workspace:*",
-    "@soluble/dsn-parser": "workspace:*"
+    "@soluble/cache-interop": "workspace:^",
+    "@soluble/dsn-parser": "workspace:^"
   },
   "devDependencies": {
     "@types/ioredis": "4.28.1",
