@@ -38,7 +38,7 @@
     "docs:install": "cd ./docs && yarn install",
     "docs:start": "cd ./docs && yarn start",
     "docs:build": "cd ./docs && yarn build",
-    "check:install": "yarn doctor ."
+    "check:install": "yarn dlx @yarnpkg/doctor@^3.1.0 ."
   },
   "devDependencies": {
     "@changesets/changelog-github": "0.4.1",
@@ -48,7 +48,6 @@
     "@types/node": "16.11.6",
     "@typescript-eslint/eslint-plugin": "5.3.1",
     "@typescript-eslint/parser": "5.3.1",
-    "@yarnpkg/doctor": "3.0.0",
     "cross-env": "7.0.3",
     "eslint": "7.32.0",
     "eslint-config-prettier": "8.3.0",
@@ -75,7 +74,7 @@
     "typescript": "4.3.5"
   },
   "engines": {
-    "node": ">=12.14",
+    "node": "^12.14.0 || ^14.13.1 || >=16",
     "yarn": ">=1.19.0",
     "npm": "please-use-yarn"
   },
