@@ -1,10 +1,6 @@
 import { E2eDockerContainers } from './docker-container.config';
 
-jest.setTimeout(45_000);
-
-const sleep = async (ms: number): Promise<void> => {
-  return new Promise((resolve) => setTimeout(resolve, ms));
-};
+jest.setTimeout(60_000);
 
 afterAll(async () => {
   await E2eDockerContainers.shutdownAll();
