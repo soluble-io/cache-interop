@@ -1,9 +1,6 @@
 {
-  "extends": "../../tsconfig.json",
+  "extends": "../../tsconfig.base.json",
   "compilerOptions": {
-    "composite": true,
-    "noEmit": false,
-    "outDir": "./out"
-  },
-  "exclude": ["node_modules", "out", "dist"]
+    "noEmit": true
+  }
 }

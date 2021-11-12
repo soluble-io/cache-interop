@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "paths": {
+      "@soluble/dsn-parser": ["../dsn-parser/src"],
+      "@soluble/dsn-parser/*": ["../dsn-parser/src/*"],
+      "@soluble/cache-interop": ["../cache-interop/src"],
+      "@soluble/cache-interop/*": ["../cache-interop/src/*"],
+      "@soluble/cache-ioredis": ["../cache-ioredis/src"],
+      "@soluble/cache-ioredis/*": ["../cache-ioredis/src/*"],
+      "@soluble/cache-redis": ["../cache-redis/src"],
+      "@soluble/cache-redis/*": ["../cache-redis/src/*"]
+    }
+  }
+}

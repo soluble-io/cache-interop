@@ -5,7 +5,6 @@
     "module": "ESNext",
     "rootDir": "./src",
     "baseUrl": "./src",
-    "composite": false,
     "noEmit": false,
     "declaration": true,
     "declarationMap": false,
