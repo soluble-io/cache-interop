@@ -22,7 +22,6 @@
   "jsnext:main": "dist/cache-redis.es.js",
   "source": "src/index.ts",
   "module": "dist/cache-redis.es.js",
-  "esmodules": "dist/cache-redis.modern.js",
   "main": "dist/cache-redis.js",
   "umd:main": "dist/cache-redis.umd.js",
   "typings": "dist/index.d.ts",
@@ -65,8 +64,11 @@
   },
   "devDependencies": {
     "@types/redis": "2.8.32",
+    "cross-env": "7.0.3",
     "jest": "27.3.1",
+    "microbundle": "0.14.1",
     "redis": "3.1.2",
+    "rimraf": "3.0.2",
     "ts-jest": "27.0.7",
     "tslib": "2.3.1",
     "typescript": "4.4.4"

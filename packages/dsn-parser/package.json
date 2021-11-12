@@ -24,7 +24,6 @@
   "jsnext:main": "dist/dsn-parser.es.js",
   "source": "src/index.ts",
   "module": "dist/dsn-parser.es.js",
-  "esmodules": "dist/dsn-parser.modern.js",
   "main": "dist/dsn-parser.js",
   "umd:main": "dist/dsn-parser.umd.js",
   "typings": "dist/index.d.ts",
@@ -59,7 +58,10 @@
     ]
   },
   "devDependencies": {
+    "cross-env": "7.0.3",
     "jest": "27.3.1",
+    "microbundle": "0.14.1",
+    "rimraf": "3.0.2",
     "ts-jest": "27.0.7",
     "tslib": "2.3.1",
     "typescript": "4.4.4"

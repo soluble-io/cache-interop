@@ -2337,54 +2337,15 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@soluble/cache-interop-monorepo@workspace:.":
-  version: 0.0.0-use.local
-  resolution: "@soluble/cache-interop-monorepo@workspace:."
-  dependencies:
-    "@changesets/changelog-github": 0.4.1
-    "@changesets/cli": 2.18.0
-    "@commitlint/cli": 14.1.0
-    "@commitlint/config-conventional": 14.1.0
-    "@types/node": 16.11.7
-    "@typescript-eslint/eslint-plugin": 5.3.1
-    "@typescript-eslint/parser": 5.3.1
-    cross-env: 7.0.3
-    eslint: 7.32.0
-    eslint-config-prettier: 8.3.0
-    eslint-plugin-import: 2.25.3
-    eslint-plugin-jest: 25.2.4
-    eslint-plugin-jest-formatting: 3.0.0
-    eslint-plugin-prettier: 4.0.0
-    eslint-plugin-sonarjs: 0.10.0
-    husky: 7.0.4
-    is-ci: 3.0.1
-    jest: 27.3.1
-    jest-cli: 27.3.1
-    lint-staged: 11.2.6
-    microbundle: 0.14.1
-    moq.ts: 7.3.4
-    npm-check-updates: 12.0.2
-    npm-run-all: 4.1.5
-    prettier: 2.4.1
-    rimraf: 3.0.2
-    rollup: 2.60.0
-    ts-jest: 27.0.7
-    tslib: 2.3.1
-    typescript: 4.4.4
-  dependenciesMeta:
-    cpu-features:
-      built: false
-    nan:
-      built: false
-  languageName: unknown
-  linkType: soft
-
 "@soluble/cache-interop@workspace:*, @soluble/cache-interop@workspace:^, @soluble/cache-interop@workspace:packages/cache-interop":
   version: 0.0.0-use.local
   resolution: "@soluble/cache-interop@workspace:packages/cache-interop"
   dependencies:
+    cross-env: 7.0.3
     dayjs: 1.10.7
     jest: 27.3.1
+    microbundle: 0.14.1
+    rimraf: 3.0.2
     ts-jest: 27.0.7
     tslib: 2.3.1
     typescript: 4.4.4
@@ -2398,8 +2359,11 @@ __metadata:
     "@soluble/cache-interop": "workspace:^"
     "@soluble/dsn-parser": "workspace:^"
     "@types/ioredis": 4.28.1
+    cross-env: 7.0.3
     ioredis: 4.28.0
     jest: 27.3.1
+    microbundle: 0.14.1
+    rimraf: 3.0.2
     ts-jest: 27.0.7
     tslib: 2.3.1
     typescript: 4.4.4
@@ -2421,8 +2385,11 @@ __metadata:
     "@soluble/cache-interop": "workspace:^"
     "@soluble/dsn-parser": "workspace:^"
     "@types/redis": 2.8.32
+    cross-env: 7.0.3
     jest: 27.3.1
+    microbundle: 0.14.1
     redis: 3.1.2
+    rimraf: 3.0.2
     ts-jest: 27.0.7
     tslib: 2.3.1
     typescript: 4.4.4
@@ -2441,7 +2408,10 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@soluble/dsn-parser@workspace:packages/dsn-parser"
   dependencies:
+    cross-env: 7.0.3
     jest: 27.3.1
+    microbundle: 0.14.1
+    rimraf: 3.0.2
     ts-jest: 27.0.7
     tslib: 2.3.1
     typescript: 4.4.4
@@ -3672,6 +3642,39 @@ __metadata:
   checksum: a07327c27a4152c04eb0a831c63c00390d90f94d51bb80624a66f4e14a6b6360bbf02a84421267bd4d00ca73ac9773287d8d7169e8d2eafe378d2ce140579db8
   languageName: node
   linkType: hard
+
+"cache-interop-monorepo@workspace:.":
+  version: 0.0.0-use.local
+  resolution: "cache-interop-monorepo@workspace:."
+  dependencies:
+    "@changesets/changelog-github": 0.4.1
+    "@changesets/cli": 2.18.0
+    "@commitlint/cli": 14.1.0
+    "@commitlint/config-conventional": 14.1.0
+    "@types/node": 16.11.7
+    "@typescript-eslint/eslint-plugin": 5.3.1
+    "@typescript-eslint/parser": 5.3.1
+    eslint: 7.32.0
+    eslint-config-prettier: 8.3.0
+    eslint-plugin-import: 2.25.3
+    eslint-plugin-jest: 25.2.4
+    eslint-plugin-jest-formatting: 3.0.0
+    eslint-plugin-prettier: 4.0.0
+    eslint-plugin-sonarjs: 0.10.0
+    husky: 7.0.4
+    is-ci: 3.0.1
+    lint-staged: 11.2.6
+    npm-check-updates: 12.0.2
+    npm-run-all: 4.1.5
+    prettier: 2.4.1
+    rimraf: 3.0.2
+  dependenciesMeta:
+    cpu-features:
+      built: false
+    nan:
+      built: false
+  languageName: unknown
+  linkType: soft
 
 "cacheable-request@npm:^6.0.0":
   version: 6.1.0
@@ -6812,7 +6815,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"jest-cli@npm:27.3.1, jest-cli@npm:^27.3.1":
+"jest-cli@npm:^27.3.1":
   version: 27.3.1
   resolution: "jest-cli@npm:27.3.1"
   dependencies:
@@ -8226,15 +8229,6 @@ __metadata:
   bin:
     mkdirp: bin/cmd.js
   checksum: a96865108c6c3b1b8e1d5e9f11843de1e077e57737602de1b82030815f311be11f96f09cce59bd5b903d0b29834733e5313f9301e3ed6d6f6fba2eae0df4298f
-  languageName: node
-  linkType: hard
-
-"moq.ts@npm:7.3.4":
-  version: 7.3.4
-  resolution: "moq.ts@npm:7.3.4"
-  dependencies:
-    tslib: 2.1.0
-  checksum: 00397b87b0ba63ecd03621d40661b3648375ac888e7568fdffbb824f2dfca9baa90651042b29354c4f4328c2f5e9a3653a70bd98a7adc0bb94637a1b6e4cf421
   languageName: node
   linkType: hard
 
@@ -10198,7 +10192,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"rollup@npm:2.60.0, rollup@npm:^2.35.1":
+"rollup@npm:^2.35.1":
   version: 2.60.0
   resolution: "rollup@npm:2.60.0"
   dependencies:
@@ -11305,13 +11299,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tslib@npm:2.1.0, tslib@npm:~2.1.0":
-  version: 2.1.0
-  resolution: "tslib@npm:2.1.0"
-  checksum: aa189c8179de0427b0906da30926fd53c59d96ec239dff87d6e6bc831f608df0cbd6f77c61dabc074408bd0aa0b9ae4ec35cb2c15f729e32f37274db5730cb78
-  languageName: node
-  linkType: hard
-
 "tslib@npm:2.3.1, tslib@npm:^2, tslib@npm:^2.0.3":
   version: 2.3.1
   resolution: "tslib@npm:2.3.1"
@@ -11323,6 +11310,13 @@ __metadata:
   version: 1.14.1
   resolution: "tslib@npm:1.14.1"
   checksum: dbe628ef87f66691d5d2959b3e41b9ca0045c3ee3c7c7b906cc1e328b39f199bb1ad9e671c39025bd56122ac57dfbf7385a94843b1cc07c60a4db74795829acd
+  languageName: node
+  linkType: hard
+
+"tslib@npm:~2.1.0":
+  version: 2.1.0
+  resolution: "tslib@npm:2.1.0"
+  checksum: aa189c8179de0427b0906da30926fd53c59d96ec239dff87d6e6bc831f608df0cbd6f77c61dabc074408bd0aa0b9ae4ec35cb2c15f729e32f37274db5730cb78
   languageName: node
   linkType: hard
 

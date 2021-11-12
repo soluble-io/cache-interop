@@ -21,7 +21,6 @@
   "jsnext:main": "dist/cache-interop.es.js",
   "source": "src/index.ts",
   "module": "dist/cache-interop.es.js",
-  "esmodules": "dist/cache-interop.modern.js",
   "main": "dist/cache-interop.js",
   "umd:main": "dist/cache-interop.umd.js",
   "types": "dist/index.d.ts",
@@ -56,8 +55,11 @@
     ]
   },
   "devDependencies": {
+    "cross-env": "7.0.3",
     "dayjs": "1.10.7",
     "jest": "27.3.1",
+    "microbundle": "0.14.1",
+    "rimraf": "3.0.2",
     "ts-jest": "27.0.7",
     "tslib": "2.3.1",
     "typescript": "4.4.4"

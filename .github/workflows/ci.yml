@@ -5,14 +5,13 @@ on:
     branches:
       - dev
       - main
+      - changeset-release/main
     paths-ignore:
       - "docs/**"
-      - ".changeset/**"
 
   pull_request:
     paths-ignore:
       - "docs/**"
-      - ".changeset/**"
 
 jobs:
   test:
@@ -25,6 +24,9 @@ jobs:
         node-version: [12.x, 14.x, 16.x]
     steps:
       - uses: actions/checkout@v2
+        with:
+          # This allows yarn workspaces --since to compare with origin/main branch
+          fetch-depth: 0
 
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v2
@@ -58,9 +60,12 @@ jobs:
         run: |
           yarn typecheck
 
-      - name: Unit tests
+      - name: List changed workspaces
+        run: yarn workspaces list --since --recursive --json
+
+      - name: Unit tests (only changed)
         run: |
-          yarn test:unit --coverage
+          yarn workspaces foreach --topological --include '@soluble/*' --since=origin/main --recursive run test:unit
         env:
           CI: true
 
@@ -80,10 +85,10 @@ jobs:
           bash <(curl -s https://codecov.io/bash) -F dsn_parser_unit -s ./packages/dsn-parser/coverage
           bash <(curl -s https://codecov.io/bash) -F e2e -s ./packages/cache-e2e-tests/coverage
 
-      - name: build
-        # Till https://github.com/atlassian/changesets/issues/432 has a solution we can remove this
-        # custom step and replace with a regular build command
+      - name: Build (only changed)
+        # Till https://github.com/atlassian/changesets/issues/432 has a solution we can remove the
+        # build-publishable-release and replace with a regular build command
         run: |
-          yarn build-publishable-release
+          yarn workspaces foreach --topological --since=origin/main --recursive run build-publishable-release
 
 
