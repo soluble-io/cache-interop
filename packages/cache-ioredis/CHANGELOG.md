@@ -1,5 +1,11 @@
 # @soluble/cache-ioredis
 
+## 0.8.3-canary.2
+
+### Patch Changes
+
+- [#197](https://github.com/soluble-io/cache-interop/pull/197) [`7c189a3`](https://github.com/soluble-io/cache-interop/commit/7c189a32ef666b1a71c5d3eeb65cf3c9bed7e04c) Thanks [@belgattitude](https://github.com/belgattitude)! - Fix publishing
+
 ## 0.8.3-canary.1
 
 ### Patch Changes
