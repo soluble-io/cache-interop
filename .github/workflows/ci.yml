@@ -81,7 +81,9 @@ jobs:
           bash <(curl -s https://codecov.io/bash) -F e2e -s ./packages/cache-e2e-tests/coverage
 
       - name: build
+        # Till https://github.com/atlassian/changesets/issues/432 has a solution we can remove this
+        # custom step and replace with a regular build command
         run: |
-          yarn build
+          yarn build-publishable-release
 
 

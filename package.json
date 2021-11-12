@@ -18,7 +18,8 @@
   },
   "scripts": {
     "postinstall": "is-ci || husky install",
-    "build": "yarn workspaces foreach -ptv run build",
+    "?build-publishable-release": "When https://github.com/atlassian/changesets/issues/432 has a solution we can remove this trick",
+    "build-publishable-release": "yarn workspaces foreach -tv run build-publishable-release",
     "clean": "yarn workspaces foreach -ptv run clean",
     "test": "run-s 'test:*'",
     "test:unit": "yarn workspaces foreach -ptv --exclude '@soluble/*e2e*' --exclude 'cache-interop-docs' run test:unit",
