@@ -32,9 +32,7 @@
   "scripts": {
     "start": "cross-env NODE_ENV=development tsdx watch",
     "build": "cross-env NODE_ENV=production microbundle --tsconfig ./tsconfig.build.json --target node --compress",
-    "?build-publishable-release": "When https://github.com/atlassian/changesets/pull/585 is closed we can remove",
-    "build-publishable-release": "yarn build",
-    "clean": "rimraf --no-glob ./dist ./build ./coverage ./out  ./_release",
+    "clean": "rimraf --no-glob ./dist ./build ./coverage ./out",
     "test": "run-s test:* --",
     "test:unit": "jest --config jest.config.js --color $@",
     "typecheck": "tsc --noEmit",

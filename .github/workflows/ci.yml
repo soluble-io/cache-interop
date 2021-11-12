@@ -50,7 +50,7 @@ jobs:
         run: |
           yarn install --immutable
 
-      - name: Linting
+      - name: Linter
         run: |
           yarn lint
 
@@ -80,8 +80,8 @@ jobs:
           bash <(curl -s https://codecov.io/bash) -F dsn_parser_unit -s ./packages/dsn-parser/coverage
           bash <(curl -s https://codecov.io/bash) -F e2e -s ./packages/cache-e2e-tests/coverage
 
-      - name: Test build and publishable release
+      - name: build
         run: |
-          yarn build-publishable-release
+          yarn build
 
 
