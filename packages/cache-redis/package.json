@@ -30,9 +30,6 @@
     "dist"
   ],
   "sideEffects": false,
-  "publishConfig": {
-    "directory": "."
-  },
   "scripts": {
     "start": "cross-env NODE_ENV=development tsdx watch",
     "build": "cross-env NODE_ENV=production microbundle --tsconfig tsconfig.build.json --target node --compress",
