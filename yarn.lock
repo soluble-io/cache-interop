@@ -2331,7 +2331,7 @@ __metadata:
     ioredis: 4.28.0
     jest: 27.3.1
     redis: 3.1.2
-    testcontainers: 7.23.0
+    testcontainers: 7.23.2
     ts-jest: 27.0.7
     typescript: 4.4.4
   languageName: unknown
@@ -11108,9 +11108,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"testcontainers@npm:7.23.0":
-  version: 7.23.0
-  resolution: "testcontainers@npm:7.23.0"
+"testcontainers@npm:7.23.2":
+  version: 7.23.2
+  resolution: "testcontainers@npm:7.23.2"
   dependencies:
     "@types/archiver": ^5.1.1
     "@types/dockerode": ^3.2.5
@@ -11124,7 +11124,7 @@ __metadata:
     slash: ^3.0.0
     ssh-remote-port-forward: ^1.0.4
     tar-fs: ^2.1.1
-  checksum: 2d20227adabc7f336842d5b18c5e8b19ed91006c8ae171fb614495af1c5b571334dc4e62fca6bdabbaf7ed886a4c9b04e7e1a5cc74c7a09bab805a58fdc86620
+  checksum: c598344ff7f69e59056727b313039e99b75983602183cdbf0f7bfe8b494fd7af13e298b7b47dc3bc30420bd4f2db4f9e033dd2a6433a6cbc30612fd4a1b1d952
   languageName: node
   linkType: hard
 
