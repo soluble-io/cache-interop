@@ -1,18 +1,23 @@
 // Temporary install of https://github.com/atlassian/changesets/pull/674
 // atlassian/changesets#head=publish-refactor&workspace=@changesets/cli
-const pathToRepo = path.join(execEnv.tempDir, 'changesets');
+
+const hackChangetsetsDir = process.env?.HACK_CHANGESET_DIR;
+const skipCloneRepo = process.env?.SKIP_CLONE_CHANGESET_REPO === "1";
+
+const pathToRepo = hackChangetsetsDir ? hackChangetsetsDir : path.join(execEnv.tempDir, 'changesets');
 const pathToArchive = path.join(execEnv.tempDir, 'archive.tgz');
 const pathToSubpackage = path.join(pathToRepo, 'packages/cli');
 
-/**
-child_process.execFileSync(`git`, [
-  `clone`,
-  `-b`,
-  `publish-refactor`,
-  `git@github.com:atlassian/changesets.git`,
-  pathToRepo,
-]);
- */
+if (!skipCloneRepo) {
+  child_process.execFileSync(`git`, [
+    `clone`,
+    `-b`,
+    `publish-refactor`,
+    `git@github.com:atlassian/changesets.git`,
+    pathToRepo,
+  ]);
+}
+
 child_process.execFileSync(`yarn`, [`install`], { cwd: pathToRepo });
 child_process.execFileSync(`yarn`, [`build`], { cwd: pathToRepo });
 

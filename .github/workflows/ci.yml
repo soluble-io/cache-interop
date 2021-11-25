@@ -47,16 +47,20 @@ jobs:
           restore-keys: |
             yarn-cache-folder-
 
+      # TEMPORARY JUST TO TEST OUT https://github.com/atlassian/changesets/pull/674
       - uses: actions/checkout@v2
         with:
           repository: atlassian/changesets
-          path: tmp/changesets
+          path: ${{ github.workspace }}/tmp/changesets
           ref: publish-refactor
 
+      # TEMPORARY JUST TO TEST OUT https://github.com/atlassian/changesets/pull/674
       - name: Install dependencies
         run: |
           yarn install --immutable || cat /tmp/xfs*/*.log
-
+        env:
+          HACK_CHANGESET_DIR: ${{ github.workspace }}/tmp/changesets
+          SKIP_CLONE_CHANGESET_REPO: 1
 
       - name: Linter
         run: |
