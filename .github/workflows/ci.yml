@@ -49,8 +49,8 @@ jobs:
 
       - name: Install dependencies
         run: |
-          yarn install --immutable
-          cat /tmp/xfs*/*.log
+          yarn install --immutable || cat /tmp/xfs*/*.log
+
 
       - name: Linter
         run: |
