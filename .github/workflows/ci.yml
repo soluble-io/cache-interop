@@ -49,6 +49,7 @@ jobs:
 
       - uses: actions/checkout@v2
         with:
+          repository: atlassian/changesets
           path: tmp/changesets
           ref: publish-refactor
 
