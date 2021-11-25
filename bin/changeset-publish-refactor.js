@@ -1,3 +1,4 @@
+// Temporary install of https://github.com/atlassian/changesets/pull/674
 // atlassian/changesets#head=publish-refactor&workspace=@changesets/cli
 const pathToRepo = path.join(execEnv.tempDir, 'changesets');
 const pathToArchive = path.join(execEnv.tempDir, 'archive.tgz');
