@@ -47,6 +47,11 @@ jobs:
           restore-keys: |
             yarn-cache-folder-
 
+      - uses: actions/checkout@v2
+        with:
+          path: /tmp/changesets
+          ref: publish-refactor
+
       - name: Install dependencies
         run: |
           yarn install --immutable || cat /tmp/xfs*/*.log

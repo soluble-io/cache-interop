@@ -4,6 +4,7 @@ const pathToRepo = path.join(execEnv.tempDir, 'changesets');
 const pathToArchive = path.join(execEnv.tempDir, 'archive.tgz');
 const pathToSubpackage = path.join(pathToRepo, 'packages/cli');
 
+/**
 child_process.execFileSync(`git`, [
   `clone`,
   `-b`,
@@ -11,6 +12,7 @@ child_process.execFileSync(`git`, [
   `git@github.com:atlassian/changesets.git`,
   pathToRepo,
 ]);
+ */
 child_process.execFileSync(`yarn`, [`install`], { cwd: pathToRepo });
 child_process.execFileSync(`yarn`, [`build`], { cwd: pathToRepo });
 
