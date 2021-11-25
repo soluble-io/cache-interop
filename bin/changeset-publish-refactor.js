@@ -8,7 +8,7 @@ child_process.execFileSync(`git`, [
   `clone`,
   `-b`,
   `publish-refactor`,
-  `https://github.com/atlassian/changesets.git`,
+  `git@github.com:atlassian/changesets.git`,
   pathToRepo,
 ]);
 child_process.execFileSync(`yarn`, [`install`], { cwd: pathToRepo });
