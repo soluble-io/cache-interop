@@ -1,5 +1,17 @@
 # @soluble/cache-interop
 
+## 0.8.1
+
+### Patch Changes
+
+- [#193](https://github.com/soluble-io/cache-interop/pull/193) [`d81e0f2`](https://github.com/soluble-io/cache-interop/commit/d81e0f25418adb9f603efb7bf38b60d2d8ce409c) Thanks [@belgattitude](https://github.com/belgattitude)! - Improve release builds
+
+* [#195](https://github.com/soluble-io/cache-interop/pull/195) [`b96c7a3`](https://github.com/soluble-io/cache-interop/commit/b96c7a376498a68aec8d378e9cdbf66b639cd887) Thanks [@belgattitude](https://github.com/belgattitude)! - Fix publishing
+
+- [#199](https://github.com/soluble-io/cache-interop/pull/199) [`f35435f`](https://github.com/soluble-io/cache-interop/commit/f35435f1454f3bfbebfef0a0ef1619228b00a915) Thanks [@belgattitude](https://github.com/belgattitude)! - Fix changeset publishing with workspace:^ protocol
+
+* [#204](https://github.com/soluble-io/cache-interop/pull/204) [`205aa13`](https://github.com/soluble-io/cache-interop/commit/205aa1361ee330df9cb9d8b9edae25845891bfb1) Thanks [@belgattitude](https://github.com/belgattitude)! - Monorepo to typescript 4.4.4
+
 ## 0.8.1-canary.2
 
 ### Patch Changes

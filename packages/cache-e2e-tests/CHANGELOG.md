@@ -1,5 +1,11 @@
 # @soluble/cache-e2e-tests
 
+## 0.8.1
+
+### Patch Changes
+
+- [#204](https://github.com/soluble-io/cache-interop/pull/204) [`205aa13`](https://github.com/soluble-io/cache-interop/commit/205aa1361ee330df9cb9d8b9edae25845891bfb1) Thanks [@belgattitude](https://github.com/belgattitude)! - Monorepo to typescript 4.4.4
+
 ## 0.8.0
 
 ### Minor Changes
