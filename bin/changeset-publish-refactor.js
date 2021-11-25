@@ -1,8 +1,8 @@
 // Temporary install of https://github.com/atlassian/changesets/pull/674
 // atlassian/changesets#head=publish-refactor&workspace=@changesets/cli
 
-const hackChangetsetsDir = process.env?.HACK_CHANGESET_DIR;
-const skipCloneRepo = process.env?.SKIP_CLONE_CHANGESET_REPO === "1";
+const hackChangetsetsDir = process.env.HACK_CHANGESET_DIR;
+const skipCloneRepo = process.env.SKIP_CLONE_CHANGESET_REPO === '1';
 
 const pathToRepo = hackChangetsetsDir ? hackChangetsetsDir : path.join(execEnv.tempDir, 'changesets');
 const pathToArchive = path.join(execEnv.tempDir, 'archive.tgz');
