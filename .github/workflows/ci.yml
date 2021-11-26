@@ -47,9 +47,20 @@ jobs:
           restore-keys: |
             yarn-cache-folder-
 
+      # TEMPORARY JUST TO TEST OUT https://github.com/atlassian/changesets/pull/674
+      - uses: actions/checkout@v2
+        with:
+          repository: atlassian/changesets
+          path: ${{ github.workspace }}/tmp/changesets
+          ref: publish-refactor
+
+      # TEMPORARY JUST TO TEST OUT https://github.com/atlassian/changesets/pull/674
       - name: Install dependencies
         run: |
-          yarn install --immutable
+          yarn install --immutable || cat /tmp/xfs*/*.log
+        env:
+          HACK_CHANGESET_DIR: ${{ github.workspace }}/tmp/changesets
+          SKIP_CLONE_CHANGESET_REPO: 1
 
       - name: Linter
         run: |
@@ -85,9 +96,7 @@ jobs:
           bash <(curl -s https://codecov.io/bash) -F e2e -s ./packages/cache-e2e-tests/coverage
 
       - name: Build (only changed)
-        # Till https://github.com/atlassian/changesets/issues/432 has a solution we can remove the
-        # build-publishable-release and replace with a regular build command
         run: |
-          yarn workspaces foreach --topological --since=origin/main --recursive run build-publishable-release
+          yarn workspaces foreach --topological --since=origin/main --recursive run build
 
 
