@@ -1,5 +1,11 @@
 # @soluble/dsn-parser
 
+## 1.3.3-canary.0
+
+### Patch Changes
+
+- [#222](https://github.com/soluble-io/cache-interop/pull/222) [`2a58d22`](https://github.com/soluble-io/cache-interop/commit/2a58d22217f845dd17adfdd18dcd88d2b2469cda) Thanks [@belgattitude](https://github.com/belgattitude)! - Remove publish hack in favour of https://github.com/atlassian/changesets/pull/674
+
 ## 1.3.2
 
 ### Patch Changes

@@ -12,10 +12,13 @@ if (!skipCloneRepo) {
   child_process.execFileSync(`git`, [
     `clone`,
     `-b`,
-    `publish-refactor`,
-    `git@github.com:atlassian/changesets.git`,
+    //`publish-refactor`,
+    //`git@github.com:atlassian/changesets.git`,
+    `publish-refactor-extra`,
+    `git@github.com:belgattitude/changesets.git`,
     pathToRepo,
   ]);
+  //child_process.execFileSync(`git`, [`pull`]);
 }
 
 child_process.execFileSync(`yarn`, [`install`], { cwd: pathToRepo });
@@ -25,3 +28,5 @@ child_process.execFileSync(`yarn`, [`pack`, `--out`, pathToArchive], { cwd: path
 
 // Send the package content into the build directory
 child_process.execFileSync(`tar`, [`-x`, `-z`, `--strip-components=1`, `-f`, pathToArchive, `-C`, execEnv.buildDir]);
+
+child_process.execFileSync(`rm`, [`-rf`], { cwd: pathToRepo });
