@@ -4,5 +4,5 @@
 reject: [
     # Better to handle it manually
     "typescript",
-    "eslint"
+    "redis"
 ]
