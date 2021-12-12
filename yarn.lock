@@ -2322,7 +2322,7 @@ __metadata:
     ioredis: 4.28.2
     jest: 27.4.4
     redis: 3.1.2
-    testcontainers: 7.24.0
+    testcontainers: 8.1.0
     ts-jest: 27.1.1
     typescript: 4.5.3
   languageName: unknown
@@ -9594,6 +9594,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"properties-reader@npm:^2.2.0":
+  version: 2.2.0
+  resolution: "properties-reader@npm:2.2.0"
+  dependencies:
+    mkdirp: ^1.0.4
+  checksum: a5c5684b1e16633cb695f4fef5476a63f43298619381e8f7f609448f3bda32b26d7c9042b57a427a6dedd1c7fdca1a01ccbe8771b4311ed534079b676c64eec7
+  languageName: node
+  linkType: hard
+
 "pseudomap@npm:^1.0.2":
   version: 1.0.2
   resolution: "pseudomap@npm:1.0.2"
@@ -11048,9 +11057,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"testcontainers@npm:7.24.0":
-  version: 7.24.0
-  resolution: "testcontainers@npm:7.24.0"
+"testcontainers@npm:8.1.0":
+  version: 8.1.0
+  resolution: "testcontainers@npm:8.1.0"
   dependencies:
     "@types/archiver": ^5.1.1
     "@types/dockerode": ^3.2.5
@@ -11061,10 +11070,11 @@ __metadata:
     dockerode: ^3.3.1
     get-port: ^5.1.1
     glob: ^7.2.0
+    properties-reader: ^2.2.0
     slash: ^3.0.0
     ssh-remote-port-forward: ^1.0.4
     tar-fs: ^2.1.1
-  checksum: 2db248004f76578ec33d1879b7fdcb842e8341111490f407cecfb336c4364afe54401b0937757627555cf1de04c1307a9b317f97b80562017af3c577c5a1d938
+  checksum: bbd98188d311c37bc57b4e957a333f0abcb93d6187f431ec8a5779e009ee300c41ac57e03febb91ca31a1060d29eefbae52299579da26077d6a1cae8c19f81ab
   languageName: node
   linkType: hard
 
