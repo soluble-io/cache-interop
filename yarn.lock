@@ -3805,7 +3805,7 @@ __metadata:
     husky: 7.0.4
     is-ci: 3.0.1
     lint-staged: 12.1.7
-    npm-check-updates: 12.2.0
+    npm-check-updates: 12.2.1
     npm-run-all: 4.1.5
     prettier: 2.5.1
     rimraf: 3.0.2
@@ -6204,12 +6204,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"hosted-git-info@npm:^4.0.1, hosted-git-info@npm:^4.0.2":
-  version: 4.0.2
-  resolution: "hosted-git-info@npm:4.0.2"
+"hosted-git-info@npm:^4.0.1, hosted-git-info@npm:^4.1.0":
+  version: 4.1.0
+  resolution: "hosted-git-info@npm:4.1.0"
   dependencies:
     lru-cache: ^6.0.0
-  checksum: d1b2d7720398ce96a788bd38d198fbddce089a2381f63cfb01743e6c7e5aed656e5547fe74090fb9fe53b2cb785b0e8c9ebdddadff48ed26bb471dd23cd25458
+  checksum: c3f87b3c2f7eb8c2748c8f49c0c2517c9a95f35d26f4bf54b2a8cba05d2e668f3753548b6ea366b18ec8dadb4e12066e19fa382a01496b0ffa0497eb23cbe461
   languageName: node
   linkType: hard
 
@@ -8509,9 +8509,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"npm-check-updates@npm:12.2.0":
-  version: 12.2.0
-  resolution: "npm-check-updates@npm:12.2.0"
+"npm-check-updates@npm:12.2.1":
+  version: 12.2.1
+  resolution: "npm-check-updates@npm:12.2.1"
   dependencies:
     chalk: ^4.1.2
     cint: ^8.2.1
@@ -8522,7 +8522,7 @@ __metadata:
     fp-and-or: ^0.1.3
     get-stdin: ^8.0.0
     globby: ^11.0.4
-    hosted-git-info: ^4.0.2
+    hosted-git-info: ^4.1.0
     json-parse-helpfulerror: ^1.0.3
     jsonlines: ^0.1.1
     libnpmconfig: ^1.2.1
@@ -8544,7 +8544,7 @@ __metadata:
   bin:
     ncu: build/src/bin/cli.js
     npm-check-updates: build/src/bin/cli.js
-  checksum: 273b1e99981e36179a312d666c70eb296a4b98db3627aa76c7adbb769297c51efa927b381d47050a4c4f0cf46711f07589f4b7a31bdb40bdaf0535c0a3a5f5c8
+  checksum: f43382020e4ecbe5f357945bd42d9f4aad047ef05720bafd88530799044c48af06a0d3773ac789ec00f8a1bbefa6c4f8718e891bc936945b3fe3ff6b80ef4c05
   languageName: node
   linkType: hard
 
