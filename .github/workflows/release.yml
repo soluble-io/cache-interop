@@ -44,9 +44,9 @@ jobs:
           HUSKY: 0
 
       - name: Debug if .npmrc is present in working directory
-          run: |
-            ls -la ${{ github.workspace }}
-            cat ${{ github.workspace }}/.npmrc
+        run: |
+          ls -la ${{ github.workspace }}
+          cat ${{ github.workspace }}/.npmrc
 
       - name: Create Release Pull Request or Publish to npm
         id: changesets
