@@ -18,10 +18,10 @@ jobs:
           # see https://github.com/changesets/action/issues/70
           persist-credentials: false
 
-      - name: Setup Node.js 16.x
+      - name: Setup Node.js 14.x
         uses: actions/setup-node@v2
         with:
-          node-version: 16.x
+          node-version: 14.x
 
       # Why not using setup-node 2.2+ cache option (yet) ?
       # see https://github.com/belgattitude/nextjs-monorepo-example/pull/369
@@ -53,6 +53,8 @@ jobs:
         with:
           publish: yarn release
         env:
+          # See https://github.com/changesets/action/issues/147
+          HOME: ${{ github.workspace }}
           # The regular GITHUB_TOKEN won't allow the created "Version Packages" pr to
           # trigger the regular CI workflow. This limitation can be circumvented by
           # setting a custom PAT token from a GH account and setting it the secrets.
