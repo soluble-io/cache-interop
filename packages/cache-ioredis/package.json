@@ -62,7 +62,7 @@
     "@soluble/dsn-parser": "workspace:^"
   },
   "devDependencies": {
-    "@types/ioredis": "4.28.7",
+    "@types/ioredis": "4.28.8",
     "cross-env": "7.0.3",
     "ioredis": "4.28.5",
     "jest": "27.5.0",
