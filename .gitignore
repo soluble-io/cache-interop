@@ -19,6 +19,10 @@ tsconfig.tsbuildinfo
 /coverage
 /.nyc_output
 
+# changeset
+# this file is generated in the changeset/action
+.netrc
+
 # editor
 /.idea
 .project
