@@ -5,7 +5,8 @@ on:
       - main
 jobs:
   release:
-    if: github.repository == 'soluble-io/cache-interop'
+    # See https://github.com/peter-evans/create-pull-request/blob/main/docs/concepts-guidelines.md#workarounds-to-trigger-further-workflow-runs
+    if: github.event.pull_request.head.repo.full_name == 'soluble-io/cache-interop'
     name: Release
     runs-on: ubuntu-latest
     steps:
@@ -56,5 +57,7 @@ jobs:
           # The regular GITHUB_TOKEN won't allow the created "Version Packages" pr to
           # trigger the regular CI workflow. This limitation can be circumvented by
           # setting a custom PAT token from a GH account and setting it the secrets.
+          # see also persist credentials in setup-node.
+          # @link https://github.com/changesets/action/issues/70
           GITHUB_TOKEN: ${{ secrets.CACHE_INTEROP_RELEASE_BOT_GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
