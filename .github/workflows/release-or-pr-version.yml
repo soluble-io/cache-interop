@@ -1,4 +1,4 @@
-name: release
+name: release-or-pr-version
 on:
   push:
     branches:
@@ -52,6 +52,8 @@ jobs:
         uses: changesets/action@v1.2.0
         with:
           publish: yarn release
+          # Don't use the default changeset user, the GITHUB_TOKEN should work
+          setupGitUser: false
         env:
           # See https://github.com/changesets/action/issues/147
           HOME: ${{ github.workspace }}
