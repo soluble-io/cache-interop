@@ -3712,7 +3712,7 @@ __metadata:
     husky: 7.0.4
     is-ci: 3.0.1
     lint-staged: 12.1.7
-    npm-check-updates: 12.2.1
+    npm-check-updates: 12.3.0
     npm-run-all: 4.1.5
     prettier: 2.5.1
     rimraf: 3.0.2
@@ -8365,9 +8365,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"npm-check-updates@npm:12.2.1":
-  version: 12.2.1
-  resolution: "npm-check-updates@npm:12.2.1"
+"npm-check-updates@npm:12.3.0":
+  version: 12.3.0
+  resolution: "npm-check-updates@npm:12.3.0"
   dependencies:
     chalk: ^4.1.2
     cint: ^8.2.1
@@ -8397,10 +8397,11 @@ __metadata:
     source-map-support: ^0.5.21
     spawn-please: ^1.0.0
     update-notifier: ^5.1.0
+    yaml: ^1.10.2
   bin:
     ncu: build/src/bin/cli.js
     npm-check-updates: build/src/bin/cli.js
-  checksum: f43382020e4ecbe5f357945bd42d9f4aad047ef05720bafd88530799044c48af06a0d3773ac789ec00f8a1bbefa6c4f8718e891bc936945b3fe3ff6b80ef4c05
+  checksum: 67d2df944c5d7cb8da97053d1713256c704580ea9902a9168a4158c6634c6e00780046947f90758f38d86d28b36a1440427614da6711d0b4f6456a80b7b4bdab
   languageName: node
   linkType: hard
 
