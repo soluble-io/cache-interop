@@ -59,7 +59,7 @@
   },
   "devDependencies": {
     "cross-env": "7.0.3",
-    "jest": "27.5.0",
+    "jest": "27.5.1",
     "microbundle": "0.14.2",
     "rimraf": "3.0.2",
     "ts-jest": "27.1.3",
