@@ -16,15 +16,11 @@
   },
   "scripts": {
     "clean": "rimraf --no-glob ./coverage",
-    "test": "run-s test:*",
-    "test:e2e": "jest --config jest.config.js --color $@",
+    "test-e2e": "jest --config jest.config.js --color $@",
     "typecheck": "tsc --project tsconfig.json --noEmit",
-    "lint": "run-p lint:code",
-    "lint:code": "eslint . --ext .ts,.tsx,.js,.jsx",
-    "fix:staged": "lint-staged --allow-empty",
-    "fix:all": "run-p fix:all:*",
-    "fix:all:code": "eslint . --ext .ts,.tsx,.js,.jsx --fix",
-    "coverage:publish": "codecov --root=../../ -F e2e"
+    "lint": "eslint . --ext .ts,.tsx,.js,.jsx",
+    "fix-staged": "lint-staged --allow-empty",
+    "coverage-publish": "codecov --root=../../ -F e2e"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [

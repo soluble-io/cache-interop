@@ -38,16 +38,13 @@
     "?build-publishable-release": "When https://github.com/atlassian/changesets/issues/432 has a solution we can remove this trick",
     "build-publishable-release": "yarn build && rimraf ./_release && yarn pack && mkdir ./_release && tar zxvf ./package.tgz --directory ./_release && rm ./package.tgz",
     "clean": "rimraf --no-glob ./dist ./build ./coverage ./out ./_release",
-    "test": "run-s test:unit -- {@}",
-    "test:unit": "jest --config jest.config.js --color $@",
+    "test": "yarn run test-unit",
+    "test-unit": "jest --config jest.config.js --color $@",
     "typecheck": "tsc --noEmit",
-    "typecheck:build": "tsc --project tsconfig.build.json --noEmit",
-    "lint": "yarn lint:code",
-    "lint:code": "eslint . --ext .ts,.tsx,.js,.jsx",
-    "fix:staged": "lint-staged --allow-empty",
-    "fix:all": "run-p fix:all:*",
-    "fix:all:code": "eslint . --ext .ts,.tsx,.js,.jsx --fix",
-    "coverage:publish": "codecov --root=../../ -F cacheRedis"
+    "typecheck-build": "tsc --project tsconfig.build.json --noEmit",
+    "lint": "eslint . --ext .ts,.tsx,.js,.jsx",
+    "fix-staged": "lint-staged --allow-empty",
+    "coverage-publish": "codecov --root=../../ -F cacheRedis"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [

@@ -47,17 +47,12 @@ jobs:
         run: |
           cat ${{ github.workspace }}/.npmrc
 
-      - run: |
-          git config --global user.email "belgattitude@gmail.com"
-          git config --global user.name "Sébastien Vanvelthem"
-
       - name: Create Release Pull Request or Publish to npm
         id: changesets
         uses: changesets/action@v1.2.0
         with:
           publish: yarn release
-          # Don't use the default changeset user, the GITHUB_TOKEN should work
-          setupGitUser: false
+          setupGitUser: true
         env:
           # See https://github.com/changesets/action/issues/147
           HOME: ${{ github.workspace }}
