@@ -33,6 +33,7 @@
     "build": "cross-env NODE_ENV=production microbundle --tsconfig ./tsconfig.build.json --format esm,cjs,umd --target node --compress",
     "?build-publishable-release": "When https://github.com/atlassian/changesets/issues/432 has a solution we can remove this trick",
     "build-publishable-release": "yarn build",
+    "check-dist": "es-check -v",
     "clean": "rimraf --no-glob ./dist ./build ./coverage ./out",
     "test-unit": "jest --config jest.config.js --color $@",
     "typecheck": "tsc --project ./tsconfig.json --noEmit",
@@ -61,6 +62,6 @@
     "typescript": "4.5.5"
   },
   "engines": {
-    "node": ">=12"
+    "node": "^12.14.0 || ^14.13.1 || >=16"
   }
 }
