@@ -37,9 +37,12 @@ The convention for unit tests is to place them in their respective packages and
 colocate them in a `__tests__` subfolder. You can run
 them by:
 
+
 ```bash
-$ yarn test:unit
+$ yarn test-unit       # the specific package (in current working directory)
+$ yarn g:test-unit     # all packages at once
 ```
+
 
 ### E2E tests
 
@@ -47,7 +50,8 @@ E2E tests will run on all adapters and are found in [./packages/cache-e2e-tests/
 them locally you'll need to install docker.
 
 ```bash
-$ yarn test:e2e
+$ yarn test-e2e       # the specific package (in current working directory)
+$ yarn g:test-e2e
 ```
 
 ## Structure
