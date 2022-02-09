@@ -14,9 +14,7 @@ jobs:
         with:
           # This makes Actions fetch all Git history so that Changesets can generate changelogs with the correct commits
           fetch-depth: 0
-          # Allow changeset P/R to trigger ci workflow in conjunction with GITHUB_TOKEN
-          # see https://github.com/changesets/action/issues/70
-          persist-credentials: false
+          persist-credentials: true
 
       - name: Setup Node.js 14.x
         uses: actions/setup-node@v2
