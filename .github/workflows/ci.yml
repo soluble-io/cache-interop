@@ -53,24 +53,24 @@ jobs:
 
       - name: Linter
         run: |
-          yarn lint
+          yarn g:lint
 
       - name: Typecheck
         run: |
-          yarn typecheck
+          yarn g:typecheck
 
       - name: List changed workspaces
         run: yarn workspaces list --since --recursive --json
 
       - name: Unit tests (only changed)
         run: |
-          yarn workspaces foreach --topological --include '@soluble/*' --since=origin/main --recursive run test:unit
+          yarn workspaces foreach --topological --include '@soluble/*' --since=origin/main --recursive run test-unit
         env:
           CI: true
 
       - name: E2E tests
         run: |
-          yarn test:e2e --coverage
+          yarn g:test-e2e --coverage
         env:
           CI: true
 
