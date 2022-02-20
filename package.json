@@ -41,6 +41,9 @@
     },
     "nan": {
       "built": false
+    },
+    "ssh2": {
+      "built": false
     }
   },
   "devDependencies": {
