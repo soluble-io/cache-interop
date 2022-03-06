@@ -1,5 +1,11 @@
 # @soluble/cache-interop
 
+## 0.8.3
+
+### Patch Changes
+
+- [#359](https://github.com/soluble-io/cache-interop/pull/359) [`bbb21fe`](https://github.com/soluble-io/cache-interop/commit/bbb21fefd639a47f115f3776f2ce70c61d213096) Thanks [@belgattitude](https://github.com/belgattitude)! - Fix release script
+
 ## 0.8.2
 
 ### Patch Changes

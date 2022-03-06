@@ -1,7 +1,7 @@
 {
   "name": "@soluble/dsn-parser",
   "description": "Utility parser for DSN",
-  "version": "1.3.3",
+  "version": "1.3.4",
   "license": "MIT",
   "homepage": "https://github.com/soluble-io/cache-interop/tree/main/packages/dsn-parser",
   "repository": {
