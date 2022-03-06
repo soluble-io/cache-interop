@@ -1,5 +1,17 @@
 # @soluble/cache-ioredis
 
+## 0.8.4
+
+### Patch Changes
+
+- [#358](https://github.com/soluble-io/cache-interop/pull/358) [`2876891`](https://github.com/soluble-io/cache-interop/commit/2876891917c5271ec3cec29c03c7194be23f054c) Thanks [@belgattitude](https://github.com/belgattitude)! - Fix publishing of typescript declarations
+
+* [#304](https://github.com/soluble-io/cache-interop/pull/304) [`ba5fc5f`](https://github.com/soluble-io/cache-interop/commit/ba5fc5f9f54701ce03842c306ae0276e0e2987f9) Thanks [@belgattitude](https://github.com/belgattitude)! - Publish a new release with yarn 3.2
+
+* Updated dependencies [[`ba5fc5f`](https://github.com/soluble-io/cache-interop/commit/ba5fc5f9f54701ce03842c306ae0276e0e2987f9)]:
+  - @soluble/cache-interop@0.8.2
+  - @soluble/dsn-parser@1.3.3
+
 ## 0.8.3
 
 ### Patch Changes

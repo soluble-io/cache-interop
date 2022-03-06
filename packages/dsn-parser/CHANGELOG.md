@@ -1,5 +1,11 @@
 # @soluble/dsn-parser
 
+## 1.3.3
+
+### Patch Changes
+
+- [#304](https://github.com/soluble-io/cache-interop/pull/304) [`ba5fc5f`](https://github.com/soluble-io/cache-interop/commit/ba5fc5f9f54701ce03842c306ae0276e0e2987f9) Thanks [@belgattitude](https://github.com/belgattitude)! - Publish a new release with yarn 3.2
+
 ## 1.3.2
 
 ### Patch Changes
