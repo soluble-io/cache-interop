@@ -19,7 +19,7 @@
   "scripts": {
     "postinstall": "is-ci || husky install",
     "?build-release": "When https://github.com/atlassian/changesets/issues/432 has a solution we can remove this trick",
-    "g:build-release": "yarn workspaces foreach -tv run build-publishable-release",
+    "g:build-release": "yarn workspaces foreach -tv run build-release",
     "g:check-dist": "yarn workspaces foreach -tv --exclude '@soluble/*e2e*' --no-private run check-dist",
     "g:clean": "yarn workspaces foreach -ptv run clean",
     "g:test": "run-s g:test-unit g:test-e2e",
@@ -30,7 +30,7 @@
     "g:typecheck": "yarn workspaces foreach -ptv run typecheck",
     "g:lint": "yarn workspaces foreach -ptv run lint",
     "g:fix-staged": "yarn workspaces foreach -t run fix-staged",
-    "g:coverage-publish": "codecov && yarn workspaces foreach -ptv run coverage:publish -- -f coverage/clover.xml",
+    "g:coverage-publish": "codecov && yarn workspaces foreach -ptv run coverage-publish -- -f coverage/clover.xml",
     "deps:check": "npm-check-updates --deep",
     "deps:update": "npm-check-updates --deep -u",
     "check:install": "yarn dlx @yarnpkg/doctor@^3.1.0 ."

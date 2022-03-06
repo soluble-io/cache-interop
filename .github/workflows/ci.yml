@@ -66,20 +66,19 @@ jobs:
         # Till https://github.com/atlassian/changesets/issues/432 has a solution we can remove the
         # build-release and replace with a regular build command
         run: |
-          yarn workspaces foreach --topological --since=origin/main --recursive run build-release
+          yarn workspaces foreach -tv run build-release
 
       - name: Check generated dist folder
         run: |
-          yarn workspaces foreach --topological --since=origin/main run check-dist
+          yarn workspaces foreach -tv run check-dist
         env:
           CI: true
 
-      - name: Unit tests (only changed)
+      - name: Unit tests
         run: |
-          yarn workspaces foreach --topological --include '@soluble/*' --since=origin/main --recursive run test-unit
+          yarn workspaces foreach -tv --include '@soluble/*' run test-unit
         env:
           CI: true
-
 
       - name: E2E tests
         run: |
