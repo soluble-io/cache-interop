@@ -32,7 +32,7 @@
 
 # About | [Documentation](https://github.com/soluble-io/cache-interop/)
 
-> **This project is in early architectural definition ;)**
+> **While this project is somehow used in production and pretty well tested. There's a number of things that should be added and so expect breaking changes.**
 
 
 ## Features
