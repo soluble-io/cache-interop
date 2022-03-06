@@ -1,5 +1,5 @@
 {
-  "mode": "pre",
+  "mode": "exit",
   "tag": "canary",
   "initialVersions": {
     "@soluble/cache-e2e-tests": "0.8.1",
