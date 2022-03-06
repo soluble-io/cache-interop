@@ -3,12 +3,12 @@
   "compilerOptions": {
     "target": "ESNext",
     "module": "ESNext",
-    "baseUrl": "./src",
     "composite": false,
     "noEmit": false,
     "declaration": true,
     "declarationMap": false,
-    "declarationDir": "./dist"
+    "declarationDir": "./dist",
+    "incremental": false
   },
   "exclude": ["*.test.ts"]
 }

@@ -34,7 +34,7 @@
     "?build-release": "When https://github.com/atlassian/changesets/issues/432 has a solution we can remove this trick",
     "build-release": "yarn build",
     "check-dist": "es-check -v",
-    "clean": "rimraf --no-glob ./dist ./build ./coverage ./out",
+    "clean": "rimraf --no-glob ./dist ./build ./coverage ./out ./node_modules/.cache",
     "test-unit": "jest --config jest.config.js --color $@",
     "typecheck": "tsc --project ./tsconfig.json --noEmit",
     "typecheck-build": "tsc --project tsconfig.build.json --noEmit",
