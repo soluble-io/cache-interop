@@ -70,7 +70,7 @@ jobs:
 
       - name: Build
         run: |
-          yarn workspaces foreach --include '@soluble/*' run build-publishable-release
+          yarn workspaces foreach --include '@soluble/*' run build-release
         env:
           CI: true
 
@@ -98,8 +98,8 @@ jobs:
 
       - name: Build (only changed)
         # Till https://github.com/atlassian/changesets/issues/432 has a solution we can remove the
-        # build-publishable-release and replace with a regular build command
+        # build-release and replace with a regular build command
         run: |
-          yarn workspaces foreach --topological --since=origin/main --recursive run build-publishable-release
+          yarn workspaces foreach --topological --since=origin/main --recursive run build-release
 
 
