@@ -62,17 +62,18 @@ jobs:
       - name: List changed workspaces
         run: yarn workspaces list --since --recursive --json
 
+      - name: Build
+        run: |
+          yarn workspaces foreach --include '@soluble/*' run build-release
+        env:
+          CI: true
+
       - name: Unit tests (only changed)
         run: |
           yarn workspaces foreach --topological --include '@soluble/*' --since=origin/main --recursive run test-unit
         env:
           CI: true
 
-      - name: Build
-        run: |
-          yarn workspaces foreach --include '@soluble/*' run build-release
-        env:
-          CI: true
 
       - name: Check generated dist folder
         run: |

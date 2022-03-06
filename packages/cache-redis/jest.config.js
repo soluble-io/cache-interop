@@ -1,8 +1,7 @@
 // @ts-check
-'use strict';
 
-const { pathsToModuleNameMapper } = require('ts-jest/utils');
-const { defaults: tsjPreset } = require('ts-jest/presets');
+const { defaults: tsPreset } = require('ts-jest/presets');
+const { pathsToModuleNameMapper } = require('ts-jest');
 
 const {
   compilerOptions: { paths: tsConfigPaths },
@@ -13,7 +12,7 @@ const {
 const getTsConfigBasePaths = () => {
   return tsConfigPaths
     ? pathsToModuleNameMapper(tsConfigPaths, {
-        prefix: '<rootDir>/packages/',
+        prefix: '<rootDir>/tricky-false-path-to-remove-parent/packages',
       })
     : {};
 };
@@ -27,7 +26,7 @@ const config = {
   testEnvironment: 'node',
   verbose: true,
   transform: {
-    ...tsjPreset.transform,
+    ...tsPreset.transform,
   },
   rootDir: '../',
 
