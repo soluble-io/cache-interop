@@ -62,23 +62,24 @@ jobs:
       - name: List changed workspaces
         run: yarn workspaces list --since --recursive --json
 
+      - name: Build-release
+        # Till https://github.com/atlassian/changesets/issues/432 has a solution we can remove the
+        # build-release and replace with a regular build command
+        run: |
+          yarn workspaces foreach --topological --since=origin/main --recursive run build-release
+
+      - name: Check generated dist folder
+        run: |
+          yarn workspaces foreach --topological --since=origin/main run check-dist
+        env:
+          CI: true
+
       - name: Unit tests (only changed)
         run: |
           yarn workspaces foreach --topological --include '@soluble/*' --since=origin/main --recursive run test-unit
         env:
           CI: true
 
-      - name: Build
-        run: |
-          yarn workspaces foreach --include '@soluble/*' run build-publishable-release
-        env:
-          CI: true
-
-      - name: Check generated dist folder
-        run: |
-          yarn workspaces foreach -ptv --include '@soluble/*' run check-dist
-        env:
-          CI: true
 
       - name: E2E tests
         run: |
@@ -96,10 +97,5 @@ jobs:
           bash <(curl -s https://codecov.io/bash) -F dsn_parser_unit -s ./packages/dsn-parser/coverage
           bash <(curl -s https://codecov.io/bash) -F e2e -s ./packages/cache-e2e-tests/coverage
 
-      - name: Build (only changed)
-        # Till https://github.com/atlassian/changesets/issues/432 has a solution we can remove the
-        # build-publishable-release and replace with a regular build command
-        run: |
-          yarn workspaces foreach --topological --since=origin/main --recursive run build-publishable-release
 
 

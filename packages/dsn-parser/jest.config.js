@@ -1,7 +1,6 @@
 // @ts-check
-'use strict';
 
-const { defaults: tsjPreset } = require('ts-jest/presets');
+const { defaults: tsPreset } = require('ts-jest/presets');
 
 /** @typedef {import('ts-jest/dist/types')} */
 /** @type {import('@jest/types').Config.InitialOptions} */
@@ -14,7 +13,7 @@ module.exports = {
   testMatch: ['<rootDir>/src/**/*.test.ts'],
   testEnvironment: 'node',
   transform: {
-    ...tsjPreset.transform,
+    ...tsPreset.transform,
   },
 
   modulePaths: [],

@@ -49,7 +49,7 @@ jobs:
         id: changesets
         uses: changesets/action@v1.2.1
         with:
-          publish: yarn release
+          publish: yarn g:release
           setupGitUser: true
         env:
           # See https://github.com/changesets/action/issues/147

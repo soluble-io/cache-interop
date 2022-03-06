@@ -3,7 +3,7 @@
   "compilerOptions": {
     "target": "ESNext",
     "module": "ESNext",
-    "baseUrl": ".",
+    "baseUrl": "./src",
     "noEmit": false,
     "declaration": true,
     "declarationMap": false,

@@ -9,7 +9,7 @@
     "noUnusedLocals": false,
     "noUnusedParameters": false,
     "useUnknownInCatchVariables": false,
-    "baseUrl": "."
+    "baseUrl": "./src"
   },
   "include": ["test"]
 }
