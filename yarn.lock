@@ -2380,7 +2380,7 @@ __metadata:
     ioredis: 4.28.5
     jest: 27.5.1
     redis: 3.1.2
-    testcontainers: 8.5.0
+    testcontainers: 8.5.1
     ts-jest: 27.1.3
     typescript: 4.6.3
   languageName: unknown
@@ -4795,15 +4795,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"debug@npm:4, debug@npm:^4.0.1, debug@npm:^4.1.0, debug@npm:^4.1.1, debug@npm:^4.3.1, debug@npm:^4.3.2, debug@npm:^4.3.3":
-  version: 4.3.3
-  resolution: "debug@npm:4.3.3"
+"debug@npm:4, debug@npm:^4.0.1, debug@npm:^4.1.0, debug@npm:^4.1.1, debug@npm:^4.3.1, debug@npm:^4.3.2, debug@npm:^4.3.3, debug@npm:^4.3.4":
+  version: 4.3.4
+  resolution: "debug@npm:4.3.4"
   dependencies:
     ms: 2.1.2
   peerDependenciesMeta:
     supports-color:
       optional: true
-  checksum: 14472d56fe4a94dbcfaa6dbed2dd3849f1d72ba78104a1a328047bb564643ca49df0224c3a17fa63533fd11dd3d4c8636cd861191232a2c6735af00cc2d4de16
+  checksum: 3dbad3f94ea64f34431a9cbf0bafb61853eda57bff2880036153438f50fb5a84f27683ba0d8e5426bf41a8c6ff03879488120cf5b3a761e77953169c0600a708
   languageName: node
   linkType: hard
 
@@ -11651,15 +11651,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"testcontainers@npm:8.5.0":
-  version: 8.5.0
-  resolution: "testcontainers@npm:8.5.0"
+"testcontainers@npm:8.5.1":
+  version: 8.5.1
+  resolution: "testcontainers@npm:8.5.1"
   dependencies:
     "@types/archiver": ^5.1.1
     "@types/dockerode": ^3.2.7
     archiver: ^5.3.0
     byline: ^5.0.0
-    debug: ^4.3.3
+    debug: ^4.3.4
     docker-compose: ^0.23.17
     dockerode: ^3.3.1
     get-port: ^5.1.1
@@ -11668,7 +11668,7 @@ __metadata:
     slash: ^3.0.0
     ssh-remote-port-forward: ^1.0.4
     tar-fs: ^2.1.1
-  checksum: 189e5f2910dc8c37ff3356b2dbd4af7339b5feecf01c4167db0fac4cb481333d645b96abeeec8220002b2d97bb70bc91cef3b070de07f3fed862a103c4bc2280
+  checksum: 2f8fbeea804e73ad8280911156f54dca7fb6106c9cfe720c6a0a95d2a80c734aadbb45dad25369e775778309e9ffbd836d48c1811985e0a136b073f951557c2c
   languageName: node
   linkType: hard
 
