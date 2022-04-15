@@ -2435,7 +2435,7 @@ __metadata:
   resolution: "@soluble/cache-interop@workspace:packages/cache-interop"
   dependencies:
     cross-env: 7.0.3
-    dayjs: 1.11.0
+    dayjs: 1.11.1
     es-check: 6.2.1
     jest: 27.5.1
     microbundle: 0.14.2
@@ -4860,10 +4860,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"dayjs@npm:1.11.0":
-  version: 1.11.0
-  resolution: "dayjs@npm:1.11.0"
-  checksum: 2d36f6d71345114cdcd89147adf9e05b4f8fe81684e08c8bf1f86b140aa0b86ecc3cae661a9348d96feb7fbefd03e1bc3697303688e95209670abcb36b4ece15
+"dayjs@npm:1.11.1":
+  version: 1.11.1
+  resolution: "dayjs@npm:1.11.1"
+  checksum: d5fefd79935f64a3c262e67af7ebeca180bc402b3e99be4e12d20b6d438af3f86d507ba1cbaff95dc0b4e67f1067cea3eaf37b6b74f5494fdd4a6a2909514cd1
   languageName: node
   linkType: hard
 
