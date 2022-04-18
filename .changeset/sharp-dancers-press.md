@@ -5,4 +5,4 @@
 '@soluble/cache-redis': minor
 ---
 
-Refactor!: Rename EXECUTE_ASYNC_ERROR to VALUE_PROVIDER_ERROR
+Consistent error messages across all adapters
