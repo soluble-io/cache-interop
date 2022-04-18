@@ -1,7 +1,11 @@
-import { CacheInterface, InvalidCacheKeyException } from '@soluble/cache-interop';
+import type { CacheInterface } from '@soluble/cache-interop';
+import {
+  InvalidCacheKeyException,
+  CacheItem,
+  Guards,
+} from '@soluble/cache-interop';
 
 import { getTestAdapters } from '../setup/getTestAdapters';
-import { CacheItem, Guards } from '@soluble/cache-interop';
 
 const adapters = getTestAdapters();
 
@@ -22,10 +26,14 @@ describe.each(adapters)('Adapter: %s', (name, adapterFactory) => {
   describe('When the cacheKey is invalid / unsupported format', () => {
     const invalidKey = { errKey: true } as unknown as string;
     test('calling delete(invalidKey) should return InvalidCacheKeyException', async () => {
-      await expect(cache.delete(invalidKey)).resolves.toBeInstanceOf(InvalidCacheKeyException);
+      await expect(cache.delete(invalidKey)).resolves.toBeInstanceOf(
+        InvalidCacheKeyException
+      );
     });
     test('calling set(invalidKey) should return InvalidCacheKeyException', async () => {
-      await expect(cache.set(invalidKey, 'cool')).resolves.toBeInstanceOf(InvalidCacheKeyException);
+      await expect(cache.set(invalidKey, 'cool')).resolves.toBeInstanceOf(
+        InvalidCacheKeyException
+      );
     });
     test('calling get(invalidKey) should return error with InvalidCacheKeyException', async () => {
       const item = await cache.get(invalidKey);

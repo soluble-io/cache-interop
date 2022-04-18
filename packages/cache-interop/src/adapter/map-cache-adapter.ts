@@ -1,4 +1,6 @@
-import {
+import { CacheItemFactory } from '../cache-item.factory';
+import type { CacheItemInterface } from '../cache-item.interface';
+import type {
   CacheInterface,
   CacheKey,
   CacheValueProviderFn,
@@ -7,15 +9,18 @@ import {
   HasOptions,
   DeleteOptions,
 } from '../cache.interface';
-import { AbstractCacheAdapter } from './abstract-cache-adapter';
-import { CacheItemInterface } from '../cache-item.interface';
-import { executeValueProviderFn } from '../utils/value-provider';
-import { DateProvider } from '../expiry/date-provider.interface';
+import type { EvictionPolicyInterface } from '../eviction';
+import { ExpiresAtPolicy } from '../eviction';
+import type { CacheException } from '../exceptions';
+import {
+  CacheProviderException,
+  InvalidCacheKeyException,
+} from '../exceptions';
+import type { DateProvider } from '../expiry/date-provider.interface';
 import { EsDateProvider } from '../expiry/es-date-provider';
-import { CacheException, CacheProviderException, InvalidCacheKeyException } from '../exceptions';
-import { EvictionPolicyInterface, ExpiresAtPolicy } from '../eviction';
-import { CacheItemFactory } from '../cache-item.factory';
+import { executeValueProviderFn } from '../utils/value-provider';
 import { Guards } from '../validation/guards';
+import { AbstractCacheAdapter } from './abstract-cache-adapter';
 
 type Options = {
   evictionPolicy?: EvictionPolicyInterface;
@@ -27,7 +32,8 @@ const defaultOptions = {
 
 export class MapCacheAdapter<TBase = string, KBase extends CacheKey = CacheKey>
   extends AbstractCacheAdapter<TBase, KBase>
-  implements CacheInterface<TBase, KBase> {
+  implements CacheInterface<TBase, KBase>
+{
   private map: Map<KBase, { expiresAt: number; data: unknown }>;
   private dateProvider: DateProvider;
   private evictionPolicy: EvictionPolicyInterface;
@@ -41,7 +47,10 @@ export class MapCacheAdapter<TBase = string, KBase extends CacheKey = CacheKey>
     this.dateProvider = new EsDateProvider();
   }
 
-  get = async <T = TBase, K extends KBase = KBase>(key: K, options?: GetOptions<T>): Promise<CacheItemInterface<T>> => {
+  get = async <T = TBase, K extends KBase = KBase>(
+    key: K,
+    options?: GetOptions<T>
+  ): Promise<CacheItemInterface<T>> => {
     if (!Guards.isValidCacheKey(key)) {
       return CacheItemFactory.fromInvalidCacheKey<K>(key);
     }
@@ -55,7 +64,8 @@ export class MapCacheAdapter<TBase = string, KBase extends CacheKey = CacheKey>
     }
     const cached = this.map.get(key);
     const { expiresAt = null } = cached ?? {};
-    const expired = expiresAt !== null ? this.evictionPolicy.isExpired(expiresAt) : false;
+    const expired =
+      expiresAt !== null ? this.evictionPolicy.isExpired(expiresAt) : false;
 
     if (cached !== undefined) {
       const { data } = cached;
@@ -96,9 +106,14 @@ export class MapCacheAdapter<TBase = string, KBase extends CacheKey = CacheKey>
     return true;
   };
 
-  has = async <K extends KBase = KBase>(key: K, options?: HasOptions): Promise<boolean | undefined> => {
+  has = async <K extends KBase = KBase>(
+    key: K,
+    options?: HasOptions
+  ): Promise<boolean | undefined> => {
     if (!Guards.isValidCacheKey(key)) {
-      options?.onError?.(this.errorHelper.getInvalidCacheKeyException(['has', key]));
+      options?.onError?.(
+        this.errorHelper.getInvalidCacheKeyException(['has', key])
+      );
       return undefined;
     }
     const { disableCache = false } = options ?? {};
@@ -112,7 +127,10 @@ export class MapCacheAdapter<TBase = string, KBase extends CacheKey = CacheKey>
     return !this.evictionPolicy.isExpired(expiresAt);
   };
 
-  delete = async <K extends KBase = KBase>(key: K, options?: DeleteOptions): Promise<boolean | CacheException> => {
+  delete = async <K extends KBase = KBase>(
+    key: K,
+    options?: DeleteOptions
+  ): Promise<boolean | CacheException> => {
     if (!Guards.isValidCacheKey(key)) {
       return this.errorHelper.getInvalidCacheKeyException(['delete', key]);
     }

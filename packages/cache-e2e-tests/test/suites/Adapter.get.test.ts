@@ -1,4 +1,5 @@
-import { CacheInterface, Guards } from '@soluble/cache-interop';
+import type { CacheInterface } from '@soluble/cache-interop';
+import { Guards } from '@soluble/cache-interop';
 
 import { getTestAdapters } from '../setup/getTestAdapters';
 
@@ -48,17 +49,21 @@ describe.each(adapters)('Adapter: %s', (name, adapterFactory) => {
     });
     describe('when a defaultValue is given', () => {
       it('should return defaultValue if nothing in cache', async () => {
-        expect(await cache.get('k', { defaultValue: 'default' })).toMatchObject({
-          isHit: false,
-          data: 'default',
-        });
+        expect(await cache.get('k', { defaultValue: 'default' })).toMatchObject(
+          {
+            isHit: false,
+            data: 'default',
+          }
+        );
       });
       it('should give priority to existing cache entry', async () => {
         await cache.set('k', 'initial');
-        expect(await cache.get('k', { defaultValue: 'default' })).toMatchObject({
-          isHit: true,
-          data: 'initial',
-        });
+        expect(await cache.get('k', { defaultValue: 'default' })).toMatchObject(
+          {
+            isHit: true,
+            data: 'initial',
+          }
+        );
       });
     });
     describe('when an item was set with 0 expiry (forever)', () => {

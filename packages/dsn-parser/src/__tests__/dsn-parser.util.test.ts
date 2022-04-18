@@ -1,4 +1,9 @@
-import { removeUndefined, isNonEmptyString, isValidNetworkPort, mergeDsnOverrides } from '../dsn-parser.util';
+import {
+  removeUndefined,
+  isNonEmptyString,
+  isValidNetworkPort,
+  mergeDsnOverrides,
+} from '../dsn-parser.util';
 
 describe('removeUndefined', () => {
   it('should work as expected', () => {

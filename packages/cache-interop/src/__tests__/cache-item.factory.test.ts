@@ -1,5 +1,5 @@
-import { CacheException, InvalidCacheKeyException } from '../exceptions';
 import { CacheItemFactory } from '../cache-item.factory';
+import { CacheException, InvalidCacheKeyException } from '../exceptions';
 
 describe('CacheItemFactory', () => {
   describe('fromOk', () => {
@@ -35,13 +35,17 @@ describe('CacheItemFactory', () => {
         },
       });
       expect(item.error).toBeInstanceOf(InvalidCacheKeyException);
-      expect(item.error?.message).toStrictEqual('InvalidArgument for cacheKey (true)');
+      expect(item.error?.message).toStrictEqual(
+        'InvalidArgument for cacheKey (true)'
+      );
     });
 
     it('should indicate default message', () => {
       const item = CacheItemFactory.fromInvalidCacheKey<string>(undefined);
       expect(item.error).toBeInstanceOf(InvalidCacheKeyException);
-      expect(item.error?.message).toStrictEqual('InvalidArgument for cacheKey (undefined)');
+      expect(item.error?.message).toStrictEqual(
+        'InvalidArgument for cacheKey (undefined)'
+      );
     });
   });
 

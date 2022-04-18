@@ -3,7 +3,11 @@ import { parseDsn } from '../dsn-parser';
 describe('parseDsn', () => {
   describe('when provided dsn contains all options', () => {
     it('should return the correct parsed params', () => {
-      expect(parseDsn('redis://username:password@www.example.com:6379/database$-#12_2.1')).toStrictEqual({
+      expect(
+        parseDsn(
+          'redis://username:password@www.example.com:6379/database$-#12_2.1'
+        )
+      ).toStrictEqual({
         success: true,
         value: {
           driver: 'redis',
@@ -18,7 +22,9 @@ describe('parseDsn', () => {
   });
   describe('when provided dsn contains query params', () => {
     it('should return the parsed params and cast bool and numbers', () => {
-      const parsed = parseDsn('redis://localhost/0?paramInt=2&paramBool=false&paramStr=hello');
+      const parsed = parseDsn(
+        'redis://localhost/0?paramInt=2&paramBool=false&paramStr=hello'
+      );
       expect(parsed).toMatchObject({
         success: true,
         value: {
@@ -37,7 +43,9 @@ describe('parseDsn', () => {
 
   describe('when provided password contains special characters', () => {
     it('should return the correct parsed params', () => {
-      expect(parseDsn('redis://username:P@/ssw/rd@www.example.com:6379/0')).toStrictEqual({
+      expect(
+        parseDsn('redis://username:P@/ssw/rd@www.example.com:6379/0')
+      ).toStrictEqual({
         success: true,
         value: {
           driver: 'redis',
@@ -52,7 +60,9 @@ describe('parseDsn', () => {
   });
   describe('when a dsn is provided with missing user', () => {
     it('should return the correct parsed params', () => {
-      expect(parseDsn('redis://:password@www.example.com:6379/0')).toStrictEqual({
+      expect(
+        parseDsn('redis://:password@www.example.com:6379/0')
+      ).toStrictEqual({
         success: true,
         value: {
           driver: 'redis',
@@ -225,7 +235,7 @@ describe('parseDsn', () => {
   });
   describe('when a dsn is not the right type', () => {
     it('should return an EMPTY_DSN reason', () => {
-      expect(parseDsn(([] as unknown) as string)).toStrictEqual({
+      expect(parseDsn([] as unknown as string)).toStrictEqual({
         success: false,
         reason: 'INVALID_ARGUMENT',
         message: 'DSN must be a string',

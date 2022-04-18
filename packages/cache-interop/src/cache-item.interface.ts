@@ -1,5 +1,5 @@
-import { CacheException } from './exceptions/cache.exception';
-import { CacheKey } from './cache.interface';
+import type { CacheKey } from './cache.interface';
+import type { CacheException } from './exceptions/cache.exception';
 
 export type CacheExpiresAt = number;
 

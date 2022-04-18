@@ -19,7 +19,11 @@ describe('parseQueryParams', () => {
   });
 
   it('should decode encore uri values', () => {
-    expect(parseQueryParams('kEncoded=%D1%88%D0%B5%D0%BB%D0%BB%D1%8B&kQuestion=test%3F')).toStrictEqual({
+    expect(
+      parseQueryParams(
+        'kEncoded=%D1%88%D0%B5%D0%BB%D0%BB%D1%8B&kQuestion=test%3F'
+      )
+    ).toStrictEqual({
       kEncoded: 'шеллы',
       kQuestion: 'test?',
     });

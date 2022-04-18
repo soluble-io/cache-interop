@@ -1,4 +1,5 @@
-import { CacheException, CacheExceptionProps } from './cache.exception';
+import type { CacheExceptionProps } from './cache.exception';
+import { CacheException } from './cache.exception';
 
 type Props = CacheExceptionProps;
 

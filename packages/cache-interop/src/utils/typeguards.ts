@@ -1,4 +1,4 @@
-import { AsyncFn, SyncFn } from './value-provider';
+import type { AsyncFn, SyncFn } from './value-provider';
 
 export function isPromiseLike<T>(value: unknown): value is PromiseLike<T> {
   if (value instanceof Promise) {

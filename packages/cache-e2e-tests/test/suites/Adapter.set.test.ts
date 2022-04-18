@@ -1,4 +1,9 @@
-import { CacheException, CacheInterface, CacheProviderException, Guards } from '@soluble/cache-interop';
+import type { CacheInterface } from '@soluble/cache-interop';
+import {
+  CacheException,
+  CacheProviderException,
+  Guards,
+} from '@soluble/cache-interop';
 
 import { getTestAdapters } from '../setup/getTestAdapters';
 
@@ -87,7 +92,7 @@ describe.each(adapters)('Adapter: %s', (name, adapterFactory) => {
         const ret = await cache.set('k', fct);
         expect(fct).toHaveBeenCalledTimes(1);
         expect(ret).toBeInstanceOf(CacheProviderException);
-        //expect((ret as CacheProviderException).message).toMatch('[]');
+        // expect((ret as CacheProviderException).message).toMatch('[]');
       });
     });
 

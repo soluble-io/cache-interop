@@ -1,5 +1,5 @@
-import { JsonType } from '../types/json.type';
-import { SerializerInterface } from '../serializer/serializer.interface';
+import type { SerializerInterface } from '../serializer/serializer.interface';
+import type { JsonType } from '../types/json.type';
 
 export class NativeJsonSerializer implements SerializerInterface {
   /**

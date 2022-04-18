@@ -1,4 +1,8 @@
-import { CacheException, CacheInterface, ConnectedCacheInterface, ErrorFormatter } from '@soluble/cache-interop';
+import type {
+  CacheInterface,
+  ConnectedCacheInterface,
+} from '@soluble/cache-interop';
+import { CacheException, ErrorFormatter } from '@soluble/cache-interop';
 import { IoRedisCacheAdapter } from '@soluble/cache-ioredis';
 import { RedisCacheAdapter } from '@soluble/cache-redis';
 import IORedis from 'ioredis';

@@ -10,7 +10,9 @@ describe('ErrorFormatter', () => {
     });
     it('should add cache adapter name, set method and message', () => {
       const fmt = new ErrorFormatter('RedisAdapter');
-      expect(fmt.getMsg('get', 'READ_ERROR')).toBe("[RedisAdapter.get()] READ_ERROR: Can't read from the cache");
+      expect(fmt.getMsg('get', 'READ_ERROR')).toBe(
+        "[RedisAdapter.get()] READ_ERROR: Can't read from the cache"
+      );
     });
     it('should accept a detail parameter', () => {
       const fmt = new ErrorFormatter('Adapter');
@@ -27,7 +29,9 @@ describe('ErrorFormatter', () => {
 
     it('should allow replacing message', () => {
       const fmt = new ErrorFormatter('Adapter');
-      expect(fmt.getMsg('get', 'READ_ERROR', null, 'Hello')).toBe('[Adapter.get()] READ_ERROR: Hello');
+      expect(fmt.getMsg('get', 'READ_ERROR', null, 'Hello')).toBe(
+        '[Adapter.get()] READ_ERROR: Hello'
+      );
     });
   });
 });

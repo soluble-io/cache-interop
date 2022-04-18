@@ -1,7 +1,8 @@
+import type { CacheInterface } from '@soluble/cache-interop';
+import { MapCacheAdapter } from '@soluble/cache-interop';
+import { IoRedisCacheAdapter } from '@soluble/cache-ioredis';
 import { RedisCacheAdapter } from '@soluble/cache-redis';
 import { E2eDockerContainers } from './E2eDockerContainers';
-import { IoRedisCacheAdapter } from '@soluble/cache-ioredis';
-import { CacheInterface, MapCacheAdapter } from '@soluble/cache-interop';
 
 /**
  * Return the configured adapters on which to run e2e tests
@@ -45,5 +46,8 @@ export const getTestAdapters = () => {
         });
       },
     ],
-  ] as [name: string, factory: () => CacheInterface | Promise<CacheInterface>][];
+  ] as [
+    name: string,
+    factory: () => CacheInterface | Promise<CacheInterface>
+  ][];
 };

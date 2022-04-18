@@ -1,4 +1,7 @@
-import { createIoRedisNativeConnection, createIoRedisConnection } from '@soluble/cache-ioredis';
+import {
+  createIoRedisNativeConnection,
+  createIoRedisConnection,
+} from '@soluble/cache-ioredis';
 import { E2eDockerContainers } from '../../setup/E2eDockerContainers';
 
 const startContainer = async (): Promise<string> => {

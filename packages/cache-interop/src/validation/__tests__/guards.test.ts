@@ -1,7 +1,7 @@
-import { Guards } from '../guards';
-import { CacheInterface } from '../../cache.interface';
-import { ConnectedCacheInterface } from '../../connection/connected-cache.interface';
+import type { CacheInterface } from '../../cache.interface';
+import type { ConnectedCacheInterface } from '../../connection/connected-cache.interface';
 import { CacheException, UnsupportedValueException } from '../../exceptions';
+import { Guards } from '../guards';
 
 describe('Guards tests', () => {
   describe('isNonEmptyString', () => {
@@ -34,8 +34,12 @@ describe('Guards tests', () => {
 
   describe('isCacheException', () => {
     it('should work as expected', () => {
-      expect(Guards.isCacheException(new CacheException({ message: 't' }))).toStrictEqual(true);
-      expect(Guards.isCacheException(new UnsupportedValueException({ message: 't' }))).toStrictEqual(true);
+      expect(
+        Guards.isCacheException(new CacheException({ message: 't' }))
+      ).toStrictEqual(true);
+      expect(
+        Guards.isCacheException(new UnsupportedValueException({ message: 't' }))
+      ).toStrictEqual(true);
       expect(Guards.isCacheException(() => {})).toStrictEqual(false);
       expect(Guards.isCacheException(NaN)).toStrictEqual(false);
       expect(Guards.isCacheException(new Date())).toStrictEqual(false);
@@ -48,7 +52,9 @@ describe('Guards tests', () => {
       expect(Guards.isCacheValueProviderFn(() => {})).toStrictEqual(true);
       expect(Guards.isCacheValueProviderFn(async () => {})).toStrictEqual(true);
       expect(Guards.isCacheValueProviderFn(null)).toStrictEqual(false);
-      expect(Guards.isCacheValueProviderFn(new Promise(() => {}))).toStrictEqual(true);
+      expect(
+        Guards.isCacheValueProviderFn(new Promise(() => {}))
+      ).toStrictEqual(true);
     });
   });
   describe('isConnectedCacheInterface', () => {

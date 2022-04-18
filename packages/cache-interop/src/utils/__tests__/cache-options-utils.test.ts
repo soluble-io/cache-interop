@@ -1,5 +1,5 @@
+import type { GetOrSetOptions } from '../../cache.interface';
 import { getGetOrSetCacheDisabledParams } from '../cache-options-utils';
-import { GetOrSetOptions } from '../../cache.interface';
 
 describe('getGetOrSetCacheActiveOptions', () => {
   describe('When disableCache is undefined', () => {

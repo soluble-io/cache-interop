@@ -1,4 +1,4 @@
-import { UnixTime } from '../expiry/es-date-provider';
+import type { UnixTime } from '../expiry/es-date-provider';
 
 export interface EvictionPolicyInterface {
   /**

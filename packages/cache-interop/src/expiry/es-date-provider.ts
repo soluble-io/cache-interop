@@ -1,4 +1,4 @@
-import { DateProvider } from './date-provider.interface';
+import type { DateProvider } from './date-provider.interface';
 
 export type UnixTime = number;
 

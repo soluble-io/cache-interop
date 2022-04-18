@@ -1,6 +1,9 @@
-import { CacheItemInterface, CacheItemMetadata } from './cache-item.interface';
-import { CacheException } from './exceptions/cache.exception';
-import { CacheKey } from './cache.interface';
+import type {
+  CacheItemInterface,
+  CacheItemMetadata,
+} from './cache-item.interface';
+import type { CacheKey } from './cache.interface';
+import type { CacheException } from './exceptions/cache.exception';
 
 export type CacheItemPropsOk<T, K extends CacheKey = CacheKey> = {
   success: true;
@@ -20,9 +23,13 @@ export type CacheItemPropsErr<K extends CacheKey = CacheKey> = {
   isPersisted?: boolean;
 };
 
-type CacheItemProps<T, K extends CacheKey = CacheKey> = CacheItemPropsOk<T, K> | CacheItemPropsErr<K>;
+type CacheItemProps<T, K extends CacheKey = CacheKey> =
+  | CacheItemPropsOk<T, K>
+  | CacheItemPropsErr<K>;
 
-export class CacheItem<T, KBase extends CacheKey = CacheKey> implements CacheItemInterface<T, KBase> {
+export class CacheItem<T, KBase extends CacheKey = CacheKey>
+  implements CacheItemInterface<T, KBase>
+{
   public readonly isSuccess: boolean;
   public readonly data: T | null;
   public readonly error: CacheException | undefined;
