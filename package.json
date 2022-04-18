@@ -31,10 +31,11 @@
     "g:typecheck": "yarn workspaces foreach -ptv run typecheck",
     "g:lint": "yarn workspaces foreach -ptv run lint",
     "g:fix-staged": "yarn workspaces foreach -t run fix-staged",
-    "g:coverage-publish": "codecov && yarn workspaces foreach -ptv run coverage-publish -- -f coverage/clover.xml",
+    "g:ci-coverage-upload": "yarn workspaces foreach -tv run ci-coverage-upload",
     "deps:check": "npm-check-updates --deep",
     "deps:update": "npm-check-updates --deep -u",
-    "check:install": "yarn dlx @yarnpkg/doctor@^3.1.0 ."
+    "check:install": "yarn dlx @yarnpkg/doctor@^3.1.0 .",
+    "check:codecov-config": "curl --data-binary @codecov.yml https://codecov.io/validate"
   },
   "dependenciesMeta": {
     "cpu-features": {
