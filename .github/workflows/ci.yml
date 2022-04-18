@@ -47,6 +47,15 @@ jobs:
           restore-keys: |
             yarn-cache-folder-
 
+      - name: Restore dx caches
+        uses: actions/cache@v3
+        with:
+          path: |
+            ${{ github.workspace }}/.cache
+            ${{ github.workspace }}/**/tsconfig.tsbuildinfo
+            ${{ github.workspace }}/**/.eslintcache
+          key: ${{ runner.os }}-dx-${{ hashFiles('**/yarn.lock') }}
+
       - name: Install dependencies
         run: |
           yarn install --immutable
