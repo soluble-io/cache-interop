@@ -25,7 +25,7 @@ describe('CacheItemFactory', () => {
 
   describe('fromInvalidCacheKey', () => {
     it('should create an error with invalid key', () => {
-      const item = CacheItemFactory.fromInvalidCacheKey<string>(true);
+      const item = CacheItemFactory.fromInvalidCacheKey(true);
       expect(item).toMatchObject({
         isSuccess: false,
         data: null,
@@ -41,7 +41,7 @@ describe('CacheItemFactory', () => {
     });
 
     it('should indicate default message', () => {
-      const item = CacheItemFactory.fromInvalidCacheKey<string>(undefined);
+      const item = CacheItemFactory.fromInvalidCacheKey(undefined);
       expect(item.error).toBeInstanceOf(InvalidCacheKeyException);
       expect(item.error?.message).toStrictEqual(
         'InvalidArgument for cacheKey (undefined)'

@@ -35,7 +35,12 @@ const config = {
     ...getTsConfigBasePaths(),
   },
   coverageDirectory: '<rootDir>/cache-ioredis/coverage',
-  collectCoverageFrom: ['<rootDir>/cache-ioredis/src/**/*.{ts,js}', '!**/*.test.ts', '!**/index.ts', '!**/*.d.ts'],
+  collectCoverageFrom: [
+    '<rootDir>/cache-ioredis/src/**/*.{ts,js}',
+    '!**/*.test.ts',
+    '!**/index.ts',
+    '!**/*.d.ts',
+  ],
   globals: {
     'ts-jest': {
       diagnostics: true,

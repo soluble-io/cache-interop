@@ -1,4 +1,8 @@
-import { getIoRedisOptionsFromDsn, getDbIndex, getTlsOptions } from '../ioredis-dsn.util';
+import {
+  getIoRedisOptionsFromDsn,
+  getDbIndex,
+  getTlsOptions,
+} from '../ioredis-dsn.util';
 
 describe('ioredis-dsn utils', () => {
   describe('getDbIndex', () => {
@@ -67,7 +71,9 @@ describe('ioredis-dsn utils', () => {
     describe('when redisClient options are given', () => {
       it('should return custom redis client options', () => {
         const dsn = 'redis://localhost:6379';
-        expect(getIoRedisOptionsFromDsn(dsn, { connectTimeout: 1 })).toStrictEqual({
+        expect(
+          getIoRedisOptionsFromDsn(dsn, { connectTimeout: 1 })
+        ).toStrictEqual({
           host: 'localhost',
           connectTimeout: 1,
           port: 6379,
@@ -76,7 +82,9 @@ describe('ioredis-dsn utils', () => {
 
       it('should take precedence on dsnOverrides', () => {
         const dsn = 'redis://localhost:6379';
-        expect(getIoRedisOptionsFromDsn(dsn, { port: 2015 }, { port: 2014 })).toStrictEqual({
+        expect(
+          getIoRedisOptionsFromDsn(dsn, { port: 2015 }, { port: 2014 })
+        ).toStrictEqual({
           host: 'localhost',
           port: 2015,
         });
@@ -86,7 +94,9 @@ describe('ioredis-dsn utils', () => {
     describe('when dsnOverrides are given', () => {
       it('should overwrite port when override say so', () => {
         const dsn = 'redis://localhost:6379';
-        expect(getIoRedisOptionsFromDsn(dsn, undefined, { port: 2014 })).toStrictEqual({
+        expect(
+          getIoRedisOptionsFromDsn(dsn, undefined, { port: 2014 })
+        ).toStrictEqual({
           host: 'localhost',
           port: 2014,
         });
@@ -96,14 +106,18 @@ describe('ioredis-dsn utils', () => {
     describe('when dsn is not parsable', () => {
       it('should throw expected message', () => {
         const dsn = 'redis://';
-        expect(() => getIoRedisOptionsFromDsn(dsn)).toThrow("Can't parse DSN, reason PARSE_ERROR");
+        expect(() => getIoRedisOptionsFromDsn(dsn)).toThrow(
+          "Can't parse DSN, reason PARSE_ERROR"
+        );
       });
     });
 
     describe('when is an invalid dsn driver is provided', () => {
       it('should throw expected message', () => {
         const dsn = 'mysql://localhost';
-        expect(() => getIoRedisOptionsFromDsn(dsn)).toThrow("Unsupported driver 'mysql', must be redis or rediss");
+        expect(() => getIoRedisOptionsFromDsn(dsn)).toThrow(
+          "Unsupported driver 'mysql', must be redis or rediss"
+        );
       });
     });
   });

@@ -18,7 +18,7 @@ export class ExpiresAtPolicy implements EvictionPolicyInterface {
    * @param expiresAt - UnixTime expressed in seconds
    * @throws InvalidArgumentException
    */
-  isExpired<T>(expiresAt: UnixTime): boolean {
+  isExpired(expiresAt: UnixTime): boolean {
     if (!isSafeInteger(expiresAt)) {
       throw new InvalidArgumentException({
         message:

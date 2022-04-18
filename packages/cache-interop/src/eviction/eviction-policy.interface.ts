@@ -4,5 +4,5 @@ export interface EvictionPolicyInterface {
   /**
    * @throws InvalidArgumentException
    */
-  isExpired<T>(expiresAt: UnixTime): boolean;
+  isExpired(expiresAt: UnixTime): boolean;
 }

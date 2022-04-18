@@ -1,5 +1,5 @@
-import IORedis from 'ioredis';
-import { ConnectionInterface } from '@soluble/cache-interop';
+import type { ConnectionInterface } from '@soluble/cache-interop';
+import type IORedis from 'ioredis';
 
 export class IoredisConnection implements ConnectionInterface<IORedis.Redis> {
   private readonly ioRedis: IORedis.Redis;

@@ -1,4 +1,3 @@
-import dayjs from 'dayjs';
 import { InvalidArgumentException } from '../../exceptions';
 import { ExpiresAtPolicy } from '../expires-at-policy';
 

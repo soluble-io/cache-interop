@@ -8,7 +8,7 @@ export class Asserts {
     msg?: string
   ): asserts key is K {
     if (!Guards.isValidCacheKey(key)) {
-      throw new InvalidCacheKeyException({ key: true });
+      throw new InvalidCacheKeyException({ key: true, message: msg });
     }
   }
 }

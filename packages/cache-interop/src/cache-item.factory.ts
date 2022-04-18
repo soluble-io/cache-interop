@@ -25,9 +25,7 @@ export class CacheItemFactory {
   ): CacheItem<null, K> {
     return new CacheItem<null, K>({ ...props, ...{ success: false } });
   }
-  static fromInvalidCacheKey<K extends CacheKey = CacheKey>(
-    key: unknown
-  ): CacheItem<null, string> {
+  static fromInvalidCacheKey(key: unknown): CacheItem<null, string> {
     const err = new InvalidCacheKeyException({ key });
     return new CacheItem<null, string>({
       success: false,

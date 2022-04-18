@@ -12,10 +12,6 @@ import type {
 import type { EvictionPolicyInterface } from '../eviction';
 import { ExpiresAtPolicy } from '../eviction';
 import type { CacheException } from '../exceptions';
-import {
-  CacheProviderException,
-  InvalidCacheKeyException,
-} from '../exceptions';
 import type { DateProvider } from '../expiry/date-provider.interface';
 import { EsDateProvider } from '../expiry/es-date-provider';
 import { executeValueProviderFn } from '../utils/value-provider';
@@ -52,7 +48,7 @@ export class MapCacheAdapter<TBase = string, KBase extends CacheKey = CacheKey>
     options?: GetOptions<T>
   ): Promise<CacheItemInterface<T>> => {
     if (!Guards.isValidCacheKey(key)) {
-      return CacheItemFactory.fromInvalidCacheKey<K>(key);
+      return CacheItemFactory.fromInvalidCacheKey(key);
     }
     const { defaultValue = null, disableCache = false } = options ?? {};
     if (disableCache) {

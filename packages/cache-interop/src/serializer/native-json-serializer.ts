@@ -6,7 +6,6 @@ export class NativeJsonSerializer implements SerializerInterface {
    * @throws SyntaxError
    */
   decode<TOutput extends JsonType>(value: string): TOutput {
-    let decoded: TOutput | null;
     return JSON.parse(value) as TOutput;
   }
 

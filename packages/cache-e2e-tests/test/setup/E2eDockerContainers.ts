@@ -33,7 +33,7 @@ export class E2eDockerContainers {
   }
 
   static async shutdownAll(): Promise<true> {
-    for (const [key, { container, dsn }] of E2eDockerContainers._instances) {
+    for (const [key, { container }] of E2eDockerContainers._instances) {
       try {
         await container.stop({
           timeout: 5000,

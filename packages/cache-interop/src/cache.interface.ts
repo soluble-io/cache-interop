@@ -1,6 +1,5 @@
 import type { CacheItemInterface } from './cache-item.interface';
 import type { CacheException } from './exceptions';
-import { InvalidArgumentException } from './exceptions';
 
 export type GetOptions<T> = {
   defaultValue?: T;

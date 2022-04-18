@@ -1,8 +1,4 @@
-import {
-  InvalidArgumentException,
-  InvalidCacheKeyException,
-  UnsupportedFeatureException,
-} from '../../exceptions';
+import { InvalidArgumentException } from '../../exceptions';
 import { Asserts } from '../asserts';
 
 describe('Asserts tests', () => {

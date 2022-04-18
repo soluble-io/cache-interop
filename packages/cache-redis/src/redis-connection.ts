@@ -1,7 +1,7 @@
-import { ConnectionInterface } from '@soluble/cache-interop';
-
-import { RedisClient } from 'redis';
 import { promisify } from 'util';
+import type { ConnectionInterface } from '@soluble/cache-interop';
+
+import type { RedisClient } from 'redis';
 
 export class RedisConnection implements ConnectionInterface<RedisClient> {
   private readonly redis: RedisClient;
@@ -14,7 +14,7 @@ export class RedisConnection implements ConnectionInterface<RedisClient> {
     const asyncQuit = promisify(this.redis.quit).bind(this.redis);
     return asyncQuit()
       .then((reply) => reply === 'OK')
-      .catch((e) => {
+      .catch((_e) => {
         return false;
       });
   };
