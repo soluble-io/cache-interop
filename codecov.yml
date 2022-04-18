@@ -1,51 +1,62 @@
 coverage:
-  status:
-    patch: off
-    project:
-      default: off
-      cacheInteropUnit:
-        target: 1%
-        flags:
-          - cache_interop
-      cacheIORedisUnit:
-        target: 1%
-        flags:
-          - cache_ioredis
-      cacheNodeRedisUnit:
-        target: 0%
-        flags:
-          - cache_redis
-      dsnParserUnit:
-        target: 1%
-        flags:
-          - cache_dsn_parser
-flags:
-  dsnParserUnit:
-    paths:
-      - packages/dsn-parser/src
-  cacheInteropUnit:
-    paths:
-      - packages/cache-interop/src
-  cacheIORedisUnit:
-    paths:
-      - packages/cache-ioredis/src
-  cacheNodeRedisUnit:
-    paths:
-      - packages/cache-redis/src
-  e2e:
-    paths:
-      - packages/cache-ioredis/src
-      - packages/cache-redis/src
-      - packages/cache-interop/src
+  range: 60..100
+  round: down
+  precision: 2
+
+flag_management:
+  default_rules:
+    carryforward: true
+  individual_flags:
+    - name: e2e
+      paths:
+        - packages/e2e/
+      statuses:
+        - type: project
+          target: 80%
+          threshold: 1%
+    - name: cacheInteropUnit
+      paths:
+        - packages/cache-interop
+      statuses:
+        - type: project
+          target: 80%
+          threshold: 1%
+    - name: cacheIORedisUnit
+      paths:
+        - packages/cache-ioredis
+      statuses:
+        - type: project
+          target: 80%
+          threshold: 1%
+    - name: cacheNodeRedisUnit
+      paths:
+        - packages/cache-redis
+      statuses:
+        - type: project
+          target: 80%
+          threshold: 1%
+    - name: dsnParserUnit
+      paths:
+        - packages/dsn-parser
+      statuses:
+        - type: project
+          target: 80%
+          threshold: 1%
 
 ignore:
-  - "scripts/**/*"
-  - "docs/**/*"
-  - "scripts/**/*"
-  - "**/index.ts"
-  - "**/*.d.ts"
+  - '.yarn/**/*'
+  - '.husky/**/*'
+  - 'docs/**/*'
+  - 'examples/**/*'
+  - '**/dist/**/*'
+
+github_checks: true
 
 comment:
-  layout: "reach,diff,flags,tree"
+  layout: 'reach, diff, flags, files'
   behavior: default
-  require_changes: no
+  require_changes: false
+  require_base: yes
+  require_head: yes
+  branches: null
+  show_carryforward_flags: true
