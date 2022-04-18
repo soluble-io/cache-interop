@@ -35,7 +35,8 @@
     "deps:check": "npm-check-updates --deep",
     "deps:update": "npm-check-updates --deep -u",
     "check:install": "yarn dlx @yarnpkg/doctor@^3.1.0 .",
-    "check:codecov-config": "curl --data-binary @codecov.yml https://codecov.io/validate"
+    "check:codecov-config": "curl --data-binary @codecov.yml https://codecov.io/validate",
+    "nuke:node_modules": "rimraf '**/node_modules'"
   },
   "dependenciesMeta": {
     "cpu-features": {
