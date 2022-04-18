@@ -30,7 +30,7 @@
   "sideEffects": false,
   "scripts": {
     "start": "cross-env NODE_ENV=development tsdx watch",
-    "build": "cross-env NODE_ENV=production microbundle --tsconfig ./tsconfig.build.json --format esm,cjs,umd --target node --compress",
+    "build": "cross-env NODE_ENV=production microbundle --tsconfig ./tsconfig.build.json --format esm,cjs --target node --no-compress",
     "?build-release": "When https://github.com/atlassian/changesets/issues/432 has a solution we can remove this trick",
     "build-release": "yarn build",
     "check-dist": "es-check -v",
