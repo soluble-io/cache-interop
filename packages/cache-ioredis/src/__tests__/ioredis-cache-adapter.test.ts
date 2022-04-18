@@ -17,7 +17,7 @@ describe('IoRedisCacheAdapter', () => {
         expect(
           () =>
             new IoRedisCacheAdapter({
-              connection: (null as unknown) as string,
+              connection: null as unknown as string,
             })
         ).toThrow('Invalid ioredis connection options');
       });

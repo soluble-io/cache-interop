@@ -41,7 +41,9 @@ describe('redis-dsn utils', () => {
     describe('when redisClient options are given', () => {
       it('should return custom redis client options', () => {
         const dsn = 'redis://localhost:6379';
-        expect(getRedisOptionsFromDsn(dsn, { no_ready_check: true })).toStrictEqual({
+        expect(
+          getRedisOptionsFromDsn(dsn, { no_ready_check: true })
+        ).toStrictEqual({
           host: 'localhost',
           no_ready_check: true,
           port: 6379,
@@ -50,7 +52,9 @@ describe('redis-dsn utils', () => {
 
       it('should take precedence on dsnOverrides', () => {
         const dsn = 'redis://localhost:6379';
-        expect(getRedisOptionsFromDsn(dsn, { port: 2015 }, { port: 2014 })).toStrictEqual({
+        expect(
+          getRedisOptionsFromDsn(dsn, { port: 2015 }, { port: 2014 })
+        ).toStrictEqual({
           host: 'localhost',
           port: 2015,
         });
@@ -60,7 +64,9 @@ describe('redis-dsn utils', () => {
     describe('when dsnOverrides are given', () => {
       it('should overwrite port when override say so', () => {
         const dsn = 'redis://localhost:6379';
-        expect(getRedisOptionsFromDsn(dsn, undefined, { port: 2014 })).toStrictEqual({
+        expect(
+          getRedisOptionsFromDsn(dsn, undefined, { port: 2014 })
+        ).toStrictEqual({
           host: 'localhost',
           port: 2014,
         });
@@ -70,14 +76,18 @@ describe('redis-dsn utils', () => {
     describe('when dsn is not parsable', () => {
       it('should throw expected message', () => {
         const dsn = 'redis://';
-        expect(() => getRedisOptionsFromDsn(dsn)).toThrow("Can't parse DSN, reason PARSE_ERROR");
+        expect(() => getRedisOptionsFromDsn(dsn)).toThrow(
+          "Can't parse DSN, reason PARSE_ERROR"
+        );
       });
     });
 
     describe('when is an invalid dsn driver is provided', () => {
       it('should throw expected message', () => {
         const dsn = 'mysql://localhost';
-        expect(() => getRedisOptionsFromDsn(dsn)).toThrow("Unsupported driver 'mysql', must be redis or rediss");
+        expect(() => getRedisOptionsFromDsn(dsn)).toThrow(
+          "Unsupported driver 'mysql', must be redis or rediss"
+        );
       });
     });
   });

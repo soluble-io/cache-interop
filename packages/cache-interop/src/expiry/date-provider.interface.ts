@@ -1,4 +1,4 @@
-import { UnixTime } from './es-date-provider';
+import type { UnixTime } from './es-date-provider';
 
 export interface DateProvider {
   /**

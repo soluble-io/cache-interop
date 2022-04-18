@@ -35,7 +35,12 @@ const config = {
     ...getTsConfigBasePaths(),
   },
   coverageDirectory: '<rootDir>/cache-redis/coverage',
-  collectCoverageFrom: ['<rootDir>/cache-redis/src/**/*.{ts,js}', '!**/*.test.ts', '!**/index.ts', '!**/*.d.ts'],
+  collectCoverageFrom: [
+    '<rootDir>/cache-redis/src/**/*.{ts,js}',
+    '!**/*.test.ts',
+    '!**/index.ts',
+    '!**/*.d.ts',
+  ],
   globals: {
     'ts-jest': {
       diagnostics: true,

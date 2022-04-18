@@ -24,7 +24,12 @@ module.exports = {
   displayName: 'cache-interop/unit',
   testRunner: 'jest-circus/runner',
   verbose: true,
-  collectCoverageFrom: ['src/**/*.{js,ts}', '!src/**/*.d.ts', '!src/**/*.test.ts', '!**/index.ts'],
+  collectCoverageFrom: [
+    'src/**/*.{js,ts}',
+    '!src/**/*.d.ts',
+    '!src/**/*.test.ts',
+    '!**/index.ts',
+  ],
   testMatch: ['<rootDir>/src/**/*.test.ts'],
   testEnvironment: 'node',
   transform: {

@@ -17,7 +17,7 @@ describe('RedisCacheAdapter', () => {
         expect(
           () =>
             new RedisCacheAdapter({
-              connection: (null as unknown) as string,
+              connection: null as unknown as string,
             })
         ).toThrow('Invalid redis connection options');
       });

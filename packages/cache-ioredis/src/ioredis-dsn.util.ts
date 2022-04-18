@@ -1,6 +1,7 @@
-import { parseDsn, ParseDsnOptions } from '@soluble/dsn-parser';
-import IORedis from 'ioredis';
 import type { ConnectionOptions } from 'tls';
+import type { ParseDsnOptions } from '@soluble/dsn-parser';
+import { parseDsn } from '@soluble/dsn-parser';
+import type IORedis from 'ioredis';
 
 export const getDbIndex = (db: number | string | undefined): number | null => {
   if (db === undefined) {
@@ -16,7 +17,10 @@ export const getDbIndex = (db: number | string | undefined): number | null => {
   return null;
 };
 
-export const getTlsOptions = (driver: string, host: string): ConnectionOptions | null => {
+export const getTlsOptions = (
+  driver: string,
+  host: string
+): ConnectionOptions | null => {
   if (driver !== 'rediss') {
     return null;
   }
@@ -46,7 +50,10 @@ export const getIoRedisOptionsFromDsn = (
   if (!parsed.success) {
     throw new Error(`Can't parse DSN, reason ${parsed.reason}`);
   }
-  const { driver, host, port, user, pass, db } = { ...parsed.value, ...(dsnOverrides ?? {}) };
+  const { driver, host, port, user, pass, db } = {
+    ...parsed.value,
+    ...(dsnOverrides ?? {}),
+  };
 
   if (!['redis', 'rediss'].includes(driver)) {
     throw new Error(`Unsupported driver '${driver}', must be redis or rediss`);

@@ -1,4 +1,5 @@
-import { CacheInterface, CacheProviderException, Guards } from '@soluble/cache-interop';
+import type { CacheInterface } from '@soluble/cache-interop';
+import { CacheProviderException, Guards } from '@soluble/cache-interop';
 
 import { getTestAdapters } from '../setup/getTestAdapters';
 

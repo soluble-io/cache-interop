@@ -16,7 +16,10 @@ export const parseQueryParams = (
   queryParams: string,
   options?: ParseQueryParamsOptions
 ): Record<string, string | boolean | number | null> => {
-  const { parseBooleans, setTrueForUndefinedValues, parseNumbers } = { ...defaultOptions, ...(options || {}) };
+  const { parseBooleans, setTrueForUndefinedValues, parseNumbers } = {
+    ...defaultOptions,
+    ...(options || {}),
+  };
   const defaultValue = setTrueForUndefinedValues ? true : null;
   const parts = queryParams.split('&').filter((v) => v.trim().length > 0);
   return parts.reduce((acc, keyValuePair) => {
@@ -26,7 +29,10 @@ export const parseQueryParams = (
       if (parseNumbers && isParsableNumber(value)) {
         val = Number.parseInt(value, 10);
       } else {
-        val = parseBooleans && ['true', 'false'].includes(value) ? value === 'true' : decodeURIComponent(value);
+        val =
+          parseBooleans && ['true', 'false'].includes(value)
+            ? value === 'true'
+            : decodeURIComponent(value);
       }
     } else {
       val = defaultValue;

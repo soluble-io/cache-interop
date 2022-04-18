@@ -1,4 +1,4 @@
-import { ParsedDsn } from './dsn-parser';
+import type { ParsedDsn } from './dsn-parser';
 
 export const errorReasons = {
   EMPTY_DSN: 'DSN cannot be empty',

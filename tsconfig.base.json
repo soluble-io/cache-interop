@@ -29,6 +29,7 @@
   "exclude": [
     "**/dist",
     "**/_release",
-    "**/node_modules"
+    "**/node_modules",
+    "**/coverage"
   ]
 }

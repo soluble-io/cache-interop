@@ -36,9 +36,14 @@ export type ParsedDsn = {
   params?: Record<string, number | string | boolean>;
 };
 
-export const parseDsn = (dsn: string, options?: ParseDsnOptions): ParserResult => {
+export const parseDsn = (
+  dsn: string,
+  options?: ParseDsnOptions
+): ParserResult => {
   if (!isNonEmptyString(dsn)) {
-    return createErrorResult(typeof dsn !== 'string' ? 'INVALID_ARGUMENT' : 'EMPTY_DSN');
+    return createErrorResult(
+      typeof dsn !== 'string' ? 'INVALID_ARGUMENT' : 'EMPTY_DSN'
+    );
   }
   const opts = { ...defaultOptions, ...(options || {}) };
   const { overrides = {}, lowercaseDriver } = opts;
@@ -64,7 +69,9 @@ export const parseDsn = (dsn: string, options?: ParseDsnOptions): ParserResult =
       }
     }
   });
-  const val = removeUndefined(mergeDsnOverrides(parsed as ParsedDsn, overrides)) as ParsedDsn;
+  const val = removeUndefined(
+    mergeDsnOverrides(parsed as ParsedDsn, overrides)
+  ) as ParsedDsn;
   if (val?.port && !isValidNetworkPort(val.port)) {
     return createErrorResult('INVALID_PORT', `Invalid port: ${val.port}`);
   }

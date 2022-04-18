@@ -1,4 +1,7 @@
-import { createRedisNativeConnection, createRedisConnection } from '@soluble/cache-redis';
+import {
+  createRedisNativeConnection,
+  createRedisConnection,
+} from '@soluble/cache-redis';
 import { E2eDockerContainers } from '../../setup/E2eDockerContainers';
 
 const startContainer = async (): Promise<string> => {

@@ -1,6 +1,5 @@
-import { ExpiresAtPolicy } from '../expires-at-policy';
 import { InvalidArgumentException } from '../../exceptions';
-import dayjs from 'dayjs';
+import { ExpiresAtPolicy } from '../expires-at-policy';
 
 describe('ExpiresAtPolicy::isExpired tests', () => {
   const policy = new ExpiresAtPolicy();

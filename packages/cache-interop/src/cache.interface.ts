@@ -1,5 +1,5 @@
-import { CacheItemInterface } from './cache-item.interface';
-import { CacheException, InvalidArgumentException } from './exceptions';
+import type { CacheItemInterface } from './cache-item.interface';
+import type { CacheException } from './exceptions';
 
 export type GetOptions<T> = {
   defaultValue?: T;
@@ -41,9 +41,13 @@ export type GetOrSetOptions = Omit<SetOptions, 'disableCache'> & {
 };
 
 type CacheValueProviderParams = { key: CacheKey };
-export type CacheProviderAsyncFn<T> = (params?: CacheValueProviderParams) => Promise<T>;
+export type CacheProviderAsyncFn<T> = (
+  params?: CacheValueProviderParams
+) => Promise<T>;
 export type CacheProviderSyncFn<T> = (params?: CacheValueProviderParams) => T;
-export type CacheValueProviderFn<T> = CacheProviderAsyncFn<T> | CacheProviderSyncFn<T>;
+export type CacheValueProviderFn<T> =
+  | CacheProviderAsyncFn<T>
+  | CacheProviderSyncFn<T>;
 
 export type CacheKey = string;
 
@@ -56,7 +60,10 @@ export interface CacheInterface<TBase = string, KBase = CacheKey> {
    *
    * @returns A promise returning a CacheItemInterface, or defaultValue in case of cache miss.
    */
-  get<T = TBase, K extends KBase = KBase>(key: K, options?: GetOptions<T>): Promise<CacheItemInterface<T>>;
+  get<T = TBase, K extends KBase = KBase>(
+    key: K,
+    options?: GetOptions<T>
+  ): Promise<CacheItemInterface<T>>;
 
   /**
    * Persists data in the cache, uniquely referenced by a key.
@@ -79,7 +86,10 @@ export interface CacheInterface<TBase = string, KBase = CacheKey> {
    * @return True if the item was successfully removed, false if it did not exists.
    *         CacheException if there was an error.
    */
-  delete<K extends KBase = KBase>(key: K, options?: DeleteOptions): Promise<boolean | CacheException>;
+  delete<K extends KBase = KBase>(
+    key: K,
+    options?: DeleteOptions
+  ): Promise<boolean | CacheException>;
 
   /**
    * Determines whether an item is present in the cache.
@@ -95,7 +105,10 @@ export interface CacheInterface<TBase = string, KBase = CacheKey> {
    *         Undefined is used to determine if the operation was successful.
    *         If cacheDisabled option is set to true, it will always return false.
    */
-  has<K extends KBase = KBase>(key: K, options?: HasOptions): Promise<boolean | undefined>;
+  has<K extends KBase = KBase>(
+    key: K,
+    options?: HasOptions
+  ): Promise<boolean | undefined>;
 
   /**
    * Obtains multiple cache items by their unique keys.

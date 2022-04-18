@@ -1,4 +1,5 @@
-import { GenericContainer, StartedTestContainer } from 'testcontainers';
+import type { StartedTestContainer } from 'testcontainers';
+import { GenericContainer } from 'testcontainers';
 
 // Here configure all docker containers you need
 const registeredE2eContainers = {
@@ -16,8 +17,12 @@ export class E2eDockerContainers {
   static async getContainer(key: ContainerKey): Promise<E2eContainer> {
     if (!E2eDockerContainers._instances.has(key)) {
       const { image, port } = registeredE2eContainers[key];
-      const container = await new GenericContainer(image).withExposedPorts(port).start();
-      const dsn = `redis://${container.getHost()}:${container.getMappedPort(port)}`;
+      const container = await new GenericContainer(image)
+        .withExposedPorts(port)
+        .start();
+      const dsn = `redis://${container.getHost()}:${container.getMappedPort(
+        port
+      )}`;
       console.log('STARTED', key, dsn);
       E2eDockerContainers._instances.set(key, {
         container,
@@ -28,7 +33,7 @@ export class E2eDockerContainers {
   }
 
   static async shutdownAll(): Promise<true> {
-    for (const [key, { container, dsn }] of E2eDockerContainers._instances) {
+    for (const [key, { container }] of E2eDockerContainers._instances) {
       try {
         await container.stop({
           timeout: 5000,

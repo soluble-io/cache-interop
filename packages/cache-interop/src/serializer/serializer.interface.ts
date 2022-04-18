@@ -1,4 +1,4 @@
-import { JsonType } from '../types/json.type';
+import type { JsonType } from '../types/json.type';
 
 export interface SerializerInterface {
   /**

@@ -1,4 +1,5 @@
-import { CacheInterface, Guards } from '@soluble/cache-interop';
+import type { CacheInterface } from '@soluble/cache-interop';
+import { Guards } from '@soluble/cache-interop';
 import { getTestAdapters } from '../setup/getTestAdapters';
 
 const sleep = async (ms: number): Promise<void> => {

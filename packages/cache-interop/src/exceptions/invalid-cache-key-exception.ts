@@ -1,4 +1,4 @@
-import { CacheExceptionProps } from './cache.exception';
+import type { CacheExceptionProps } from './cache.exception';
 import { InvalidArgumentException } from './invalid-argument.exception';
 
 type Props = CacheExceptionProps & {
@@ -16,7 +16,9 @@ export class InvalidCacheKeyException extends InvalidArgumentException {
     } catch (e) {
       safeKey = 'unknown';
     }
-    const msg = message ? message : `${InvalidCacheKeyException.defaultMessage} (${safeKey})`;
+    const msg = message
+      ? message
+      : `${InvalidCacheKeyException.defaultMessage} (${safeKey})`;
     super({ message: msg, previous });
     this.safeKey = safeKey;
     Object.setPrototypeOf(this, InvalidCacheKeyException.prototype);

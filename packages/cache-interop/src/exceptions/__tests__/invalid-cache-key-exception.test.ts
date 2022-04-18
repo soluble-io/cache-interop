@@ -11,7 +11,9 @@ describe('InvalidCacheKeyException', () => {
   });
   it('should work with undefined keys', () => {
     const err = new InvalidCacheKeyException({ key: undefined });
-    expect(err.message).toStrictEqual('InvalidArgument for cacheKey (undefined)');
+    expect(err.message).toStrictEqual(
+      'InvalidArgument for cacheKey (undefined)'
+    );
   });
   it('should use the message provided if any', () => {
     const err = new InvalidCacheKeyException({ key: true, message: 'cool' });

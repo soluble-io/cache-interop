@@ -1,4 +1,4 @@
-import { GetOrSetOptions } from '../cache.interface';
+import type { GetOrSetOptions } from '../cache.interface';
 
 type GetOrSetCacheDisabledParams = {
   read: boolean;
