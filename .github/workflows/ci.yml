@@ -96,7 +96,7 @@ jobs:
           CI: true
 
       - name: Send coverage to codecov.io
-        working-directory: {{ github.workspace }}
+        working-directory: ${{ github.workspace }}
         if: matrix.node-version == '14.x'
         run: |
           bash .github/scripts/install-codecov.sh
