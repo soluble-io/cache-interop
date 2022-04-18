@@ -17,13 +17,13 @@ import {
   CacheItemFactory,
   Guards,
 } from '@soluble/cache-interop';
-import type IORedis from 'ioredis';
+import type { RedisOptions, Redis } from 'ioredis';
 import { IoredisConnection } from './ioredis-connection';
 import { createIoRedisConnection } from './ioredis-connection.factory';
 
 type Options = {
   /** Existing connection, IoRedis options or a valid dsn */
-  connection: IoredisConnection | IORedis.RedisOptions | string | IORedis.Redis;
+  connection: IoredisConnection | RedisOptions | string | Redis;
 };
 
 export class IoRedisCacheAdapter<
@@ -31,12 +31,10 @@ export class IoRedisCacheAdapter<
     KBase extends CacheKey = CacheKey
   >
   extends AbstractCacheAdapter<TBase, KBase>
-  implements
-    CacheInterface<TBase, KBase>,
-    ConnectedCacheInterface<IORedis.Redis>
+  implements CacheInterface<TBase, KBase>, ConnectedCacheInterface<Redis>
 {
   private readonly conn: IoredisConnection;
-  private readonly redis: IORedis.Redis;
+  private readonly redis: Redis;
   readonly adapterName: string;
   /**
    * @throws Error
@@ -183,7 +181,7 @@ export class IoRedisCacheAdapter<
       });
   };
 
-  getConnection = (): ConnectionInterface<IORedis.Redis> => {
+  getConnection = (): ConnectionInterface<Redis> => {
     return this.conn;
   };
 }

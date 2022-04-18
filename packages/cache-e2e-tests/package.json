@@ -39,7 +39,7 @@
     "@types/ioredis": "4.28.10",
     "@types/jest": "27.4.1",
     "@types/redis": "2.8.32",
-    "ioredis": "4.28.5",
+    "ioredis": "5.0.4",
     "jest": "27.5.1",
     "redis": "3.1.2",
     "testcontainers": "8.7.1",

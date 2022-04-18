@@ -1,7 +1,7 @@
 import type { ConnectionOptions } from 'tls';
 import type { ParseDsnOptions } from '@soluble/dsn-parser';
 import { parseDsn } from '@soluble/dsn-parser';
-import type IORedis from 'ioredis';
+import type { RedisOptions } from 'ioredis';
 
 export const getDbIndex = (db: number | string | undefined): number | null => {
   if (db === undefined) {
@@ -30,7 +30,7 @@ export const getTlsOptions = (
   };
 };
 
-type IORedisOptions = IORedis.RedisOptions;
+type IORedisOptions = RedisOptions;
 
 /**
  * Converts a soluble/dsn-parser dsn into compatible IORedis.Options
@@ -42,7 +42,7 @@ export const getIoRedisOptionsFromDsn = (
   dsn: string,
   clientOptions?: Partial<IORedisOptions>,
   dsnOverrides?: ParseDsnOptions['overrides']
-): IORedis.RedisOptions => {
+): RedisOptions => {
   const parsed = parseDsn(dsn, {
     lowercaseDriver: true,
     overrides: dsnOverrides || {},

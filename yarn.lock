@@ -2266,6 +2266,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@ioredis/commands@npm:^1.1.1":
+  version: 1.1.1
+  resolution: "@ioredis/commands@npm:1.1.1"
+  checksum: 66a9dc315dc077826fef4057c027c77c5af3fba247e6a5156c6847700fec8968a1b180bca344120ad561f5654cda54ed63119f790a041b0a010cacf02421ecff
+  languageName: node
+  linkType: hard
+
 "@istanbuljs/load-nyc-config@npm:^1.0.0":
   version: 1.1.0
   resolution: "@istanbuljs/load-nyc-config@npm:1.1.0"
@@ -2783,7 +2790,7 @@ __metadata:
     "@types/ioredis": 4.28.10
     "@types/jest": 27.4.1
     "@types/redis": 2.8.32
-    ioredis: 4.28.5
+    ioredis: 5.0.4
     jest: 27.5.1
     redis: 3.1.2
     testcontainers: 8.7.1
@@ -2817,7 +2824,7 @@ __metadata:
     "@types/ioredis": 4.28.10
     cross-env: 7.0.3
     es-check: 6.2.1
-    ioredis: 4.28.5
+    ioredis: 5.0.4
     jest: 27.5.1
     microbundle: 0.14.2
     rimraf: 3.0.2
@@ -2825,7 +2832,7 @@ __metadata:
     tslib: 2.3.1
     typescript: 4.6.3
   peerDependencies:
-    "@types/ioredis": ^4.17.11
+    "@types/ioredis": ^5.0.3
     ioredis: ^4.17.0
   peerDependenciesMeta:
     "@types/ioredis":
@@ -3223,10 +3230,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:*, @types/node@npm:17.0.24, @types/node@npm:>=12":
-  version: 17.0.24
-  resolution: "@types/node@npm:17.0.24"
-  checksum: 9e7c4f863601b2430b4c2429a89935f22eba692956f5013c90a4c7fb0e1401ed8add8c4307453c5d6b8b985384500f8c3f644427ab88632640cc396159af479a
+"@types/node@npm:*, @types/node@npm:17.0.25, @types/node@npm:>=12":
+  version: 17.0.25
+  resolution: "@types/node@npm:17.0.25"
+  checksum: 6a820bd624e69ea772f52a6cdb326484eff5829443dc981939373929ade109f58c21698b9f0a831bd6ceea799e722a75dc49c5fa7a6bc32a81e1cbdfc6507b64
   languageName: node
   linkType: hard
 
@@ -3234,13 +3241,6 @@ __metadata:
   version: 13.9.3
   resolution: "@types/node@npm:13.9.3"
   checksum: 365b9f98f64dc23b51e943e5b3d67fae013b14af8a72a8f7ef27c3b3362363bcd99c84979a1bdf449534be0a05a5a0eb488bde92dcf221cb7417f326aa05af7b
-  languageName: node
-  linkType: hard
-
-"@types/node@npm:16.11.27":
-  version: 16.11.27
-  resolution: "@types/node@npm:16.11.27"
-  checksum: 6ed0c8c4d29a549d0cfd607d19edf9a4668fbd39087701d923b4a04cd760564e47ad27f9403968cb9c11ee006f0ea6ab698b2491b4b2d2dec3f4a53d0fc22df7
   languageName: node
   linkType: hard
 
@@ -4480,7 +4480,7 @@ __metadata:
     "@changesets/cli": 2.22.0
     "@commitlint/cli": 16.2.3
     "@commitlint/config-conventional": 16.2.1
-    "@types/node": 16.11.27
+    "@types/node": 17.0.25
     "@types/prettier": 2.6.0
     eslint: 8.13.0
     eslint-config-bases: "workspace:^"
@@ -5632,10 +5632,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"denque@npm:^1.1.0, denque@npm:^1.5.0":
+"denque@npm:^1.5.0":
   version: 1.5.1
   resolution: "denque@npm:1.5.1"
   checksum: 4375ad19d5cea99f90effa82a8cecdaa10f4eb261fbcd7e47cd753ff2737f037aac8f7f4e031cc77f3966314c491c86a0d3b20c128aeee57f791b4662c45108e
+  languageName: node
+  linkType: hard
+
+"denque@npm:^2.0.1":
+  version: 2.0.1
+  resolution: "denque@npm:2.0.1"
+  checksum: ec398d1e3c6c8d4f5213dcf9ad74d7faa3b461e29a0019c9742b49a97ac5e16aa7134db45fa9d841e318e7722dd1ba670a474fde9a5b0d870b3a5fc6fe914c30
   languageName: node
   linkType: hard
 
@@ -6098,7 +6105,7 @@ __metadata:
     "@testing-library/react": 13.1.1
     "@testing-library/react-hooks": 8.0.0
     "@types/jest": 27.4.1
-    "@types/node": 17.0.24
+    "@types/node": 17.0.25
     "@types/prettier": 2.6.0
     "@types/react": 18.0.5
     "@types/react-dom": 18.0.1
@@ -7668,22 +7675,20 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ioredis@npm:4.28.5":
-  version: 4.28.5
-  resolution: "ioredis@npm:4.28.5"
+"ioredis@npm:5.0.4":
+  version: 5.0.4
+  resolution: "ioredis@npm:5.0.4"
   dependencies:
+    "@ioredis/commands": ^1.1.1
     cluster-key-slot: ^1.1.0
-    debug: ^4.3.1
-    denque: ^1.1.0
+    debug: ^4.3.4
+    denque: ^2.0.1
     lodash.defaults: ^4.2.0
-    lodash.flatten: ^4.4.0
     lodash.isarguments: ^3.1.0
-    p-map: ^2.1.0
-    redis-commands: 1.7.0
     redis-errors: ^1.2.0
     redis-parser: ^3.0.0
     standard-as-callback: ^2.1.0
-  checksum: a8793c3324cd69fa55b4baacbda118ce6724e574260157761276b31411dd3e168c75490f7155c6ce34d79e01488efa98e0cdb162991970fd56da7cbcdafb8fb8
+  checksum: ad247478f2965400cfa37c655441718f8684fbfbc23b174b584583d7e8247fb036eca97f9862bb3c3a05d2d6c1fdaf6eac4ec2af2bc9166b8620f402ce52a61f
   languageName: node
   linkType: hard
 
@@ -10409,7 +10414,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"p-map@npm:^2.0.0, p-map@npm:^2.1.0":
+"p-map@npm:^2.0.0":
   version: 2.1.0
   resolution: "p-map@npm:2.1.0"
   checksum: 9e3ad3c9f6d75a5b5661bcad78c91f3a63849189737cd75e4f1225bf9ac205194e5c44aac2ef6f09562b1facdb9bd1425584d7ac375bfaa17b3f1a142dab936d
@@ -11523,7 +11528,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"redis-commands@npm:1.7.0, redis-commands@npm:^1.7.0":
+"redis-commands@npm:^1.7.0":
   version: 1.7.0
   resolution: "redis-commands@npm:1.7.0"
   checksum: d1ff7fbcb5e54768c77f731f1d49679d2a62c3899522c28addb4e2e5813aea8bcac3f22519d71d330224c3f2937f935dfc3d8dc65e90db0f5fe22dc2c1515aa7
