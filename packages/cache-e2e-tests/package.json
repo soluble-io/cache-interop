@@ -20,7 +20,7 @@
     "typecheck": "tsc --project tsconfig.json --noEmit",
     "lint": "eslint . --ext .ts,.tsx,.js,.jsx",
     "fix-staged": "lint-staged --allow-empty",
-    "coverage-publish": "codecov --root=../../ -F e2e"
+    "ci-coverage-upload": "../../.github/scripts/download/codecov -F e2e --dir ./coverage"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [

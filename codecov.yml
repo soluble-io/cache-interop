@@ -1,0 +1,65 @@
+coverage:
+  range: 60..100
+  round: down
+  precision: 2
+
+flag_management:
+  default_rules:
+    carryforward: false
+  individual_flags:
+    - name: e2e
+      paths:
+        - packages/e2e
+        - packages/cache-interop
+        - packages/cache-ioredis
+        - packages/cache-redis
+      statuses:
+        - type: project
+          target: 60%
+          threshold: 1%
+    - name: cacheInteropUnit
+      paths:
+        - packages/cache-interop
+      statuses:
+        - type: project
+          target: 55%
+          threshold: 1%
+    - name: cacheIORedisUnit
+      paths:
+        - packages/cache-ioredis
+      statuses:
+        - type: project
+          target: 40%
+          threshold: 1%
+    - name: cacheNodeRedisUnit
+      paths:
+        - packages/cache-redis
+      statuses:
+        - type: project
+          target: 40%
+          threshold: 1%
+    - name: dsnParserUnit
+      paths:
+        - packages/dsn-parser
+      statuses:
+        - type: project
+          target: 95%
+          threshold: 1%
+
+ignore:
+  - '.yarn/**/*'
+  - '.husky/**/*'
+  - 'docs/**/*'
+  - 'examples/**/*'
+  - '**/dist/**/*'
+
+github_checks: true
+
+comment:
+  layout: 'reach, diff, flags, files'
+  behavior: default
+  require_changes: false
+  require_base: yes
+  require_head: yes
+  branches: null
+  show_carryforward_flags: true
