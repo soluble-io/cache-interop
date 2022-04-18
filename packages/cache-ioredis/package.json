@@ -65,7 +65,7 @@
     "@types/ioredis": "4.28.10",
     "cross-env": "7.0.3",
     "es-check": "6.2.1",
-    "ioredis": "4.28.5",
+    "ioredis": "5.0.4",
     "jest": "27.5.1",
     "microbundle": "0.14.2",
     "rimraf": "3.0.2",
@@ -75,7 +75,7 @@
   },
   "peerDependencies": {
     "@types/ioredis": "^4.17.11",
-    "ioredis": "^4.17.0"
+    "ioredis": "^4.17.0 || ^5.0.0"
   },
   "peerDependenciesMeta": {
     "@types/ioredis": {
