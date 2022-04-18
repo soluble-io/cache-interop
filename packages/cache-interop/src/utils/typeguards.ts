@@ -4,14 +4,11 @@ export function isPromiseLike<T>(value: unknown): value is PromiseLike<T> {
   if (value instanceof Promise) {
     return true;
   }
-  if (
+  return (
     value !== null &&
     (typeof value === 'function' || typeof value === 'object') &&
     typeof (value as Promise<unknown>).then === 'function'
-  ) {
-    return true;
-  }
-  return false;
+  );
 }
 
 export function isAsyncFn<T>(fn: unknown): fn is AsyncFn<T> {
