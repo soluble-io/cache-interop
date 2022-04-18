@@ -4,5 +4,6 @@
 reject: [
     # Better to handle it manually
     "typescript",
-    "redis"
+    "redis",
+    "@types/redis",
 ]
