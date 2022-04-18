@@ -1,5 +1,55 @@
 # @soluble/cache-ioredis
 
+## 0.8.6
+
+### Patch Changes
+
+- [#361](https://github.com/soluble-io/cache-interop/pull/361) [`f7507c5`](https://github.com/soluble-io/cache-interop/commit/f7507c590045066f27ad588a1ed480b3f08540a6) Thanks [@belgattitude](https://github.com/belgattitude)! - Fix release
+
+- Updated dependencies [[`f7507c5`](https://github.com/soluble-io/cache-interop/commit/f7507c590045066f27ad588a1ed480b3f08540a6)]:
+  - @soluble/cache-interop@0.8.4
+  - @soluble/dsn-parser@1.3.5
+
+## 0.8.5
+
+### Patch Changes
+
+- [#359](https://github.com/soluble-io/cache-interop/pull/359) [`bbb21fe`](https://github.com/soluble-io/cache-interop/commit/bbb21fefd639a47f115f3776f2ce70c61d213096) Thanks [@belgattitude](https://github.com/belgattitude)! - Fix release script
+
+- Updated dependencies [[`bbb21fe`](https://github.com/soluble-io/cache-interop/commit/bbb21fefd639a47f115f3776f2ce70c61d213096)]:
+  - @soluble/cache-interop@0.8.3
+  - @soluble/dsn-parser@1.3.4
+
+## 0.8.4
+
+### Patch Changes
+
+- [#358](https://github.com/soluble-io/cache-interop/pull/358) [`2876891`](https://github.com/soluble-io/cache-interop/commit/2876891917c5271ec3cec29c03c7194be23f054c) Thanks [@belgattitude](https://github.com/belgattitude)! - Fix publishing of typescript declarations
+
+* [#304](https://github.com/soluble-io/cache-interop/pull/304) [`ba5fc5f`](https://github.com/soluble-io/cache-interop/commit/ba5fc5f9f54701ce03842c306ae0276e0e2987f9) Thanks [@belgattitude](https://github.com/belgattitude)! - Publish a new release with yarn 3.2
+
+* Updated dependencies [[`ba5fc5f`](https://github.com/soluble-io/cache-interop/commit/ba5fc5f9f54701ce03842c306ae0276e0e2987f9)]:
+  - @soluble/cache-interop@0.8.2
+  - @soluble/dsn-parser@1.3.3
+
+## 0.8.3
+
+### Patch Changes
+
+- [#193](https://github.com/soluble-io/cache-interop/pull/193) [`d81e0f2`](https://github.com/soluble-io/cache-interop/commit/d81e0f25418adb9f603efb7bf38b60d2d8ce409c) Thanks [@belgattitude](https://github.com/belgattitude)! - Improve release builds
+
+* [#197](https://github.com/soluble-io/cache-interop/pull/197) [`7c189a3`](https://github.com/soluble-io/cache-interop/commit/7c189a32ef666b1a71c5d3eeb65cf3c9bed7e04c) Thanks [@belgattitude](https://github.com/belgattitude)! - Fix publishing
+
+- [#195](https://github.com/soluble-io/cache-interop/pull/195) [`b96c7a3`](https://github.com/soluble-io/cache-interop/commit/b96c7a376498a68aec8d378e9cdbf66b639cd887) Thanks [@belgattitude](https://github.com/belgattitude)! - Fix publishing
+
+* [#199](https://github.com/soluble-io/cache-interop/pull/199) [`f35435f`](https://github.com/soluble-io/cache-interop/commit/f35435f1454f3bfbebfef0a0ef1619228b00a915) Thanks [@belgattitude](https://github.com/belgattitude)! - Fix changeset publishing with workspace:^ protocol
+
+- [#204](https://github.com/soluble-io/cache-interop/pull/204) [`205aa13`](https://github.com/soluble-io/cache-interop/commit/205aa1361ee330df9cb9d8b9edae25845891bfb1) Thanks [@belgattitude](https://github.com/belgattitude)! - Monorepo to typescript 4.4.4
+
+- Updated dependencies [[`d81e0f2`](https://github.com/soluble-io/cache-interop/commit/d81e0f25418adb9f603efb7bf38b60d2d8ce409c), [`b96c7a3`](https://github.com/soluble-io/cache-interop/commit/b96c7a376498a68aec8d378e9cdbf66b639cd887), [`f35435f`](https://github.com/soluble-io/cache-interop/commit/f35435f1454f3bfbebfef0a0ef1619228b00a915), [`205aa13`](https://github.com/soluble-io/cache-interop/commit/205aa1361ee330df9cb9d8b9edae25845891bfb1)]:
+  - @soluble/cache-interop@0.8.1
+  - @soluble/dsn-parser@1.3.2
+
 ## 0.8.3-canary.3
 
 ### Patch Changes

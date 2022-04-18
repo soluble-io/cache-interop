@@ -2,7 +2,7 @@
   "name": "@soluble/cache-e2e-tests",
   "private": true,
   "description": "E2E tests for cache-interop",
-  "version": "0.8.0",
+  "version": "0.8.3",
   "license": "MIT",
   "homepage": "https://github.com/soluble-io/cache-interop",
   "repository": {
@@ -16,15 +16,11 @@
   },
   "scripts": {
     "clean": "rimraf --no-glob ./coverage",
-    "test": "run-s test:*",
-    "test:e2e": "jest --config jest.config.js --color $@",
+    "test-e2e": "jest --config jest.config.js --color $@",
     "typecheck": "tsc --project tsconfig.json --noEmit",
-    "lint": "run-p lint:code",
-    "lint:code": "eslint . --ext .ts,.tsx,.js,.jsx",
-    "fix:staged": "lint-staged --allow-empty",
-    "fix:all": "run-p fix:all:*",
-    "fix:all:code": "eslint . --ext .ts,.tsx,.js,.jsx --fix",
-    "coverage:publish": "codecov --root=../../ -F e2e"
+    "lint": "eslint . --ext .ts,.tsx,.js,.jsx",
+    "fix-staged": "lint-staged --allow-empty",
+    "coverage-publish": "codecov --root=../../ -F e2e"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
@@ -36,21 +32,21 @@
     ]
   },
   "devDependencies": {
-    "@soluble/cache-interop": "workspace:*",
-    "@soluble/cache-ioredis": "workspace:*",
-    "@soluble/cache-redis": "workspace:*",
-    "@soluble/dsn-parser": "workspace:*",
-    "@types/ioredis": "4.28.1",
-    "@types/jest": "27.0.2",
+    "@soluble/cache-interop": "workspace:^",
+    "@soluble/cache-ioredis": "workspace:^",
+    "@soluble/cache-redis": "workspace:^",
+    "@soluble/dsn-parser": "workspace:^",
+    "@types/ioredis": "4.28.10",
+    "@types/jest": "27.4.1",
     "@types/redis": "2.8.32",
-    "ioredis": "4.28.0",
-    "jest": "27.3.1",
+    "ioredis": "4.28.5",
+    "jest": "27.5.1",
     "redis": "3.1.2",
-    "testcontainers": "7.22.1",
-    "ts-jest": "27.0.7",
-    "typescript": "4.4.4"
+    "testcontainers": "8.7.1",
+    "ts-jest": "27.1.4",
+    "typescript": "4.6.3"
   },
   "engines": {
-    "node": ">=12"
+    "node": "^12.14.0 || ^14.13.1 || >=16"
   }
 }

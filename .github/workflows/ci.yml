@@ -7,12 +7,10 @@ on:
       - main
     paths-ignore:
       - "docs/**"
-      - ".changeset/**"
 
   pull_request:
     paths-ignore:
       - "docs/**"
-      - ".changeset/**"
 
 jobs:
   test:
@@ -24,10 +22,13 @@ jobs:
       matrix:
         node-version: [12.x, 14.x, 16.x]
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
+        with:
+          # This allows yarn workspaces --since to compare with origin/main branch
+          fetch-depth: 0
 
       - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
 
@@ -38,7 +39,7 @@ jobs:
         run: echo "::set-output name=dir::$(yarn config get cacheFolder)"
 
       - name: Restore yarn cache
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         id: yarn-cache # use this to check for `cache-hit` (`steps.yarn-cache.outputs.cache-hit != 'true'`)
         with:
           path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
@@ -52,21 +53,36 @@ jobs:
 
       - name: Linter
         run: |
-          yarn lint
+          yarn g:lint
 
       - name: Typecheck
         run: |
-          yarn typecheck
+          yarn g:typecheck
+
+      - name: List changed workspaces
+        run: yarn workspaces list --since --recursive --json
+
+      - name: Build-release
+        # Till https://github.com/atlassian/changesets/issues/432 has a solution we can remove the
+        # build-release and replace with a regular build command
+        run: |
+          yarn workspaces foreach -tv run build-release
+
+      - name: Check generated dist folder
+        run: |
+          yarn workspaces foreach -tv run check-dist
+        env:
+          CI: true
 
       - name: Unit tests
         run: |
-          yarn test:unit --coverage
+          yarn workspaces foreach -tv --include '@soluble/*' run test-unit
         env:
           CI: true
 
       - name: E2E tests
         run: |
-          yarn test:e2e --coverage
+          yarn g:test-e2e --coverage
         env:
           CI: true
 
@@ -80,10 +96,5 @@ jobs:
           bash <(curl -s https://codecov.io/bash) -F dsn_parser_unit -s ./packages/dsn-parser/coverage
           bash <(curl -s https://codecov.io/bash) -F e2e -s ./packages/cache-e2e-tests/coverage
 
-      - name: build
-        # Till https://github.com/atlassian/changesets/issues/432 has a solution we can remove this
-        # custom step and replace with a regular build command
-        run: |
-          yarn build-publishable-release
 
 

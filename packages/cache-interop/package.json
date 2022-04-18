@@ -1,7 +1,7 @@
 {
   "name": "@soluble/cache-interop",
   "description": "Async cache interop contracts",
-  "version": "0.8.1-canary.2",
+  "version": "0.8.4",
   "license": "MIT",
   "homepage": "https://github.com/soluble-io/cache-interop/tree/main/packages/cache-interop",
   "repository": {
@@ -21,7 +21,6 @@
   "jsnext:main": "dist/cache-interop.es.js",
   "source": "src/index.ts",
   "module": "dist/cache-interop.es.js",
-  "esmodules": "dist/cache-interop.modern.js",
   "main": "dist/cache-interop.js",
   "umd:main": "dist/cache-interop.umd.js",
   "types": "dist/index.d.ts",
@@ -32,19 +31,16 @@
   "scripts": {
     "start": "cross-env NODE_ENV=development tsdx watch",
     "build": "cross-env NODE_ENV=production microbundle --tsconfig ./tsconfig.build.json --format esm,cjs,umd --target node --compress",
-    "?build-publishable-release": "When https://github.com/atlassian/changesets/issues/432 has a solution we can remove this trick",
-    "build-publishable-release": "yarn build",
-    "clean": "rimraf --no-glob ./dist ./build ./coverage ./out",
-    "test": "run-s test:* --",
-    "test:unit": "jest --config jest.config.js --color $@",
+    "?build-release": "When https://github.com/atlassian/changesets/issues/432 has a solution we can remove this trick",
+    "build-release": "yarn build",
+    "check-dist": "es-check -v",
+    "clean": "rimraf --no-glob ./dist ./build ./coverage ./out ./node_modules/.cache",
+    "test-unit": "jest --config jest.config.js --color $@",
     "typecheck": "tsc --project ./tsconfig.json --noEmit",
-    "typecheck:build": "tsc --project tsconfig.build.json --noEmit",
-    "lint": "run-p lint:code",
-    "lint:code": "eslint . --ext .ts,.tsx,.js,.jsx",
-    "fix:staged": "lint-staged --allow-empty",
-    "fix:all": "run-p fix:all:*",
-    "fix:all:code": "eslint . --ext .ts,.tsx,.js,.jsx --fix",
-    "coverage:publish": "codecov --root=../../ -F cacheInterop"
+    "typecheck-build": "tsc --project tsconfig.build.json --noEmit",
+    "lint": "eslint . --ext .ts,.tsx,.js,.jsx",
+    "fix-staged": "lint-staged --allow-empty",
+    "coverage-publish": "codecov --root=../../ -F cacheInterop"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
@@ -56,13 +52,17 @@
     ]
   },
   "devDependencies": {
-    "dayjs": "1.10.7",
-    "jest": "27.3.1",
-    "ts-jest": "27.0.7",
+    "cross-env": "7.0.3",
+    "dayjs": "1.11.1",
+    "es-check": "6.2.1",
+    "jest": "27.5.1",
+    "microbundle": "0.14.2",
+    "rimraf": "3.0.2",
+    "ts-jest": "27.1.4",
     "tslib": "2.3.1",
-    "typescript": "4.4.4"
+    "typescript": "4.6.3"
   },
   "engines": {
-    "node": ">=12"
+    "node": "^12.14.0 || ^14.13.1 || >=16"
   }
 }

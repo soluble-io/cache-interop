@@ -1,4 +1,4 @@
-name: release
+name: release-or-pr-version
 on:
   push:
     branches:
@@ -10,13 +10,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repo
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           # This makes Actions fetch all Git history so that Changesets can generate changelogs with the correct commits
           fetch-depth: 0
+          persist-credentials: true
 
       - name: Setup Node.js 14.x
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
           node-version: 14.x
 
@@ -27,7 +28,7 @@ jobs:
         run: echo "::set-output name=dir::$(yarn config get cacheFolder)"
 
       - name: Restore yarn cache
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         id: yarn-cache # use this to check for `cache-hit` (`steps.yarn-cache.outputs.cache-hit != 'true'`)
         with:
           path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
@@ -40,11 +41,21 @@ jobs:
         env:
           HUSKY: 0
 
+      - name: Debug if .npmrc is present in working directory
+        run: |
+          cat ${{ github.workspace }}/.npmrc
+
       - name: Create Release Pull Request or Publish to npm
         id: changesets
-        uses: changesets/action@master
+        uses: changesets/action@v1.2.2
         with:
-          publish: yarn release
+          publish: yarn g:release
+          setupGitUser: true
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # See https://github.com/changesets/action/issues/147
+          HOME: ${{ github.workspace }}
+          # The regular GITHUB_TOKEN won't allow the created "Version Packages" pr to
+          # trigger the regular CI workflow. This limitation can be circumvented by
+          # setting a custom PAT token from a GH account and setting it the secrets.
+          GITHUB_TOKEN: ${{ secrets.CACHE_INTEROP_RELEASE_BOT_GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}

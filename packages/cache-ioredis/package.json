@@ -1,7 +1,7 @@
 {
   "name": "@soluble/cache-ioredis",
   "description": "IORedis cache interop adapter",
-  "version": "0.8.3-canary.3",
+  "version": "0.8.6",
   "license": "MIT",
   "homepage": "https://github.com/soluble-io/cache-interop/tree/main/packages/cache-ioredis",
   "repository": {
@@ -21,7 +21,6 @@
   "jsnext:main": "dist/cache-ioredis.es.js",
   "source": "src/index.ts",
   "module": "dist/cache-ioredis.es.js",
-  "esmodules": "dist/cache-ioredis.modern.js",
   "main": "dist/cache-ioredis.js",
   "umd:main": "dist/cache-ioredis.umd.js",
   "typings": "dist/index.d.ts",
@@ -34,19 +33,20 @@
   },
   "scripts": {
     "start": "cross-env NODE_ENV=development microbundle watch",
-    "build": "rimraf ./dist && cross-env NODE_ENV=production microbundle --tsconfig tsconfig.build.json --target node --format esm,cjs,umd --compress",
-    "?build-publishable-release": "When https://github.com/atlassian/changesets/issues/432 has a solution we can remove this trick",
-    "build-publishable-release": "yarn build && rimraf ./_release && yarn pack && mkdir ./_release && tar zxvf ./package.tgz --directory ./_release && rm ./package.tgz",
-    "clean": "rimraf --no-glob ./dist ./build ./coverage ./out ./_release",
-    "test": "run-s test:unit -- {@}",
-    "test:unit": "jest --config jest.config.js --color $@",
+    "build": "rimraf ./dist && cross-env NODE_ENV=production microbundle --tsconfig tsconfig.build.json --target node --format esm,cjs,umd --compress && mv dist/cache-ioredis/src/*.d.ts dist/ && rm -rf dist/cache-ioredis/src/",
+    "?build-release": "When https://github.com/atlassian/changesets/issues/432 has a solution we can remove this trick",
+    "build-release": "yarn build && rimraf ./_release && yarn pack && mkdir ./_release && tar zxvf ./package.tgz --directory ./_release && rm ./package.tgz",
+    "check-dist": "es-check -v",
+    "clean": "rimraf --no-glob ./dist ./build ./coverage ./out ./_release ./node_modules/.cache",
+    "test": "run-s test-unit",
+    "test-unit": "jest --config jest.config.js --color $@",
     "typecheck": "tsc --project tsconfig.json --noEmit",
-    "typecheck:build": "tsc --project tsconfig.build.json --noEmit",
-    "lint": "run-p lint:code",
-    "lint:code": "eslint . --ext .ts,.tsx,.js,.jsx",
-    "fix:staged": "lint-staged --allow-empty",
-    "fix:all": "run-p fix:all:*",
-    "fix:all:code": "eslint . --ext .ts,.tsx,.js,.jsx --fix",
+    "typecheck-build": "tsc --project tsconfig.build.json --noEmit",
+    "lint": "run-p lint-code",
+    "lint-code": "eslint . --ext .ts,.tsx,.js,.jsx",
+    "fix-staged": "lint-staged --allow-empty",
+    "fix-all": "run-p fix:all:*",
+    "fix-all-code": "eslint . --ext .ts,.tsx,.js,.jsx --fix",
     "coverage:publish": "codecov --root=../../ -F cacheIORedis"
   },
   "lint-staged": {
@@ -63,12 +63,16 @@
     "@soluble/dsn-parser": "workspace:^"
   },
   "devDependencies": {
-    "@types/ioredis": "4.28.1",
-    "ioredis": "4.28.0",
-    "jest": "27.3.1",
-    "ts-jest": "27.0.7",
+    "@types/ioredis": "4.28.10",
+    "cross-env": "7.0.3",
+    "es-check": "6.2.1",
+    "ioredis": "4.28.5",
+    "jest": "27.5.1",
+    "microbundle": "0.14.2",
+    "rimraf": "3.0.2",
+    "ts-jest": "27.1.4",
     "tslib": "2.3.1",
-    "typescript": "4.4.4"
+    "typescript": "4.6.3"
   },
   "peerDependencies": {
     "@types/ioredis": "^4.17.11",

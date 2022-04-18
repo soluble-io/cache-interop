@@ -1,5 +1,23 @@
 # @soluble/cache-e2e-tests
 
+## 0.8.3
+
+### Patch Changes
+
+- [#359](https://github.com/soluble-io/cache-interop/pull/359) [`bbb21fe`](https://github.com/soluble-io/cache-interop/commit/bbb21fefd639a47f115f3776f2ce70c61d213096) Thanks [@belgattitude](https://github.com/belgattitude)! - Fix release script
+
+## 0.8.2
+
+### Patch Changes
+
+- [#304](https://github.com/soluble-io/cache-interop/pull/304) [`ba5fc5f`](https://github.com/soluble-io/cache-interop/commit/ba5fc5f9f54701ce03842c306ae0276e0e2987f9) Thanks [@belgattitude](https://github.com/belgattitude)! - Publish a new release with yarn 3.2
+
+## 0.8.1
+
+### Patch Changes
+
+- [#204](https://github.com/soluble-io/cache-interop/pull/204) [`205aa13`](https://github.com/soluble-io/cache-interop/commit/205aa1361ee330df9cb9d8b9edae25845891bfb1) Thanks [@belgattitude](https://github.com/belgattitude)! - Monorepo to typescript 4.4.4
+
 ## 0.8.0
 
 ### Minor Changes

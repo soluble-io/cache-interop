@@ -1,7 +1,6 @@
 {
   "extends": "./tsconfig.paths.json",
   "compilerOptions": {
-    "baseUrl": ".",
     "target": "ES2020",
     "module": "esnext",
     "lib": ["esnext"],
@@ -24,11 +23,12 @@
     "noFallthroughCasesInSwitch": true,
     "esModuleInterop": true,
     "isolatedModules": true,
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
+    "skipLibCheck": true
   },
   "exclude": [
     "**/dist",
     "**/_release",
-    "**/node_modules",
+    "**/node_modules"
   ]
 }
