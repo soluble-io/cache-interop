@@ -4,41 +4,50 @@ Contributions are welcome.
 
 ## Workflow
 
-- Fork this repository on github.
-- Create a branch with a name that describes the work you're doing.
-- Add a changeset to signify version changes: `yarn g:changeset`. 
+- Fork this repository from the [github project home](https://www.github.com/soluble-io/cache-interop).
+- Create a branch, make changes and create a new pull-request.
+- Include unit and/or e2e tests.
+- Include or update documentation if applicable.
+- Include a [changeset](https://github.com/atlassian/changesets) to declare a change in versions (`yarn g:changeset`).
 
-## Quality
+## Scripts
 
-Pull-requests should include tests that demonstrate the functionality of the feature
-or bug fix.
+| Name                         | Description                                                      |
+| ---------------------------- |------------------------------------------------------------------|
+| `yarn g:changeset`           | Add a changeset to declare version bumps.                        |
+| `yarn g:typecheck`           | Run typechecks all packages.                                     |
+| `yarn g:lint`                | Display linter issues in all packages.                           |
+| `yarn g:lint --fix`          | Attempt to auto-fix all packages                                 |
+| `yarn g:test`                | Run unit and e2e test.                                           |
+| `yarn g:test-unit`           | Run only unit tests.                                             |
+| `yarn g:test-e2e`            | Run only e2e tests (requires docker)                             |
+| `yarn g:build`               | Build all packages                                               |
+| `yarn g:clean`               | Clean all caches and builds.                                     |
+| `yarn g:check-dist`          | Ensure build dist files passes es2017 (run `g:build` first).     |
+| `yarn deps:check --dep dev`  | Will display what packages can be upgraded                       |
+| `yarn deps:update --dep dev` | Apply possible updates (run `yarn install && yarn dedupe` after) |
+| `yarn check:install`         | Detect potential dependency issues in packages                   |
+| `yarn dedupe`                | Built-in yarn deduplication of the lock file                     |
+
+> **Tip** By convention script prefixed with `g:` can be run from anywhere in the project and will execute their
+> counterpart in all packages. Alternatively you can `cd` into a specific package directory and run the script
+> without the `g:`, ie: `cd packages/cache-interop && yarn test-unit`.
+
+## About tests
+
+### E2E tests
+
+E2E tests requires docker to be installed and lives in [./packages/cache-e2e-tests](./packages/cache-e2e-tests/test/suites).
 
 ### Unit tests
 
-Unit test files are co-located with the source code within a `__tests__` subdirectory.
+Simple unit tests lives in their respective package, by convention in a __tests__ directory.
 
-You can run them with:
+## Git message format
 
-```bash
-$ yarn test-unit       # the specific package (in current working directory)
-$ yarn g:test-unit     # all packages at once
-```
+This repo adheres to the [conventional commit](https://www.conventionalcommits.org/en/v1.0.0/) convention.
 
-### E2E tests
- 
-E2E test files are located in [./packages/cache-e2e-tests/test](https://github.com/soluble-io/cache-interop/tree/main/packages/cache-e2e-tests)
-directory. To run them locally you'll need docker to be installed, then type
-
-```bash
-$ yarn g:test-e2e
-```
-
-## Conventions
-
-### Git message format
-
-The [conventional commit](https://www.conventionalcommits.org/en/v1.0.0/) 
-convention is recommended. Just prefix your commit message with one of the following:
+### Enabled prefixes
 
 - **chore**: Changes that affect the build system or external dependencies
 - **ci**: Changes to our CI configuration files and scripts
@@ -51,13 +60,4 @@ convention is recommended. Just prefix your commit message with one of the follo
 - **test**: Adding missing tests or correcting existing tests
 - **translation**: Adding missing translations or correcting existing ones
 - **revert**: When reverting a commit
-- **style**: A change that affects the scss, less, css styles
-
-For example:
-
-```bash
-$ git commit -m 'chore: jest updated'
-$ git commit -m 'feat: lru cache'
-$ git commit -m 'fix: key format'
-```
 
