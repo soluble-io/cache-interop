@@ -1,5 +1,19 @@
 # @soluble/cache-ioredis
 
+## 0.9.0
+
+### Minor Changes
+
+- [#83](https://github.com/soluble-io/cache-interop/pull/83) [`8cf456d`](https://github.com/soluble-io/cache-interop/commit/8cf456daf5fd79fa4d146baa24b5ce507070f81a) Thanks [@belgattitude](https://github.com/belgattitude)! - Consistent error messages across all adapters
+
+* [#408](https://github.com/soluble-io/cache-interop/pull/408) [`fb43582`](https://github.com/soluble-io/cache-interop/commit/fb43582b7749a74b82949b5815ab89a82bcb2c46) Thanks [@belgattitude](https://github.com/belgattitude)! - New linter standard and refactor code for better esbuild support
+
+### Patch Changes
+
+- Updated dependencies [[`8cf456d`](https://github.com/soluble-io/cache-interop/commit/8cf456daf5fd79fa4d146baa24b5ce507070f81a), [`8cf456d`](https://github.com/soluble-io/cache-interop/commit/8cf456daf5fd79fa4d146baa24b5ce507070f81a), [`fb43582`](https://github.com/soluble-io/cache-interop/commit/fb43582b7749a74b82949b5815ab89a82bcb2c46)]:
+  - @soluble/dsn-parser@1.4.0
+  - @soluble/cache-interop@0.9.0
+
 ## 0.8.6
 
 ### Patch Changes
