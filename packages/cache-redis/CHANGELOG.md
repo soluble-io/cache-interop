@@ -1,5 +1,15 @@
 # @soluble/cache-node-redis
 
+## 0.9.1
+
+### Patch Changes
+
+- [#413](https://github.com/soluble-io/cache-interop/pull/413) [`c296d63`](https://github.com/soluble-io/cache-interop/commit/c296d638976ba388dc5204e7aac2f33805c5b512) Thanks [@belgattitude](https://github.com/belgattitude)! - Don't compress builds to ease patching
+
+- Updated dependencies [[`c296d63`](https://github.com/soluble-io/cache-interop/commit/c296d638976ba388dc5204e7aac2f33805c5b512)]:
+  - @soluble/cache-interop@0.9.1
+  - @soluble/dsn-parser@1.4.1
+
 ## 0.9.0
 
 ### Minor Changes

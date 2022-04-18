@@ -1,5 +1,14 @@
 # @soluble/cache-e2e-tests
 
+## 0.10.0
+
+### Minor Changes
+
+- [#411](https://github.com/soluble-io/cache-interop/pull/411) [`2994584`](https://github.com/soluble-io/cache-interop/commit/299458449facf3dce7f46829a66c7cee167e8f05) Thanks [@belgattitude](https://github.com/belgattitude)! - cache-ioredis upgraded to ioredis v5
+
+  - See https://github.com/luin/ioredis/wiki/Upgrading-from-v4-to-v5
+  - https://github.com/luin/ioredis/releases/tag/v5.0.0
+
 ## 0.9.0
 
 ### Minor Changes
