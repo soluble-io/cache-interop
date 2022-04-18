@@ -6116,7 +6116,7 @@ __metadata:
     eslint-plugin-regexp: 1.6.0
     eslint-plugin-sonarjs: 0.13.0
     eslint-plugin-testing-library: 5.3.1
-    graphql: ^16.3.0
+    graphql: 16.3.0
     prettier: 2.6.2
     react: 18.0.0
     react-dom: 18.0.0
@@ -7265,7 +7265,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"graphql@npm:^16.3.0":
+"graphql@npm:16.3.0":
   version: 16.3.0
   resolution: "graphql@npm:16.3.0"
   checksum: ba540641e9cd2a8de5b989ff1433b015f232fa73aaef478d6709c1339cd43113347917acb965a5799c004667687852fc8ff0cfaa935eb26374c91c1fd7fdaeb1
