@@ -37,25 +37,24 @@ Cache adapter for node [IoRedis](https://github.com/luin/ioredis) client.
 ## Install
 
 ```bash
-$ yarn add @soluble/cache-ioredis ioredis
-$ yarn add @types/ioredis --dev
+$ yarn add @soluble/cache-ioredis
 ```
 
 ## Usage
 
 ```typescript
-import { IoRedisCacheAdapter } from '@soluble/cache-ioredis';
+import { IoRedisCacheAdapter } from "@soluble/cache-ioredis";
 
 const cache = new IoRedisCacheAdapter({
-  connection: 'redis://:pass@localhost:6379/8',
+  connection: "redis://:pass@localhost:6379/8",
 });
 
-const { data, error } = await cache.getOrSet('key', asyncPromise, {
+const { data, error } = await cache.getOrSet("key", asyncPromise, {
   ttl: 30,
 });
 
-if (await cache.has('key')) {
-  await cache.delete('key');
+if (await cache.has("key")) {
+  await cache.delete("key");
 }
 ```
 
@@ -70,9 +69,12 @@ the native [IORedis.RedisOptions](https://github.com/luin/ioredis/blob/master/AP
 > with native parameters.
 >
 > ```typescript
-> import { IoRedisCacheAdapter, getIoRedisOptionsFromDsn } from '@soluble/cache-ioredis';
+> import {
+>   IoRedisCacheAdapter,
+>   getIoRedisOptionsFromDsn,
+> } from "@soluble/cache-ioredis";
 >
-> const dsn = 'redis://localhost:6379/db2';
+> const dsn = "redis://localhost:6379/db2";
 >
 > const cache = new IoRedisCacheAdapter({
 >   connection: getIoRedisOptionsFromDsn(dsn, {
