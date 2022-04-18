@@ -4542,6 +4542,7 @@ __metadata:
     "@commitlint/cli": 16.2.3
     "@commitlint/config-conventional": 16.2.1
     "@types/node": 16.11.27
+    "@types/prettier": 2.6.0
     eslint: 8.13.0
     eslint-config-bases: "workspace:^"
     husky: 7.0.4
