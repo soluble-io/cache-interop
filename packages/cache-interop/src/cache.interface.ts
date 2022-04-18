@@ -25,8 +25,9 @@ export type SetOptions = {
   disableCache?: boolean;
 };
 export type GetOrSetOptions = Omit<SetOptions, 'disableCache'> & {
-  /** Whether to disable caching, by default false.
-   *  Accepts an object to selectively disable writes and/or reads
+  /**
+   * Whether to disable caching, by default false.
+   * Accepts an object to selectively disable writes and/or reads
    */
   disableCache?:
     | boolean
@@ -36,6 +37,7 @@ export type GetOrSetOptions = Omit<SetOptions, 'disableCache'> & {
         /** True to disable cache writes */
         write: boolean;
       };
+  onError?: (errors: CacheException[]) => void;
 };
 
 type CacheValueProviderParams = { key: CacheKey };

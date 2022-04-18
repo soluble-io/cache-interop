@@ -1,5 +1,5 @@
 import { createRedisNativeConnection, createRedisConnection } from '@soluble/cache-redis';
-import { E2eDockerContainers } from '../../config/docker-container.config';
+import { E2eDockerContainers } from '../../setup/E2eDockerContainers';
 
 const startContainer = async (): Promise<string> => {
   const { dsn } = await E2eDockerContainers.getContainer('redis6');

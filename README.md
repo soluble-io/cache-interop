@@ -41,7 +41,7 @@
 - [x] Work with `async`/`await`.
 - [x] Don't throw errors.
 - [x] Written in typescript.
-- [x] Fully tested with [e2e](./packages/cache-e2e-tests/test/all-adapters-base.test.ts) tests.
+- [x] Fully tested with [e2e](packages/cache-e2e-tests/test/suites) tests.
 - [x] Adapters: node-redis, ioredis.
 
 ## Roadmap

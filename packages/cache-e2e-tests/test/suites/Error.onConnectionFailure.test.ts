@@ -6,7 +6,7 @@ import { createClient } from 'redis';
 
 type ConnectableCache = CacheInterface & ConnectedCacheInterface<unknown>;
 
-const adapters = [
+const unconnectedAdapters = [
   [
     'IoRedisCacheAdapter',
     async (port: number) => {
@@ -40,30 +40,30 @@ const adapters = [
 
 const invalidPortForTests = 65440;
 
-describe.each(adapters)('Adapter: %s', (name, adapterFactory) => {
+describe.each(unconnectedAdapters)('Adapter: %s', (name, adapterFactory) => {
   let cache: ConnectableCache;
   beforeAll(async () => {
     try {
       cache = await adapterFactory(invalidPortForTests);
     } catch (e) {
-      console.error('Cannot connect anyway !!', cache);
+      console.debug('Adapter is expected to fail to connect', cache);
     }
   });
   afterAll(async () => {
     try {
       await cache.getConnection().quit();
     } catch (e) {
-      console.warn("Can't close connection");
+      console.debug('Expected failure closing adapter connection');
     }
   });
 
-  describe('when connection fails', () => {
+  describe('When connection fails', () => {
     const errFmt = new ErrorFormatter(name);
     describe('Adapter.get()', () => {
       it('should return error with proper message', async () => {
         const { error } = await cache.get('k');
         expect(error).toBeInstanceOf(CacheException);
-        const expected = errFmt.getMsg('get', 'READ_ERROR');
+        const expected = errFmt.getMsg(['get', 'k'], 'READ_ERROR');
         expect(error?.message).toMatch(expected);
       });
     });
@@ -73,7 +73,7 @@ describe.each(adapters)('Adapter: %s', (name, adapterFactory) => {
         expect(item).not.toBeUndefined();
         const { error } = item as any;
         expect(error).toBeInstanceOf(CacheException);
-        const expected = errFmt.getMsg('get', 'READ_ERROR');
+        const expected = errFmt.getMsg(['get', 'k'], 'READ_ERROR');
         expect(error?.message).toMatch(expected);
       });
     });
@@ -86,7 +86,7 @@ describe.each(adapters)('Adapter: %s', (name, adapterFactory) => {
           },
         });
         expect(error).toStrictEqual(undefined);
-        const expected = errFmt.getMsg('has', 'COMMAND_ERROR');
+        const expected = errFmt.getMsg(['has', 'k'], 'COMMAND_ERROR');
         expect((err as any)?.message).toMatch(expected);
       });
     });
@@ -95,18 +95,17 @@ describe.each(adapters)('Adapter: %s', (name, adapterFactory) => {
       it('should return error with proper message', async () => {
         const error = await cache.set('k', 'cool');
         expect(error).toBeInstanceOf(CacheException);
-        const expected = errFmt.getMsg('set', 'WRITE_ERROR');
+        const expected = errFmt.getMsg(['set', 'k'], 'WRITE_ERROR');
         expect((error as any)?.message).toMatch(expected);
       });
     });
 
     describe('Adapter.setMultiple()', () => {
       it('should return undefined', async () => {
-        //let err: CacheException | null = null;
         const firstRet = (await cache.setMultiple([['k', 'value']])).get('k');
         expect(firstRet).not.toBeUndefined();
         expect(firstRet).toBeInstanceOf(CacheException);
-        const expected = errFmt.getMsg('set', 'WRITE_ERROR');
+        const expected = errFmt.getMsg(['set', 'k'], 'WRITE_ERROR');
         expect((firstRet as any)?.message).toMatch(expected);
       });
     });
@@ -114,7 +113,7 @@ describe.each(adapters)('Adapter: %s', (name, adapterFactory) => {
       it('should return error with proper message', async () => {
         const error = await cache.delete('k');
         expect(error).toBeInstanceOf(CacheException);
-        const expected = errFmt.getMsg('delete', 'WRITE_ERROR');
+        const expected = errFmt.getMsg(['delete', 'k'], 'WRITE_ERROR');
         expect((error as any)?.message).toMatch(expected);
       });
     });
@@ -123,7 +122,7 @@ describe.each(adapters)('Adapter: %s', (name, adapterFactory) => {
       it('should return error with proper message', async () => {
         const firstErr = (await cache.deleteMultiple(['k'])).get('k');
         expect(firstErr).toBeInstanceOf(CacheException);
-        const expected = errFmt.getMsg('delete', 'WRITE_ERROR');
+        const expected = errFmt.getMsg(['delete', 'k'], 'WRITE_ERROR');
         expect((firstErr as any)?.message).toMatch(expected);
       });
     });
@@ -138,11 +137,24 @@ describe.each(adapters)('Adapter: %s', (name, adapterFactory) => {
     });
 
     describe('Adapter.getOrSet()', () => {
-      it('should return error with proper message', async () => {
-        const { error } = await cache.getOrSet('k', () => 'cool');
-        expect(error).toBeInstanceOf(CacheException);
-        const expected = errFmt.getMsg('get', 'READ_ERROR');
-        expect((error as any)?.message).toMatch(expected);
+      it('should by default execute the provider function when get/set fails', async () => {
+        const { data } = await cache.getOrSet('k', () => 'cool');
+        expect(data).toStrictEqual('cool');
+      });
+
+      it('should call the onError callback with errors', async () => {
+        let errors: CacheException[] = [];
+        await cache.getOrSet('k', () => 'cool', {
+          onError: (errs) => {
+            errors = errs;
+          },
+        });
+        expect(errors.length).toStrictEqual(2);
+        const [firstError, secondError] = errors;
+        expect(firstError).toBeInstanceOf(CacheException);
+        expect(firstError.message).toMatch('READ_ERROR');
+        expect(secondError).toBeInstanceOf(CacheException);
+        expect(secondError.message).toMatch('WRITE_ERROR');
       });
     });
   });

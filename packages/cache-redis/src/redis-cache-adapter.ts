@@ -69,7 +69,7 @@ export class RedisCacheAdapter<TBase = string, KBase extends CacheKey = CacheKey
     } catch (e) {
       return CacheItemFactory.fromErr<K>({
         key,
-        error: this.errorHelper.getCacheException('get', 'READ_ERROR', e),
+        error: this.errorHelper.getCacheException(['get', key], 'READ_ERROR', e),
       });
     }
     const noData = data === null;
@@ -103,14 +103,14 @@ export class RedisCacheAdapter<TBase = string, KBase extends CacheKey = CacheKey
     if (v === null) return true;
 
     if (!Guards.isValidRedisValue(v)) {
-      return this.errorHelper.getUnsupportedValueException('set', v);
+      return this.errorHelper.getUnsupportedValueException(['set', key], v);
     }
 
     const setOp = ttl > 0 ? this.asyncRedis.setex(key, ttl, v) : this.asyncRedis.set(key, v);
     return setOp
       .then((reply) => reply === 'OK')
       .catch((e) => {
-        return this.errorHelper.getCacheException('set', 'WRITE_ERROR', e);
+        return this.errorHelper.getCacheException(['set', key], 'WRITE_ERROR', e);
       });
   };
 
@@ -127,7 +127,7 @@ export class RedisCacheAdapter<TBase = string, KBase extends CacheKey = CacheKey
       .exists(key)
       .then((count) => count === 1)
       .catch((e) => {
-        options?.onError?.(this.errorHelper.getCacheException('has', 'COMMAND_ERROR', e));
+        options?.onError?.(this.errorHelper.getCacheException(['has', key], 'COMMAND_ERROR', e));
         return undefined;
       });
   };
@@ -144,7 +144,7 @@ export class RedisCacheAdapter<TBase = string, KBase extends CacheKey = CacheKey
       .del(key)
       .then((count) => count === 1)
       .catch((e) => {
-        return this.errorHelper.getCacheException('delete', 'WRITE_ERROR', e);
+        return this.errorHelper.getCacheException(['delete', key], 'WRITE_ERROR', e);
       });
   };
 

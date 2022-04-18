@@ -10,7 +10,7 @@ import {
 } from '../cache.interface';
 import { CacheItemInterface } from '../cache-item.interface';
 import { executeValueProviderFn } from '../utils';
-import { CacheException } from '../exceptions';
+import { CacheException, InvalidCacheKeyException } from '../exceptions';
 import { getGetOrSetCacheDisabledParams } from '../utils/cache-options-utils';
 import { CacheItemFactory } from '../cache-item.factory';
 import { Guards } from '../validation/guards';
@@ -24,7 +24,8 @@ const defaultGetOrSetOptions: GetOrSetOptions = {
 } as const;
 
 export abstract class AbstractCacheAdapter<TBase = string, KBase extends CacheKey = CacheKey>
-  implements CacheInterface<TBase, KBase> {
+  implements CacheInterface<TBase, KBase>
+{
   protected _errorHelper: ErrorHelper | undefined;
 
   abstract adapterName: string;
@@ -86,11 +87,25 @@ export abstract class AbstractCacheAdapter<TBase = string, KBase extends CacheKe
     value: T | CacheValueProviderFn<T>,
     options?: GetOrSetOptions
   ): Promise<CacheItemInterface<T>> => {
-    const { disableCache = false, ...setOptions } = { ...defaultGetOrSetOptions, ...(options ?? {}) };
+    const { disableCache = false, onError, ...setOptions } = { ...defaultGetOrSetOptions, ...(options ?? {}) };
     const { read: disableRead, write: disableWrite } = getGetOrSetCacheDisabledParams(disableCache);
     const item = await this.get<T, K>(key, { disableCache: disableRead });
-    if (item.data !== null || item.error instanceof CacheException) {
+
+    if (item.data !== null) {
       return item;
+    }
+
+    const errors: CacheException[] = [];
+
+    if (item.error instanceof InvalidCacheKeyException) {
+      return CacheItemFactory.fromErr({
+        key,
+        error: item.error,
+      });
+    }
+
+    if (item.error instanceof CacheException) {
+      errors.push(item.error);
     }
 
     let v: T | CacheValueProviderFn<T>;
@@ -109,6 +124,14 @@ export abstract class AbstractCacheAdapter<TBase = string, KBase extends CacheKe
       v = value;
     }
     const stored = await this.set(key, v, { ...setOptions, disableCache: disableWrite });
+
+    if (stored instanceof CacheException) {
+      errors.push(stored);
+    }
+
+    if (errors.length > 0 && onError) {
+      onError(errors);
+    }
 
     return CacheItemFactory.fromOk<T, K>({
       key: key,

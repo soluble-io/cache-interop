@@ -24,7 +24,7 @@ export class ErrorHelper {
 
   getCacheProviderException(method: CallerMethod, previous?: Error): CacheProviderException {
     return new CacheProviderException({
-      message: this.formatMsg(method, 'EXECUTE_ASYNC_ERROR', previous?.message),
+      message: this.formatMsg(method, 'VALUE_PROVIDER_ERROR', previous?.message),
       previous: previous,
     });
   }
