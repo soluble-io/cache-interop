@@ -83,15 +83,17 @@ jobs:
         env:
           CI: true
 
-      - name: Unit tests
-        run: |
-          yarn workspaces foreach -tv --include '@soluble/*' run test-unit --coverage
-        env:
-          CI: true
-
+      # Due to a bug in jest, if unit tests are runned before e2e the coverage directory
+      # will be deleted
       - name: E2E tests
         run: |
           yarn g:test-e2e --coverage
+        env:
+          CI: true
+
+      - name: Unit tests
+        run: |
+          yarn workspaces foreach -tv --include '@soluble/*' run test-unit --coverage
         env:
           CI: true
 
