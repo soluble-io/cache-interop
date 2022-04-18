@@ -1,10 +1,10 @@
 import type { ConnectionInterface } from '@soluble/cache-interop';
-import type IORedis from 'ioredis';
+import type { Redis } from 'ioredis';
 
-export class IoredisConnection implements ConnectionInterface<IORedis.Redis> {
-  private readonly ioRedis: IORedis.Redis;
+export class IoredisConnection implements ConnectionInterface<Redis> {
+  private readonly ioRedis: Redis;
 
-  constructor(ioRedis: IORedis.Redis) {
+  constructor(ioRedis: Redis) {
     this.ioRedis = ioRedis;
   }
 
@@ -16,7 +16,7 @@ export class IoredisConnection implements ConnectionInterface<IORedis.Redis> {
    * Access directly the wrapped ioredis connection
    * Warning: this is not guarantee by cache-interop API stability
    */
-  getNativeConnection(): IORedis.Redis {
+  getNativeConnection(): Redis {
     return this.ioRedis;
   }
 }

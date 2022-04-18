@@ -1,17 +1,18 @@
 import IORedis from 'ioredis';
+import type { Redis, RedisOptions } from 'ioredis';
 import { IoredisConnection } from './ioredis-connection';
 import { getIoRedisOptionsFromDsn } from './ioredis-dsn.util';
 
-export const isNativeIORedis = (val: unknown): val is IORedis.Redis => {
-  return typeof (val as IORedis.Redis)?.connect === 'function';
+export const isNativeIORedis = (val: unknown): val is Redis => {
+  return typeof (val as Redis)?.connect === 'function';
 };
 
 /**
  * @throws Error
  */
 export const createIoRedisNativeConnection = (
-  options: IORedis.RedisOptions | string
-): IORedis.Redis => {
+  options: RedisOptions | string
+): Redis => {
   const opts =
     typeof options === 'string' ? getIoRedisOptionsFromDsn(options) : options;
   if (!opts) {
@@ -24,7 +25,7 @@ export const createIoRedisNativeConnection = (
  * @throws Error
  */
 export const createIoRedisConnection = (
-  conn: IORedis.RedisOptions | string | IORedis.Redis
+  conn: RedisOptions | string | Redis
 ): IoredisConnection => {
   if (isNativeIORedis(conn)) {
     return new IoredisConnection(conn);
