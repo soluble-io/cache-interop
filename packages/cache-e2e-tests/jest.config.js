@@ -31,6 +31,7 @@ const config = {
     ...getTsConfigBasePaths(),
   },
   rootDir: '../',
+  modulePathIgnorePatterns: ['/_release'],
   testMatch: ['<rootDir>/cache-e2e-tests/**/*.test.ts'],
   coverageDirectory: '<rootDir>/cache-e2e-tests/coverage',
   collectCoverageFrom: [
