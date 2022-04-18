@@ -137,11 +137,24 @@ describe.each(unconnectedAdapters)('Adapter: %s', (name, adapterFactory) => {
     });
 
     describe('Adapter.getOrSet()', () => {
-      it('should return error with proper message', async () => {
-        const { error } = await cache.getOrSet('k', () => 'cool');
-        expect(error).toBeInstanceOf(CacheException);
-        const expected = errFmt.getMsg(['getOrSet', 'k'], 'READ_ERROR');
-        expect((error as any)?.message).toMatch(expected);
+      it('should by default execute the provider function when get/set fails', async () => {
+        const { data } = await cache.getOrSet('k', () => 'cool');
+        expect(data).toStrictEqual('cool');
+      });
+
+      it('should call the onError callback with errors', async () => {
+        let errors: CacheException[] = [];
+        await cache.getOrSet('k', () => 'cool', {
+          onError: (errs) => {
+            errors = errs;
+          },
+        });
+        expect(errors.length).toStrictEqual(2);
+        const [firstError, secondError] = errors;
+        expect(firstError).toBeInstanceOf(CacheException);
+        expect(firstError.message).toMatch('READ_ERROR');
+        expect(secondError).toBeInstanceOf(CacheException);
+        expect(secondError.message).toMatch('WRITE_ERROR');
       });
     });
   });
