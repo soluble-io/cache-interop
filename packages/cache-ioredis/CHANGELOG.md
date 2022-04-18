@@ -1,5 +1,24 @@
 # @soluble/cache-ioredis
 
+## 0.10.0
+
+### Minor Changes
+
+- [#411](https://github.com/soluble-io/cache-interop/pull/411) [`8516b6e`](https://github.com/soluble-io/cache-interop/commit/8516b6e760164771a14a3f44535d8563b1699009) Thanks [@belgattitude](https://github.com/belgattitude)! - IORedis is now a dependency, no need to install peers
+
+* [#411](https://github.com/soluble-io/cache-interop/pull/411) [`2994584`](https://github.com/soluble-io/cache-interop/commit/299458449facf3dce7f46829a66c7cee167e8f05) Thanks [@belgattitude](https://github.com/belgattitude)! - cache-ioredis upgraded to ioredis v5
+
+  - See https://github.com/luin/ioredis/wiki/Upgrading-from-v4-to-v5
+  - https://github.com/luin/ioredis/releases/tag/v5.0.0
+
+### Patch Changes
+
+- [#413](https://github.com/soluble-io/cache-interop/pull/413) [`c296d63`](https://github.com/soluble-io/cache-interop/commit/c296d638976ba388dc5204e7aac2f33805c5b512) Thanks [@belgattitude](https://github.com/belgattitude)! - Don't compress builds to ease patching
+
+- Updated dependencies [[`c296d63`](https://github.com/soluble-io/cache-interop/commit/c296d638976ba388dc5204e7aac2f33805c5b512)]:
+  - @soluble/cache-interop@0.9.1
+  - @soluble/dsn-parser@1.4.1
+
 ## 0.9.0
 
 ### Minor Changes
