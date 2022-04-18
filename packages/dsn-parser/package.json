@@ -43,7 +43,7 @@
     "typecheck-build": "tsc --project tsconfig.build.json --noEmit",
     "lint": "eslint . --ext .ts,.tsx,.js,.jsx",
     "fix-staged": "lint-staged --allow-empty",
-    "ci-coverage-upload": "../../.github/scripts/download/codecov -F dsn_parser_unit --dir ./coverage"
+    "ci-coverage-upload": "../../.github/scripts/download/codecov -F dsnParserUnit --dir ./coverage"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [

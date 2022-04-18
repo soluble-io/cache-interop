@@ -3,33 +3,33 @@ coverage:
     patch: off
     project:
       default: off
-      cache_interop_unit:
+      cacheInteropUnit:
         target: 1%
         flags:
           - cache_interop
-      cache_ioredis_unit:
+      cacheIORedisUnit:
         target: 1%
         flags:
           - cache_ioredis
-      cache_redis_unit:
+      cacheNodeRedisUnit:
         target: 0%
         flags:
           - cache_redis
-      dsn_parser_unit:
+      dsnParserUnit:
         target: 1%
         flags:
           - cache_dsn_parser
 flags:
-  dsn_parser_unit:
+  dsnParserUnit:
     paths:
       - packages/dsn-parser/src
-  cache_interop_unit:
+  cacheInteropUnit:
     paths:
       - packages/cache-interop/src
-  cache_io_redis_unit:
+  cacheIORedisUnit:
     paths:
       - packages/cache-ioredis/src
-  cache_redis_unit:
+  cacheNodeRedisUnit:
     paths:
       - packages/cache-redis/src
   e2e:
