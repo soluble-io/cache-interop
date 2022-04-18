@@ -96,7 +96,7 @@ jobs:
           CI: true
 
       - name: Send coverage to codecov.io
-        working-directory: .
+        working-directory: {{ github.workspace }}
         if: matrix.node-version == '14.x'
         run: |
           bash <(curl -s https://codecov.io/bash) -F cache_interop_unit -s ./packages/cache-interop/coverage
