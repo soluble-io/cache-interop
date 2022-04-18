@@ -19,10 +19,12 @@ module.exports = {
       // @see https://github.com/jest-community/eslint-plugin-jest
       extends: ['plugin:jest/recommended'],
       rules: {
-        'jest/consistent-test-it': ['error', { fn: 'it' }],
+        // 'jest/consistent-test-it': ['error', { fn: 'it' }],
         '@typescript-eslint/no-non-null-assertion': 'off',
         '@typescript-eslint/no-object-literal-type-assertion': 'off',
         '@typescript-eslint/no-empty-function': 'off',
+        '@typescript-eslint/no-explicit-any': 'off',
+        '@typescript-eslint/ban-ts-comment': 'off',
       },
     },
   ],
