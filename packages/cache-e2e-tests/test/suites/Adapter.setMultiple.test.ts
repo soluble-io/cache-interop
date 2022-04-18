@@ -1,10 +1,4 @@
-import {
-  CacheException,
-  CacheInterface,
-  CacheProviderException,
-  Guards,
-  InvalidCacheKeyException,
-} from '@soluble/cache-interop';
+import { CacheInterface, CacheProviderException, Guards } from '@soluble/cache-interop';
 
 import { getTestAdapters } from '../setup/getTestAdapters';
 

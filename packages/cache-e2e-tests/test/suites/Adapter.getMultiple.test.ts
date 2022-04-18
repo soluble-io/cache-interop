@@ -1,16 +1,6 @@
-import {
-  CacheException,
-  CacheInterface,
-  CacheProviderException,
-  Guards,
-  InvalidCacheKeyException,
-} from '@soluble/cache-interop';
+import { CacheInterface, Guards } from '@soluble/cache-interop';
 
 import { getTestAdapters } from '../setup/getTestAdapters';
-
-const sleep = async (ms: number): Promise<void> => {
-  return new Promise((resolve) => setTimeout(resolve, ms));
-};
 
 const adapters = getTestAdapters();
 
