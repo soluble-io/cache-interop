@@ -10,6 +10,9 @@ flag_management:
     - name: e2e
       paths:
         - packages/e2e
+        - packages/cache-interop
+        - packages/cache-ioredis
+        - packages/cache-redis
       statuses:
         - type: project
           target: 60%
