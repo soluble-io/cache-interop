@@ -18,6 +18,7 @@
   },
   "scripts": {
     "postinstall": "is-ci || husky install",
+    "g:build": "yarn g:build-release",
     "?build-release": "When https://github.com/atlassian/changesets/issues/432 has a solution we can remove this trick",
     "g:build-release": "yarn workspaces foreach -tv run build-release",
     "g:check-dist": "yarn workspaces foreach -tv --exclude '@soluble/*e2e*' --no-private run check-dist",
