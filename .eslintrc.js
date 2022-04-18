@@ -1,6 +1,6 @@
 module.exports = {
   root: true,
-  ignorePatterns: ['**/build', '**/.cache', '**/dist', '.cache'],
+  ignorePatterns: ['**/build', '**/.cache', '**/dist', '**/_release', '.cache'],
   extends: [
     'eslint-config-bases/typescript',
     'eslint-config-bases/sonar',
