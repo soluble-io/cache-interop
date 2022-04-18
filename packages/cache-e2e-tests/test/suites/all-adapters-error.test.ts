@@ -6,7 +6,7 @@ import { createClient } from 'redis';
 
 type ConnectableCache = CacheInterface & ConnectedCacheInterface<unknown>;
 
-const adapters = [
+const unconnectedAdapters = [
   [
     'IoRedisCacheAdapter',
     async (port: number) => {
@@ -40,24 +40,24 @@ const adapters = [
 
 const invalidPortForTests = 65440;
 
-describe.each(adapters)('Adapter: %s', (name, adapterFactory) => {
+describe.each(unconnectedAdapters)('Adapter: %s', (name, adapterFactory) => {
   let cache: ConnectableCache;
   beforeAll(async () => {
     try {
       cache = await adapterFactory(invalidPortForTests);
     } catch (e) {
-      console.error('Cannot connect anyway !!', cache);
+      console.debug('Adapter is expected to fail to connect', cache);
     }
   });
   afterAll(async () => {
     try {
       await cache.getConnection().quit();
     } catch (e) {
-      console.warn("Can't close connection");
+      console.debug('Expected failure closing adapter connection');
     }
   });
 
-  describe('when connection fails', () => {
+  describe('When connection fails', () => {
     const errFmt = new ErrorFormatter(name);
     describe('Adapter.get()', () => {
       it('should return error with proper message', async () => {
@@ -102,7 +102,6 @@ describe.each(adapters)('Adapter: %s', (name, adapterFactory) => {
 
     describe('Adapter.setMultiple()', () => {
       it('should return undefined', async () => {
-        //let err: CacheException | null = null;
         const firstRet = (await cache.setMultiple([['k', 'value']])).get('k');
         expect(firstRet).not.toBeUndefined();
         expect(firstRet).toBeInstanceOf(CacheException);
@@ -141,7 +140,6 @@ describe.each(adapters)('Adapter: %s', (name, adapterFactory) => {
       it('should return error with proper message', async () => {
         const { error } = await cache.getOrSet('k', () => 'cool');
         expect(error).toBeInstanceOf(CacheException);
-        console.log('error', error);
         const expected = errFmt.getMsg(['getOrSet', 'k'], 'READ_ERROR');
         expect((error as any)?.message).toMatch(expected);
       });

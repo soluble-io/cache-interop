@@ -1,4 +1,4 @@
-import { GenericContainer, StoppedTestContainer, StartedTestContainer, TestContainers } from 'testcontainers';
+import { GenericContainer, StartedTestContainer } from 'testcontainers';
 
 // Here configure all docker containers you need
 const registeredE2eContainers = {

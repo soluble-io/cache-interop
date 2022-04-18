@@ -23,7 +23,7 @@ const config = {
   displayName: 'cache-e2e',
   testRunner: 'jest-circus/runner',
   testEnvironment: 'node',
-  setupFilesAfterEnv: ['<rootDir>/cache-e2e-tests/config/jest.setup.ts'],
+  setupFilesAfterEnv: ['<rootDir>/cache-e2e-tests/test/setup/jest.setup.ts'],
   verbose: true,
   transform: {
     ...tsPreset.transform,

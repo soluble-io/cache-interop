@@ -1,4 +1,4 @@
-import { E2eDockerContainers } from './docker-container.config';
+import { E2eDockerContainers } from './E2eDockerContainers';
 
 jest.setTimeout(60_000);
 
