@@ -15,7 +15,7 @@
     <img alt="Size" src="https://img.shields.io/bundlephobia/minzip/@soluble/dsn-parser?label=MinGZIP&style=for-the-badge&labelColor=000000" />
   </a>
   <a aria-label="Coverage" href="https://codecov.io/gh/soluble-io/cache-interop">
-    <img alt="Codecov" src="https://img.shields.io/codecov/c/github/soluble-io/cache-interop?label=unit&logo=codecov&flag=dsn_parser_unit&style=for-the-badge&labelColor=000000" />
+    <img alt="Codecov" src="https://img.shields.io/codecov/c/github/soluble-io/cache-interop?label=unit&logo=codecov&flag=dsnParserUnit&style=for-the-badge&labelColor=000000" />
   </a>
   <a aria-label="Typings">
     <img alt="Typings" src="https://img.shields.io/static/v1?label=typings&message=3.7%2B&logo=typescript&style=for-the-badge&labelColor=000000&color=9cf" />
@@ -77,19 +77,19 @@ if (parsed.success) {
 ## Options
 
 ```typescript
-const dsn = 'mySql://localhost:6379/db';
+const dsn = "mySql://localhost:6379/db";
 const parsed = parseDsn(dsn, {
   lowercaseDriver: true,
   overrides: {
-    db: 'db3',
+    db: "db3",
     port: undefined,
   },
 });
 
 assert.deepEqual(parsed.value, {
-  driver: 'mysql',
-  host: 'localhost',
-  db: 'db3',
+  driver: "mysql",
+  host: "localhost",
+  db: "db3",
 });
 ```
 
@@ -101,14 +101,14 @@ assert.deepEqual(parsed.value, {
 ### Assertion
 
 ```typescript
-import { assertParsableDsn, ParsableDsn } from '@soluble/dsn-parser';
+import { assertParsableDsn, ParsableDsn } from "@soluble/dsn-parser";
 
 try {
-  assertParsableDsn('redis:/');
+  assertParsableDsn("redis:/");
   // Type is narrowed to string (ParsableDsn) if it
   // didn't throw.
 } catch (e) {
-  assert.equal(e.message, 'Cannot parse DSN (PARSE_ERROR)');
+  assert.equal(e.message, "Cannot parse DSN (PARSE_ERROR)");
 }
 ```
 
@@ -140,7 +140,7 @@ parse numeric string to **numbers** if possible. When a query
 parameter does not contain a value, it will be returned as `true`.
 
 ```typescript
-const dsn = 'redis://host?index=1&compress=false&ssl';
+const dsn = "redis://host?index=1&compress=false&ssl";
 const parsed = parseDsn(dsn);
 assert.deepEqual(parsed.value.params, {
   index: 1,
@@ -162,11 +162,11 @@ Reason codes are guaranteed in semantic versions and messages does not
 leak credentials
 
 ```typescript
-const parsed = parseDsn('redis://localhost:65636');
+const parsed = parseDsn("redis://localhost:65636");
 assert.deepEqual(parsed, {
   success: false,
-  reason: 'INVALID_PORT',
-  message: 'Invalid port: 65636',
+  reason: "INVALID_PORT",
+  message: "Invalid port: 65636",
 });
 if (!parsed.success) {
   // `success: false` narrows the type to
