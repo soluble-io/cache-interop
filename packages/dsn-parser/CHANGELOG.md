@@ -1,5 +1,15 @@
 # @soluble/dsn-parser
 
+## 1.4.0
+
+### Minor Changes
+
+- [#408](https://github.com/soluble-io/cache-interop/pull/408) [`fb43582`](https://github.com/soluble-io/cache-interop/commit/fb43582b7749a74b82949b5815ab89a82bcb2c46) Thanks [@belgattitude](https://github.com/belgattitude)! - New linter standard and refactor code for better esbuild support
+
+### Patch Changes
+
+- [#83](https://github.com/soluble-io/cache-interop/pull/83) [`8cf456d`](https://github.com/soluble-io/cache-interop/commit/8cf456daf5fd79fa4d146baa24b5ce507070f81a) Thanks [@belgattitude](https://github.com/belgattitude)! - Remove unused import
+
 ## 1.3.5
 
 ### Patch Changes
