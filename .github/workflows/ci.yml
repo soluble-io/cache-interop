@@ -85,7 +85,7 @@ jobs:
 
       - name: Unit tests
         run: |
-          yarn workspaces foreach -tv --include '@soluble/*' run test-unit
+          yarn workspaces foreach -tv --include '@soluble/*' run test-unit --coverage
         env:
           CI: true
 
