@@ -27,7 +27,7 @@
 
 # About
 
-A DSN parser with minimal validation that handles special characters like `/` in the password field (some libs won't).
+Tiny DSN parser with minimal validation that handles special characters like `/` in the password field (some libs won't).
 Works in browser and node.
 
 ## Install
