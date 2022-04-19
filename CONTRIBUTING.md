@@ -41,7 +41,7 @@ E2E tests requires docker to be installed and lives in [./packages/cache-e2e-tes
 
 ### Unit tests
 
-Simple unit tests lives in their respective package, by convention in a __tests__ directory.
+Simple unit tests lives in their respective package. Convention is to collocate in a `__tests__/[name].test.ts` file.
 
 ## Git message format
 
