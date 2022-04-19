@@ -75,7 +75,7 @@ const cache = new IoRedisCacheAdapter({
   connection: 'redis://localhost:6375',
 });
 
-const getSomething = async () => "cool";
+const getSomething = async () => JSON.stringify({ success: true });
 
 const { data, error } = await cache.getOrSet(
   // Cache key
@@ -90,11 +90,7 @@ if (error instanceof Error) {
   throw error;
 }
 
-if (data === null) {
-  throw new NotFound('Not found');
-}
-
-let parsed: UnPromisify<ReturnType<typeof getSomething>>;
+let parsed;
 try {
   parsed = JSON.parse(data);
 } catch (e) {
