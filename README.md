@@ -32,23 +32,23 @@
 
 # About | [Documentation](https://github.com/soluble-io/cache-interop/)
 
-> **While this project is somehow used in production and pretty well tested. There's a number of things that should be added and so expect breaking changes.**
+> **Warning** Before v1 is released expect breaking changes in API
 
 
 ## Features
 
 - [x] Simple but powerful [API](./packages/cache-interop/src/cache.interface.ts).
-- [x] Work with `async`/`await`.
+- [x] Native promises /`async`/`await`.
 - [x] Don't throw errors.
-- [x] Written in typescript.
-- [x] Fully tested with [e2e](packages/cache-e2e-tests/test/suites) tests.
-- [x] Adapters: node-redis, ioredis.
+- [x] Typescript friendly.
+- [x] High quality & covergae, see [e2e](packages/cache-e2e-tests/test/suites) tests.
+- [x] Multiple adapters: node-redis, ioredis.
 
 ## Roadmap
 
 - [ ] Finalize v1 API
     - [ ] injectable LoggerInterface
-    - [ ] SerializerInterface (json, msgpack, gzip, marshaller)
+    - [ ] SerializerInterface (json, msgpack, gzip, marshaller, superjson)
       - [ ] Chainable serializer (json -> gzip...)
     - [ ] Cache manager
       - [ ] Chainable cache adapter (allows lru as L1, redis as L2)
@@ -56,61 +56,6 @@
     - [ ] lru-cache
 - [ ] Documentation          
 
- 
-
-## Quick examples
-
-### Adapter.getOrSet()
-
-```typescript
-import { IoRedisCacheAdapter } from '@soluble/cache-ioredis';
-import { InternalServerError, NotFound } from "@tsed/exceptions";
-
-const cache = new IoRedisCacheAdapter({
-  connection: 'redis://localhost:6375',
-});
-
-const asyncFetch = async () => myFetch('/api').then(r => JSON.stringify(r));
-
-const { data, error } = await cache.getOrSet(
-  // Cache key
-  'cacheKey1',
-  // Async function
-  asyncFetch, 
-  // GetOrSetOptions
-  { ttl: 3600 }
-);
-
-if (error instanceof Error) {
-  throw new InternalServerError(error.message, error);
-}
-
-if (data === null) {
-  throw new NotFound('Not found');
-}
-
-let parsed: UnPromisify<ReturnType<typeof asyncFetch>>;
-try {
-  parsed = JSON.parse(data);
-} catch (e) {
-  throw new SerializerException(e.message);
-}
-
-```
-
-
-| GetOrSetOptions | target | default | description            |
-|-----------------|--------|---------|------------------------|
-| `ttl`           | `number` | 0       | Time-To-Live in seconds since Epoch time. If zero, no expiry.|
-| `disableCache`  | `boolean`/`{read: boolean, write: boolean}` | false      | |
-
-
-### DisableCache
-
-
-### Class diagram
-
-![](./docs/static/img/cache-interop-class-diagram.jpg)
 
 ## Adapters
 
@@ -119,6 +64,107 @@ try {
 | [@soluble/cache-interop](./packages/cache-interop) | `node`,`browser` | Interoperability interfaces & contracts  |
 | [@soluble/cache-ioredis](./packages/cache-ioredis) | `node` | Adapter for node [ioredis](https://github.com/luin/ioredis) driver |
 | [@soluble/cache-redis](./packages/cache-redis) | `node` | Adapter for node [redis](https://github.com/NodeRedis/node-redis) driver |
+
+
+### At a glance
+
+```typescript
+import { IoRedisCacheAdapter } from '@soluble/cache-ioredis';
+
+const cache = new IoRedisCacheAdapter({
+  connection: 'redis://localhost:6375',
+});
+
+const getSomething = async () => "cool";
+
+const { data, error } = await cache.getOrSet(
+  // Cache key
+  'cacke-key-v-1',
+  // Async function
+  getSomething, 
+  // GetOrSetOptions
+  { ttl: 3600 }
+);
+
+if (error instanceof Error) {
+  throw error;
+}
+
+if (data === null) {
+  throw new NotFound('Not found');
+}
+
+let parsed: UnPromisify<ReturnType<typeof getSomething>>;
+try {
+  parsed = JSON.parse(data);
+} catch (e) {
+  throw new SerializerException(e.message);
+}
+
+```
+
+## Diagram
+
+```mermaid
+classDiagram
+    CacheInterface <|-- AbstractCacheAdapter
+    CacheInterface: +getOrSet(key, valueOrFn, options) CacheItemInterface
+    CacheInterface: +get(key, options) CacheItemInterface
+    CacheInterface: +set(key, valueOrFn, options) boolean|CacheException
+    CacheInterface: +has(key, options) boolean|undefined
+    CacheInterface: +delete(key, options) boolean|CacheException
+    CacheInterface: +getMultiple(keys, options) Map
+    CacheInterface: +setMultiple(keyVals, options) Map
+    CacheInterface: +deleteMultiple(keys, options) Map
+    CacheInterface: +clear() true|CacheException
+    class AbstractCacheAdapter {
+      +string adapterName
+      +getOrSet() CacheItemInterface
+      +getMultiple(keyVals, options) Map
+      +setMultiple(keyVals, options) Map
+      +deleteMultiple(keys, options) Map
+    }
+    ConnectedCacheInterface <|-- RedisCacheAdapter
+    ConnectedCacheInterface <|-- IoRedisCacheAdapter
+    class ConnectedCacheInterface {
+      +getConnection() ConnectionInterface
+    }
+    AbstractCacheAdapter <|-- IoRedisCacheAdapter
+    class IoRedisCacheAdapter {
+        +IoRedisConnection conn
+        +string adapterName
+    }
+    AbstractCacheAdapter <|-- MapCacheAdapter
+    class MapCacheAdapter {
+        +string adapterName
+    }
+    AbstractCacheAdapter <|-- RedisCacheAdapter
+    class RedisCacheAdapter {
+        +RedisConnection conn   
+        +string adapterName    
+    }
+    class ConnectionInterface {
+        +getNativeConnection() 
+        +quit()
+    }
+    ConnectionInterface <|-- IoRedisConnection
+    class IoRedisConnection {
+       +quit()
+    }
+    ConnectionInterface <|-- RedisConnection
+    class RedisConnection {
+       +quit()
+    }            
+```
+
+## Options
+
+
+| GetOrSetOptions | target | default | description                                                   |
+|-----------------|--------|---------|---------------------------------------------------------------|
+| `ttl`           | `number` | 0       | Time-To-Live in seconds since Epoch time. If zero, no expiry. |
+| `disableCache`  | `boolean`/`{read: boolean, write: boolean}` | false      | Disable cache                                                 |
+
 
   
 ## Structure
