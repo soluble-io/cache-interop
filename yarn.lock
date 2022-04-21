@@ -2793,7 +2793,7 @@ __metadata:
     ioredis: 5.0.4
     jest: 27.5.1
     redis: 3.1.2
-    testcontainers: 8.7.1
+    testcontainers: 8.7.2
     ts-jest: 27.1.4
     typescript: 4.6.3
   languageName: unknown
@@ -3814,18 +3814,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"archiver@npm:^5.3.0":
-  version: 5.3.0
-  resolution: "archiver@npm:5.3.0"
+"archiver@npm:^5.3.1":
+  version: 5.3.1
+  resolution: "archiver@npm:5.3.1"
   dependencies:
     archiver-utils: ^2.1.0
-    async: ^3.2.0
+    async: ^3.2.3
     buffer-crc32: ^0.2.1
     readable-stream: ^3.6.0
     readdir-glob: ^1.0.0
     tar-stream: ^2.2.0
     zip-stream: ^4.1.0
-  checksum: 878b275390dbab4a32dc2010fb68447d2750297226002002b27d790058d0e04c7d1566f20cf6f9c5abcca33e946cd36ed11b659c59408dabd852db005c84dfed
+  checksum: 905b198ed04d26c951b80545d45c7f2e0432ef89977a93af8a762501d659886e39dda0fbffb0d517ff3fa450a3d09a29146e4273c2170624e1988f889fb5302c
   languageName: node
   linkType: hard
 
@@ -3992,10 +3992,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"async@npm:^3.2.0":
-  version: 3.2.2
-  resolution: "async@npm:3.2.2"
-  checksum: 90712c98df0c6d0ef0190f8bee9797bf6c7035a1317c9a036b80306a8d2246396b3ee356b4540ff349e29e625fafa25d4f04e11b6ac1c5f6b4c74c803e641137
+"async@npm:^3.2.3":
+  version: 3.2.3
+  resolution: "async@npm:3.2.3"
+  checksum: c4bee57ab2249af3dc83ca3ef9acfa8e822c0d5e5aa41bae3eaf7f673648343cd64ecd7d26091ffd357f3f044428b17b5f00098494b6cf8b6b3e9681f0636ca1
   languageName: node
   linkType: hard
 
@@ -13002,14 +13002,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"testcontainers@npm:8.7.1":
-  version: 8.7.1
-  resolution: "testcontainers@npm:8.7.1"
+"testcontainers@npm:8.7.2":
+  version: 8.7.2
+  resolution: "testcontainers@npm:8.7.2"
   dependencies:
     "@balena/dockerignore": ^1.0.2
     "@types/archiver": ^5.3.1
     "@types/dockerode": ^3.3.8
-    archiver: ^5.3.0
+    archiver: ^5.3.1
     byline: ^5.0.0
     debug: ^4.3.4
     docker-compose: ^0.23.17
@@ -13018,7 +13018,7 @@ __metadata:
     properties-reader: ^2.2.0
     ssh-remote-port-forward: ^1.0.4
     tar-fs: ^2.1.1
-  checksum: cfdd667b82cc2190e81d1369c902bd61f462f6b4f8c03bec8aac96ccffead7226296db27ffeec25151cf8b280714e8965c6f35f71a4c8a7c8f2580d992c94662
+  checksum: 477e659f5bfbddf1305466c45ba7dc90ed3e727a437de51dba00938ef8b707cead2bab35ed13390c878f980514881c9bbca5c26d5a36d75de1e99a841962c83e
   languageName: node
   linkType: hard
 
