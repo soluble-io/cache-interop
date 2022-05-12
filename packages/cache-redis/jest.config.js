@@ -17,10 +17,8 @@ const getTsConfigBasePaths = () => {
     : {};
 };
 
-/** @typedef {import('ts-jest/dist/types')} */
-/** @type {import('@jest/types').Config.InitialOptions} */
+/** @type {import('ts-jest/dist/types').InitialOptionsTsJest} */
 const config = {
-  name: 'cache-redis/unit',
   displayName: 'cache-redis/unit',
   testRunner: 'jest-circus/runner',
   testEnvironment: 'node',
