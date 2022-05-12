@@ -2,10 +2,8 @@
 
 const { defaults: tsPreset } = require('ts-jest/presets');
 
-/** @typedef {import('ts-jest/dist/types')} */
-/** @type {import('@jest/types').Config.InitialOptions} */
+/** @type {import('ts-jest/dist/types').InitialOptionsTsJest} */
 module.exports = {
-  name: 'cache-dsn-parser/unit',
   displayName: 'cache-dsn-parser/unit',
   testRunner: 'jest-circus/runner',
   verbose: true,

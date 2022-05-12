@@ -16,11 +16,10 @@ const getTsConfigBasePaths = () => {
       })
     : {};
 };
-/** @typedef {import('ts-jest/dist/types')} */
-/** @type {import('@jest/types').Config.InitialOptions} */
+
+/** @type {import('ts-jest/dist/types').InitialOptionsTsJest} */
 const config = {
-  name: 'cache-e2e',
-  displayName: 'cache-e2e',
+  displayName: 'cache-e2e-tests',
   testEnvironment: 'node',
   setupFilesAfterEnv: ['<rootDir>/cache-e2e-tests/test/setup/jest.setup.ts'],
   verbose: true,
