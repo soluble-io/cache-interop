@@ -43,7 +43,8 @@
     "typecheck-build": "tsc --project tsconfig.build.json --noEmit",
     "lint": "eslint . --ext .ts,.tsx,.js,.jsx",
     "fix-staged": "lint-staged --allow-empty",
-    "ci-coverage-upload": "../../.github/scripts/download/codecov -F dsnParserUnit --dir ./coverage"
+    "ci-coverage-upload": "../../.github/scripts/download/codecov -F dsnParserUnit --dir ./coverage",
+    "build-api-doc": "typedoc --githubPages false --plugin typedoc-plugin-markdown"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
@@ -63,6 +64,8 @@
     "rimraf": "3.0.2",
     "ts-jest": "28.0.2",
     "tslib": "2.4.0",
+    "typedoc": "0.22.15",
+    "typedoc-plugin-markdown": "3.12.1",
     "typescript": "4.6.4"
   },
   "browserslist": [
