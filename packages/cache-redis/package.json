@@ -61,7 +61,7 @@
     "@soluble/dsn-parser": "workspace:^"
   },
   "devDependencies": {
-    "@types/jest": "28.1.0",
+    "@types/jest": "28.1.1",
     "@types/redis": "2.8.32",
     "cross-env": "7.0.3",
     "es-check": "6.2.1",
