@@ -55,7 +55,7 @@
   "devDependencies": {
     "@types/jest": "28.1.1",
     "cross-env": "7.0.3",
-    "dayjs": "1.11.2",
+    "dayjs": "1.11.3",
     "es-check": "6.2.1",
     "jest": "28.1.0",
     "microbundle": "0.14.2",
