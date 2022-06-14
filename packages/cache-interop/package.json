@@ -60,7 +60,7 @@
     "jest": "28.1.1",
     "microbundle": "0.14.2",
     "rimraf": "3.0.2",
-    "ts-jest": "28.0.4",
+    "ts-jest": "28.0.5",
     "tslib": "2.4.0",
     "typedoc": "0.22.17",
     "typedoc-plugin-markdown": "3.12.1",
