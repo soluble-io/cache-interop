@@ -1,5 +1,11 @@
 # @soluble/cache-interop
 
+## 0.9.2-canary.0
+
+### Patch Changes
+
+- [#537](https://github.com/soluble-io/cache-interop/pull/537) [`f371870`](https://github.com/soluble-io/cache-interop/commit/f37187081d433d30b3c44c8f3d511d95502b39a3) Thanks [@belgattitude](https://github.com/belgattitude)! - Update build with latest microbundle
+
 ## 0.9.1
 
 ### Patch Changes
