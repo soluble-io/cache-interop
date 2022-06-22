@@ -2909,7 +2909,7 @@ __metadata:
     dayjs: 1.11.3
     es-check: 6.2.1
     jest: 28.1.1
-    microbundle: 0.14.2
+    microbundle: 0.15.0
     rimraf: 3.0.2
     ts-jest: 28.0.5
     tslib: 2.4.0
@@ -2928,9 +2928,9 @@ __metadata:
     "@types/jest": 28.1.3
     cross-env: 7.0.3
     es-check: 6.2.1
-    ioredis: ^5.0.3
+    ioredis: ^5.0.6
     jest: 28.1.1
-    microbundle: 0.14.2
+    microbundle: 0.15.0
     rimraf: 3.0.2
     ts-jest: 28.0.5
     tslib: 2.4.0
@@ -2949,7 +2949,7 @@ __metadata:
     cross-env: 7.0.3
     es-check: 6.2.1
     jest: 28.1.1
-    microbundle: 0.14.2
+    microbundle: 0.15.0
     redis: 3.1.2
     rimraf: 3.0.2
     ts-jest: 28.0.5
@@ -2974,7 +2974,7 @@ __metadata:
     cross-env: 7.0.3
     es-check: 6.2.1
     jest: 28.1.1
-    microbundle: 0.14.2
+    microbundle: 0.15.0
     rimraf: 3.0.2
     ts-jest: 28.0.5
     tslib: 2.4.0
@@ -3330,10 +3330,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:*, @types/node@npm:17.0.25, @types/node@npm:>=12":
-  version: 17.0.25
-  resolution: "@types/node@npm:17.0.25"
-  checksum: 6a820bd624e69ea772f52a6cdb326484eff5829443dc981939373929ade109f58c21698b9f0a831bd6ceea799e722a75dc49c5fa7a6bc32a81e1cbdfc6507b64
+"@types/node@npm:*, @types/node@npm:18.0.0, @types/node@npm:>=12":
+  version: 18.0.0
+  resolution: "@types/node@npm:18.0.0"
+  checksum: aab2b325727a2599f6d25ebe0dedf58c40fb66a51ce4ca9c0226ceb70fcda2d3afccdca29db5942eb48b158ee8585a274a1e3750c718bbd5399d7f41d62dfdcc
   languageName: node
   linkType: hard
 
@@ -4533,7 +4533,7 @@ __metadata:
     "@changesets/cli": 2.23.0
     "@commitlint/cli": 17.0.2
     "@commitlint/config-conventional": 17.0.2
-    "@types/node": 17.0.25
+    "@types/node": 18.0.0
     "@types/prettier": 2.6.3
     eslint: 8.18.0
     eslint-config-bases: "workspace:^"
@@ -5605,6 +5605,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"define-lazy-prop@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "define-lazy-prop@npm:2.0.0"
+  checksum: 0115fdb065e0490918ba271d7339c42453d209d4cb619dfe635870d906731eff3e1ade8028bb461ea27ce8264ec5e22c6980612d332895977e89c1bbc80fcee2
+  languageName: node
+  linkType: hard
+
 "define-properties@npm:^1.1.3, define-properties@npm:^1.1.4":
   version: 1.1.4
   resolution: "define-properties@npm:1.1.4"
@@ -6070,7 +6077,7 @@ __metadata:
     "@testing-library/react": 13.3.0
     "@testing-library/react-hooks": 8.0.1
     "@types/jest": 28.1.3
-    "@types/node": 17.0.25
+    "@types/node": 18.0.0
     "@types/prettier": 2.6.3
     "@types/react": 18.0.14
     "@types/react-dom": 18.0.5
@@ -7688,7 +7695,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ioredis@npm:5.0.6, ioredis@npm:^5.0.3":
+"ioredis@npm:5.0.6, ioredis@npm:^5.0.6":
   version: 5.0.6
   resolution: "ioredis@npm:5.0.6"
   dependencies:
@@ -7796,6 +7803,15 @@ __metadata:
   dependencies:
     has-tostringtag: ^1.0.0
   checksum: baa9077cdf15eb7b58c79398604ca57379b2fc4cf9aa7a9b9e295278648f628c9b201400c01c5e0f7afae56507d741185730307cbe7cad3b9f90a77e5ee342fc
+  languageName: node
+  linkType: hard
+
+"is-docker@npm:^2.0.0, is-docker@npm:^2.1.1":
+  version: 2.2.1
+  resolution: "is-docker@npm:2.2.1"
+  bin:
+    is-docker: cli.js
+  checksum: 3fef7ddbf0be25958e8991ad941901bf5922ab2753c46980b60b05c1bf9c9c2402d35e6dc32e4380b980ef5e1970a5d9d5e5aa2e02d77727c3b6b5e918474c56
   languageName: node
   linkType: hard
 
@@ -8039,6 +8055,15 @@ __metadata:
   version: 1.0.2
   resolution: "is-windows@npm:1.0.2"
   checksum: 438b7e52656fe3b9b293b180defb4e448088e7023a523ec21a91a80b9ff8cdb3377ddb5b6e60f7c7de4fa8b63ab56e121b6705fe081b3cf1b828b0a380009ad7
+  languageName: node
+  linkType: hard
+
+"is-wsl@npm:^2.2.0":
+  version: 2.2.0
+  resolution: "is-wsl@npm:2.2.0"
+  dependencies:
+    is-docker: ^2.0.0
+  checksum: 20849846ae414997d290b75e16868e5261e86ff5047f104027026fd61d8b5a9b0b3ade16239f35e1a067b3c7cc02f70183cb661010ed16f4b6c7c93dad1b19d8
   languageName: node
   linkType: hard
 
@@ -9382,9 +9407,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"microbundle@npm:0.14.2":
-  version: 0.14.2
-  resolution: "microbundle@npm:0.14.2"
+"microbundle@npm:0.15.0":
+  version: 0.15.0
+  resolution: "microbundle@npm:0.15.0"
   dependencies:
     "@babel/core": ^7.12.10
     "@babel/plugin-proposal-class-properties": 7.12.1
@@ -9422,6 +9447,7 @@ __metadata:
     rollup-plugin-postcss: ^4.0.0
     rollup-plugin-terser: ^7.0.2
     rollup-plugin-typescript2: ^0.29.0
+    rollup-plugin-visualizer: ^5.6.0
     sade: ^1.7.4
     terser: ^5.7.0
     tiny-glob: ^0.2.8
@@ -9429,7 +9455,7 @@ __metadata:
     typescript: ^4.1.3
   bin:
     microbundle: dist/cli.js
-  checksum: 8d6d5ba123b0500e96c6fe897183ab4955619f0a52762bfc61772305c5c4b14b045de9ea425661fbcc2227c1f9fa872921614b61b353fd69e98ed0f20d07bbb5
+  checksum: d5264c74e61b05cba4a3373f86dcad4253f9e60ace1cd5f2541c0589f0e6409c988036dddb77e4c33f49af12362427890936c3f81429837951f62b34a954ad07
   languageName: node
   linkType: hard
 
@@ -9696,12 +9722,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"nanoid@npm:^3.1.30":
-  version: 3.1.30
-  resolution: "nanoid@npm:3.1.30"
+"nanoid@npm:^3.1.30, nanoid@npm:^3.1.32":
+  version: 3.3.4
+  resolution: "nanoid@npm:3.3.4"
   bin:
     nanoid: bin/nanoid.cjs
-  checksum: 276d0d4b0c41c46aeefec5f09f093e4085a2352d06881c845db22b84f8ef72cc8defae6d76bfb1d8a2a128eb2dec42ab148d16582be4e7754c97905806ef57b6
+  checksum: 2fddd6dee994b7676f008d3ffa4ab16035a754f4bb586c61df5a22cf8c8c94017aadd360368f47d653829e0569a92b129979152ff97af23a558331e47e37cd9c
   languageName: node
   linkType: hard
 
@@ -10203,6 +10229,17 @@ __metadata:
   dependencies:
     mimic-fn: ^4.0.0
   checksum: 0846ce78e440841335d4e9182ef69d5762e9f38aa7499b19f42ea1c4cd40f0b4446094c455c713f9adac3f4ae86f613bb5e30c99e52652764d06a89f709b3788
+  languageName: node
+  linkType: hard
+
+"open@npm:^8.4.0":
+  version: 8.4.0
+  resolution: "open@npm:8.4.0"
+  dependencies:
+    define-lazy-prop: ^2.0.0
+    is-docker: ^2.1.1
+    is-wsl: ^2.2.0
+  checksum: e9545bec64cdbf30a0c35c1bdc310344adf8428a117f7d8df3c0af0a0a24c513b304916a6d9b11db0190ff7225c2d578885080b761ed46a3d5f6f1eebb98b63c
   languageName: node
   linkType: hard
 
@@ -11856,6 +11893,22 @@ __metadata:
   languageName: node
   linkType: hard
 
+"rollup-plugin-visualizer@npm:^5.6.0":
+  version: 5.6.0
+  resolution: "rollup-plugin-visualizer@npm:5.6.0"
+  dependencies:
+    nanoid: ^3.1.32
+    open: ^8.4.0
+    source-map: ^0.7.3
+    yargs: ^17.3.1
+  peerDependencies:
+    rollup: ^2.0.0
+  bin:
+    rollup-plugin-visualizer: dist/bin/cli.js
+  checksum: 1036a3873f3b6a0c46d692538aaac5dc9f7a7b2a5aec9e7ab816aaf8a31576ae750f415e1019e401707d18490b634a982fbe8c22d9761cafbd9b12c756e7fd99
+  languageName: node
+  linkType: hard
+
 "rollup-pluginutils@npm:^2.8.2":
   version: 2.8.2
   resolution: "rollup-pluginutils@npm:2.8.2"
@@ -12269,10 +12322,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"source-map@npm:~0.7.2":
-  version: 0.7.3
-  resolution: "source-map@npm:0.7.3"
-  checksum: cd24efb3b8fa69b64bf28e3c1b1a500de77e84260c5b7f2b873f88284df17974157cc88d386ee9b6d081f08fdd8242f3fc05c953685a6ad81aad94c7393dedea
+"source-map@npm:^0.7.3, source-map@npm:~0.7.2":
+  version: 0.7.4
+  resolution: "source-map@npm:0.7.4"
+  checksum: 01cc5a74b1f0e1d626a58d36ad6898ea820567e87f18dfc9d24a9843a351aaa2ec09b87422589906d6ff1deed29693e176194dc88bcae7c9a852dc74b311dbf5
   languageName: node
   linkType: hard
 
