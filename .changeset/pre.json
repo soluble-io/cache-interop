@@ -1,0 +1,13 @@
+{
+  "mode": "pre",
+  "tag": "canary",
+  "initialVersions": {
+    "@soluble/cache-e2e-tests": "0.10.0",
+    "@soluble/cache-interop": "0.9.1",
+    "@soluble/cache-ioredis": "0.10.0",
+    "@soluble/cache-redis": "0.9.1",
+    "@soluble/dsn-parser": "1.4.1",
+    "eslint-config-bases": "1.1.0"
+  },
+  "changesets": []
+}
