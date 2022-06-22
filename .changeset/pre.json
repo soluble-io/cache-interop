@@ -9,5 +9,7 @@
     "@soluble/dsn-parser": "1.4.1",
     "eslint-config-bases": "1.1.0"
   },
-  "changesets": []
+  "changesets": [
+    "dirty-ravens-bathe"
+  ]
 }
