@@ -4540,7 +4540,7 @@ __metadata:
     husky: 8.0.1
     is-ci: 3.0.1
     lint-staged: 13.0.2
-    npm-check-updates: 14.1.0
+    npm-check-updates: 14.1.1
     npm-run-all: 4.1.5
     prettier: 2.7.1
     rimraf: 3.0.2
@@ -9927,9 +9927,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"npm-check-updates@npm:14.1.0":
-  version: 14.1.0
-  resolution: "npm-check-updates@npm:14.1.0"
+"npm-check-updates@npm:14.1.1":
+  version: 14.1.1
+  resolution: "npm-check-updates@npm:14.1.1"
   dependencies:
     chalk: ^4.1.2
     cint: ^8.2.1
@@ -9949,7 +9949,7 @@ __metadata:
     pacote: ^13.6.0
     parse-github-url: ^1.0.2
     progress: ^2.0.3
-    prompts: "git+https://github.com/raineorshine/prompts.git#ncu"
+    prompts-ncu: ^2.5.0
     rc-config-loader: ^4.1.0
     remote-git-tags: ^3.0.0
     rimraf: ^3.0.2
@@ -9962,7 +9962,7 @@ __metadata:
   bin:
     ncu: build/src/bin/cli.js
     npm-check-updates: build/src/bin/cli.js
-  checksum: f633e66934934f8cce2f1b72d171d099ba977743afcc38cfb307ea139ba4059148133982954639e117219c9e143511695950ac7bd41c0e8c04c9abe842d98edf
+  checksum: a3ec52312c937c6f3da70ed29beccd87be861eb50f300b2b0d3e8f3502f26e03f2e23ea4a55ad1bb38c5441ab8738225c349089b233da569739acc1ee15e3989
   languageName: node
   linkType: hard
 
@@ -11182,13 +11182,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"prompts@git+https://github.com/raineorshine/prompts.git#ncu":
+"prompts-ncu@npm:^2.5.0":
   version: 2.5.0
-  resolution: "prompts@https://github.com/raineorshine/prompts.git#commit=41f6db915599d6f4391ebe05e599823dc309e040"
+  resolution: "prompts-ncu@npm:2.5.0"
   dependencies:
     kleur: ^4.0.1
     sisteransi: ^1.0.5
-  checksum: ccc6247aed8f8d4593e988e0b23a6060c003e08a5a39594492ec209607166efdaf2fe4cfd5fcef331a2a2b0bf33d0b2390a3a99f5b02370f5da3065be3b12b6c
+  checksum: e050961c300b897f166b9abdde02a3087222a12b50598015072fd31fd401def4cf665ec2ada80710d84bb8611092cd57b39e820ff509af740f9f531987bfc9a6
   languageName: node
   linkType: hard
 
