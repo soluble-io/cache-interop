@@ -10,6 +10,9 @@
     "eslint-config-bases": "1.1.0"
   },
   "changesets": [
-    "dirty-ravens-bathe"
+    "chilled-carpets-accept",
+    "dirty-ravens-bathe",
+    "friendly-carrots-allow",
+    "lovely-chicken-push"
   ]
 }
