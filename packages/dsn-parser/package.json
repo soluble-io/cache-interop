@@ -74,8 +74,5 @@
     "not dead",
     "not op_mini all",
     "node 12.14"
-  ],
-  "engines": {
-    "node": "^12.14.0 || ^14.13.1 || >=16"
-  }
+  ]
 }
