@@ -11,9 +11,9 @@ export const getTestAdapters = () => {
   return [
     ['MapCacheAdapter', () => new MapCacheAdapter()],
     [
-      'IoRedisCacheAdapter/Redis5',
+      'IoRedisCacheAdapter/Redis7',
       async () => {
-        const { dsn } = await E2eDockerContainers.getContainer('redis5');
+        const { dsn } = await E2eDockerContainers.getContainer('redis7');
         return new IoRedisCacheAdapter({
           connection: dsn,
         });
@@ -29,9 +29,9 @@ export const getTestAdapters = () => {
       },
     ],
     [
-      'RedisCacheAdapter/Redis5',
+      'RedisCacheAdapter/Redis7',
       async () => {
-        const { dsn } = await E2eDockerContainers.getContainer('redis5');
+        const { dsn } = await E2eDockerContainers.getContainer('redis7');
         return new RedisCacheAdapter({
           connection: dsn,
         });

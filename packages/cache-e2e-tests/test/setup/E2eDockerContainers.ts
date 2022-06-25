@@ -3,8 +3,8 @@ import { GenericContainer } from 'testcontainers';
 
 // Here configure all docker containers you need
 const registeredE2eContainers = {
-  redis5: { image: 'redis:5-alpine', port: 6379 },
   redis6: { image: 'redis:6-alpine', port: 6379 },
+  redis7: { image: 'redis:7-alpine', port: 6379 },
 } as const;
 
 type ContainerKey = keyof typeof registeredE2eContainers;
