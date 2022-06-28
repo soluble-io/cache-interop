@@ -2914,7 +2914,7 @@ __metadata:
     ts-jest: 28.0.5
     tslib: 2.4.0
     typedoc: 0.23.2
-    typedoc-plugin-markdown: 3.13.0
+    typedoc-plugin-markdown: 3.13.1
     typescript: 4.7.4
   languageName: unknown
   linkType: soft
@@ -2979,7 +2979,7 @@ __metadata:
     ts-jest: 28.0.5
     tslib: 2.4.0
     typedoc: 0.23.2
-    typedoc-plugin-markdown: 3.13.0
+    typedoc-plugin-markdown: 3.13.1
     typescript: 4.7.4
   languageName: unknown
   linkType: soft
@@ -13366,14 +13366,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typedoc-plugin-markdown@npm:3.13.0":
-  version: 3.13.0
-  resolution: "typedoc-plugin-markdown@npm:3.13.0"
+"typedoc-plugin-markdown@npm:3.13.1":
+  version: 3.13.1
+  resolution: "typedoc-plugin-markdown@npm:3.13.1"
   dependencies:
     handlebars: ^4.7.7
   peerDependencies:
     typedoc: ">=0.23.0"
-  checksum: 948ea9f1afcda731db6c39f2f11614ac813c160bdba0aa27a9b4b0e6f7de3a849a2507249d533df0d7d36f6eaaafbfa32ea1f9977cbd0e18a998ec5d984563e3
+  checksum: 50332e760434b64d6905101d4a104c879054027cdab7cb5a00ae27341823eb7bafd68fd075b36cc527579ef2cf0c808a9454567fa03427dd193d9394be3c7a42
   languageName: node
   linkType: hard
 
