@@ -4612,7 +4612,7 @@ __metadata:
     husky: 8.0.1
     is-ci: 3.0.1
     lint-staged: 13.0.3
-    npm-check-updates: 15.2.1
+    npm-check-updates: 15.2.5
     npm-run-all: 4.1.5
     prettier: 2.7.1
     rimraf: 3.0.2
@@ -4799,13 +4799,6 @@ __metadata:
   version: 3.3.0
   resolution: "ci-info@npm:3.3.0"
   checksum: c3d86fe374938ecda5093b1ba39acb535d8309185ba3f23587747c6a057e63f45419b406d880304dbc0e1d72392c9a33e42fe9a1e299209bc0ded5efaa232b66
-  languageName: node
-  linkType: hard
-
-"cint@npm:^8.2.1":
-  version: 8.2.1
-  resolution: "cint@npm:8.2.1"
-  checksum: 5f32feed160b63f5f7622095a0e330e0679b47ea4d7cd6a4eaf8045e1298092710f5cfdd005717954966edf9e3722df860cbff4632917c1a9ad3d43450bcddca
   languageName: node
   linkType: hard
 
@@ -10083,12 +10076,11 @@ __metadata:
   languageName: node
   linkType: hard
 
-"npm-check-updates@npm:15.2.1":
-  version: 15.2.1
-  resolution: "npm-check-updates@npm:15.2.1"
+"npm-check-updates@npm:15.2.5":
+  version: 15.2.5
+  resolution: "npm-check-updates@npm:15.2.5"
   dependencies:
     chalk: ^4.1.2
-    cint: ^8.2.1
     cli-table: ^0.3.11
     commander: ^9.3.0
     fast-memoize: ^2.5.2
@@ -10118,7 +10110,7 @@ __metadata:
   bin:
     ncu: build/src/bin/cli.js
     npm-check-updates: build/src/bin/cli.js
-  checksum: dbd7267b6cf954748a20a631f6f64f21da5adbd9e64a5b19ff5e9c5ad5893be7c139327e2f637c5255af83c0747381c76ef70dcefd6369498ed6e0c0a7954a44
+  checksum: a4ba8b489624f8adf80a100d28444f8e83fb7d9b24d1d527548b6dd22062f9b6aa63e683d934bd717be60a1316b9884853ae8090171effe51491f2d11bd44bec
   languageName: node
   linkType: hard
 
