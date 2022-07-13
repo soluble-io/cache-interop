@@ -1982,9 +1982,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@graphql-eslint/eslint-plugin@npm:3.10.5":
-  version: 3.10.5
-  resolution: "@graphql-eslint/eslint-plugin@npm:3.10.5"
+"@graphql-eslint/eslint-plugin@npm:3.10.6":
+  version: 3.10.6
+  resolution: "@graphql-eslint/eslint-plugin@npm:3.10.6"
   dependencies:
     "@babel/code-frame": ^7.16.7
     "@graphql-tools/code-file-loader": ^7.2.14
@@ -1998,7 +1998,7 @@ __metadata:
     lodash.lowercase: ^4.3.0
   peerDependencies:
     graphql: ^0.8.0 || ^0.9.0 || ^0.10.0 || ^0.11.0 || ^0.12.0 || ^0.13.0 || ^14.0.0 || ^15.0.0 || ^16.0.0
-  checksum: 9272e0dad3737afecf698a94ae062ec5268feb199a2cb3b42075b0794f6ab1211ea8dc3e1e2b9eec4a7015fe9bb48fe271b712522ddcd5db76ea70f6c8fb51e2
+  checksum: e2d9a7ddfc0558a62e6be7e94104f4d0672775b8f5578782ffb764ca958d2bb8781ba7b54870befac24a9155bfb665d9c3b008d67ad6893f93efdff14c04cdaa
   languageName: node
   linkType: hard
 
@@ -6191,7 +6191,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "eslint-config-bases@workspace:packages/eslint-config-bases"
   dependencies:
-    "@graphql-eslint/eslint-plugin": 3.10.5
+    "@graphql-eslint/eslint-plugin": 3.10.6
     "@testing-library/jest-dom": 5.16.4
     "@testing-library/react": 13.3.0
     "@testing-library/react-hooks": 8.0.1
