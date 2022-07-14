@@ -4612,7 +4612,7 @@ __metadata:
     husky: 8.0.1
     is-ci: 3.0.1
     lint-staged: 13.0.3
-    npm-check-updates: 15.2.6
+    npm-check-updates: 15.3.0
     npm-run-all: 4.1.5
     prettier: 2.7.1
     rimraf: 3.0.2
@@ -10076,9 +10076,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"npm-check-updates@npm:15.2.6":
-  version: 15.2.6
-  resolution: "npm-check-updates@npm:15.2.6"
+"npm-check-updates@npm:15.3.0":
+  version: 15.3.0
+  resolution: "npm-check-updates@npm:15.3.0"
   dependencies:
     chalk: ^4.1.2
     cli-table: ^0.3.11
@@ -10110,7 +10110,7 @@ __metadata:
   bin:
     ncu: build/src/bin/cli.js
     npm-check-updates: build/src/bin/cli.js
-  checksum: d62685909f5dbe99997db4c3eefbc0267e7e435358a202d4f1ddb0097287857eb39d37b0b0acc77eb920d60b13815b13f9d15a429dcf82fbee7a5883650b7663
+  checksum: 1c202763d25f3cab2e7a413cdf705f4b186121062a770813c2ccca12ebea5f8ce65821f7ed264a5cee7518161c01048e373a8524ced171939bf567b604ee2f9c
   languageName: node
   linkType: hard
 
