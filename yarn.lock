@@ -2757,9 +2757,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@pkgr/utils@npm:^2.2.0":
-  version: 2.2.0
-  resolution: "@pkgr/utils@npm:2.2.0"
+"@pkgr/utils@npm:^2.3.0":
+  version: 2.3.0
+  resolution: "@pkgr/utils@npm:2.3.0"
   dependencies:
     cross-spawn: ^7.0.3
     is-glob: ^4.0.3
@@ -2767,7 +2767,7 @@ __metadata:
     picocolors: ^1.0.0
     tiny-glob: ^0.2.9
     tslib: ^2.4.0
-  checksum: 0ae76a6b92ca581388cedb8433bd5becdab2b226781d1ff4fafa30104c2f8e3227d982f39f66f7109df95122491973af8335f15e82818dc346ec6ae1a36e63bf
+  checksum: d2fe95c51d548497425182b284dea8155d9e80bb36fa744c670174d7deae53743b13aa9f63a8bfaa8b31dcf7c53dc279a99372f2c2c35ff9fcebf91c5c5c8190
   languageName: node
   linkType: hard
 
@@ -6204,7 +6204,7 @@ __metadata:
     "@typescript-eslint/parser": 5.30.6
     eslint: 8.19.0
     eslint-config-prettier: 8.5.0
-    eslint-import-resolver-typescript: 3.2.6
+    eslint-import-resolver-typescript: 3.2.7
     eslint-plugin-import: 2.26.0
     eslint-plugin-jest: 26.6.0
     eslint-plugin-jest-formatting: 3.1.0
@@ -6261,9 +6261,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-import-resolver-typescript@npm:3.2.6":
-  version: 3.2.6
-  resolution: "eslint-import-resolver-typescript@npm:3.2.6"
+"eslint-import-resolver-typescript@npm:3.2.7":
+  version: 3.2.7
+  resolution: "eslint-import-resolver-typescript@npm:3.2.7"
   dependencies:
     debug: ^4.3.4
     enhanced-resolve: ^5.10.0
@@ -6271,11 +6271,11 @@ __metadata:
     globby: ^13.1.2
     is-core-module: ^2.9.0
     is-glob: ^4.0.3
-    synckit: ^0.7.2
+    synckit: ^0.8.1
   peerDependencies:
     eslint: "*"
     eslint-plugin-import: "*"
-  checksum: 0e4826875552653bd60e4b5cfc0063bbfb77c3c53b030d942c72ab0f6cadd3a0659d55df22000ffe6ebf49dda8953d6bf339f00db3f00d26131450946bbeedff
+  checksum: 7f63d58182b77adac3f2cbc4ac5dcd487a5b9acf125ff59d1731dd0e74ffbad7fdbb9ac71c893963e84255cd4d5ff6a6ef3078e5b9ed180c713a2fa82797a51f
   languageName: node
   linkType: hard
 
@@ -13018,13 +13018,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"synckit@npm:^0.7.2":
-  version: 0.7.2
-  resolution: "synckit@npm:0.7.2"
+"synckit@npm:^0.8.1":
+  version: 0.8.1
+  resolution: "synckit@npm:0.8.1"
   dependencies:
-    "@pkgr/utils": ^2.2.0
+    "@pkgr/utils": ^2.3.0
     tslib: ^2.4.0
-  checksum: 09734631b1e66e24a06a104e4d058f7301d11ff8b6c5a9aab55a878879b9c50d1d9a05ff25624da05481fcac9be19cfa0e712d10d7978831d40955ad10ea28c9
+  checksum: 36a1b699996f3bb251c8f828364e101cf08b2a20225cb39df9d7c2186380554b8172374babfe10f03f4b52ab8c453c16447c3cbf61108221f2c58c446bf8425a
   languageName: node
   linkType: hard
 
