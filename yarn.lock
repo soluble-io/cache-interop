@@ -6070,7 +6070,7 @@ __metadata:
     eslint-plugin-jest: 26.6.0
     eslint-plugin-jest-formatting: 3.1.0
     eslint-plugin-jsx-a11y: 6.6.1
-    eslint-plugin-playwright: 0.9.0
+    eslint-plugin-playwright: 0.10.0
     eslint-plugin-prettier: 4.2.1
     eslint-plugin-react: 7.30.1
     eslint-plugin-react-hooks: 4.6.0
@@ -6222,16 +6222,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-playwright@npm:0.9.0":
-  version: 0.9.0
-  resolution: "eslint-plugin-playwright@npm:0.9.0"
+"eslint-plugin-playwright@npm:0.10.0":
+  version: 0.10.0
+  resolution: "eslint-plugin-playwright@npm:0.10.0"
   peerDependencies:
     eslint: ">=7"
     eslint-plugin-jest: ">=24"
   peerDependenciesMeta:
     eslint-plugin-jest:
       optional: true
-  checksum: d54f00d91ebb61b5861f9971c626512d3db140a1cbcb0cc26304dc0a528a3e3ba5bf3f369f626108b7c244568ef9915d08104d8d5672c9bba091d8a4fe9c4fe3
+  checksum: 6d5636a6348e0002858cd792883e51bade5f029ad8db251a046e3418ecd51985fef9f5cace04715735686a7915198d17988bc901774da872e814ebee0b152657
   languageName: node
   linkType: hard
 
