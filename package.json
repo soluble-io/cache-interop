@@ -56,7 +56,7 @@
     "@commitlint/cli": "17.0.3",
     "@commitlint/config-conventional": "17.0.3",
     "@types/node": "18.0.0",
-    "@types/prettier": "2.6.3",
+    "@types/prettier": "2.6.4",
     "eslint": "8.20.0",
     "eslint-config-bases": "workspace:^",
     "husky": "8.0.1",
