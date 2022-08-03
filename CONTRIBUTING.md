@@ -12,23 +12,24 @@ Contributions are welcome.
 
 ## Scripts
 
-| Name                         | Description                                                        |
-|------------------------------|--------------------------------------------------------------------|
-| `yarn g:changeset`           | Add a changeset to declare version bumps.                          |
-| `yarn g:typecheck`           | Run typechecks all packages.                                       |
-| `yarn g:lint`                | Display linter issues in all packages.                             |
-| `yarn g:lint --fix`          | Attempt to auto-fix all packages                                   |
-| `yarn g:test`                | Run unit and e2e test.                                             |
-| `yarn g:test-unit`           | Run only unit tests.                                               |
-| `yarn g:test-e2e`            | Run only e2e tests (requires docker)                               |
-| `yarn g:build`               | Build all packages                                                 |
-| `yarn g:clean`               | Clean all caches and builds.                                       |
-| `yarn g:build-api-doc`       | Regenerate api documentation in ./doc/api/                         |
-| `yarn g:check-dist`          | Ensure build dist files passes es2017 (run `g:build` first).       |
-| `yarn deps:check --dep dev`  | Will display what packages can be upgraded                         |
-| `yarn deps:update --dep dev` | Apply possible updates (run `yarn install && yarn dedupe` after)   |
-| `yarn check:install`         | Detect potential dependency issues in packages                     |
-| `yarn dedupe`                | Built-in yarn deduplication of the lock file                       |
+| Name                         | Description                                                      |
+|------------------------------|------------------------------------------------------------------|
+| `yarn g:changeset`           | Add a changeset to declare version bumps.                        |
+| `yarn g:typecheck`           | Run typechecks all packages.                                     |
+| `yarn g:lint`                | Display linter issues in all packages.                           |
+| `yarn g:lint --fix`          | Attempt to auto-fix all packages                                 |
+| `yarn g:test`                | Run unit and e2e test.                                           |
+| `yarn g:test-unit`           | Run only unit tests.                                             |
+| `yarn g:test-e2e`            | Run only e2e tests (requires docker)                             |
+| `yarn g:build`               | Build all packages                                               |
+| `yarn g:clean`               | Clean all caches and builds.                                     |
+| `yarn g:build-api-doc`       | Regenerate api documentation in ./doc/api/                       |
+| `yarn g:size`                | Ensure under bundle size limits (run `g:build` first).           |
+| `yarn g:check-dist`          | Ensure build dist files passes es2017 (run `g:build` first).     |
+| `yarn deps:check --dep dev`  | Will display what packages can be upgraded                       |
+| `yarn deps:update --dep dev` | Apply possible updates (run `yarn install && yarn dedupe` after) |
+| `yarn check:install`         | Detect potential dependency issues in packages                   |
+| `yarn dedupe`                | Built-in yarn deduplication of the lock file                     |
 
 > **Tip** By convention script prefixed with `g:` can be run from anywhere in the project and will execute their
 > counterpart in all packages. Alternatively you can `cd` into a specific package directory and run the script
