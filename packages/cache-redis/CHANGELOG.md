@@ -1,4 +1,4 @@
-# @soluble/cache-node-redis
+# @soluble/cache-redis
 
 ## 0.11.0
 

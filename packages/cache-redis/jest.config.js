@@ -24,9 +24,9 @@ const getTsConfigBasePaths = (tsConfigFile) => {
 
 /** @type {import('ts-jest/dist').InitialOptionsTsJest} */
 const config = {
-  displayName: `cache-interop:unit`,
+  displayName: `cache-redis:unit`,
   preset: 'ts-jest/presets/default-esm',
-  cacheDirectory: getJestCachePath('@soluble/cache-interop'),
+  cacheDirectory: getJestCachePath('@soluble/cache-redis'),
   testEnvironment: 'node',
   extensionsToTreatAsEsm: ['.ts'],
   verbose: true,
