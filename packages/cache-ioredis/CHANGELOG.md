@@ -1,5 +1,19 @@
 # @soluble/cache-ioredis
 
+## 0.12.0
+
+### Minor Changes
+
+- [#642](https://github.com/soluble-io/cache-interop/pull/642) [`e7ac27a`](https://github.com/soluble-io/cache-interop/commit/e7ac27a8b9a1fd8fefa11e007ea9ad4b8a49b388) Thanks [@belgattitude](https://github.com/belgattitude)! - ESM first, support dual packaging (esm/cjs).
+
+### Patch Changes
+
+- [#638](https://github.com/soluble-io/cache-interop/pull/638) [`d46ddef`](https://github.com/soluble-io/cache-interop/commit/d46ddef6c6f3e214033ae48e10e2b37236f0aa4d) Thanks [@belgattitude](https://github.com/belgattitude)! - Add check for bundle size-limit
+
+- Updated dependencies [[`f9911ce`](https://github.com/soluble-io/cache-interop/commit/f9911ce974bd3c981253d9a382b62b58388f4182), [`d46ddef`](https://github.com/soluble-io/cache-interop/commit/d46ddef6c6f3e214033ae48e10e2b37236f0aa4d), [`e34944d`](https://github.com/soluble-io/cache-interop/commit/e34944dfc56933bebaa35964ca3278c0a08958fe)]:
+  - @soluble/cache-interop@0.11.0
+  - @soluble/dsn-parser@1.5.0
+
 ## 0.11.0
 
 ### Minor Changes

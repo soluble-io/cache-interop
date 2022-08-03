@@ -1,5 +1,19 @@
 # @soluble/cache-node-redis
 
+## 0.11.0
+
+### Minor Changes
+
+- [#643](https://github.com/soluble-io/cache-interop/pull/643) [`30ca007`](https://github.com/soluble-io/cache-interop/commit/30ca0070f40017b1058ed550cc3d9ec5f35d3af3) Thanks [@belgattitude](https://github.com/belgattitude)! - ESM first, dual packaging supported (esm/cjs)
+
+### Patch Changes
+
+- [#638](https://github.com/soluble-io/cache-interop/pull/638) [`d46ddef`](https://github.com/soluble-io/cache-interop/commit/d46ddef6c6f3e214033ae48e10e2b37236f0aa4d) Thanks [@belgattitude](https://github.com/belgattitude)! - Add check for bundle size-limit
+
+- Updated dependencies [[`f9911ce`](https://github.com/soluble-io/cache-interop/commit/f9911ce974bd3c981253d9a382b62b58388f4182), [`d46ddef`](https://github.com/soluble-io/cache-interop/commit/d46ddef6c6f3e214033ae48e10e2b37236f0aa4d), [`e34944d`](https://github.com/soluble-io/cache-interop/commit/e34944dfc56933bebaa35964ca3278c0a08958fe)]:
+  - @soluble/cache-interop@0.11.0
+  - @soluble/dsn-parser@1.5.0
+
 ## 0.10.0
 
 ### Minor Changes
