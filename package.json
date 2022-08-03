@@ -34,7 +34,7 @@
     "g:ci-coverage-upload": "yarn workspaces foreach -tv run ci-coverage-upload",
     "deps:check": "npm-check-updates --deep",
     "deps:update": "npm-check-updates --deep -u",
-    "check:install": "yarn dlx @yarnpkg/doctor@^3.1.0 .",
+    "check:install": "yarn dlx @yarnpkg/doctor@^3.2.2 .",
     "check:codecov-config": "curl --data-binary @codecov.yml https://codecov.io/validate",
     "nuke:node_modules": "rimraf '**/node_modules'",
     "g:build-api-doc": "yarn workspaces foreach -pv run build-api-doc"
@@ -55,7 +55,7 @@
     "@changesets/cli": "2.24.1",
     "@commitlint/cli": "17.0.3",
     "@commitlint/config-conventional": "17.0.3",
-    "@types/node": "18.0.0",
+    "@types/node": "18.6.3",
     "@types/prettier": "2.6.4",
     "eslint": "8.21.0",
     "eslint-config-bases": "workspace:^",
