@@ -2965,6 +2965,7 @@ __metadata:
     cross-env: 7.0.3
     dayjs: 1.11.4
     es-check: 7.0.0
+    get-tsconfig: 4.2.0
     jest: 28.1.3
     microbundle: 0.15.0
     rimraf: 3.0.2

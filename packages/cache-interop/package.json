@@ -18,19 +18,25 @@
     "interop",
     "contract"
   ],
-  "jsnext:main": "dist/cache-interop.es.js",
-  "source": "src/index.ts",
-  "module": "dist/cache-interop.es.js",
-  "main": "dist/cache-interop.js",
-  "umd:main": "dist/cache-interop.umd.js",
-  "types": "dist/index.d.ts",
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      }
+    }
+  },
   "files": [
     "dist"
   ],
   "sideEffects": false,
   "scripts": {
-    "start": "cross-env NODE_ENV=development tsdx watch",
-    "build": "cross-env NODE_ENV=production microbundle --tsconfig ./tsconfig.build.json --format esm,cjs --target node --no-compress",
+    "build": "tsup",
+    "dev": "tsup --watch",
     "?build-release": "When https://github.com/atlassian/changesets/issues/432 has a solution we can remove this trick",
     "build-release": "yarn build",
     "check-size": "size-limit",
@@ -60,6 +66,7 @@
     "cross-env": "7.0.3",
     "dayjs": "1.11.4",
     "es-check": "7.0.0",
+    "get-tsconfig": "4.2.0",
     "jest": "28.1.3",
     "microbundle": "0.15.0",
     "rimraf": "3.0.2",
