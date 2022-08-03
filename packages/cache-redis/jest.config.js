@@ -1,50 +1,54 @@
 // @ts-check
+import { pathsToModuleNameMapper } from 'ts-jest';
+import { getTsconfig } from 'get-tsconfig';
+import { getJestCachePath } from '../../cache.config.js';
 
-const { defaults: tsPreset } = require('ts-jest/presets');
-const { pathsToModuleNameMapper } = require('ts-jest');
+const tsConfigFile = new URL('./tsconfig.jest.json', import.meta.url).pathname;
 
-const {
-  compilerOptions: { paths: tsConfigPaths },
-} = require('../../tsconfig.paths.json');
-
-// Take the paths from tsconfig automatically from base tsconfig.json
-// @link https://kulshekhar.github.io/ts-jest/docs/paths-mapping
-const getTsConfigBasePaths = () => {
-  return tsConfigPaths
-    ? pathsToModuleNameMapper(tsConfigPaths, {
-        prefix: '<rootDir>/tricky-false-path-to-remove-parent/packages',
+/**
+ * Transform the tsconfig paths into jest compatible one (support extends)
+ * @param {string} tsConfigFile
+ */
+const getTsConfigBasePaths = (tsConfigFile) => {
+  const parsedTsConfig = getTsconfig(tsConfigFile);
+  if (parsedTsConfig === null) {
+    throw new Error(`Cannot find tsconfig file: ${tsConfigFile}`);
+  }
+  const tsPaths = parsedTsConfig.config.compilerOptions?.paths;
+  return tsPaths
+    ? pathsToModuleNameMapper(tsPaths, {
+        prefix: '<rootDir>/',
       })
     : {};
 };
 
-/** @type {import('ts-jest/dist/types').InitialOptionsTsJest} */
+/** @type {import('ts-jest/dist').InitialOptionsTsJest} */
 const config = {
-  displayName: 'cache-redis/unit',
-  testRunner: 'jest-circus/runner',
+  displayName: `cache-interop:unit`,
+  preset: 'ts-jest/presets/default-esm',
+  cacheDirectory: getJestCachePath('@soluble/cache-interop'),
   testEnvironment: 'node',
+  extensionsToTreatAsEsm: ['.ts'],
   verbose: true,
-  transform: {
-    ...tsPreset.transform,
-  },
-  rootDir: '../',
-
-  testMatch: ['<rootDir>/cache-redis/src/**/*.test.ts'],
+  rootDir: './src',
+  testMatch: ['<rootDir>/**/*.{spec,test}.{js,jsx,ts,tsx}'],
   moduleNameMapper: {
-    ...getTsConfigBasePaths(),
+    ...getTsConfigBasePaths(tsConfigFile),
   },
-  coverageDirectory: '<rootDir>/cache-redis/coverage',
+  // false by default, overrides in cli, ie: yarn test:unit --collect-coverage=true
+  collectCoverage: false,
+  coverageDirectory: '<rootDir>/../coverage',
   collectCoverageFrom: [
-    '<rootDir>/cache-redis/src/**/*.{ts,js}',
-    '!**/*.test.ts',
-    '!**/index.ts',
-    '!**/*.d.ts',
+    '<rootDir>/**/*.{ts,tsx,js,jsx}',
+    '!**/*.test.{js,ts}',
+    '!**/__mock__/*',
   ],
   globals: {
     'ts-jest': {
-      diagnostics: true,
-      tsconfig: './tsconfig.jest.json',
+      useESM: true,
+      tsconfig: tsConfigFile,
     },
   },
 };
 
-module.exports = config;
+export default config;
