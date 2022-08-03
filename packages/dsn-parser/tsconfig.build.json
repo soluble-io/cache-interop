@@ -2,7 +2,7 @@
   "$schema": "https://json.schemastore.org/tsconfig",
   "extends": "./tsconfig.json",
   "compilerOptions": {
-    "target": "ESNext",
+    "target": "ES2016",
     "module": "ESNext",
     "rootDir": "./src",
     "baseUrl": ".",
