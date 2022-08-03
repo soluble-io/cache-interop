@@ -2,8 +2,7 @@
 # convenience scripts.
 # @link https://github.com/raineorshine/npm-check-updates
 reject: [
-    # Better to handle it manually
-    "typescript",
+    # Need to adapt to the new version of the package.
     "redis",
     "@types/redis",
 ]

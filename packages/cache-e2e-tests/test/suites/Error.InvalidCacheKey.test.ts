@@ -25,34 +25,48 @@ describe.each(adapters)('Adapter: %s', (name, adapterFactory) => {
 
   describe('When the cacheKey is invalid / unsupported format', () => {
     const invalidKey = { errKey: true } as unknown as string;
-    test('calling delete(invalidKey) should return InvalidCacheKeyException', async () => {
-      await expect(cache.delete(invalidKey)).resolves.toBeInstanceOf(
-        InvalidCacheKeyException
-      );
-    });
-    test('calling set(invalidKey) should return InvalidCacheKeyException', async () => {
-      await expect(cache.set(invalidKey, 'cool')).resolves.toBeInstanceOf(
-        InvalidCacheKeyException
-      );
-    });
-    test('calling get(invalidKey) should return error with InvalidCacheKeyException', async () => {
-      const item = await cache.get(invalidKey);
-      expect(item).toBeInstanceOf(CacheItem);
-      expect(item.error).toBeInstanceOf(InvalidCacheKeyException);
-    });
-    test('calling getOrSet(invalidKey) should return InvalidCacheKeyException', async () => {
-      const item = await cache.getOrSet(invalidKey, 'hello');
-      expect(item).toBeInstanceOf(CacheItem);
-      expect(item.error).toBeInstanceOf(InvalidCacheKeyException);
-    });
-    test('calling has(invalidKey, { onError }) should call onError and return an InvalidCacheKeyException', async () => {
-      let error: Error | null = null;
-      await cache.has(invalidKey, {
-        onError: (err) => {
-          error = err;
-        },
+    describe('Adapter.delete(invalidKey)', () => {
+      it('should return InvalidCacheKeyException', async () => {
+        await expect(cache.delete(invalidKey)).resolves.toBeInstanceOf(
+          InvalidCacheKeyException
+        );
       });
-      expect(error).toBeInstanceOf(InvalidCacheKeyException);
+    });
+
+    describe('Adapter.set(invalidKey)', () => {
+      it('should return InvalidCacheKeyException', async () => {
+        await expect(cache.set(invalidKey, 'cool')).resolves.toBeInstanceOf(
+          InvalidCacheKeyException
+        );
+      });
+    });
+
+    describe('Adapter.get(invalidKey)', () => {
+      it('should return error with InvalidCacheKeyException', async () => {
+        const item = await cache.get(invalidKey);
+        expect(item).toBeInstanceOf(CacheItem);
+        expect(item.error).toBeInstanceOf(InvalidCacheKeyException);
+      });
+    });
+
+    describe('Adapter.getOrSet(invalidKey)', () => {
+      it('should return InvalidCacheKeyException', async () => {
+        const item = await cache.getOrSet(invalidKey, 'hello');
+        expect(item).toBeInstanceOf(CacheItem);
+        expect(item.error).toBeInstanceOf(InvalidCacheKeyException);
+      });
+    });
+
+    describe('Adapter.has(invalidKey)', () => {
+      it('should call onError and return an InvalidCacheKeyException', async () => {
+        let error: Error | null = null;
+        await cache.has(invalidKey, {
+          onError: (err) => {
+            error = err;
+          },
+        });
+        expect(error).toBeInstanceOf(InvalidCacheKeyException);
+      });
     });
   });
 });
