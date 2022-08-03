@@ -1,13 +1,16 @@
 {
+  "$schema": "https://json.schemastore.org/tsconfig",
   "extends": "./tsconfig.json",
   "compilerOptions": {
-    "target": "ESNext",
+    "target": "ES2020",
     "module": "ESNext",
-    "baseUrl": "./src",
+    "rootDir": "../",
+    "baseUrl": "./cache-redis/src",
     "noEmit": false,
     "declaration": true,
     "declarationMap": false,
-    "declarationDir": "./dist"
+    "declarationDir": "./dist",
+    "tsBuildInfoFile": "./tsconfig.build.tsbuildinfo" // for tsup rollup dts tsBuildInfoFile is required when using incremental
   },
   "exclude": ["*.test.ts"]
 }
