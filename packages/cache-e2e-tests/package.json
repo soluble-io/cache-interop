@@ -18,7 +18,8 @@
     "clean": "rimraf --no-glob ./coverage",
     "test-e2e": "jest --config jest.config.js --color $@",
     "typecheck": "tsc --project tsconfig.json --noEmit",
-    "lint": "eslint . --ext .ts,.tsx,.js,.jsx",
+    "lint": "eslint . --ext .ts,.tsx,.js,.jsx,.mjs,.cjs,.mts,.cts --cache --cache-location ../../.cache/eslint/cache-e2e-tests.eslintcache",
+    "fix-all-files": "eslint --ext .ts,.tsx,.js,.jsx,.mjs,.cjs,.mts,.cts --fix",
     "fix-staged": "lint-staged --allow-empty",
     "ci-coverage-upload": "../../.github/scripts/download/codecov -F e2e --dir ./coverage"
   },

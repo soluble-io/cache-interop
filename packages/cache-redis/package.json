@@ -44,7 +44,8 @@
     "test-unit": "jest --config jest.config.js --color $@",
     "typecheck": "tsc --noEmit",
     "typecheck-build": "tsc --project tsconfig.build.json --noEmit",
-    "lint": "eslint . --ext .ts,.tsx,.js,.jsx",
+    "lint": "eslint . --ext .ts,.tsx,.js,.jsx,.mjs,.cjs,.mts,.cts --cache --cache-location ../../.cache/eslint/cache-redis.eslintcache",
+    "fix-all-files": "eslint --ext .ts,.tsx,.js,.jsx,.mjs,.cjs,.mts,.cts --fix",
     "fix-staged": "lint-staged --allow-empty",
     "ci-coverage-upload": "../../.github/scripts/download/codecov -F cacheNodeRedisUnit --dir ./coverage"
   },
@@ -74,6 +75,7 @@
     "size-limit": "8.0.0",
     "ts-jest": "28.0.7",
     "tslib": "2.4.0",
+    "tsup": "6.2.1",
     "typescript": "4.7.4"
   },
   "peerDependencies": {

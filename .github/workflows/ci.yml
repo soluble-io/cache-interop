@@ -53,7 +53,6 @@ jobs:
           path: |
             ${{ github.workspace }}/.cache
             ${{ github.workspace }}/**/tsconfig.tsbuildinfo
-            ${{ github.workspace }}/**/.eslintcache
           key: ${{ runner.os }}-dx-${{ hashFiles('**/yarn.lock') }}
 
       - name: Install dependencies

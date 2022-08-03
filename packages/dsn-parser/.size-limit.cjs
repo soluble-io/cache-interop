@@ -1,7 +1,7 @@
 module.exports = [
   {
     name: 'JS',
-    path: ['dist/dsn-parser.js'],
+    path: ['dist/index.js'],
     limit: '2KB',
   },
 ];

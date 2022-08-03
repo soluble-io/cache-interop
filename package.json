@@ -23,7 +23,8 @@
     "g:build-release": "yarn workspaces foreach -tv run build-release",
     "g:size-limit": "yarn workspaces foreach -v --no-private run size-limit",
     "g:check-dist": "yarn workspaces foreach -v --no-private run check-dist",
-    "g:clean": "yarn workspaces foreach -ptv run clean",
+    "g:clean": "yarn clean:global-cache && yarn workspaces foreach -pv run clean",
+    "g:build-api-doc": "yarn workspaces foreach -pv run build-api-doc",
     "g:test": "run-s g:test-unit g:test-e2e",
     "g:test-unit": "yarn workspaces foreach -ptv --exclude '@soluble/*e2e*' --exclude 'cache-interop-docs' run test-unit",
     "g:test-e2e": "yarn workspaces foreach -ptv --include '@soluble/*e2e*' --exclude 'cache-interop-docs' run test-e2e",
@@ -38,7 +39,7 @@
     "check:install": "yarn dlx @yarnpkg/doctor@^3.1.3 .",
     "check:codecov-config": "curl --data-binary @codecov.yml https://codecov.io/validate",
     "nuke:node_modules": "rimraf '**/node_modules'",
-    "g:build-api-doc": "yarn workspaces foreach -pv run build-api-doc"
+    "clean:global-cache": "rimraf --no-glob ./.cache"
   },
   "dependenciesMeta": {
     "cpu-features": {

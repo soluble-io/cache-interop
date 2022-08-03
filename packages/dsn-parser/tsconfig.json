@@ -1,8 +1,10 @@
 {
+  "$schema": "https://json.schemastore.org/tsconfig",
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
     "composite": true,
     "noEmit": true,
     "useUnknownInCatchVariables": true
-  }
+  },
+  "include": ["src/**/*.ts", "../../cache.config.js"]
 }
