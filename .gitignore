@@ -15,6 +15,10 @@ tsconfig.tsbuildinfo
 /out
 **/_release
 
+# global cache
+
+.cache
+
 # tests
 /coverage
 /.nyc_output
