@@ -34,7 +34,7 @@
     "g:ci-coverage-upload": "yarn workspaces foreach -tv run ci-coverage-upload",
     "deps:check": "npm-check-updates --deep",
     "deps:update": "npm-check-updates --deep -u",
-    "check:install": "yarn dlx @yarnpkg/doctor@^3.2.2 .",
+    "check:install": "yarn dlx @yarnpkg/doctor@^3.1.3 .",
     "check:codecov-config": "curl --data-binary @codecov.yml https://codecov.io/validate",
     "nuke:node_modules": "rimraf '**/node_modules'",
     "g:build-api-doc": "yarn workspaces foreach -pv run build-api-doc"
