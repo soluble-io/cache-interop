@@ -1,5 +1,15 @@
 # @soluble/cache-interop
 
+## 0.11.0
+
+### Minor Changes
+
+- [#641](https://github.com/soluble-io/cache-interop/pull/641) [`f9911ce`](https://github.com/soluble-io/cache-interop/commit/f9911ce974bd3c981253d9a382b62b58388f4182) Thanks [@belgattitude](https://github.com/belgattitude)! - ESM first with support for dual packaging (esm/cjs). Use tsup for bundling
+
+### Patch Changes
+
+- [#638](https://github.com/soluble-io/cache-interop/pull/638) [`d46ddef`](https://github.com/soluble-io/cache-interop/commit/d46ddef6c6f3e214033ae48e10e2b37236f0aa4d) Thanks [@belgattitude](https://github.com/belgattitude)! - Add check for bundle size-limit
+
 ## 0.10.0
 
 ### Minor Changes
