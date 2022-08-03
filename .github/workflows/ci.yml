@@ -79,9 +79,11 @@ jobs:
 
       - name: Check generated dist folder
         run: |
-          yarn workspaces foreach -tv run check-dist
-        env:
-          CI: true
+          yarn workspaces foreach -v run check-dist
+
+      - name: Check for bundle size limits
+        run: |
+          yarn workspaces foreach -v run size-limit
 
       - name: E2E tests
         run: |
