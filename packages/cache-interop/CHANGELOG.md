@@ -1,5 +1,19 @@
 # @soluble/cache-interop
 
+## 0.10.0
+
+### Minor Changes
+
+- [#551](https://github.com/soluble-io/cache-interop/pull/551) [`ab25552`](https://github.com/soluble-io/cache-interop/commit/ab25552b237efa86adbf8342ecc325e78b03a028) Thanks [@belgattitude](https://github.com/belgattitude)! - Drop support for redis 5
+
+* [#551](https://github.com/soluble-io/cache-interop/pull/551) [`ab25552`](https://github.com/soluble-io/cache-interop/commit/ab25552b237efa86adbf8342ecc325e78b03a028) Thanks [@belgattitude](https://github.com/belgattitude)! - Add support for redis 7 + e2e
+
+- [#551](https://github.com/soluble-io/cache-interop/pull/551) [`ab25552`](https://github.com/soluble-io/cache-interop/commit/ab25552b237efa86adbf8342ecc325e78b03a028) Thanks [@belgattitude](https://github.com/belgattitude)! - Drop official support for node 12
+
+### Patch Changes
+
+- [#537](https://github.com/soluble-io/cache-interop/pull/537) [`f371870`](https://github.com/soluble-io/cache-interop/commit/f37187081d433d30b3c44c8f3d511d95502b39a3) Thanks [@belgattitude](https://github.com/belgattitude)! - Update build with latest microbundle
+
 ## 0.10.0-canary.1
 
 ### Minor Changes
