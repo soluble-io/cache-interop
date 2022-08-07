@@ -108,7 +108,7 @@
     }
   },
   "devDependencies": {
-    "@types/prettier": "2.6.4",
+    "@types/prettier": "2.7.0",
     "eslint": "8.21.0",
     "graphql": "16.5.0",
     "react": "18.2.0",
