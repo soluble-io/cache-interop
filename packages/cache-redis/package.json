@@ -66,7 +66,7 @@
     "@soluble/dsn-parser": "workspace:^"
   },
   "devDependencies": {
-    "@size-limit/file": "8.0.0",
+    "@size-limit/file": "8.0.1",
     "@types/jest": "28.1.6",
     "@types/redis": "2.8.32",
     "cross-env": "7.0.3",
