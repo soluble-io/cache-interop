@@ -1856,14 +1856,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@size-limit/file@npm:8.0.0":
-  version: 8.0.0
-  resolution: "@size-limit/file@npm:8.0.0"
+"@size-limit/file@npm:8.0.1":
+  version: 8.0.1
+  resolution: "@size-limit/file@npm:8.0.1"
   dependencies:
     semver: 7.3.7
   peerDependencies:
-    size-limit: 8.0.0
-  checksum: 57de1c7cf7f5e72afcc03879398157816909fdeeae3c9e836aa1e3a391fcb1cc1649d089d646c47af76e0ee04333fcb078138904d5419d2106cdcef1adafe531
+    size-limit: 8.0.1
+  checksum: 45482fc0bdbd5f6f6e788010633ab1f8a342031e37957ea8a5aca0a5d36938b3a1e417af71c64a1e3f11042c79b9a3761dfbc9490bba722bda6519d63a3ab789
   languageName: node
   linkType: hard
 
@@ -1891,7 +1891,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@soluble/cache-interop@workspace:packages/cache-interop"
   dependencies:
-    "@size-limit/file": 8.0.0
+    "@size-limit/file": 8.0.1
     "@types/jest": 28.1.6
     cross-env: 7.0.3
     dayjs: 1.11.4
@@ -1913,7 +1913,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@soluble/cache-ioredis@workspace:packages/cache-ioredis"
   dependencies:
-    "@size-limit/file": 8.0.0
+    "@size-limit/file": 8.0.1
     "@soluble/cache-interop": "workspace:^"
     "@soluble/dsn-parser": "workspace:^"
     "@types/jest": 28.1.6
@@ -1935,7 +1935,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@soluble/cache-redis@workspace:packages/cache-redis"
   dependencies:
-    "@size-limit/file": 8.0.0
+    "@size-limit/file": 8.0.1
     "@soluble/cache-interop": "workspace:^"
     "@soluble/dsn-parser": "workspace:^"
     "@types/jest": 28.1.6
@@ -1966,7 +1966,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@soluble/dsn-parser@workspace:packages/dsn-parser"
   dependencies:
-    "@size-limit/file": 8.0.0
+    "@size-limit/file": 8.0.1
     "@types/jest": 28.1.6
     cross-env: 7.0.3
     es-check: 7.0.0
