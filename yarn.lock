@@ -1899,7 +1899,7 @@ __metadata:
     get-tsconfig: 4.2.0
     jest: 28.1.3
     rimraf: 3.0.2
-    size-limit: 8.0.0
+    size-limit: 8.0.1
     ts-jest: 28.0.7
     tslib: 2.4.0
     tsup: 6.2.1
@@ -1923,7 +1923,7 @@ __metadata:
     ioredis: ^5.0.6
     jest: 28.1.3
     rimraf: 3.0.2
-    size-limit: 8.0.0
+    size-limit: 8.0.1
     ts-jest: 28.0.7
     tslib: 2.4.0
     tsup: 6.2.1
@@ -1946,7 +1946,7 @@ __metadata:
     jest: 28.1.3
     redis: 3.1.2
     rimraf: 3.0.2
-    size-limit: 8.0.0
+    size-limit: 8.0.1
     ts-jest: 28.0.7
     tslib: 2.4.0
     tsup: 6.2.1
@@ -1973,7 +1973,7 @@ __metadata:
     get-tsconfig: 4.2.0
     jest: 28.1.3
     rimraf: 3.0.2
-    size-limit: 8.0.0
+    size-limit: 8.0.1
     ts-jest: 28.0.7
     tslib: 2.4.0
     tsup: 6.2.1
@@ -9939,9 +9939,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"size-limit@npm:8.0.0":
-  version: 8.0.0
-  resolution: "size-limit@npm:8.0.0"
+"size-limit@npm:8.0.1":
+  version: 8.0.1
+  resolution: "size-limit@npm:8.0.1"
   dependencies:
     bytes-iec: ^3.1.1
     chokidar: ^3.5.3
@@ -9953,7 +9953,7 @@ __metadata:
     picocolors: ^1.0.0
   bin:
     size-limit: bin.js
-  checksum: 727b65e3c3717c1b8f67b31d285e325416062ad83f9b0d976554388344a7c2d73be64b8a5ed02846d4d8bb3bd5033e23c981dedf91684f54873b85c6c21e78a4
+  checksum: f37f8d33c4f9768db3cfdf0e5a761238d7e54dccc342004d782fe0b68aaed84153eb2e72f3b9fd61ef00e9cb7c648fdefc5718146c26abac73470a22838750a0
   languageName: node
   linkType: hard
 
