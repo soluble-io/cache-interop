@@ -52,25 +52,18 @@
     "fix-staged": "lint-staged --allow-empty",
     "ci-coverage-upload": "../../.github/scripts/download/codecov -F cacheNodeRedisUnit --dir ./coverage"
   },
-  "lint-staged": {
-    "*.{js,jsx,ts,tsx}": [
-      "prettier --write",
-      "eslint --fix"
-    ],
-    "*.{yaml,json,md,html}": [
-      "prettier --write"
-    ]
-  },
   "dependencies": {
     "@soluble/cache-interop": "workspace:^",
     "@soluble/dsn-parser": "workspace:^"
   },
   "devDependencies": {
     "@size-limit/file": "8.0.1",
+    "@soluble/eslint-config-bases": "workspace:^",
     "@types/jest": "28.1.6",
     "@types/redis": "2.8.32",
     "cross-env": "7.0.3",
     "es-check": "7.0.0",
+    "eslint": "8.21.0",
     "get-tsconfig": "4.2.0",
     "jest": "28.1.3",
     "redis": "3.1.2",

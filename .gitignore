@@ -18,6 +18,7 @@ tsconfig.tsbuildinfo
 # global cache
 
 .cache
+.eslintcache
 
 # tests
 /coverage

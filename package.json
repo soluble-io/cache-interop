@@ -13,6 +13,7 @@
   },
   "workspaces": {
     "packages": [
+      "examples/*",
       "packages/*"
     ]
   },
@@ -32,6 +33,7 @@
     "g:release": "yarn g:build-release && changeset publish",
     "g:typecheck": "yarn workspaces foreach -ptv run typecheck",
     "g:lint": "yarn workspaces foreach -ptv run lint",
+    "g:lint-staged-files": "lint-staged --allow-empty",
     "g:fix-staged": "yarn workspaces foreach -t run fix-staged",
     "g:ci-coverage-upload": "yarn workspaces foreach -tv run ci-coverage-upload",
     "deps:check": "npm-check-updates --deep",
@@ -57,17 +59,19 @@
     "@changesets/cli": "2.24.2",
     "@commitlint/cli": "17.0.3",
     "@commitlint/config-conventional": "17.0.3",
-    "@types/node": "18.6.3",
+    "@soluble/eslint-config-bases": "workspace:^",
+    "@types/node": "18.7.2",
     "@types/prettier": "2.7.0",
+    "@types/shell-quote": "1.7.1",
     "eslint": "8.21.0",
-    "eslint-config-bases": "workspace:^",
     "husky": "8.0.1",
     "is-ci": "3.0.1",
     "lint-staged": "13.0.3",
     "npm-check-updates": "16.0.5",
     "npm-run-all": "4.1.5",
     "prettier": "2.7.1",
-    "rimraf": "3.0.2"
+    "rimraf": "3.0.2",
+    "shell-quote": "1.7.3"
   },
   "engines": {
     "node": "^14.13.1 || >=16",

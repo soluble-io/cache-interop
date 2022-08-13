@@ -1,0 +1,15 @@
+{
+  "mode": "pre",
+  "tag": "canary",
+  "initialVersions": {
+    "@examples/nextjs-cjs": "0.1.0",
+    "@examples/nextjs-esm": "0.1.0",
+    "@soluble/cache-e2e-tests": "0.11.0",
+    "@soluble/cache-interop": "0.11.0",
+    "@soluble/cache-ioredis": "0.12.0",
+    "@soluble/cache-redis": "0.11.0",
+    "@soluble/dsn-parser": "1.5.0",
+    "@soluble/eslint-config-bases": "1.1.0"
+  },
+  "changesets": []
+}
