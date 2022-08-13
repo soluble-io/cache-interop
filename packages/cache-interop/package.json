@@ -58,6 +58,7 @@
     "cross-env": "7.0.3",
     "dayjs": "1.11.5",
     "es-check": "7.0.0",
+    "eslint": "8.21.0",
     "get-tsconfig": "4.2.0",
     "jest": "28.1.3",
     "rimraf": "3.0.2",

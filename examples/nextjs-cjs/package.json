@@ -15,9 +15,11 @@
     "@soluble/cache-ioredis": "workspace:^",
     "@soluble/cache-redis": "workspace:^",
     "@soluble/dsn-parser": "workspace:^",
+    "ioredis": "5.2.2",
     "next": "12.2.5",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "redis": "4.2.0"
   },
   "devDependencies": {
     "@soluble/eslint-config-bases": "workspace:^",
