@@ -6,11 +6,15 @@ const NEXTJS_IGNORE_ESLINT = trueEnv.includes(
 const NEXTJS_IGNORE_TYPECHECK = trueEnv.includes(
   process.env?.NEXTJS_IGNORE_TYPECHECK ?? 'false'
 );
+const disableSourceMaps = trueEnv.includes(
+  process.env?.NEXT_DISABLE_SOURCEMAPS ?? 'false'
+);
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
+  productionBrowserSourceMaps: !disableSourceMaps,
   typescript: {
     ignoreBuildErrors: NEXTJS_IGNORE_TYPECHECK,
   },
