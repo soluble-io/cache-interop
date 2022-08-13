@@ -11,5 +11,9 @@
     "@soluble/dsn-parser": "1.5.0",
     "@soluble/eslint-config-bases": "1.1.0"
   },
-  "changesets": []
+  "changesets": [
+    "mean-kings-admire",
+    "tidy-waves-stare",
+    "twenty-bugs-notice"
+  ]
 }
