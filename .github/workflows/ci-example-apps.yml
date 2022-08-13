@@ -61,6 +61,10 @@ jobs:
         env:
           HUSKY: 0
 
+      - name: Build cache-interop packages
+        run: |
+          yarn g:build-release
+
       - name: Typecheck
         run: |
           yarn workspaces foreach -v --from '@examples/*' run typecheck
