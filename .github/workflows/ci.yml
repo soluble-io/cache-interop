@@ -65,7 +65,7 @@ jobs:
 
       - name: Typecheck
         run: |
-          yarn g:typecheck
+          yarn workspaces foreach --exclude '@examples/**' -v run typecheck
 
       - name: List changed workspaces
         run: yarn workspaces list --since --recursive --json
