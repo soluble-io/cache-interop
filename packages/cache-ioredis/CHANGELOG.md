@@ -1,5 +1,12 @@
 # @soluble/cache-ioredis
 
+## 0.12.1-canary.1
+
+### Patch Changes
+
+- Updated dependencies [[`50a655d`](https://github.com/soluble-io/cache-interop/commit/50a655dc4db0eab0b63f0b73e14e0a998768d954)]:
+  - @soluble/dsn-parser@1.6.0-canary.1
+
 ## 0.12.1-canary.0
 
 ### Patch Changes
