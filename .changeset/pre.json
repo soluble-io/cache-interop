@@ -12,6 +12,7 @@
     "@soluble/eslint-config-bases": "1.1.0"
   },
   "changesets": [
+    "kind-meals-fry",
     "mean-kings-admire",
     "nine-maps-cross",
     "tidy-waves-stare",
