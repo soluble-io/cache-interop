@@ -44,16 +44,21 @@ describe('parseDsn', () => {
   describe('when provided password contains special characters', () => {
     it('should return the correct parsed params', () => {
       expect(
-        parseDsn('redis://username:P@/ssw/rd@www.example.com:6379/0')
+        parseDsn(
+          'redis://us_er na-?me:P @-_?/ssw/rd@www.example.com:6379/0?cache=true'
+        )
       ).toStrictEqual({
         success: true,
         value: {
           driver: 'redis',
-          pass: 'P@/ssw/rd',
+          pass: 'P @-_?/ssw/rd',
           host: 'www.example.com',
-          user: 'username',
+          user: 'us_er na-?me',
           port: 6379,
           db: '0',
+          params: {
+            cache: true,
+          },
         },
       });
     });

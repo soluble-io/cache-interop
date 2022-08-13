@@ -28,7 +28,7 @@ module.exports = {
   extends: [
     '@soluble/eslint-config-bases/typescript',
     '@soluble/eslint-config-bases/sonar',
-    // '@soluble/eslint-config-bases/regexp',
+    '@soluble/eslint-config-bases/regexp',
     '@soluble/eslint-config-bases/jest',
     // Apply prettier and disable incompatible rules
     '@soluble/eslint-config-bases/prettier',
