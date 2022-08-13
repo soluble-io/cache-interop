@@ -1,3 +1,5 @@
+// @ts-check
+
 const trueEnv = ['true', '1', 'yes'];
 
 const NEXTJS_IGNORE_ESLINT = trueEnv.includes(
@@ -11,7 +13,7 @@ const disableSourceMaps = trueEnv.includes(
 );
 
 /** @type {import('next').NextConfig} */
-export const nextConfig = {
+const nextConfig = {
   reactStrictMode: true,
   productionBrowserSourceMaps: !disableSourceMaps,
   swcMinify: true,
@@ -23,3 +25,5 @@ export const nextConfig = {
     dirs: ['src'],
   },
 };
+
+export default nextConfig;
