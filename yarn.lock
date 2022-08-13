@@ -995,6 +995,48 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@examples/nextjs-cjs@workspace:examples/nextjs-cjs":
+  version: 0.0.0-use.local
+  resolution: "@examples/nextjs-cjs@workspace:examples/nextjs-cjs"
+  dependencies:
+    "@soluble/cache-interop": "workspace:^"
+    "@soluble/cache-ioredis": "workspace:^"
+    "@soluble/cache-redis": "workspace:^"
+    "@soluble/dsn-parser": "workspace:^"
+    "@soluble/eslint-config-bases": "workspace:^"
+    "@types/node": 18.7.2
+    "@types/react": 18.0.17
+    "@types/react-dom": 18.0.6
+    eslint: 8.21.0
+    eslint-config-next: 12.2.5
+    next: 12.2.5
+    react: 18.2.0
+    react-dom: 18.2.0
+    typescript: 4.7.4
+  languageName: unknown
+  linkType: soft
+
+"@examples/nextjs-esm@workspace:examples/nextjs-esm":
+  version: 0.0.0-use.local
+  resolution: "@examples/nextjs-esm@workspace:examples/nextjs-esm"
+  dependencies:
+    "@soluble/cache-interop": "workspace:^"
+    "@soluble/cache-ioredis": "workspace:^"
+    "@soluble/cache-redis": "workspace:^"
+    "@soluble/dsn-parser": "workspace:^"
+    "@soluble/eslint-config-bases": "workspace:^"
+    "@types/node": 18.7.2
+    "@types/react": 18.0.17
+    "@types/react-dom": 18.0.6
+    eslint: 8.21.0
+    eslint-config-next: 12.2.5
+    next: 12.2.5
+    react: 18.2.0
+    react-dom: 18.2.0
+    typescript: 4.7.4
+  languageName: unknown
+  linkType: soft
+
 "@gar/promisify@npm:^1.0.1, @gar/promisify@npm:^1.1.3":
   version: 1.1.3
   resolution: "@gar/promisify@npm:1.1.3"
@@ -8464,48 +8506,6 @@ __metadata:
   checksum: e8fcbd93d74fda81640fd174a9d380f22db404d3ce0893730db3db806317ae18c86d1dbb502e63e47c92fb21a93812de62639c2f1204330cb569fdac4d3d0573
   languageName: node
   linkType: hard
-
-"nextjs-cjs@workspace:examples/nextjs-cjs":
-  version: 0.0.0-use.local
-  resolution: "nextjs-cjs@workspace:examples/nextjs-cjs"
-  dependencies:
-    "@soluble/cache-interop": "workspace:^"
-    "@soluble/cache-ioredis": "workspace:^"
-    "@soluble/cache-redis": "workspace:^"
-    "@soluble/dsn-parser": "workspace:^"
-    "@soluble/eslint-config-bases": "workspace:^"
-    "@types/node": 18.7.2
-    "@types/react": 18.0.17
-    "@types/react-dom": 18.0.6
-    eslint: 8.21.0
-    eslint-config-next: 12.2.5
-    next: 12.2.5
-    react: 18.2.0
-    react-dom: 18.2.0
-    typescript: 4.7.4
-  languageName: unknown
-  linkType: soft
-
-"nextjs-esm@workspace:examples/nextjs-esm":
-  version: 0.0.0-use.local
-  resolution: "nextjs-esm@workspace:examples/nextjs-esm"
-  dependencies:
-    "@soluble/cache-interop": "workspace:^"
-    "@soluble/cache-ioredis": "workspace:^"
-    "@soluble/cache-redis": "workspace:^"
-    "@soluble/dsn-parser": "workspace:^"
-    "@soluble/eslint-config-bases": "workspace:^"
-    "@types/node": 18.7.2
-    "@types/react": 18.0.17
-    "@types/react-dom": 18.0.6
-    eslint: 8.21.0
-    eslint-config-next: 12.2.5
-    next: 12.2.5
-    react: 18.2.0
-    react-dom: 18.2.0
-    typescript: 4.7.4
-  languageName: unknown
-  linkType: soft
 
 "nice-try@npm:^1.0.4":
   version: 1.0.5
