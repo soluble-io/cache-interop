@@ -1,3 +1,5 @@
+// @ts-check
+
 const trueEnv = ['true', '1', 'yes'];
 
 const NEXTJS_IGNORE_ESLINT = trueEnv.includes(
