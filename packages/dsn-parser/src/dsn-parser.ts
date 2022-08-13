@@ -8,10 +8,8 @@ import {
 } from './dsn-parser.util';
 import { parseQueryParams } from './query-param-parser';
 
-const dsnRegexp = new RegExp(
-  `^(?<driver>([a-z0-9_-]+)):\\/\\/((?<user>.+)?:(?<pass>.+)@)?(?<host>[^\\/:]+?)(:(?<port>\\d+)?)?(\\/(?<db>([\\.#@$a-z0-9_-])+))?(\\?(?<params>.+))?$`,
-  'i'
-);
+const dsnRegexp =
+  /^(?<driver>([\w-]+)):\/\/((?<user>.{1,200})?:(?<pass>.{1,250})@)?(?<host>[^/:]{1,400}?)(:(?<port>\d+)?)?(\/(?<db>([.#@$\w-])+))?(\?(?<params>.+))?$/;
 
 export type ParseDsnOptions = {
   /** Whether to lowercase parsed driver name, default: false */
