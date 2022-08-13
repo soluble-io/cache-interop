@@ -23,20 +23,12 @@
     "fix-staged": "lint-staged --allow-empty",
     "ci-coverage-upload": "../../.github/scripts/download/codecov -F e2e --dir ./coverage"
   },
-  "lint-staged": {
-    "*.{js,jsx,ts,tsx}": [
-      "prettier --write",
-      "eslint --fix"
-    ],
-    "*.{yaml,json,md,html}": [
-      "prettier --write"
-    ]
-  },
   "devDependencies": {
     "@soluble/cache-interop": "workspace:^",
     "@soluble/cache-ioredis": "workspace:^",
     "@soluble/cache-redis": "workspace:^",
     "@soluble/dsn-parser": "workspace:^",
+    "@soluble/eslint-config-bases": "workspace:^",
     "@types/ioredis": "4.28.10",
     "@types/jest": "28.1.6",
     "@types/redis": "2.8.32",

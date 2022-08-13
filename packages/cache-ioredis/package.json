@@ -54,15 +54,6 @@
     "fix-all-files": "eslint --ext .ts,.tsx,.js,.jsx,.mjs,.cjs,.mts,.cts --fix",
     "ci-coverage-upload": "../../.github/scripts/download/codecov -F cacheIORedisUnit --dir ./coverage"
   },
-  "lint-staged": {
-    "*.{js,jsx,ts,tsx}": [
-      "prettier --write",
-      "eslint --fix"
-    ],
-    "*.{yaml,json,md,html}": [
-      "prettier --write"
-    ]
-  },
   "dependencies": {
     "@soluble/cache-interop": "workspace:^",
     "@soluble/dsn-parser": "workspace:^",
@@ -70,6 +61,7 @@
   },
   "devDependencies": {
     "@size-limit/file": "8.0.1",
+    "@soluble/eslint-config-bases": "workspace:^",
     "@types/jest": "28.1.6",
     "cross-env": "7.0.3",
     "es-check": "7.0.0",

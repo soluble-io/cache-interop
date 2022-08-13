@@ -51,17 +51,9 @@
     "ci-coverage-upload": "../../.github/scripts/download/codecov -F cacheInteropUnit --dir ./coverage",
     "build-api-doc": "typedoc --githubPages false --plugin typedoc-plugin-markdown"
   },
-  "lint-staged": {
-    "*.{js,jsx,ts,tsx}": [
-      "prettier --write",
-      "eslint --fix"
-    ],
-    "*.{yaml,json,md,html}": [
-      "prettier --write"
-    ]
-  },
   "devDependencies": {
     "@size-limit/file": "8.0.1",
+    "@soluble/eslint-config-bases": "workspace:^",
     "@types/jest": "28.1.6",
     "cross-env": "7.0.3",
     "dayjs": "1.11.5",
