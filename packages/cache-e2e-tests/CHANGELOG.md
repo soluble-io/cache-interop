@@ -1,5 +1,11 @@
 # @soluble/cache-e2e-tests
 
+## 0.11.1-canary.0
+
+### Patch Changes
+
+- [#660](https://github.com/soluble-io/cache-interop/pull/660) [`6783b32`](https://github.com/soluble-io/cache-interop/commit/6783b3217e4caebfe0117ff9190bb3f54c014859) Thanks [@belgattitude](https://github.com/belgattitude)! - Improve linter
+
 ## 0.11.0
 
 ### Minor Changes
