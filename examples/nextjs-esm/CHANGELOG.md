@@ -1,5 +1,15 @@
 # @examples/nextjs-esm
 
+## 0.1.1-canary.2
+
+### Patch Changes
+
+- Updated dependencies [[`40e9749`](https://github.com/soluble-io/cache-interop/commit/40e9749542bd81ac2c064384342e769e38e2d7ca)]:
+  - @soluble/cache-interop@0.11.1-canary.1
+  - @soluble/cache-ioredis@0.12.1-canary.2
+  - @soluble/cache-redis@0.11.1-canary.2
+  - @soluble/dsn-parser@1.6.0-canary.2
+
 ## 0.1.1-canary.1
 
 ### Patch Changes

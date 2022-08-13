@@ -1,7 +1,7 @@
 {
   "name": "@soluble/dsn-parser",
   "description": "Utility parser for DSN",
-  "version": "1.6.0-canary.1",
+  "version": "1.6.0-canary.2",
   "license": "MIT",
   "homepage": "https://github.com/soluble-io/cache-interop/tree/main/packages/dsn-parser",
   "repository": {
