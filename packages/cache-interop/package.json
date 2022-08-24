@@ -54,7 +54,7 @@
   "devDependencies": {
     "@size-limit/file": "8.0.1",
     "@soluble/eslint-config-bases": "workspace:^",
-    "@types/jest": "28.1.7",
+    "@types/jest": "28.1.8",
     "cross-env": "7.0.3",
     "dayjs": "1.11.5",
     "es-check": "7.0.0",
