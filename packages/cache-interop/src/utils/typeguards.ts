@@ -33,5 +33,5 @@ export function isParsableNumeric(value: unknown): value is number {
   if (typeof value === 'number') {
     return true;
   }
-  return typeof value === 'string' && /^[0-9]+$/.test(value);
+  return typeof value === 'string' && /^\d+$/.test(value);
 }

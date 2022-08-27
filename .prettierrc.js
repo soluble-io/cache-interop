@@ -3,8 +3,7 @@
 /**
  * @type {import('prettier').Config}
  */
-
-const { getPrettierConfig } = require('eslint-config-bases/helpers');
+const { getPrettierConfig } = require('@soluble/eslint-config-bases/helpers');
 
 const { overrides = [], ...prettierConfig } = getPrettierConfig();
 

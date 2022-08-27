@@ -24,7 +24,8 @@
     "esModuleInterop": true,
     "isolatedModules": true,
     "resolveJsonModule": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "newLine": "lf",
   },
   "exclude": [
     "**/dist",

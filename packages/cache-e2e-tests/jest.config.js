@@ -6,6 +6,7 @@ const { pathsToModuleNameMapper } = require('ts-jest');
 const {
   compilerOptions: { paths: tsConfigPaths },
 } = require('../../tsconfig.paths.json');
+const { getJestCachePath } = require('../../cache.config');
 
 // Take the paths from tsconfig automatically from base tsconfig.json
 // @link https://kulshekhar.github.io/ts-jest/docs/paths-mapping
@@ -20,6 +21,7 @@ const getTsConfigBasePaths = () => {
 /** @type {import('ts-jest/dist/types').InitialOptionsTsJest} */
 const config = {
   displayName: 'cache-e2e-tests',
+  cacheDirectory: getJestCachePath('cache-e2e-tests'),
   testEnvironment: 'node',
   setupFilesAfterEnv: ['<rootDir>/cache-e2e-tests/test/setup/jest.setup.ts'],
   verbose: true,

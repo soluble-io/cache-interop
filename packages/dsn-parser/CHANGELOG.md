@@ -1,5 +1,39 @@
 # @soluble/dsn-parser
 
+## 1.6.0
+
+### Minor Changes
+
+- [#662](https://github.com/soluble-io/cache-interop/pull/662) [`50a655d`](https://github.com/soluble-io/cache-interop/commit/50a655dc4db0eab0b63f0b73e14e0a998768d954) Thanks [@belgattitude](https://github.com/belgattitude)! - Mitigate potential risk of regexp denial of service
+
+  See https://owasp.org/www-community/attacks/Regular_expression_Denial_of_Service_-_ReDoS
+
+### Patch Changes
+
+- [#665](https://github.com/soluble-io/cache-interop/pull/665) [`40e9749`](https://github.com/soluble-io/cache-interop/commit/40e9749542bd81ac2c064384342e769e38e2d7ca) Thanks [@belgattitude](https://github.com/belgattitude)! - Fix dual publishing (commonjs, esm) with some tools
+
+* [#660](https://github.com/soluble-io/cache-interop/pull/660) [`6783b32`](https://github.com/soluble-io/cache-interop/commit/6783b3217e4caebfe0117ff9190bb3f54c014859) Thanks [@belgattitude](https://github.com/belgattitude)! - Improve linter
+
+## 1.6.0-canary.2
+
+### Patch Changes
+
+- [#665](https://github.com/soluble-io/cache-interop/pull/665) [`40e9749`](https://github.com/soluble-io/cache-interop/commit/40e9749542bd81ac2c064384342e769e38e2d7ca) Thanks [@belgattitude](https://github.com/belgattitude)! - Fix dual publishing (commonjs, esm) with some tools
+
+## 1.6.0-canary.1
+
+### Minor Changes
+
+- [#662](https://github.com/soluble-io/cache-interop/pull/662) [`50a655d`](https://github.com/soluble-io/cache-interop/commit/50a655dc4db0eab0b63f0b73e14e0a998768d954) Thanks [@belgattitude](https://github.com/belgattitude)! - Mitigate potential risk of regexp denial of service
+
+  See https://owasp.org/www-community/attacks/Regular_expression_Denial_of_Service_-_ReDoS
+
+## 1.5.1-canary.0
+
+### Patch Changes
+
+- [#660](https://github.com/soluble-io/cache-interop/pull/660) [`6783b32`](https://github.com/soluble-io/cache-interop/commit/6783b3217e4caebfe0117ff9190bb3f54c014859) Thanks [@belgattitude](https://github.com/belgattitude)! - Improve linter
+
 ## 1.5.0
 
 ### Minor Changes

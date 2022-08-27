@@ -6,11 +6,11 @@ on:
       - dev
       - main
     paths-ignore:
-      - "docs/**"
+      - 'docs/**'
 
   pull_request:
     paths-ignore:
-      - "docs/**"
+      - 'docs/**'
 
 jobs:
   test:
@@ -61,11 +61,11 @@ jobs:
 
       - name: Linter
         run: |
-          yarn g:lint
+          yarn workspaces foreach --exclude '@examples/**' -v run lint
 
       - name: Typecheck
         run: |
-          yarn g:typecheck
+          yarn workspaces foreach --exclude '@examples/**' -v run typecheck
 
       - name: List changed workspaces
         run: yarn workspaces list --since --recursive --json
@@ -74,7 +74,7 @@ jobs:
         # Till https://github.com/atlassian/changesets/issues/432 has a solution we can remove the
         # build-release and replace with a regular build command
         run: |
-          yarn workspaces foreach -tv run build-release
+          yarn workspaces foreach --exclude '@examples/**' -tv run build-release
 
       - name: Check generated dist folder
         run: |
@@ -92,7 +92,7 @@ jobs:
 
       - name: Unit tests
         run: |
-          yarn workspaces foreach -tv --include '@soluble/*' run test-unit --coverage
+          yarn workspaces foreach -tv --include '@soluble/*' --exclude '@examples/*' run test-unit --coverage
         env:
           CI: true
 
@@ -103,5 +103,3 @@ jobs:
           bash .github/scripts/install-codecov.sh
           yarn g:ci-coverage-upload
         shell: bash
-
-
