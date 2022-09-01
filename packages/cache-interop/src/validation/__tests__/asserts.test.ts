@@ -6,7 +6,7 @@ describe('Asserts tests', () => {
     it('should work as expected', () => {
       expect(Asserts.assertValidCacheKey('k')).toStrictEqual(undefined);
       expect(() => Asserts.assertValidCacheKey(null)).toThrow(/invalid/i);
-      expect(() => Asserts.assertValidCacheKey(1)).toThrowError(
+      expect(() => Asserts.assertValidCacheKey(1)).toThrow(
         InvalidArgumentException
       );
     });
