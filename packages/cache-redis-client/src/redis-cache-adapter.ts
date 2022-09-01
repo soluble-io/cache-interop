@@ -51,6 +51,8 @@ export class RedisCacheAdapter<
         ? connection
         : createRedisConnection(connection as any);
     this.redis = this.conn.getNativeConnection();
+    // @todo find out better option
+    this.redis.connect();
   }
 
   get = async <T = TBase, K extends KBase = KBase>(
