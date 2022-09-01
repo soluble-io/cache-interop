@@ -1,7 +1,15 @@
 {
+  "$schema": "https://json.schemastore.org/tsconfig",
   "compilerOptions": {
-    "target": "es5",
+    "target": "esnext",
     "lib": ["dom", "dom.iterable", "esnext"],
+    "baseUrl": ".",
+    "paths": {
+      "@soluble/cache-interop": ["../../packages/cache-interop/src/index"],
+      "@soluble/cache-ioredis": ["../../packages/cache-ioredis/src/index"],
+      "@soluble/cache-redis": ["../../packages/cache-redis/src/index"],
+      "@soluble/dsn-parser": ["../../packages/dsn-parser/src/index"],
+    },
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -13,7 +21,7 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
-    "incremental": true
+    "incremental": true,
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
   "exclude": ["node_modules"]
