@@ -62,7 +62,7 @@
     ]
   },
   "dependencies": {
-    "@redis/client": "^1.2.0",
+    "@redis/client": "^1.3.0",
     "@soluble/cache-interop": "workspace:^",
     "@soluble/dsn-parser": "workspace:^"
   },
@@ -71,14 +71,15 @@
     "@types/jest": "28.1.6",
     "cross-env": "7.0.3",
     "es-check": "7.0.0",
+    "eslint": "8.23.0",
     "get-tsconfig": "4.2.0",
     "jest": "28.1.3",
     "rimraf": "3.0.2",
     "size-limit": "8.0.0",
     "ts-jest": "28.0.7",
     "tslib": "2.4.0",
-    "tsup": "6.2.1",
-    "typescript": "4.7.4"
+    "tsup": "6.2.3",
+    "typescript": "4.8.2"
   },
   "engines": {
     "node": "^14.13.1 || >=16"
