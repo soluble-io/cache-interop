@@ -164,5 +164,19 @@ module.exports = {
         'import/order': 'off',
       },
     },
+    {
+      // esm or assumed
+      files: ['*.mjs'],
+      rules: {
+        '@typescript-eslint/naming-convention': 'off',
+        '@typescript-eslint/ban-ts-comment': 'off',
+        '@typescript-eslint/no-explicit-any': 'off',
+        '@typescript-eslint/no-var-requires': 'off',
+        '@typescript-eslint/explicit-module-boundary-types': 'off',
+        'import/order': 'off',
+        '@typescript-eslint/consistent-type-exports': 'off',
+        '@typescript-eslint/consistent-type-imports': 'off',
+      },
+    },
   ],
 };
