@@ -53,7 +53,7 @@
   "devDependencies": {
     "@size-limit/file": "8.0.1",
     "@soluble/eslint-config-bases": "workspace:^",
-    "@types/jest": "28.1.8",
+    "@types/jest": "29.0.0",
     "cross-env": "7.0.3",
     "es-check": "7.0.0",
     "eslint": "8.23.0",
@@ -64,8 +64,8 @@
     "ts-jest": "28.0.8",
     "tslib": "2.4.0",
     "tsup": "6.2.3",
-    "typedoc": "0.23.11",
-    "typedoc-plugin-markdown": "3.13.4",
+    "typedoc": "0.23.13",
+    "typedoc-plugin-markdown": "3.13.5",
     "typescript": "4.8.2"
   },
   "browserslist": [
