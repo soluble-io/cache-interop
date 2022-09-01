@@ -1,3 +1,4 @@
+import type { RedisClientType, RedisClientOptions } from '@redis/client';
 import type {
   CacheInterface,
   CacheKey,
@@ -17,15 +18,12 @@ import {
   CacheItemFactory,
   Guards,
 } from '@soluble/cache-interop';
-import type { RedisClient, ClientOpts as RedisClientOptions } from 'redis';
-import type { AsyncRedisClient } from './redis-async.util';
-import { getAsyncRedisClient } from './redis-async.util';
 import { RedisConnection } from './redis-connection';
 import { createRedisConnection } from './redis-connection.factory';
 
 type Options = {
   /** Existing connection, IoRedis options or a valid dsn */
-  connection: RedisConnection | RedisClientOptions | string | RedisClient;
+  connection: RedisConnection | RedisClientOptions | string | RedisClientType;
 };
 
 export class RedisCacheAdapter<
@@ -33,12 +31,13 @@ export class RedisCacheAdapter<
     KBase extends CacheKey = CacheKey
   >
   extends AbstractCacheAdapter<TBase, KBase>
-  implements CacheInterface<TBase, KBase>, ConnectedCacheInterface<RedisClient>
+  implements
+    CacheInterface<TBase, KBase>,
+    ConnectedCacheInterface<RedisClientType>
 {
-  private readonly redis: RedisClient;
+  private readonly redis: RedisClientType;
   private conn: RedisConnection;
   readonly adapterName: string;
-  private asyncRedis: AsyncRedisClient;
 
   /**
    * @throws Error if redis connection can't be created
@@ -50,9 +49,8 @@ export class RedisCacheAdapter<
     this.conn =
       connection instanceof RedisConnection
         ? connection
-        : createRedisConnection(connection);
+        : createRedisConnection(connection as any);
     this.redis = this.conn.getNativeConnection();
-    this.asyncRedis = getAsyncRedisClient(this.redis);
   }
 
   get = async <T = TBase, K extends KBase = KBase>(
@@ -71,7 +69,7 @@ export class RedisCacheAdapter<
     }
     let data: T;
     try {
-      data = (await this.asyncRedis.get(key)) as unknown as T;
+      data = (await this.redis.get(key)) as unknown as T;
     } catch (e) {
       return CacheItemFactory.fromErr<K>({
         key,
@@ -117,9 +115,7 @@ export class RedisCacheAdapter<
     }
 
     const setOp =
-      ttl > 0
-        ? this.asyncRedis.setex(key, ttl, v)
-        : this.asyncRedis.set(key, v);
+      ttl > 0 ? this.redis.setEx(key, ttl, v) : this.redis.set(key, v);
     return setOp
       .then((reply) => reply === 'OK')
       .catch((e) => {
@@ -145,7 +141,7 @@ export class RedisCacheAdapter<
     if (disableCache) {
       return false;
     }
-    return this.asyncRedis
+    return this.redis
       .exists(key)
       .then((count) => count === 1)
       .catch((e) => {
@@ -167,7 +163,7 @@ export class RedisCacheAdapter<
     if (disableCache) {
       return false;
     }
-    return this.asyncRedis
+    return this.redis
       .del(key)
       .then((count) => count === 1)
       .catch((e) => {
@@ -180,15 +176,15 @@ export class RedisCacheAdapter<
   };
 
   clear = async (): Promise<true | CacheException> => {
-    return this.asyncRedis
-      .flushdb()
+    return this.redis
+      .flushDb()
       .then((_reply): true => true)
       .catch((e) => {
         return this.errorHelper.getCacheException('clear', 'COMMAND_ERROR', e);
       });
   };
 
-  getConnection = (): ConnectionInterface<RedisClient> => {
+  getConnection = (): ConnectionInterface<RedisClientType> => {
     return this.conn;
   };
 }

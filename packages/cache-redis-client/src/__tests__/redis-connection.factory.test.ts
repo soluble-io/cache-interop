@@ -12,9 +12,12 @@ describe('ioredis-connection.factory', () => {
     describe('when dsn is valid', () => {
       it('should create a lazy connection', async () => {
         const conn = createRedisNativeConnection('redis://localhost:65534');
-        const status = conn.connected;
+        // @todo we might want to create connection
+        expect(conn.isOpen).toBeFalsy();
+        await conn.connect();
+        expect(conn.isOpen).toBeTruthy();
         await conn.quit();
-        expect(status).toStrictEqual(false);
+        expect(conn.isOpen).toBeFalsy();
       });
     });
   });
