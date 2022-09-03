@@ -34,7 +34,7 @@
     "@types/redis": "2.8.32",
     "eslint": "8.23.0",
     "ioredis": "5.2.3",
-    "jest": "29.0.1",
+    "jest": "29.0.2",
     "redis": "3.1.2",
     "testcontainers": "8.13.0",
     "ts-jest": "28.0.8",
