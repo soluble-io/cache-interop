@@ -57,7 +57,7 @@
     "@soluble/dsn-parser": "workspace:^"
   },
   "devDependencies": {
-    "@size-limit/file": "8.0.1",
+    "@size-limit/file": "8.1.0",
     "@soluble/eslint-config-bases": "workspace:^",
     "@types/jest": "29.0.0",
     "@types/redis": "2.8.32",

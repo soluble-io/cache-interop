@@ -2120,14 +2120,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@size-limit/file@npm:8.0.1":
-  version: 8.0.1
-  resolution: "@size-limit/file@npm:8.0.1"
+"@size-limit/file@npm:8.1.0":
+  version: 8.1.0
+  resolution: "@size-limit/file@npm:8.1.0"
   dependencies:
     semver: 7.3.7
   peerDependencies:
-    size-limit: 8.0.1
-  checksum: 45482fc0bdbd5f6f6e788010633ab1f8a342031e37957ea8a5aca0a5d36938b3a1e417af71c64a1e3f11042c79b9a3761dfbc9490bba722bda6519d63a3ab789
+    size-limit: 8.1.0
+  checksum: f693b9a0e1533d54aa23125a8ceb65dfda0bc1aa60874490f2fa7ea6bc230954ab0e9ef1e06c1f9d70b1d2c813f7cf99beecc08d72607373611fb41af4b2cbd7
   languageName: node
   linkType: hard
 
@@ -2157,7 +2157,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@soluble/cache-interop@workspace:packages/cache-interop"
   dependencies:
-    "@size-limit/file": 8.0.1
+    "@size-limit/file": 8.1.0
     "@soluble/eslint-config-bases": "workspace:^"
     "@types/jest": 29.0.0
     cross-env: 7.0.3
@@ -2181,7 +2181,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@soluble/cache-ioredis@workspace:packages/cache-ioredis"
   dependencies:
-    "@size-limit/file": 8.0.1
+    "@size-limit/file": 8.1.0
     "@soluble/cache-interop": "workspace:^"
     "@soluble/dsn-parser": "workspace:^"
     "@soluble/eslint-config-bases": "workspace:^"
@@ -2205,7 +2205,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@soluble/cache-redis@workspace:packages/cache-redis"
   dependencies:
-    "@size-limit/file": 8.0.1
+    "@size-limit/file": 8.1.0
     "@soluble/cache-interop": "workspace:^"
     "@soluble/dsn-parser": "workspace:^"
     "@soluble/eslint-config-bases": "workspace:^"
@@ -2238,7 +2238,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@soluble/dsn-parser@workspace:packages/dsn-parser"
   dependencies:
-    "@size-limit/file": 8.0.1
+    "@size-limit/file": 8.1.0
     "@soluble/eslint-config-bases": "workspace:^"
     "@types/jest": 29.0.0
     cross-env: 7.0.3
