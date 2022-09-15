@@ -3697,7 +3697,7 @@ __metadata:
     husky: 8.0.1
     is-ci: 3.0.1
     lint-staged: 13.0.3
-    npm-check-updates: 16.1.2
+    npm-check-updates: 16.1.3
     npm-run-all: 4.1.5
     prettier: 2.7.1
     rimraf: 3.0.2
@@ -8830,9 +8830,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"npm-check-updates@npm:16.1.2":
-  version: 16.1.2
-  resolution: "npm-check-updates@npm:16.1.2"
+"npm-check-updates@npm:16.1.3":
+  version: 16.1.3
+  resolution: "npm-check-updates@npm:16.1.3"
   dependencies:
     chalk: ^5.0.1
     cli-table: ^0.3.11
@@ -8859,12 +8859,13 @@ __metadata:
     semver-utils: ^1.1.4
     source-map-support: ^0.5.21
     spawn-please: ^1.0.0
+    untildify: ^4.0.0
     update-notifier: ^6.0.2
     yaml: ^2.1.1
   bin:
     ncu: build/src/bin/cli.js
     npm-check-updates: build/src/bin/cli.js
-  checksum: 5a37570e5581d1be67edd02740b8e0c352e577fb5491ca57d8d4846df01f559688cf2f8d751716635bdce0c98805eab6042ace628de0c3d9bb3a280f92aab1e6
+  checksum: 7c751332ea840e9037186506d99efee940c2cb52637d5528abcbca1d95899d02d718e388fc5ce8b71c797c6803e27d370712ba34a9911c48a26a6aa93d894c59
   languageName: node
   linkType: hard
 
@@ -11680,6 +11681,13 @@ __metadata:
   dependencies:
     normalize-path: ^2.1.1
   checksum: 3be30e48579fc6c7390bd59b4ab9e745fede0c164dfb7351cf710bd1dbef8484b1441186205af6bcb13b731c0c88caf9b33459f7bf8c89e79c046e656ae433f0
+  languageName: node
+  linkType: hard
+
+"untildify@npm:^4.0.0":
+  version: 4.0.0
+  resolution: "untildify@npm:4.0.0"
+  checksum: 39ced9c418a74f73f0a56e1ba4634b4d959422dff61f4c72a8e39f60b99380c1b45ed776fbaa0a4101b157e4310d873ad7d114e8534ca02609b4916bb4187fb9
   languageName: node
   linkType: hard
 
