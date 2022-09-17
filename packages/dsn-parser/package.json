@@ -53,7 +53,7 @@
   "devDependencies": {
     "@size-limit/file": "8.1.0",
     "@soluble/eslint-config-bases": "workspace:^",
-    "@types/jest": "29.0.0",
+    "@types/jest": "29.0.3",
     "cross-env": "7.0.3",
     "es-check": "7.0.1",
     "eslint": "8.23.0",
