@@ -20,6 +20,7 @@
   "scripts": {
     "postinstall": "is-ci || husky install",
     "g:build": "yarn g:build-release",
+    "g:build-packages": "yarn workspaces foreach -v --no-private run build",
     "?build-release": "When https://github.com/atlassian/changesets/issues/432 has a solution we can remove this trick",
     "g:build-release": "yarn workspaces foreach -tv run build-release",
     "g:size-limit": "yarn workspaces foreach -v --no-private run size-limit",

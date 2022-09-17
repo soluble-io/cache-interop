@@ -1013,6 +1013,7 @@ __metadata:
     "@types/node": 18.7.18
     "@types/react": 18.0.20
     "@types/react-dom": 18.0.6
+    cross-env: 7.0.3
     eslint: 8.23.1
     eslint-config-next: 12.3.0
     ioredis: 5.2.3
@@ -1037,6 +1038,7 @@ __metadata:
     "@types/node": 18.7.18
     "@types/react": 18.0.20
     "@types/react-dom": 18.0.6
+    cross-env: 7.0.3
     eslint: 8.23.1
     eslint-config-next: 12.3.0
     ioredis: 5.2.3

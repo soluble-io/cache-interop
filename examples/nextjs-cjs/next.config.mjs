@@ -18,7 +18,7 @@ const nextConfig = {
   swcMinify: true,
   productionBrowserSourceMaps: !disableSourceMaps,
   typescript: {
-    tsconfigPath: './tsconfig.json',
+    tsconfigPath: process.env.TSCONFIG ? process.env.TSCONFIG : './tsconfig.json',
     ignoreBuildErrors: NEXTJS_IGNORE_TYPECHECK,
   },
   eslint: {

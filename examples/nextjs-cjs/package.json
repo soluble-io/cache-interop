@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "cross-env TSCONFIG=./tsconfig.no-paths.json next build",
     "start": "next start",
     "clean": "rimraf --no-glob ./.next ./out ./coverage ./tsconfig.tsbuildinfo",
     "typecheck": "tsc --project tsconfig.json --noEmit",
@@ -27,6 +27,7 @@
     "@types/node": "18.7.18",
     "@types/react": "18.0.20",
     "@types/react-dom": "18.0.6",
+    "cross-env": "7.0.3",
     "eslint": "8.23.1",
     "eslint-config-next": "12.3.0",
     "rimraf": "3.0.2",
