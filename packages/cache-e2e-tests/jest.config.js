@@ -26,7 +26,12 @@ const config = {
   setupFilesAfterEnv: ['<rootDir>/cache-e2e-tests/test/setup/jest.setup.ts'],
   verbose: true,
   transform: {
-    ...tsPreset.transform,
+    '^.+\\.m?[tj]sx?$': [
+      'ts-jest',
+      {
+        tsconfig: './tsconfig.json',
+      },
+    ],
   },
   moduleNameMapper: {
     ...getTsConfigBasePaths(),
@@ -44,12 +49,6 @@ const config = {
     '!**/*.d.ts',
     '!**/index.ts',
   ],
-  globals: {
-    'ts-jest': {
-      diagnostics: true,
-      tsconfig: './tsconfig.json',
-    },
-  },
 };
 
 module.exports = config;
