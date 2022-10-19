@@ -3705,7 +3705,7 @@ __metadata:
     husky: 8.0.1
     is-ci: 3.0.1
     lint-staged: 13.0.3
-    npm-check-updates: 16.3.13
+    npm-check-updates: 16.3.14
     npm-run-all: 4.1.5
     prettier: 2.7.1
     rimraf: 3.0.2
@@ -8816,9 +8816,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"npm-check-updates@npm:16.3.13":
-  version: 16.3.13
-  resolution: "npm-check-updates@npm:16.3.13"
+"npm-check-updates@npm:16.3.14":
+  version: 16.3.14
+  resolution: "npm-check-updates@npm:16.3.14"
   dependencies:
     chalk: ^5.1.2
     cli-table: ^0.3.11
@@ -8834,7 +8834,7 @@ __metadata:
     lodash: ^4.17.21
     minimatch: ^5.1.0
     p-map: ^4.0.0
-    pacote: ^15.0.0
+    pacote: 15.0.0
     parse-github-url: ^1.0.2
     progress: ^2.0.3
     prompts-ncu: ^2.5.1
@@ -8851,7 +8851,7 @@ __metadata:
   bin:
     ncu: build/src/bin/cli.js
     npm-check-updates: build/src/bin/cli.js
-  checksum: c7fb92c3539d35b9e2ff17e14bfb9d08afcebc122dcda5ab6296d53958886aec8e14b117da2f3106e3949d27858cbcc9ed6899f4278130e24c603cb2567176bd
+  checksum: 1df972832926ac86e1e720f31b811e3540e55e7d1e47a08f1e8cc1e912914d56b8b97ac8a43380672e46c2f3afc962565f1adde687346cdd0fbac14ba3bdbb43
   languageName: node
   linkType: hard
 
@@ -9258,7 +9258,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"pacote@npm:^15.0.0":
+"pacote@npm:15.0.0":
   version: 15.0.0
   resolution: "pacote@npm:15.0.0"
   dependencies:
