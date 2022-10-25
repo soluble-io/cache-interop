@@ -2254,7 +2254,7 @@ __metadata:
     "@testing-library/react": ^13.4.0
     "@testing-library/react-hooks": ^8.0.1
     "@types/jest": 29.2.0
-    "@types/node": 18.8.1
+    "@types/node": 18.11.5
     "@types/prettier": 2.7.1
     "@types/react": 18.0.21
     "@types/react-dom": 18.0.6
@@ -2642,7 +2642,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:*, @types/node@npm:18.8.1":
+"@types/node@npm:*, @types/node@npm:18.11.5":
+  version: 18.11.5
+  resolution: "@types/node@npm:18.11.5"
+  checksum: ac54e9287dd4549ea3dc8aabc0cf7bfa04c52f02925d7fd68414789617ec770f034c8ae2e111e8bd00d446a46fcac42587b5a316a1303e2f6ea094854248c9ff
+  languageName: node
+  linkType: hard
+
+"@types/node@npm:18.8.1":
   version: 18.8.1
   resolution: "@types/node@npm:18.8.1"
   checksum: 6168dbdc42cbedff20fd16ed7c775038d6de52fe1458a9a3be07e39805c75d107f185908a8cdfe0b271f8f391a0c99fde27859975cf6b5a8fee385b3f5cfb42a
@@ -3698,7 +3705,7 @@ __metadata:
     "@commitlint/cli": 17.1.2
     "@commitlint/config-conventional": 17.1.0
     "@soluble/eslint-config-bases": "workspace:^"
-    "@types/node": 18.8.1
+    "@types/node": 18.11.5
     "@types/prettier": 2.7.1
     "@types/shell-quote": 1.7.1
     eslint: 8.24.0
