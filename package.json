@@ -61,7 +61,7 @@
     "@commitlint/cli": "17.1.2",
     "@commitlint/config-conventional": "17.1.0",
     "@soluble/eslint-config-bases": "workspace:^",
-    "@types/node": "18.11.5",
+    "@types/node": "18.11.6",
     "@types/prettier": "2.7.1",
     "@types/shell-quote": "1.7.1",
     "eslint": "8.24.0",
