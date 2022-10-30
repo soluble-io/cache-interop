@@ -2134,7 +2134,7 @@ __metadata:
     ioredis: 5.2.3
     jest: 29.2.2
     redis: 3.1.2
-    testcontainers: 8.16.0
+    testcontainers: 9.0.0
     ts-jest: 29.0.3
     typescript: 4.8.4
   languageName: unknown
@@ -2509,13 +2509,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/dockerode@npm:^3.3.8":
-  version: 3.3.8
-  resolution: "@types/dockerode@npm:3.3.8"
+"@types/dockerode@npm:^3.3.12":
+  version: 3.3.12
+  resolution: "@types/dockerode@npm:3.3.12"
   dependencies:
     "@types/docker-modem": "*"
     "@types/node": "*"
-  checksum: 3eebbe2c3e5c067c06ece6f67b8ff8beb8598b8f68ed34509cc6d0f4447705229b7cc20e95b6f64e42e26bc183da8ba186955d289f27d4fc3439f0c44fada93b
+  checksum: 65f16894dca4d359395ed9619ed10d5297917a63b9d86660578e38b97380f5f871188556ab1a5003852e9535a5001ecd7d6c03a1da4391e7c31b30762de55e69
   languageName: node
   linkType: hard
 
@@ -4692,13 +4692,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"dockerode@npm:^3.3.1":
-  version: 3.3.1
-  resolution: "dockerode@npm:3.3.1"
+"dockerode@npm:^3.3.4":
+  version: 3.3.4
+  resolution: "dockerode@npm:3.3.4"
   dependencies:
+    "@balena/dockerignore": ^1.0.2
     docker-modem: ^3.0.0
     tar-fs: ~2.0.1
-  checksum: 930162ae2d8a1fe0e99d9a5885b09aa438da6274d4a30cb90e73046655dbc90764eb755361a63ba08f167e257c4d649d67bce71f650461a20b97fcde0af05ca5
+  checksum: 6cb4b9d1c42feb3acfa77daf103b070cc412351dc7dc0a1553cc774ccd1be1a1412a87f8aa13c3155c63ec5c61a7cadc833b4248c4d8342814bbf708f795b952
   languageName: node
   linkType: hard
 
@@ -11106,23 +11107,23 @@ __metadata:
   languageName: node
   linkType: hard
 
-"testcontainers@npm:8.16.0":
-  version: 8.16.0
-  resolution: "testcontainers@npm:8.16.0"
+"testcontainers@npm:9.0.0":
+  version: 9.0.0
+  resolution: "testcontainers@npm:9.0.0"
   dependencies:
     "@balena/dockerignore": ^1.0.2
     "@types/archiver": ^5.3.1
-    "@types/dockerode": ^3.3.8
+    "@types/dockerode": ^3.3.12
     archiver: ^5.3.1
     byline: ^5.0.0
     debug: ^4.3.4
     docker-compose: ^0.23.17
-    dockerode: ^3.3.1
+    dockerode: ^3.3.4
     get-port: ^5.1.1
     properties-reader: ^2.2.0
     ssh-remote-port-forward: ^1.0.4
     tar-fs: ^2.1.1
-  checksum: 2fb8250591691a4bd86640b53e13236ad507ba9e03ac3043683de5e9dd632bc29d52827c22ccfe2b0d28dec6896cbaa56dcb153ce65f7f74212ddefc204e8d6a
+  checksum: ec0ffb7d53add003330e82ef678a07cdd5a4197dfe1c38f53629c7134c8d83150dd5d04cc8bca93db8005f10db313a5b7f9e7ad7b5490dbfa5d08bb7e4749b02
   languageName: node
   linkType: hard
 
