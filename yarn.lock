@@ -2156,7 +2156,7 @@ __metadata:
     rimraf: 3.0.2
     size-limit: 8.1.0
     ts-jest: 29.0.3
-    tslib: 2.4.0
+    tslib: 2.4.1
     tsup: 6.3.0
     typedoc: 0.23.19
     typedoc-plugin-markdown: 3.13.6
@@ -2182,7 +2182,7 @@ __metadata:
     rimraf: 3.0.2
     size-limit: 8.1.0
     ts-jest: 29.0.3
-    tslib: 2.4.0
+    tslib: 2.4.1
     tsup: 6.3.0
     typescript: 4.8.4
   languageName: unknown
@@ -2207,7 +2207,7 @@ __metadata:
     rimraf: 3.0.2
     size-limit: 8.1.0
     ts-jest: 29.0.3
-    tslib: 2.4.0
+    tslib: 2.4.1
     tsup: 6.3.0
     typescript: 4.8.4
   peerDependencies:
@@ -2236,7 +2236,7 @@ __metadata:
     rimraf: 3.0.2
     size-limit: 8.1.0
     ts-jest: 29.0.3
-    tslib: 2.4.0
+    tslib: 2.4.1
     tsup: 6.3.0
     typedoc: 0.23.19
     typedoc-plugin-markdown: 3.13.6
@@ -11389,10 +11389,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tslib@npm:2.4.0, tslib@npm:^2, tslib@npm:^2.1.0, tslib@npm:^2.3.0, tslib@npm:^2.3.1, tslib@npm:^2.4.0":
-  version: 2.4.0
-  resolution: "tslib@npm:2.4.0"
-  checksum: 8c4aa6a3c5a754bf76aefc38026134180c053b7bd2f81338cb5e5ebf96fefa0f417bff221592bf801077f5bf990562f6264fecbc42cd3309b33872cb6fc3b113
+"tslib@npm:2.4.1, tslib@npm:^2, tslib@npm:^2.1.0, tslib@npm:^2.3.0, tslib@npm:^2.3.1, tslib@npm:^2.4.0":
+  version: 2.4.1
+  resolution: "tslib@npm:2.4.1"
+  checksum: 19480d6e0313292bd6505d4efe096a6b31c70e21cf08b5febf4da62e95c265c8f571f7b36fcc3d1a17e068032f59c269fab3459d6cd3ed6949eafecf64315fca
   languageName: node
   linkType: hard
 
