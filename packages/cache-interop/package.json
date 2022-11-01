@@ -64,7 +64,7 @@
     "rimraf": "3.0.2",
     "size-limit": "8.1.0",
     "ts-jest": "29.0.3",
-    "tslib": "2.4.0",
+    "tslib": "2.4.1",
     "tsup": "6.3.0",
     "typedoc": "0.23.19",
     "typedoc-plugin-markdown": "3.13.6",
