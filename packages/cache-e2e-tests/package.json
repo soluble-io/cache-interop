@@ -30,7 +30,7 @@
     "@soluble/dsn-parser": "workspace:^",
     "@soluble/eslint-config-bases": "workspace:^",
     "@types/ioredis": "4.28.10",
-    "@types/jest": "29.2.0",
+    "@types/jest": "29.2.1",
     "@types/redis": "2.8.32",
     "eslint": "8.24.0",
     "ioredis": "5.2.3",
