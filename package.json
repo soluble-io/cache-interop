@@ -58,8 +58,8 @@
   "devDependencies": {
     "@changesets/changelog-github": "0.4.7",
     "@changesets/cli": "2.25.2",
-    "@commitlint/cli": "17.1.2",
-    "@commitlint/config-conventional": "17.1.0",
+    "@commitlint/cli": "17.2.0",
+    "@commitlint/config-conventional": "17.2.0",
     "@soluble/eslint-config-bases": "workspace:^",
     "@types/node": "18.11.6",
     "@types/prettier": "2.7.1",
