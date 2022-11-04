@@ -113,7 +113,7 @@
     "@types/jest": "29.2.1",
     "@types/node": "18.11.6",
     "@types/prettier": "2.7.1",
-    "@types/react": "18.0.21",
+    "@types/react": "18.0.25",
     "@types/react-dom": "18.0.6",
     "eslint": "8.24.0",
     "graphql": "16.6.0",
