@@ -114,7 +114,7 @@
     "@types/node": "18.11.9",
     "@types/prettier": "2.7.1",
     "@types/react": "18.0.21",
-    "@types/react-dom": "18.0.6",
+    "@types/react-dom": "18.0.9",
     "eslint": "8.24.0",
     "graphql": "16.6.0",
     "prettier": "2.7.1",
