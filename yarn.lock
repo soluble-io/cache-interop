@@ -2119,7 +2119,7 @@ __metadata:
     "@soluble/dsn-parser": "workspace:^"
     "@soluble/eslint-config-bases": "workspace:^"
     "@types/ioredis": 4.28.10
-    "@types/jest": 29.2.2
+    "@types/jest": 29.2.3
     "@types/redis": 2.8.32
     eslint: 8.24.0
     ioredis: 5.2.4
@@ -2137,7 +2137,7 @@ __metadata:
   dependencies:
     "@size-limit/file": 8.1.0
     "@soluble/eslint-config-bases": "workspace:^"
-    "@types/jest": 29.2.2
+    "@types/jest": 29.2.3
     cross-env: 7.0.3
     dayjs: 1.11.6
     es-check: 7.0.1
@@ -2163,7 +2163,7 @@ __metadata:
     "@soluble/cache-interop": "workspace:^"
     "@soluble/dsn-parser": "workspace:^"
     "@soluble/eslint-config-bases": "workspace:^"
-    "@types/jest": 29.2.2
+    "@types/jest": 29.2.3
     cross-env: 7.0.3
     es-check: 7.0.1
     eslint: 8.24.0
@@ -2187,7 +2187,7 @@ __metadata:
     "@soluble/cache-interop": "workspace:^"
     "@soluble/dsn-parser": "workspace:^"
     "@soluble/eslint-config-bases": "workspace:^"
-    "@types/jest": 29.2.2
+    "@types/jest": 29.2.3
     "@types/redis": 2.8.32
     cross-env: 7.0.3
     es-check: 7.0.1
@@ -2218,7 +2218,7 @@ __metadata:
   dependencies:
     "@size-limit/file": 8.1.0
     "@soluble/eslint-config-bases": "workspace:^"
-    "@types/jest": 29.2.2
+    "@types/jest": 29.2.3
     cross-env: 7.0.3
     es-check: 7.0.1
     eslint: 8.24.0
@@ -2244,7 +2244,7 @@ __metadata:
     "@testing-library/jest-dom": ^5.16.5
     "@testing-library/react": ^13.4.0
     "@testing-library/react-hooks": ^8.0.1
-    "@types/jest": 29.2.2
+    "@types/jest": 29.2.3
     "@types/node": 18.11.9
     "@types/prettier": 2.7.1
     "@types/react": 18.0.21
@@ -2579,13 +2579,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/jest@npm:*, @types/jest@npm:29.2.2":
-  version: 29.2.2
-  resolution: "@types/jest@npm:29.2.2"
+"@types/jest@npm:*, @types/jest@npm:29.2.3":
+  version: 29.2.3
+  resolution: "@types/jest@npm:29.2.3"
   dependencies:
     expect: ^29.0.0
     pretty-format: ^29.0.0
-  checksum: 13b1a48858c8c451109c2838205fdcee6f41d672674d2f0e3cada35e94f133370aba4f4b5c3f5b174f3e16244d76d7d718afa7cc67d4d6f90d1b87951f4c87c3
+  checksum: 55370906711b600a05b9e497c22aa74d80d8adcdbe4ac2f1bc9311f6f6ca0dd192862b6f38df6ac0d45e92396bcd796e377b1d8058c10bdfd584aeee580c3ce1
   languageName: node
   linkType: hard
 
