@@ -21,25 +21,8 @@ jobs:
         with:
           node-version: 14.x
 
-      # Why not using setup-node 2.2+ cache option (yet) ?
-      # see https://github.com/belgattitude/nextjs-monorepo-example/pull/369
-      - name: Get yarn cache directory path
-        id: yarn-cache-dir-path
-        run: echo "::set-output name=dir::$(yarn config get cacheFolder)"
-
-      - name: Restore yarn cache
-        uses: actions/cache@v3
-        id: yarn-cache # use this to check for `cache-hit` (`steps.yarn-cache.outputs.cache-hit != 'true'`)
-        with:
-          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
-          key: yarn-cache-folder-${{ hashFiles('**/yarn.lock', '.yarnrc.yml') }}
-          restore-keys: |
-            yarn-cache-folder-
-
-      - name: Install Dependencies
-        run: yarn install --immutable
-        env:
-          HUSKY: 0
+      - name: 📥 Monorepo install
+        uses: ./.github/actions/monorepo-install
 
       - name: Debug if .npmrc is present in working directory
         run: |
@@ -47,7 +30,7 @@ jobs:
 
       - name: Create Release Pull Request or Publish to npm
         id: changesets
-        uses: changesets/action@v1.3.0
+        uses: changesets/action@v1
         with:
           publish: yarn g:release
           setupGitUser: true
