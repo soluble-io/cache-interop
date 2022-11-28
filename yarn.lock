@@ -2123,9 +2123,9 @@ __metadata:
     "@soluble/cache-interop": "workspace:^"
     "@soluble/cache-ioredis": "workspace:^"
     "@soluble/cache-redis": "workspace:^"
+    "@soluble/cache-redis-client": "workspace:^"
     "@soluble/dsn-parser": "workspace:^"
     "@soluble/eslint-config-bases": "workspace:^"
-    "@types/ioredis": "npm:4.28.10"
     "@types/jest": "npm:29.2.3"
     "@types/redis": "npm:2.8.32"
     eslint: "npm:8.28.0"
@@ -2186,7 +2186,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@soluble/cache-redis-client@workspace:packages/cache-redis-client":
+"@soluble/cache-redis-client@workspace:^, @soluble/cache-redis-client@workspace:packages/cache-redis-client":
   version: 0.0.0-use.local
   resolution: "@soluble/cache-redis-client@workspace:packages/cache-redis-client"
   dependencies:
@@ -2563,15 +2563,6 @@ __metadata:
   version: 4.0.1
   resolution: "@types/http-cache-semantics@npm:4.0.1"
   checksum: 04aacd353b3823dea511927aa0b0a519a16a876aab4f6cc545828cafcadebddc631dcb1e1a949a09f1c30d37c5512e60e69469e22a75213ff1abf349deaad433
-  languageName: node
-  linkType: hard
-
-"@types/ioredis@npm:4.28.10":
-  version: 4.28.10
-  resolution: "@types/ioredis@npm:4.28.10"
-  dependencies:
-    "@types/node": "npm:*"
-  checksum: a7f24a8a13508ce0fa7332e4e39abf9c96daa1f8246803670f26c4427d6ccd9501f1af4a18a4fedb4b40d3f99ff81e30181cac2408b889df27fd25fc609d3fc2
   languageName: node
   linkType: hard
 
