@@ -64,7 +64,7 @@
     "@types/node": "18.11.9",
     "@types/prettier": "2.7.1",
     "@types/shell-quote": "1.7.1",
-    "eslint": "8.27.0",
+    "eslint": "8.28.0",
     "husky": "8.0.2",
     "is-ci": "3.0.1",
     "lint-staged": "13.0.4",
@@ -79,5 +79,5 @@
     "yarn": ">=1.19.0",
     "npm": "please-use-yarn"
   },
-  "packageManager": "yarn@3.3.0"
+  "packageManager": "yarn@4.0.0-rc.31"
 }
