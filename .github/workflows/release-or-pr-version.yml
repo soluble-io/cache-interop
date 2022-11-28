@@ -5,8 +5,11 @@ on:
       - main
 jobs:
   release:
-    if: github.repository == 'soluble-io/cache-interop'
-    name: Release
+    name: Release and changelog
+    if: ${{ github.repository == 'soluble-io/cache-interop' && contains('refs/heads/main',github.ref)}}
+    permissions:
+      contents: write #  to create release (changesets/action)
+      pull-requests: write
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repo
@@ -16,13 +19,13 @@ jobs:
           fetch-depth: 0
           persist-credentials: true
 
-      - name: Setup Node.js 14.x
+      - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 14.x
+          node-version: 16.x
 
       - name: 📥 Monorepo install
-        uses: ./.github/actions/monorepo-install
+        uses: ./.github/actions/yarn-nm-install
 
       - name: Debug if .npmrc is present in working directory
         run: |
