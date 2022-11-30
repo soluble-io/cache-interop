@@ -2,6 +2,7 @@ import type { CacheInterface } from '@soluble/cache-interop';
 import { MapCacheAdapter } from '@soluble/cache-interop';
 import { IoRedisCacheAdapter } from '@soluble/cache-ioredis';
 import { RedisCacheAdapter } from '@soluble/cache-redis';
+import { RedisCacheAdapter as RedisClientCacheAdapter } from '@soluble/cache-redis-client';
 import { E2eDockerContainers } from './E2eDockerContainers';
 
 /**
@@ -42,6 +43,24 @@ export const getTestAdapters = () => {
       async () => {
         const { dsn } = await E2eDockerContainers.getContainer('redis6');
         return new RedisCacheAdapter({
+          connection: dsn,
+        });
+      },
+    ],
+    [
+      'RedisClientCacheAdapter/Redis7',
+      async () => {
+        const { dsn } = await E2eDockerContainers.getContainer('redis7');
+        return new RedisClientCacheAdapter({
+          connection: dsn,
+        });
+      },
+    ],
+    [
+      'RedisClientCacheAdapter/Redis6',
+      async () => {
+        const { dsn } = await E2eDockerContainers.getContainer('redis6');
+        return new RedisClientCacheAdapter({
           connection: dsn,
         });
       },

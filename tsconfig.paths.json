@@ -8,7 +8,10 @@
       "@soluble/cache-ioredis": ["../../cache-ioredis/src"],
       "@soluble/cache-ioredis/*": ["../../cache-ioredis/src/*"],
       "@soluble/cache-redis": ["../../cache-redis/src"],
-      "@soluble/cache-redis/*": ["../../cache-redis/src/*"]
+      "@soluble/cache-redis/*": ["../../cache-redis/src/*"],
+      "@soluble/cache-redis-client": ["../../cache-redis-client/src"],
+      "@soluble/cache-redis-client/*": ["../../cache-redis-client/src/*"]
+
     }
   }
 }
