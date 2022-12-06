@@ -2134,7 +2134,7 @@ __metadata:
     "@soluble/eslint-config-bases": "workspace:^"
     "@types/jest": "npm:29.2.3"
     cross-env: "npm:7.0.3"
-    dayjs: "npm:1.11.6"
+    dayjs: "npm:1.11.7"
     es-check: "npm:7.0.1"
     eslint: "npm:8.28.0"
     get-tsconfig: "npm:4.2.0"
@@ -4446,10 +4446,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"dayjs@npm:1.11.6":
-  version: 1.11.6
-  resolution: "dayjs@npm:1.11.6"
-  checksum: f59ea45f2438056f10955a979124738906d897fb642b6157ead34b675240a79a1424655f691a35af810248575506459bf65eadd7d51625cdc537bf805a92dea6
+"dayjs@npm:1.11.7":
+  version: 1.11.7
+  resolution: "dayjs@npm:1.11.7"
+  checksum: e4befd8f695eeb2fbe2f887c0f6e2a8a498dfba89eb4b4d87c036167e4ae36871dda584a24c15db9b68fcf19688199f934c38095c629abcc30f8adb60f0723ce
   languageName: node
   linkType: hard
 

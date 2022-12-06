@@ -56,7 +56,7 @@
     "@soluble/eslint-config-bases": "workspace:^",
     "@types/jest": "29.2.3",
     "cross-env": "7.0.3",
-    "dayjs": "1.11.6",
+    "dayjs": "1.11.7",
     "es-check": "7.0.1",
     "eslint": "8.28.0",
     "get-tsconfig": "4.2.0",
