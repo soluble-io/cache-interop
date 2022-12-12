@@ -2114,7 +2114,7 @@ __metadata:
     "@soluble/dsn-parser": "workspace:^"
     "@soluble/eslint-config-bases": "workspace:^"
     "@types/ioredis": "npm:4.28.10"
-    "@types/jest": "npm:29.2.3"
+    "@types/jest": "npm:29.2.4"
     "@types/redis": "npm:2.8.32"
     eslint: "npm:8.28.0"
     ioredis: "npm:5.2.4"
@@ -2132,7 +2132,7 @@ __metadata:
   dependencies:
     "@size-limit/file": "npm:8.1.0"
     "@soluble/eslint-config-bases": "workspace:^"
-    "@types/jest": "npm:29.2.3"
+    "@types/jest": "npm:29.2.4"
     cross-env: "npm:7.0.3"
     dayjs: "npm:1.11.6"
     es-check: "npm:7.0.1"
@@ -2158,7 +2158,7 @@ __metadata:
     "@soluble/cache-interop": "workspace:^"
     "@soluble/dsn-parser": "workspace:^"
     "@soluble/eslint-config-bases": "workspace:^"
-    "@types/jest": "npm:29.2.3"
+    "@types/jest": "npm:29.2.4"
     cross-env: "npm:7.0.3"
     es-check: "npm:7.0.1"
     eslint: "npm:8.28.0"
@@ -2182,7 +2182,7 @@ __metadata:
     "@soluble/cache-interop": "workspace:^"
     "@soluble/dsn-parser": "workspace:^"
     "@soluble/eslint-config-bases": "workspace:^"
-    "@types/jest": "npm:29.2.3"
+    "@types/jest": "npm:29.2.4"
     "@types/redis": "npm:2.8.32"
     cross-env: "npm:7.0.3"
     es-check: "npm:7.0.1"
@@ -2213,7 +2213,7 @@ __metadata:
   dependencies:
     "@size-limit/file": "npm:8.1.0"
     "@soluble/eslint-config-bases": "workspace:^"
-    "@types/jest": "npm:29.2.3"
+    "@types/jest": "npm:29.2.4"
     cross-env: "npm:7.0.3"
     es-check: "npm:7.0.1"
     eslint: "npm:8.28.0"
@@ -2239,7 +2239,7 @@ __metadata:
     "@testing-library/jest-dom": "npm:^5.16.5"
     "@testing-library/react": "npm:^13.4.0"
     "@testing-library/react-hooks": "npm:^8.0.1"
-    "@types/jest": "npm:29.2.3"
+    "@types/jest": "npm:29.2.4"
     "@types/node": "npm:18.11.10"
     "@types/prettier": "npm:2.7.1"
     "@types/react": "npm:18.0.25"
@@ -2555,13 +2555,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/jest@npm:*, @types/jest@npm:29.2.3":
-  version: 29.2.3
-  resolution: "@types/jest@npm:29.2.3"
+"@types/jest@npm:*, @types/jest@npm:29.2.4":
+  version: 29.2.4
+  resolution: "@types/jest@npm:29.2.4"
   dependencies:
     expect: "npm:^29.0.0"
     pretty-format: "npm:^29.0.0"
-  checksum: d9ba4deb36f06f65bcec06d61245695e498e9e198e1edbca4d1d0115d44166ab89fc7f4569622a641148c50d207a88ebc809a0630fa838cee6767f69caaeb06b
+  checksum: f7f0f6e5d0600898548593be715f1fb8c5340aad4a1ca4d98fa7c752936b65794c7296a5106eaf5f4f98e23d79b00790d0ce6c105049c7076492e1f7b2ca1f97
   languageName: node
   linkType: hard
 
