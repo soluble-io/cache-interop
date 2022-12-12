@@ -2145,7 +2145,7 @@ __metadata:
     tslib: "npm:2.4.1"
     tsup: "npm:6.5.0"
     typedoc: "npm:0.23.21"
-    typedoc-plugin-markdown: "npm:3.13.6"
+    typedoc-plugin-markdown: "npm:3.14.0"
     typescript: "npm:4.9.3"
   languageName: unknown
   linkType: soft
@@ -2225,7 +2225,7 @@ __metadata:
     tslib: "npm:2.4.1"
     tsup: "npm:6.5.0"
     typedoc: "npm:0.23.21"
-    typedoc-plugin-markdown: "npm:3.13.6"
+    typedoc-plugin-markdown: "npm:3.14.0"
     typescript: "npm:4.9.3"
   languageName: unknown
   linkType: soft
@@ -11487,14 +11487,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typedoc-plugin-markdown@npm:3.13.6":
-  version: 3.13.6
-  resolution: "typedoc-plugin-markdown@npm:3.13.6"
+"typedoc-plugin-markdown@npm:3.14.0":
+  version: 3.14.0
+  resolution: "typedoc-plugin-markdown@npm:3.14.0"
   dependencies:
     handlebars: "npm:^4.7.7"
   peerDependencies:
     typedoc: ">=0.23.0"
-  checksum: 1d93739d27b80f83518d88ec5d1ead6da7169c491b2334911777d2f8ff16a4096f89d638054297fe70b3029513bb02a74c460b37aab7643b8c700398a691e7a8
+  checksum: 832e3cf41c7c8428310ff46b081376e0a3d0cac47f7d422defdc7fbc2e6b2d29b6248121d7263889223d245a8bce12061b0f271be27cd811a924225c9224cfd3
   languageName: node
   linkType: hard
 
