@@ -2,36 +2,17 @@ name: CI-example-apps
 
 on:
   push:
-    branches:
-      - dev
-      - main
-    # Only consider those paths to trigger the action
-    paths:
-      - 'examples/**'
-      - 'packages/**'
-      - '.yarnrc.yml'
-      - 'tsconfig.base.json'
-      - '.github/workflows/**'
+    branches: [main, dev]
 
   pull_request:
-    types:
-      - opened
-      - synchronize
-      - reopened
-    # Only consider those paths to trigger the action
-    paths:
-      - 'examples/**'
-      - 'packages/**'
-      - '.yarnrc.yml'
-      - 'tsconfig.base.json'
-      - '.github/workflows/**'
+    types: [reopened, synchronize, ready_for_review]
 
 jobs:
   test:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [16.x]
+        node-version: [18.x]
     steps:
       - uses: actions/checkout@v3
 

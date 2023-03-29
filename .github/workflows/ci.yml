@@ -2,15 +2,10 @@ name: CI
 
 on:
   push:
-    branches:
-      - dev
-      - main
-    paths-ignore:
-      - 'docs/**'
+    branches: [main, dev]
 
   pull_request:
-    paths-ignore:
-      - 'docs/**'
+    types: [reopened, synchronize, ready_for_review]
 
 jobs:
   test:
