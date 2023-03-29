@@ -82,7 +82,7 @@ jobs:
 
       - name: Send coverage to codecov.io
         working-directory: ${{ github.workspace }}
-        if: matrix.node-version == '16.x'
+        if: matrix.node-version == '18.x'
         run: |
           bash .github/scripts/install-codecov.sh
           yarn g:ci-coverage-upload
