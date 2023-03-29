@@ -38,7 +38,7 @@
     "directory": "_release/package"
   },
   "scripts": {
-    "build": "tsup",
+    "build": "yarn clean && yarn tsup",
     "dev": "tsup --watch",
     "?build-release": "When https://github.com/atlassian/changesets/issues/432 has a solution we can remove this trick",
     "build-release": "yarn build && rimraf ./_release && yarn pack && mkdir ./_release && tar zxvf ./package.tgz --directory ./_release && rm ./package.tgz",
