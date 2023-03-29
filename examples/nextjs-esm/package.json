@@ -7,7 +7,7 @@
     "dev": "next dev",
     "build": "cross-env TSCONFIG=./tsconfig.no-paths.json next build",
     "start": "next start",
-    "clean": "rimraf --no-glob ./.next ./coverage ./tsconfig.tsbuildinfo",
+    "clean": "rimraf ./.next ./coverage ./tsconfig.tsbuildinfo ./node_modules/.cache",
     "typecheck": "tsc --project tsconfig.json --noEmit",
     "lint": "eslint . --ext .ts,.tsx,.js,.jsx,.mjs,.cjs,.mts,.cts --cache --cache-location ../../.cache/eslint/nextjs-esm.eslintcache",
     "fix-staged": "lint-staged --allow-empty"
@@ -17,21 +17,21 @@
     "@soluble/cache-ioredis": "workspace:^",
     "@soluble/cache-redis": "workspace:^",
     "@soluble/dsn-parser": "workspace:^",
-    "ioredis": "5.2.4",
-    "next": "13.0.5",
+    "ioredis": "5.3.1",
+    "next": "13.2.4",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "redis": "4.2.0"
   },
   "devDependencies": {
     "@soluble/eslint-config-bases": "workspace:^",
-    "@types/node": "18.11.9",
-    "@types/react": "18.0.25",
-    "@types/react-dom": "18.0.9",
+    "@types/node": "18.15.11",
+    "@types/react": "18.0.31",
+    "@types/react-dom": "18.0.11",
     "cross-env": "7.0.3",
-    "eslint": "8.28.0",
-    "eslint-config-next": "13.0.5",
-    "rimraf": "3.0.2",
-    "typescript": "4.9.3"
+    "eslint": "8.37.0",
+    "eslint-config-next": "13.2.4",
+    "rimraf": "4.4.1",
+    "typescript": "5.0.2"
   }
 }
