@@ -32,6 +32,14 @@ const config = {
   verbose: true,
   rootDir: './src',
   testMatch: ['<rootDir>/**/*.{spec,test}.{js,jsx,ts,tsx}'],
+  transform: {
+    '^.+\\.m?[tj]sx?$': [
+      'ts-jest',
+      {
+        tsconfig: tsConfigFile,
+      },
+    ],
+  },
   moduleNameMapper: {
     ...getTsConfigBasePaths(tsConfigFile),
   },
@@ -43,12 +51,6 @@ const config = {
     '!**/*.test.{js,ts}',
     '!**/__mock__/*',
   ],
-  globals: {
-    'ts-jest': {
-      useESM: true,
-      tsconfig: tsConfigFile,
-    },
-  },
 };
 
 export default config;

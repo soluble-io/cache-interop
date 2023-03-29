@@ -2,15 +2,10 @@ name: CI
 
 on:
   push:
-    branches:
-      - dev
-      - main
-    paths-ignore:
-      - 'docs/**'
+    branches: [main, dev]
 
   pull_request:
-    paths-ignore:
-      - 'docs/**'
+    types: [reopened, synchronize, ready_for_review]
 
 jobs:
   test:
@@ -82,7 +77,7 @@ jobs:
 
       - name: Send coverage to codecov.io
         working-directory: ${{ github.workspace }}
-        if: matrix.node-version == '16.x'
+        if: matrix.node-version == '18.x'
         run: |
           bash .github/scripts/install-codecov.sh
           yarn g:ci-coverage-upload
