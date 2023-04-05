@@ -2,7 +2,7 @@
   "name": "@soluble/cache-e2e-tests",
   "private": true,
   "description": "E2E tests for cache-interop",
-  "version": "0.11.2",
+  "version": "0.11.3",
   "license": "MIT",
   "homepage": "https://github.com/soluble-io/cache-interop",
   "repository": {

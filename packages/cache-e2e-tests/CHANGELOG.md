@@ -1,5 +1,11 @@
 # @soluble/cache-e2e-tests
 
+## 0.11.3
+
+### Patch Changes
+
+- [#819](https://github.com/soluble-io/cache-interop/pull/819) [`30b3658`](https://github.com/soluble-io/cache-interop/commit/30b365867b42eae34d764e1fd5cbea1f02d8c76a) Thanks [@belgattitude](https://github.com/belgattitude)! - Fix publish on npm
+
 ## 0.11.2
 
 ### Patch Changes
