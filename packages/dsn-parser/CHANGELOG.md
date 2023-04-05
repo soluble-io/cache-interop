@@ -1,5 +1,11 @@
 # @soluble/dsn-parser
 
+## 1.7.1
+
+### Patch Changes
+
+- [#817](https://github.com/soluble-io/cache-interop/pull/817) [`ed32c80`](https://github.com/soluble-io/cache-interop/commit/ed32c80e1016a2fd6c50dcd1bd19c49613d0f758) Thanks [@belgattitude](https://github.com/belgattitude)! - Fix release on npm
+
 ## 1.7.0
 
 ### Minor Changes
