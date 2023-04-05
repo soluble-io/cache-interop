@@ -4,7 +4,7 @@
 </div>
 <p align="center">
   <a aria-label="Build" href="https://github.com/soluble-io/cache-interop/actions?query=workflow%3ACI">
-    <img alt="build" src="https://img.shields.io/github/workflow/status/soluble-io/cache-interop/CI/main?label=CI&logo=github&style=for-the-badge&labelColor=000000" />
+    <img alt="GitHub branch checks state" src="https://img.shields.io/github/checks-status/soluble-io/cache-interop/main?label=CI&logo=github&style=for-the-badge">
   </a>
   <a aria-label="Codecov" href="https://codecov.io/gh/soluble-io/cache-interop">
     <img alt="Codecov" src="https://img.shields.io/codecov/c/github/soluble-io/cache-interop?logo=codecov&style=for-the-badge&labelColor=000000" />
@@ -29,11 +29,9 @@
   </a>
 </p>
 
-
 # About | [Documentation](https://github.com/soluble-io/cache-interop/)
 
 > **Warning** Before v1 is released expect breaking changes in API
-
 
 ## Features
 
@@ -47,41 +45,39 @@
 ## Roadmap
 
 - [ ] Finalize v1 API
-    - [ ] injectable LoggerInterface
-    - [ ] SerializerInterface (json, msgpack, gzip, marshaller, superjson)
-      - [ ] Chainable serializer (json -> gzip...)
-    - [ ] Cache manager
-      - [ ] Chainable cache adapter (allows lru as L1, redis as L2)
+  - [ ] injectable LoggerInterface
+  - [ ] SerializerInterface (json, msgpack, gzip, marshaller, superjson)
+    - [ ] Chainable serializer (json -> gzip...)
+  - [ ] Cache manager
+    - [ ] Chainable cache adapter (allows lru as L1, redis as L2)
 - [ ] Adapters
-    - [ ] lru-cache
-- [ ] Documentation          
-
+  - [ ] lru-cache
+- [ ] Documentation
 
 ## Adapters
 
-| package                 | target | description                      |
-|-------------------------|--------|---------------------------------------|
-| [@soluble/cache-interop](./packages/cache-interop) | `node`,`browser` | Interoperability interfaces & contracts  |
-| [@soluble/cache-ioredis](./packages/cache-ioredis) | `node` | Adapter for node [ioredis](https://github.com/luin/ioredis) driver |
-| [@soluble/cache-redis](./packages/cache-redis) | `node` | Adapter for node [redis](https://github.com/NodeRedis/node-redis) driver |
-
+| package                                            | target           | description                                                              |
+| -------------------------------------------------- | ---------------- | ------------------------------------------------------------------------ |
+| [@soluble/cache-interop](./packages/cache-interop) | `node`,`browser` | Interoperability interfaces & contracts                                  |
+| [@soluble/cache-ioredis](./packages/cache-ioredis) | `node`           | Adapter for node [ioredis](https://github.com/luin/ioredis) driver       |
+| [@soluble/cache-redis](./packages/cache-redis)     | `node`           | Adapter for node [redis](https://github.com/NodeRedis/node-redis) driver |
 
 ### At a glance
 
 ```typescript
-import { IoRedisCacheAdapter } from '@soluble/cache-ioredis';
+import { IoRedisCacheAdapter } from "@soluble/cache-ioredis";
 
 const cache = new IoRedisCacheAdapter({
-  connection: 'redis://localhost:6375',
+  connection: "redis://localhost:6375",
 });
 
 const getSomething = async () => JSON.stringify({ success: true });
 
 const { data, error } = await cache.getOrSet(
   // Cache key
-  'cacke-key-v-1',
+  "cacke-key-v-1",
   // Async function
-  getSomething, 
+  getSomething,
   // GetOrSetOptions
   { ttl: 3600 }
 );
@@ -96,7 +92,6 @@ try {
 } catch (e) {
   throw new SerializerException(e.message);
 }
-
 ```
 
 ## Diagram
@@ -136,11 +131,11 @@ classDiagram
     }
     AbstractCacheAdapter <|-- RedisCacheAdapter
     class RedisCacheAdapter {
-        +RedisConnection conn   
-        +string adapterName    
+        +RedisConnection conn
+        +string adapterName
     }
     class ConnectionInterface {
-        +getNativeConnection() 
+        +getNativeConnection()
         +quit()
     }
     ConnectionInterface <|-- IoRedisConnection
@@ -150,19 +145,16 @@ classDiagram
     ConnectionInterface <|-- RedisConnection
     class RedisConnection {
        +quit()
-    }            
+    }
 ```
 
 ## Options
 
+| GetOrSetOptions | target                                      | default | description                                                   |
+| --------------- | ------------------------------------------- | ------- | ------------------------------------------------------------- |
+| `ttl`           | `number`                                    | 0       | Time-To-Live in seconds since Epoch time. If zero, no expiry. |
+| `disableCache`  | `boolean`/`{read: boolean, write: boolean}` | false   | Disable cache                                                 |
 
-| GetOrSetOptions | target | default | description                                                   |
-|-----------------|--------|---------|---------------------------------------------------------------|
-| `ttl`           | `number` | 0       | Time-To-Live in seconds since Epoch time. If zero, no expiry. |
-| `disableCache`  | `boolean`/`{read: boolean, write: boolean}` | false      | Disable cache                                                 |
-
-
-  
 ## Structure
 
 This monorepo holds the various adapters, the contracts for interoperability and the e2e tests.
@@ -171,7 +163,7 @@ This monorepo holds the various adapters, the contracts for interoperability and
 ./packages
  ├── dsn-parser
  │   └── # @soluble/dsn-parser: utility for parsing connection dsn #
- ├── cache-interop 
+ ├── cache-interop
  │   └── # @soluble/cache-interop: cache interoperability contracts #
  ├── cache-ioredis
  │   └── # @soluble/cache-ioredis: ioredis adapter implementation #
@@ -185,14 +177,13 @@ This monorepo holds the various adapters, the contracts for interoperability and
 
 - [PSR-6](https://www.php-fig.org/psr/psr-6/) - PHP Cache interface standard recommendation.
 - [PSR-16](https://www.php-fig.org/psr/psr-6/) - PHP SimpleCache interface standard recommendation.
-- [Symfony cache](https://github.com/symfony/cache) - Symfony cache component. 
+- [Symfony cache](https://github.com/symfony/cache) - Symfony cache component.
 - [Node-cache-manager](https://github.com/BryanDonovan/node-cache-manager) - Flexible NodeJS cache module.
 - [C# getOrSet](https://csharp.hotexamples.com/examples/Microsoft.Framework.Caching.Memory/MemoryCache/GetOrSet/php-memorycache-getorset-method-examples.html) - C# Memory::getOrSet() method.
 - [SWR](https://swr.vercel.app/) - React Hooks library for data fetching
 
 ### Acknowledgements
 
-- [microbundle](https://github.com/developit/microbundle) - Zero-configuration bundler for tiny modules. 
+- [microbundle](https://github.com/developit/microbundle) - Zero-configuration bundler for tiny modules.
 - [node-testcontainers](https://github.com/testcontainers/testcontainers-node) - Ephemeral docker instances to facilitate e2e on various services (redis...)
 - [atlassian/changesets](https://github.com/atlassian/changesets) - To ease pain with monorepo versioning.
-
