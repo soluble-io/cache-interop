@@ -1,5 +1,17 @@
 # @examples/nextjs-cjs
 
+## 0.1.3
+
+### Patch Changes
+
+- [#817](https://github.com/soluble-io/cache-interop/pull/817) [`ed32c80`](https://github.com/soluble-io/cache-interop/commit/ed32c80e1016a2fd6c50dcd1bd19c49613d0f758) Thanks [@belgattitude](https://github.com/belgattitude)! - Fix release on npm
+
+- Updated dependencies [[`ed32c80`](https://github.com/soluble-io/cache-interop/commit/ed32c80e1016a2fd6c50dcd1bd19c49613d0f758)]:
+  - @soluble/cache-interop@0.12.1
+  - @soluble/cache-ioredis@0.13.1
+  - @soluble/cache-redis@0.12.1
+  - @soluble/dsn-parser@1.7.1
+
 ## 0.1.2
 
 ### Patch Changes
