@@ -45,13 +45,13 @@ describe('parseDsn', () => {
     it('should return the correct parsed params', () => {
       expect(
         parseDsn(
-          'redis://us_er na-?me:P @-_?/ssw/rd@www.example.com:6379/0?cache=true'
+          'redis://us_er na-?me:P @-_:?/ssw/rd@www.example.com:6379/0?cache=true'
         )
       ).toStrictEqual({
         success: true,
         value: {
           driver: 'redis',
-          pass: 'P @-_?/ssw/rd',
+          pass: 'P @-_:?/ssw/rd',
           host: 'www.example.com',
           user: 'us_er na-?me',
           port: 6379,
@@ -79,6 +79,36 @@ describe('parseDsn', () => {
       });
     });
   });
+  describe('when a dsn is provided with no password', () => {
+    it('should return the correct parsed params', () => {
+      expect(parseDsn('redis://user@www.example.com:6379/0')).toStrictEqual({
+        success: true,
+        value: {
+          driver: 'redis',
+          user: 'user',
+          host: 'www.example.com',
+          port: 6379,
+          db: '0',
+        },
+      });
+    });
+  });
+  describe('when a dsn is provided with empty password', () => {
+    it('should return the correct parsed params', () => {
+      expect(parseDsn('redis://user:@www.example.com:6379/0')).toStrictEqual({
+        success: true,
+        value: {
+          driver: 'redis',
+          user: 'user',
+          pass: '',
+          host: 'www.example.com',
+          port: 6379,
+          db: '0',
+        },
+      });
+    });
+  });
+
   describe('when a dsn is provided with no user/pass', () => {
     it('should return the correct parsed params', () => {
       const dsn = 'redis://www.example.com:6379/0';

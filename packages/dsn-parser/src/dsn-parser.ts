@@ -9,7 +9,7 @@ import {
 import { parseQueryParams } from './query-param-parser';
 
 const dsnRegexp =
-  /^(?<driver>([\w-]+)):\/\/((?<user>.{1,200})?:(?<pass>.{1,250})@)?(?<host>[^/:]{1,400}?)(:(?<port>\d+)?)?(\/(?<db>([.#@$\w-])+))?(\?(?<params>.+))?$/;
+  /^(?<driver>([\w-]+)):\/\/((?<user>[^/:]{1,200})?(:(?<pass>.{0,250}))?@)?(?<host>[^/:]{1,400}?)(:(?<port>\d+)?)?(\/(?<db>([.#@$\w-])+))?(\?(?<params>.+))?$/;
 
 export type ParseDsnOptions = {
   /** Whether to lowercase parsed driver name, default: false */
