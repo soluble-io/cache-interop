@@ -1,5 +1,11 @@
 # @soluble/cache-interop
 
+## 0.12.4
+
+### Patch Changes
+
+- [#823](https://github.com/soluble-io/cache-interop/pull/823) [`6bdbec5`](https://github.com/soluble-io/cache-interop/commit/6bdbec567561cf5ac5dd928c7f2699085944316e) Thanks [@belgattitude](https://github.com/belgattitude)! - Use linter from @belgattitude/eslint-config-bases
+
 ## 0.12.3
 
 ### Patch Changes
