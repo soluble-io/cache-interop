@@ -3,6 +3,11 @@ on:
   push:
     branches:
       - main
+
+# Seems required for now as setup/node might use it
+env:
+  NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
 jobs:
   release:
     name: Release and changelog
@@ -45,3 +50,4 @@ jobs:
           # setting a custom PAT token from a GH account and setting it the secrets.
           GITHUB_TOKEN: ${{ secrets.CACHE_INTEROP_RELEASE_BOT_GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
