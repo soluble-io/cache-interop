@@ -32,10 +32,6 @@ jobs:
       - name: 📥 Monorepo install
         uses: ./.github/actions/yarn-nm-install
 
-      - name: Debug if .npmrc is present in working directory
-        run: |
-          cat ${{ github.workspace }}/.npmrc
-
       - name: Create Release Pull Request or Publish to npm
         id: changesets
         uses: changesets/action@v1
