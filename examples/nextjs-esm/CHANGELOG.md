@@ -1,5 +1,17 @@
 # @examples/nextjs-esm
 
+## 0.1.6
+
+### Patch Changes
+
+- [#823](https://github.com/soluble-io/cache-interop/pull/823) [`6bdbec5`](https://github.com/soluble-io/cache-interop/commit/6bdbec567561cf5ac5dd928c7f2699085944316e) Thanks [@belgattitude](https://github.com/belgattitude)! - Use linter from @belgattitude/eslint-config-bases
+
+- Updated dependencies [[`6bdbec5`](https://github.com/soluble-io/cache-interop/commit/6bdbec567561cf5ac5dd928c7f2699085944316e)]:
+  - @soluble/cache-interop@0.12.4
+  - @soluble/cache-ioredis@0.13.4
+  - @soluble/cache-redis@0.12.4
+  - @soluble/dsn-parser@1.7.4
+
 ## 0.1.5
 
 ### Patch Changes
