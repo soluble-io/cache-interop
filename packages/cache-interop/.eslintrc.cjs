@@ -4,11 +4,11 @@
  */
 
 // Workaround for https://github.com/eslint/eslint/issues/3458
-require('@soluble/eslint-config-bases/patch/modern-module-resolution');
+require('@belgattitude/eslint-config-bases/patch/modern-module-resolution');
 
 const {
   getDefaultIgnorePatterns,
-} = require('@soluble/eslint-config-bases/helpers');
+} = require('@belgattitude/eslint-config-bases/helpers');
 
 module.exports = {
   root: true,
@@ -26,12 +26,12 @@ module.exports = {
     '**/docs',
   ],
   extends: [
-    '@soluble/eslint-config-bases/typescript',
-    '@soluble/eslint-config-bases/sonar',
-    '@soluble/eslint-config-bases/regexp',
-    '@soluble/eslint-config-bases/jest',
+    '@belgattitude/eslint-config-bases/typescript',
+    '@belgattitude/eslint-config-bases/sonar',
+    '@belgattitude/eslint-config-bases/regexp',
+    '@belgattitude/eslint-config-bases/jest',
     // Apply prettier and disable incompatible rules
-    '@soluble/eslint-config-bases/prettier',
+    '@belgattitude/eslint-config-bases/prettier-plugin',
   ],
   rules: {
     // optional overrides per project

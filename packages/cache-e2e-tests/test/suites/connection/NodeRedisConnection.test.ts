@@ -34,6 +34,7 @@ describe('redis-connection.factory', () => {
         const echo = async () =>
           new Promise((resolve, reject) => {
             native.echo('cool', (err, reply) => {
+              // eslint-disable-next-line jest/no-conditional-in-test
               if (err instanceof Error) {
                 reject(err.message);
                 return;

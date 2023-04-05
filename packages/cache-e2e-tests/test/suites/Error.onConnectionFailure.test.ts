@@ -153,7 +153,7 @@ describe.each(unconnectedAdapters)('Adapter: %s', (name, adapterFactory) => {
             errors = errs;
           },
         });
-        expect(errors.length).toStrictEqual(2);
+        expect(errors).toHaveLength(2);
         const [firstError, secondError] = errors;
         expect(firstError).toBeInstanceOf(CacheException);
         expect(firstError.message).toMatch('READ_ERROR');

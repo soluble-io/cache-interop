@@ -14,13 +14,14 @@ describe.each(adapters)('Adapter: %s', (name, adapterFactory) => {
   beforeAll(async () => {
     cache = await adapterFactory();
   });
+  afterEach(async () => {
+    await cache.clear();
+  });
+
   afterAll(async () => {
     if (Guards.isConnectedCache(cache)) {
       await cache.getConnection().quit();
     }
-  });
-  afterEach(async () => {
-    await cache.clear();
   });
 
   describe('When the cacheKey is invalid / unsupported format', () => {

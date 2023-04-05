@@ -28,6 +28,7 @@ export abstract class AbstractCacheAdapter<
   KBase extends CacheKey = CacheKey
 > implements CacheInterface<TBase, KBase>
 {
+  // eslint-disable-next-line @typescript-eslint/naming-convention
   protected _errorHelper: ErrorHelper | undefined;
 
   abstract adapterName: string;

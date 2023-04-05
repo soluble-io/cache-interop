@@ -6,6 +6,7 @@ export type CacheExceptionProps = {
 export class CacheException extends Error {
   public readonly props: CacheExceptionProps;
   public readonly stackTrace: string | null;
+  // eslint-disable-next-line @typescript-eslint/naming-convention
   private _previous!: Error | null;
 
   get previous(): Error | null {

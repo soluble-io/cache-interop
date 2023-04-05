@@ -60,8 +60,8 @@
     "ioredis": "^5.3.1"
   },
   "devDependencies": {
+    "@belgattitude/eslint-config-bases": "1.29.0",
     "@size-limit/file": "8.2.4",
-    "@soluble/eslint-config-bases": "workspace:^",
     "@types/jest": "29.5.0",
     "cross-env": "7.0.3",
     "es-check": "7.1.0",

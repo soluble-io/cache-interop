@@ -2,10 +2,10 @@
 
 const { pathsToModuleNameMapper } = require('ts-jest');
 
+const { getJestCachePath } = require('../../cache.config');
 const {
   compilerOptions: { paths: tsConfigPaths },
 } = require('../../tsconfig.paths.json');
-const { getJestCachePath } = require('../../cache.config');
 
 // Take the paths from tsconfig automatically from base tsconfig.json
 // @link https://kulshekhar.github.io/ts-jest/docs/paths-mapping
