@@ -2,18 +2,7 @@
   "$schema": "https://json.schemastore.org/tsconfig",
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
-    "composite": true,
     "noEmit": true,
     "useUnknownInCatchVariables": true
-  },
-  "include": [
-    "**/*.ts",
-    "**/*.js",
-    "**/.cjs",
-    "**/*.mjs",
-    "**/*.json",
-    "../../cache.config.js",
-    "../../lint-staged.common.js",
-    "../../lint-staged.config.js"
-  ]
+  }
 }
