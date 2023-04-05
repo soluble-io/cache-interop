@@ -481,6 +481,63 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@belgattitude/eslint-config-bases@npm:1.30.0":
+  version: 1.30.0
+  resolution: "@belgattitude/eslint-config-bases@npm:1.30.0"
+  dependencies:
+    "@rushstack/eslint-patch": "npm:^1.2.0"
+    "@tanstack/eslint-plugin-query": "npm:^4.29.0"
+    "@typescript-eslint/eslint-plugin": "npm:^5.57.1"
+    "@typescript-eslint/parser": "npm:^5.57.1"
+    eslint-config-prettier: "npm:^8.8.0"
+    eslint-import-resolver-typescript: "npm:^3.5.4"
+    eslint-plugin-import: "npm:^2.27.5"
+    eslint-plugin-jest: "npm:^27.2.1"
+    eslint-plugin-jest-formatting: "npm:^3.1.0"
+    eslint-plugin-jsx-a11y: "npm:^6.7.1"
+    eslint-plugin-playwright: "npm:^0.12.0"
+    eslint-plugin-prettier: "npm:^4.2.1"
+    eslint-plugin-react: "npm:^7.32.2"
+    eslint-plugin-react-hooks: "npm:^4.6.0"
+    eslint-plugin-regexp: "npm:^1.14.0"
+    eslint-plugin-sonarjs: "npm:^0.19.0"
+    eslint-plugin-storybook: "npm:^0.6.11"
+    eslint-plugin-tailwindcss: "npm:^3.10.3"
+    eslint-plugin-testing-library: "npm:^5.10.2"
+  peerDependencies:
+    "@angular-eslint/template-parser": ^15.2.0
+    "@graphql-eslint/eslint-plugin": ^3.14.3
+    eslint: ^8.29.0
+    eslint-plugin-mdx: ^2.0.5
+    graphql: ^16.6.0
+    prettier: ^2.8.0 || >= 3.0.0-alpha.6
+    react: ^18.2.0
+    react-dom: ^18.2.0
+    tailwindcss: ^3.2.2
+    typescript: ^4.9.4 || ^5.0.2
+  peerDependenciesMeta:
+    "@angular-eslint/template-parser":
+      optional: true
+    "@graphql-eslint/eslint-plugin":
+      optional: true
+    eslint-plugin-mdx:
+      optional: true
+    graphql:
+      optional: true
+    prettier:
+      optional: true
+    react:
+      optional: true
+    react-dom:
+      optional: true
+    tailwindcss:
+      optional: true
+    typescript:
+      optional: true
+  checksum: 1ab225bc2ba7b50795a0c3c21c0be56d9f5e637ff68eea44dcca18d197dc41fa9364531711d655b8a371d3009134a6663e2e07b91bc76dcbf192fbcdc3ccea8d
+  languageName: node
+  linkType: hard
+
 "@changesets/apply-release-plan@npm:^6.1.3":
   version: 6.1.3
   resolution: "@changesets/apply-release-plan@npm:6.1.3"
@@ -1800,7 +1857,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@soluble/cache-e2e-tests@workspace:packages/cache-e2e-tests"
   dependencies:
-    "@belgattitude/eslint-config-bases": "npm:1.29.0"
+    "@belgattitude/eslint-config-bases": "npm:1.30.0"
     "@soluble/cache-interop": "workspace:^"
     "@soluble/cache-ioredis": "workspace:^"
     "@soluble/cache-redis": "workspace:^"
@@ -1822,7 +1879,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@soluble/cache-interop@workspace:packages/cache-interop"
   dependencies:
-    "@belgattitude/eslint-config-bases": "npm:1.29.0"
+    "@belgattitude/eslint-config-bases": "npm:1.30.0"
     "@size-limit/file": "npm:8.2.4"
     "@types/jest": "npm:29.5.0"
     cross-env: "npm:7.0.3"
@@ -1846,7 +1903,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@soluble/cache-ioredis@workspace:packages/cache-ioredis"
   dependencies:
-    "@belgattitude/eslint-config-bases": "npm:1.29.0"
+    "@belgattitude/eslint-config-bases": "npm:1.30.0"
     "@size-limit/file": "npm:8.2.4"
     "@soluble/cache-interop": "workspace:^"
     "@soluble/dsn-parser": "workspace:^"
@@ -1870,7 +1927,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@soluble/cache-redis@workspace:packages/cache-redis"
   dependencies:
-    "@belgattitude/eslint-config-bases": "npm:1.29.0"
+    "@belgattitude/eslint-config-bases": "npm:1.30.0"
     "@size-limit/file": "npm:8.2.4"
     "@soluble/cache-interop": "workspace:^"
     "@soluble/dsn-parser": "workspace:^"
@@ -1903,7 +1960,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@soluble/dsn-parser@workspace:packages/dsn-parser"
   dependencies:
-    "@belgattitude/eslint-config-bases": "npm:1.29.0"
+    "@belgattitude/eslint-config-bases": "npm:1.30.0"
     "@size-limit/file": "npm:8.2.4"
     "@types/jest": "npm:29.5.0"
     cross-env: "npm:7.0.3"
@@ -3094,7 +3151,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "cache-interop-monorepo@workspace:."
   dependencies:
-    "@belgattitude/eslint-config-bases": "npm:1.29.0"
+    "@belgattitude/eslint-config-bases": "npm:1.30.0"
     "@changesets/changelog-github": "npm:0.4.8"
     "@changesets/cli": "npm:2.26.1"
     "@commitlint/cli": "npm:17.5.1"
