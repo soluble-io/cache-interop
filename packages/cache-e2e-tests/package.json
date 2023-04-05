@@ -24,11 +24,11 @@
     "ci-coverage-upload": "../../.github/scripts/download/codecov -F e2e --dir ./coverage"
   },
   "devDependencies": {
+    "@belgattitude/eslint-config-bases": "1.29.0",
     "@soluble/cache-interop": "workspace:^",
     "@soluble/cache-ioredis": "workspace:^",
     "@soluble/cache-redis": "workspace:^",
     "@soluble/dsn-parser": "workspace:^",
-    "@soluble/eslint-config-bases": "workspace:^",
     "@types/ioredis": "4.28.10",
     "@types/jest": "29.5.0",
     "@types/redis": "2.8.32",

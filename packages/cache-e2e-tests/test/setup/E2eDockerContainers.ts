@@ -12,6 +12,7 @@ type ContainerKey = keyof typeof registeredE2eContainers;
 type E2eContainer = { container: StartedTestContainer; dsn: string };
 
 export class E2eDockerContainers {
+  // eslint-disable-next-line @typescript-eslint/naming-convention
   static _instances: Map<ContainerKey, E2eContainer> = new Map();
 
   static async getContainer(key: ContainerKey): Promise<E2eContainer> {

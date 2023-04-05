@@ -6,5 +6,14 @@
     "noEmit": true,
     "useUnknownInCatchVariables": true
   },
-  "include": ["src/**/*.ts", "../../cache.config.js"]
+  "include": [
+    "**/*.ts",
+    "**/*.js",
+    "**/.cjs",
+    "**/*.mjs",
+    "**/*.json",
+    "../../cache.config.js",
+    "../../lint-staged.common.js",
+    "../../lint-staged.config.js"
+  ]
 }
