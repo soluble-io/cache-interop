@@ -1,5 +1,15 @@
 # @soluble/cache-ioredis
 
+## 0.13.5
+
+### Patch Changes
+
+- [#826](https://github.com/soluble-io/cache-interop/pull/826) [`1cc3be8`](https://github.com/soluble-io/cache-interop/commit/1cc3be821d2490cbe62123c5828cdbb45840cab5) Thanks [@belgattitude](https://github.com/belgattitude)! - Fix npm publish
+
+- Updated dependencies [[`1cc3be8`](https://github.com/soluble-io/cache-interop/commit/1cc3be821d2490cbe62123c5828cdbb45840cab5)]:
+  - @soluble/cache-interop@0.12.5
+  - @soluble/dsn-parser@1.7.5
+
 ## 0.13.4
 
 ### Patch Changes
