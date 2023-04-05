@@ -1,7 +1,7 @@
 module.exports = [
   {
     name: 'JS',
-    path: ['dist/index.js'],
-    limit: '2KB',
+    path: ['dist/index.mjs'],
+    limit: '1.3KB',
   },
 ];
