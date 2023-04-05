@@ -1,5 +1,11 @@
 # @soluble/cache-interop
 
+## 0.12.0
+
+### Minor Changes
+
+- [#802](https://github.com/soluble-io/cache-interop/pull/802) [`ff8b9e2`](https://github.com/soluble-io/cache-interop/commit/ff8b9e2bc54f445b998206c5b40da4c92dc377da) Thanks [@belgattitude](https://github.com/belgattitude)! - Built with latest dev dependencies (tsup...)
+
 ## 0.11.1
 
 ### Patch Changes
