@@ -54,17 +54,22 @@
   - [ ] lru-cache
 - [ ] Documentation
 
+## Contracts
+
+| package                                            | targets          | description                             | Info                                                                         |
+| -------------------------------------------------- | ---------------- | --------------------------------------- | ---------------------------------------------------------------------------- |
+| [@soluble/cache-interop](./packages/cache-interop) | `node`,`browser` | Interoperability interfaces & contracts | ![npm](https://img.shields.io/npm/dm/@soluble/cache-interop?label=%E2%87%A9) |
+
 ## Adapters
 
-| package                                            | targets          | description                                                              | Info                                                                         |
-| -------------------------------------------------- | ---------------- | ------------------------------------------------------------------------ | ---------------------------------------------------------------------------- |
-| [@soluble/cache-interop](./packages/cache-interop) | `node`,`browser` | Interoperability interfaces & contracts                                  | ![npm](https://img.shields.io/npm/dm/@soluble/cache-interop?label=%E2%87%A9) |
-| [@soluble/cache-ioredis](./packages/cache-ioredis) | `node`           | Adapter for [ioredis](https://github.com/luin/ioredis) driver            | ![npm](https://img.shields.io/npm/dm/@soluble/cache-ioredis?label=%E2%87%A9) |
-| [@soluble/cache-redis](./packages/cache-redis)     | `node`           | Adapter for [node-redis](https://github.com/NodeRedis/node-redis) driver | ![npm](https://img.shields.io/npm/dm/@soluble/cache-redis?label=%E2%87%A9)   |
+| package                                            | targets | description                                                              | Info                                                                         |
+| -------------------------------------------------- | ------- | ------------------------------------------------------------------------ | ---------------------------------------------------------------------------- |
+| [@soluble/cache-ioredis](./packages/cache-ioredis) | `node`  | Adapter for [ioredis](https://github.com/luin/ioredis) driver            | ![npm](https://img.shields.io/npm/dm/@soluble/cache-ioredis?label=%E2%87%A9) |
+| [@soluble/cache-redis](./packages/cache-redis)     | `node`  | Adapter for [node-redis](https://github.com/NodeRedis/node-redis) driver | ![npm](https://img.shields.io/npm/dm/@soluble/cache-redis?label=%E2%87%A9)   |
 
 ## Utils
 
-| package                                      | target           | description                 | Info                                                                      |
+| package                                      | targets          | description                 | Info                                                                      |
 | -------------------------------------------- | ---------------- | --------------------------- | ------------------------------------------------------------------------- |
 | [@soluble/dsn-parser](./packages/dsn-parser) | `node`,`browser` | Tiny and relaxed DSN parser | ![npm](https://img.shields.io/npm/dm/@soluble/dsn-parser?label=%E2%87%A9) |
 
