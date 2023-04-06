@@ -9,7 +9,7 @@
     <img alt="Codecov" src="https://img.shields.io/npm/v/@soluble/dsn-parser.svg?style=for-the-badge&labelColor=000000" />
   </a>
   <a aria-label="Downloads" href="https://npm.im/@soluble/dsn-parser">
-    <img alt="Downloads" src="https://img.shields.io/npm/dy/@soluble/dsn-parser?style=for-the-badge&labelColor=000000" />
+    <img alt="Downloads" src="https://img.shields.io/npm/dm/@soluble/dsn-parser?style=for-the-badge&labelColor=000000" />
   </a>
   <a aria-label="Size" href="https://bundlephobia.com/result?p=@soluble/dsn-parser">
     <img alt="Size" src="https://img.shields.io/bundlephobia/minzip/@soluble/dsn-parser?label=MinGZIP&style=for-the-badge&labelColor=000000" />
@@ -17,8 +17,11 @@
   <a aria-label="Coverage" href="https://codecov.io/gh/soluble-io/cache-interop">
     <img alt="Codecov" src="https://img.shields.io/codecov/c/github/soluble-io/cache-interop?label=unit&logo=codecov&flag=dsnParserUnit&style=for-the-badge&labelColor=000000" />
   </a>
+  <a aria-label="Node">
+    <img alt="Bundles" src="https://img.shields.io/static/v1?label=&message=cjs|esm&logo=webpack&style=for-the-badge&labelColor=444&color=informational" />
+  </a>
   <a aria-label="Typings">
-    <img alt="Typings" src="https://img.shields.io/static/v1?label=typings&message=3.7%2B&logo=typescript&style=for-the-badge&labelColor=000000&color=9cf" />
+    <img alt="Typings" src="https://img.shields.io/static/v1?label=typings&message=4.5%2B&logo=typescript&style=for-the-badge&labelColor=000000&color=9cf" />
   </a>
   <a aria-label="Licence" href="https://github.com/soluble-io/cache-interop/blob/main/LICENSE">
     <img alt="Licence" src="https://img.shields.io/npm/l/@soluble/cache-ioredis?style=for-the-badge&labelColor=000000" />
@@ -27,8 +30,8 @@
 
 # About
 
-Tiny DSN parser with minimal validation that handles special characters like `/` in the password field (some libs won't).
-Works in browser and node.
+Tiny DSN parser able to handle [special characters like](#why--in-password-matters) `/`, `:`... in the password (some libs won't).
+Works in browser and node
 
 ## Install
 
@@ -46,20 +49,20 @@ $ yarn add @soluble/dsn-parser
 ## Usage
 
 ```typescript
-import { parseDsn } from '@soluble/dsn-parser';
+import { parseDsn } from "@soluble/dsn-parser";
 
-const dsn = 'redis://user:p@/ss@localhost:6379/0?ssl=true''
+const dsn = "redis://user:p@/ss@localhost:6379/0?ssl=true";
 
 const parsed = parseDsn(dsn);
 
 if (parsed.success) {
   assert.deepEqual(parsed.value, {
-    driver: 'redis',
-    pass: 'p@/ss',
-    host: 'localhost',
-    user: 'user',
+    driver: "redis",
+    pass: "p@/ss",
+    host: "localhost",
+    user: "user",
     port: 6379,
-    db: '0',
+    db: "0",
     params: {
       ssl: true,
     },
@@ -68,8 +71,8 @@ if (parsed.success) {
   assert.deepEqual(parsed, {
     success: false,
     // Reasons might vary
-    reason: 'INVALID_PORT',
-    message: 'Invalid http port: 12345678',
+    reason: "INVALID_PORT",
+    message: "Invalid http port: 12345678",
   });
 }
 ```
@@ -197,3 +200,32 @@ openssl rand 60 | openssl base64 -A
 
 # YFUXIG9INIK7dFyE9aXtxLmjmnYL0zv6YluBJJbC6alKIBema/MwEGy3VUpx0oLAvWHUFGFMagAdLxrB
 ```
+
+## Sponsors ❤️
+
+If you are enjoying some of my OSS guides or libs for your company, I'd really appreciate a [sponsorship](https://github.com/sponsors/belgattitude), a [coffee](https://ko-fi.com/belgattitude) or a dropped star. That gives me a tasty morning boost and help me to make some of my ideas come true 🙏
+
+### Special thanks
+
+<table>
+  <tr>
+    <td>
+      <a href="https://www.jetbrains.com/?ref=belgattitude" target="_blank">
+         <img width="65" src="https://asset.brandfetch.io/idarKiKkI-/id53SttZhi.jpeg" alt="Jetbrains logo" />
+      </a>
+    </td>
+    <td>
+      <a href="https://www.embie.be/?ref=belgattitude" target="_blank">
+        <img width="65" src="https://avatars.githubusercontent.com/u/98402122?s=200&v=4" alt="Jetbrains logo" />    
+      </a>
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <a href="https://www.jetbrains.com/?ref=belgattitude" target="_blank">JetBrains</a>
+    </td>
+    <td align="center">
+      <a href="https://www.embie.be/?ref=belgattitude" target="_blank">Embie.be</a>
+    </td>
+   </tr>
+</table>

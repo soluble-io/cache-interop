@@ -83,3 +83,32 @@ the native [IORedis.RedisOptions](https://github.com/luin/ioredis/blob/master/AP
 >   }),
 > });
 > ```
+
+## Sponsors ❤️
+
+If you are enjoying some of my OSS guides or libs for your company, I'd really appreciate a [sponsorship](https://github.com/sponsors/belgattitude), a [coffee](https://ko-fi.com/belgattitude) or a dropped star. That gives me a tasty morning boost and help me to make some of my ideas come true 🙏
+
+### Special thanks
+
+<table>
+  <tr>
+    <td>
+      <a href="https://www.jetbrains.com/?ref=belgattitude" target="_blank">
+         <img width="65" src="https://asset.brandfetch.io/idarKiKkI-/id53SttZhi.jpeg" alt="Jetbrains logo" />
+      </a>
+    </td>
+    <td>
+      <a href="https://www.embie.be/?ref=belgattitude" target="_blank">
+        <img width="65" src="https://avatars.githubusercontent.com/u/98402122?s=200&v=4" alt="Jetbrains logo" />    
+      </a>
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <a href="https://www.jetbrains.com/?ref=belgattitude" target="_blank">JetBrains</a>
+    </td>
+    <td align="center">
+      <a href="https://www.embie.be/?ref=belgattitude" target="_blank">Embie.be</a>
+    </td>
+   </tr>
+</table>

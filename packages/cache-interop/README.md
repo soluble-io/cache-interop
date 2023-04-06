@@ -48,7 +48,10 @@ $ yarn add @soluble/cache-interop
 ### CacheInterface
 
 ```typescript
-import { CacheInterface, ConnectedCacheInterface } from '@soluble/cache-interop';
+import {
+  CacheInterface,
+  ConnectedCacheInterface,
+} from "@soluble/cache-interop";
 
 class MyCache implements CacheInterface, ConnectedCacheInterface {
   //...
@@ -62,7 +65,7 @@ class MyCache implements CacheInterface, ConnectedCacheInterface {
 > Typescript typeguards
 
 ```typescript
-import { Guards } from '@soluble/cache-interop';
+import { Guards } from "@soluble/cache-interop";
 
 if (Guards.isConnectedCache(cache)) {
   await cache.getConnection().quit();
@@ -72,7 +75,7 @@ Guards.isValidCacheKey(key);
 
 Guards.isCacheValueProviderFn(async () => {});
 
-Guards.isNonEmptyString('Hi!');
+Guards.isNonEmptyString("Hi!");
 ```
 
 ### Asserts
@@ -80,7 +83,36 @@ Guards.isNonEmptyString('Hi!');
 > Typescript assertions
 
 ```typescript
-import { Asserts } from '@soluble/cache-interop';
+import { Asserts } from "@soluble/cache-interop";
 
 Asserts.assertValidCacheKey(key);
 ```
+
+## Sponsors ❤️
+
+If you are enjoying some of my OSS guides or libs for your company, I'd really appreciate a [sponsorship](https://github.com/sponsors/belgattitude), a [coffee](https://ko-fi.com/belgattitude) or a dropped star. That gives me a tasty morning boost and help me to make some of my ideas come true 🙏
+
+### Special thanks
+
+<table>
+  <tr>
+    <td>
+      <a href="https://www.jetbrains.com/?ref=belgattitude" target="_blank">
+         <img width="65" src="https://asset.brandfetch.io/idarKiKkI-/id53SttZhi.jpeg" alt="Jetbrains logo" />
+      </a>
+    </td>
+    <td>
+      <a href="https://www.embie.be/?ref=belgattitude" target="_blank">
+        <img width="65" src="https://avatars.githubusercontent.com/u/98402122?s=200&v=4" alt="Jetbrains logo" />    
+      </a>
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <a href="https://www.jetbrains.com/?ref=belgattitude" target="_blank">JetBrains</a>
+    </td>
+    <td align="center">
+      <a href="https://www.embie.be/?ref=belgattitude" target="_blank">Embie.be</a>
+    </td>
+   </tr>
+</table>
