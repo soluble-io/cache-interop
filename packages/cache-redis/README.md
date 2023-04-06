@@ -44,18 +44,18 @@ $ yarn add @types/redis --dev
 ## Usage
 
 ```typescript
-import { RedisCacheAdapter } from '@soluble/cache-redis';
+import { RedisCacheAdapter } from "@soluble/cache-redis";
 
 const cache = new RedisCacheAdapter({
-  connection: 'redis://:pass@localhost:6379/8',
+  connection: "redis://:pass@localhost:6379/8",
 });
 
-const { data, error } = await cache.getOrSet('key', asyncPromise, {
+const { data, error } = await cache.getOrSet("key", asyncPromise, {
   ttl: 30,
 });
 
-if (await cache.has('key')) {
-  await cache.delete('key');
+if (await cache.has("key")) {
+  await cache.delete("key");
 }
 ```
 
@@ -70,9 +70,12 @@ the native [ClientOpts](https://github.com/NodeRedis/node-redis#options-object-p
 > with native parameters.
 >
 > ```typescript
-> import { RedisCacheAdapter, getRedisOptionsFromDsn } from '@soluble/cache-redis';
+> import {
+>   RedisCacheAdapter,
+>   getRedisOptionsFromDsn,
+> } from "@soluble/cache-redis";
 >
-> const dsn = 'redis://localhost:6379/db2';
+> const dsn = "redis://localhost:6379/db2";
 >
 > const cache = new RedisCacheAdapter({
 >   connection: getRedisOptionsFromDsn(dsn, {
@@ -81,3 +84,32 @@ the native [ClientOpts](https://github.com/NodeRedis/node-redis#options-object-p
 >   }),
 > });
 > ```
+
+## Sponsors ❤️
+
+If you are enjoying some of my OSS guides or libs for your company, I'd really appreciate a [sponsorship](https://github.com/sponsors/belgattitude), a [coffee](https://ko-fi.com/belgattitude) or a dropped star. That gives me a tasty morning boost and help me to make some of my ideas come true 🙏
+
+### Special thanks
+
+<table>
+  <tr>
+    <td>
+      <a href="https://www.jetbrains.com/?ref=belgattitude" target="_blank">
+         <img width="65" src="https://asset.brandfetch.io/idarKiKkI-/id53SttZhi.jpeg" alt="Jetbrains logo" />
+      </a>
+    </td>
+    <td>
+      <a href="https://www.embie.be/?ref=belgattitude" target="_blank">
+        <img width="65" src="https://avatars.githubusercontent.com/u/98402122?s=200&v=4" alt="Jetbrains logo" />    
+      </a>
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <a href="https://www.jetbrains.com/?ref=belgattitude" target="_blank">JetBrains</a>
+    </td>
+    <td align="center">
+      <a href="https://www.embie.be/?ref=belgattitude" target="_blank">Embie.be</a>
+    </td>
+   </tr>
+</table>

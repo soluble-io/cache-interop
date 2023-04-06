@@ -424,63 +424,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@belgattitude/eslint-config-bases@npm:1.29.0":
-  version: 1.29.0
-  resolution: "@belgattitude/eslint-config-bases@npm:1.29.0"
-  dependencies:
-    "@rushstack/eslint-patch": "npm:^1.2.0"
-    "@tanstack/eslint-plugin-query": "npm:^4.29.0"
-    "@typescript-eslint/eslint-plugin": "npm:^5.57.1"
-    "@typescript-eslint/parser": "npm:^5.57.1"
-    eslint-config-prettier: "npm:^8.8.0"
-    eslint-import-resolver-typescript: "npm:^3.5.4"
-    eslint-plugin-import: "npm:^2.27.5"
-    eslint-plugin-jest: "npm:^27.2.1"
-    eslint-plugin-jest-formatting: "npm:^3.1.0"
-    eslint-plugin-jsx-a11y: "npm:^6.7.1"
-    eslint-plugin-playwright: "npm:^0.12.0"
-    eslint-plugin-prettier: "npm:^4.2.1"
-    eslint-plugin-react: "npm:^7.32.2"
-    eslint-plugin-react-hooks: "npm:^4.6.0"
-    eslint-plugin-regexp: "npm:^1.14.0"
-    eslint-plugin-sonarjs: "npm:^0.19.0"
-    eslint-plugin-storybook: "npm:^0.6.11"
-    eslint-plugin-tailwindcss: "npm:^3.10.3"
-    eslint-plugin-testing-library: "npm:^5.10.2"
-  peerDependencies:
-    "@angular-eslint/template-parser": ^15.2.0
-    "@graphql-eslint/eslint-plugin": ^3.14.3
-    eslint: ^8.29.0
-    eslint-plugin-mdx: ^2.0.5
-    graphql: ^16.6.0
-    prettier: ^2.8.0 || >= 3.0.0-alpha.6
-    react: ^18.2.0
-    react-dom: ^18.2.0
-    tailwindcss: ^3.2.2
-    typescript: ^4.9.4 || ^5.0.2
-  peerDependenciesMeta:
-    "@angular-eslint/template-parser":
-      optional: true
-    "@graphql-eslint/eslint-plugin":
-      optional: true
-    eslint-plugin-mdx:
-      optional: true
-    graphql:
-      optional: true
-    prettier:
-      optional: true
-    react:
-      optional: true
-    react-dom:
-      optional: true
-    tailwindcss:
-      optional: true
-    typescript:
-      optional: true
-  checksum: 5a8999fa8c4c67c96882897baae855ac294d9358488bf590e284ce78d779432d4fdc7505f14e0ce023dc956c205f8d17056888037185f07e544e8f9c70bae329
-  languageName: node
-  linkType: hard
-
 "@belgattitude/eslint-config-bases@npm:1.30.0":
   version: 1.30.0
   resolution: "@belgattitude/eslint-config-bases@npm:1.30.0"
@@ -1219,7 +1162,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@examples/nextjs-cjs@workspace:examples/nextjs-cjs"
   dependencies:
-    "@belgattitude/eslint-config-bases": "npm:1.29.0"
+    "@belgattitude/eslint-config-bases": "npm:1.30.0"
     "@soluble/cache-interop": "workspace:^"
     "@soluble/cache-ioredis": "workspace:^"
     "@soluble/cache-redis": "workspace:^"
@@ -1244,7 +1187,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@examples/nextjs-esm@workspace:examples/nextjs-esm"
   dependencies:
-    "@belgattitude/eslint-config-bases": "npm:1.29.0"
+    "@belgattitude/eslint-config-bases": "npm:1.30.0"
     "@soluble/cache-interop": "workspace:^"
     "@soluble/cache-ioredis": "workspace:^"
     "@soluble/cache-redis": "workspace:^"
