@@ -40,7 +40,6 @@ describe('parseDsn', () => {
       });
     });
   });
-
   describe('when provided password contains special characters', () => {
     it('should return the correct parsed params', () => {
       expect(
@@ -107,8 +106,21 @@ describe('parseDsn', () => {
         },
       });
     });
+    it('should work with prisma', () => {
+      const dsn = 'postgresql://postgres:@localhost:5432/prisma-db';
+      expect(parseDsn(dsn)).toStrictEqual({
+        success: true,
+        value: {
+          driver: 'postgresql',
+          user: 'postgres',
+          pass: '',
+          host: 'localhost',
+          port: 5432,
+          db: 'prisma-db',
+        },
+      });
+    });
   });
-
   describe('when a dsn is provided with no user/pass', () => {
     it('should return the correct parsed params', () => {
       const dsn = 'redis://www.example.com:6379/0';
