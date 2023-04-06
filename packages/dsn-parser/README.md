@@ -39,6 +39,18 @@ Works in browser and node
 $ yarn add @soluble/dsn-parser
 ```
 
+## DSN ?
+
+Things like:
+
+```typescript
+const validExamples = [
+  "postgresql://postgres:@localhost:5432/prisma-db",
+  "redis://us_er-name:P@ass-_:?/ssw/rd@www.example.com:6379/0?cache=true",
+  //...
+];
+```
+
 ## Features
 
 - [x] Portable, no assumption on driver (i.e: `redis`, `pgsql`...)
