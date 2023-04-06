@@ -1,5 +1,11 @@
 # @soluble/dsn-parser
 
+## 1.7.6
+
+### Patch Changes
+
+- [#830](https://github.com/soluble-io/cache-interop/pull/830) [`1a4882a`](https://github.com/soluble-io/cache-interop/commit/1a4882a83165fd05aeeebf98355ffc3f399a0cd1) Thanks [@belgattitude](https://github.com/belgattitude)! - Improve esm usage with older bundlers (webpack 4...)
+
 ## 1.7.5
 
 ### Patch Changes
