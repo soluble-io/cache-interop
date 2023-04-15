@@ -1816,7 +1816,7 @@ __metadata:
     "@types/jest": "npm:29.5.0"
     "@types/redis": "npm:2.8.32"
     eslint: "npm:8.38.0"
-    ioredis: "npm:5.3.1"
+    ioredis: "npm:5.3.2"
     jest: "npm:29.5.0"
     redis: "npm:3.1.2"
     testcontainers: "npm:9.5.0"
@@ -5608,7 +5608,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ioredis@npm:5.3.1, ioredis@npm:^5.3.1":
+"ioredis@npm:5.3.1":
   version: 5.3.1
   resolution: "ioredis@npm:5.3.1"
   dependencies:
@@ -5622,6 +5622,23 @@ __metadata:
     redis-parser: "npm:^3.0.0"
     standard-as-callback: "npm:^2.1.0"
   checksum: 2dffdbbe54dfd95d48f664de88b3975f455615af50c8d2f75ed1e7f0c3f93a008b8dc54bf15fe3f89daa9a610742cabe2940573c9bae9a20529fee93664aaed9
+  languageName: node
+  linkType: hard
+
+"ioredis@npm:5.3.2, ioredis@npm:^5.3.1":
+  version: 5.3.2
+  resolution: "ioredis@npm:5.3.2"
+  dependencies:
+    "@ioredis/commands": "npm:^1.1.1"
+    cluster-key-slot: "npm:^1.1.0"
+    debug: "npm:^4.3.4"
+    denque: "npm:^2.1.0"
+    lodash.defaults: "npm:^4.2.0"
+    lodash.isarguments: "npm:^3.1.0"
+    redis-errors: "npm:^1.2.0"
+    redis-parser: "npm:^3.0.0"
+    standard-as-callback: "npm:^2.1.0"
+  checksum: 89e0a73efb72acf91837f7ecc892e780f6a7a56848ae5a45fef11f75f815467798fe402de7a131df9aad71876ab5f0790df762a49d79615b1581e40c237d411f
   languageName: node
   linkType: hard
 
