@@ -54,7 +54,7 @@
   "devDependencies": {
     "@belgattitude/eslint-config-bases": "1.30.0",
     "@size-limit/file": "8.2.4",
-    "@types/jest": "29.5.0",
+    "@types/jest": "29.5.1",
     "cross-env": "7.0.3",
     "dayjs": "1.11.7",
     "es-check": "7.1.1",

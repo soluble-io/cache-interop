@@ -30,7 +30,7 @@
     "@soluble/cache-redis": "workspace:^",
     "@soluble/dsn-parser": "workspace:^",
     "@types/ioredis": "4.28.10",
-    "@types/jest": "29.5.0",
+    "@types/jest": "29.5.1",
     "@types/redis": "2.8.32",
     "eslint": "8.38.0",
     "ioredis": "5.3.2",
