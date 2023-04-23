@@ -1,5 +1,11 @@
 # @soluble/dsn-parser
 
+## 1.8.0
+
+### Minor Changes
+
+- [`69ab5ad`](https://github.com/soluble-io/cache-interop/commit/69ab5ad56b553a4a1dd3a0bc882633a82c0cb42d) Thanks [@belgattitude](https://github.com/belgattitude)! - Add isParsableDsn typeguard (ease zod integration)
+
 ## 1.7.6
 
 ### Patch Changes

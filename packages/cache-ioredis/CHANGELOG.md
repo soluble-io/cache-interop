@@ -1,5 +1,12 @@
 # @soluble/cache-ioredis
 
+## 0.13.7
+
+### Patch Changes
+
+- Updated dependencies [[`69ab5ad`](https://github.com/soluble-io/cache-interop/commit/69ab5ad56b553a4a1dd3a0bc882633a82c0cb42d)]:
+  - @soluble/dsn-parser@1.8.0
+
 ## 0.13.6
 
 ### Patch Changes
