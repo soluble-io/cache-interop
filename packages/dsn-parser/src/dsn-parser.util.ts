@@ -1,5 +1,9 @@
-import type { ParsedDsn, ParseDsnOptions } from './dsn-parser';
-import type { ErrorReasons, ParserErrorResult } from './dsn-parser.type';
+import type {
+  ParsedDsn,
+  ParseDsnOptions,
+  ErrorReasons,
+  ParserErrorResult,
+} from './dsn-parser.type';
 import { errorReasons } from './dsn-parser.type';
 
 export const createErrorResult = (
