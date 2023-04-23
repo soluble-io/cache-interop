@@ -1,4 +1,8 @@
-import type { ParserResult } from './dsn-parser.type';
+import type {
+  ParsedDsn,
+  ParseDsnOptions,
+  ParserResult,
+} from './dsn-parser.type';
 import {
   createErrorResult,
   isNonEmptyString,
@@ -11,31 +15,13 @@ import { parseQueryParams } from './query-param-parser';
 const dsnRegexp =
   /^(?<driver>([\w-]+)):\/\/((?<user>[^/:]{1,200})?(:(?<pass>.{0,250}))?@)?(?<host>[^/:]{1,400}?)(:(?<port>\d+)?)?(\/(?<db>([.#@$\w-])+))?(\?(?<params>.+))?$/;
 
-export type ParseDsnOptions = {
-  /** Whether to lowercase parsed driver name, default: false */
-  lowercaseDriver?: boolean;
-  /** Overrides parsed values by those one (except query params) */
-  overrides?: Omit<Partial<ParsedDsn>, 'params'>;
-};
-
 const defaultOptions = {
   lowercaseDriver: false,
   overrides: {},
 };
 
-export type ParsedDsn = {
-  driver: string;
-  host: string;
-  user?: string;
-  pass?: string;
-  port?: number;
-  db?: string;
-  /** Query params */
-  params?: Record<string, number | string | boolean>;
-};
-
 export const parseDsn = (
-  dsn: string,
+  dsn: unknown,
   options?: ParseDsnOptions
 ): ParserResult => {
   if (!isNonEmptyString(dsn)) {

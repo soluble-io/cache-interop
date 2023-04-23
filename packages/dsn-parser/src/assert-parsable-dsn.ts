@@ -1,5 +1,5 @@
-import { parseDsn } from './dsn-parser';
 import type { ParsableDsn } from './dsn-parser.type';
+import { parseDsn } from './parse-dsn';
 
 /**
  * @throws Error when not parsable

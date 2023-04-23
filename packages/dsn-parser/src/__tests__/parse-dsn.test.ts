@@ -1,4 +1,4 @@
-import { parseDsn } from '../dsn-parser';
+import { parseDsn } from '../parse-dsn';
 
 describe('parseDsn', () => {
   describe('when provided dsn contains all options', () => {

@@ -1,76 +1,78 @@
-<p align="center">
-  <a href="https://github.com/soluble-io/cache-interop/tree/main/packages/dsn-parser">
-    <h1 align="center">@soluble/dsn-parser</h1>
-  </a>
-</p>
+# @soluble/dsn-parser
 
-<p align="center">
-  <a aria-label="Version" href="https://npm.im/@soluble/dsn-parser">
-    <img alt="Codecov" src="https://img.shields.io/npm/v/@soluble/dsn-parser.svg?style=for-the-badge&labelColor=000000" />
-  </a>
-  <a aria-label="Downloads" href="https://npm.im/@soluble/dsn-parser">
-    <img alt="Downloads" src="https://img.shields.io/npm/dm/@soluble/dsn-parser?style=for-the-badge&labelColor=000000" />
-  </a>
-  <a aria-label="Size" href="https://bundlephobia.com/result?p=@soluble/dsn-parser">
-    <img alt="Size" src="https://img.shields.io/bundlephobia/minzip/@soluble/dsn-parser?label=MinGZIP&style=for-the-badge&labelColor=000000" />
-  </a>
-  <a aria-label="Coverage" href="https://codecov.io/gh/soluble-io/cache-interop">
-    <img alt="Codecov" src="https://img.shields.io/codecov/c/github/soluble-io/cache-interop?label=unit&logo=codecov&flag=dsnParserUnit&style=for-the-badge&labelColor=000000" />
-  </a>
-  <a aria-label="Node">
-    <img alt="Bundles" src="https://img.shields.io/static/v1?label=&message=cjs|esm&logo=webpack&style=for-the-badge&labelColor=444&color=informational" />
-  </a>
-  <a aria-label="Typings">
-    <img alt="Typings" src="https://img.shields.io/static/v1?label=typings&message=4.5%2B&logo=typescript&style=for-the-badge&labelColor=000000&color=9cf" />
-  </a>
-  <a aria-label="Licence" href="https://github.com/soluble-io/cache-interop/blob/main/LICENSE">
-    <img alt="Licence" src="https://img.shields.io/npm/l/@soluble/cache-ioredis?style=for-the-badge&labelColor=000000" />
-  </a>
-</p>
+DSN parser, validation utilities, and query string helper in a light and modern package.
 
-# About
-
-Tiny DSN parser able to handle [special characters like](#why--in-password-matters) `/`, `:`... in the password (some libs won't).
-Works in browser and node
+[![npm](https://img.shields.io/npm/v/@soluble/dsn-parser?style=for-the-badge&labelColor=222)](https://www.npmjs.com/package/@soluble/dsn-parser)
+[![size](https://img.shields.io/bundlephobia/minzip/@soluble/dsn-parser@latest?label=Max&style=for-the-badge&labelColor=333&color=informational)](https://bundlephobia.com/package/@soluble/dsn-parser@latest)
+[![bundles](https://img.shields.io/static/v1?label=&message=cjs|esm|treeshake&logo=webpack&style=for-the-badge&labelColor=444&color=informational)](https://github.com/soluble-io/dsn-parser/blob/main/packages/exception/.size-limit.cjs)
+[![node](https://img.shields.io/static/v1?label=Node&message=14%2b&logo=node.js&style=for-the-badge&labelColor=444&color=informational)](https://browserslist.dev/?q=PjAuMjUlLCBub3QgZGVhZA%3D%3D)
+[![codecov](https://img.shields.io/codecov/c/github/soluble-io/cache-interop?label=unit&logo=codecov&flag=dsnParserUnit&style=for-the-badge&labelColor=000000)](https://codecov.io/gh/soluble-io/cache-interop)
+![types](https://img.shields.io/static/v1?label=typings&message=4.5%2B&logo=typescript&style=for-the-badge&labelColor=000000&color=9cf)
+[![npm](https://img.shields.io/npm/dm/@soluble/dsn-parser?style=for-the-badge&labelColor=000000)](https://www.npmjs.com/package/@soluble/dsn-parser)
+[![license](https://img.shields.io/npm/l/@soluble/dsn-parser?style=for-the-badge&labelColor=000000)](https://github.com/soluble-io/cache-interop/blob/main/LICENSE)
 
 ## Install
 
 ```bash
+$ npm install @soluble-dsn-parser
 $ yarn add @soluble/dsn-parser
-```
-
-## DSN ?
-
-Things like:
-
-```typescript
-const validExamples = [
-  "postgresql://postgres:@localhost:5432/prisma-db",
-  "redis://us_er-name:P@ass-_:?/ssw/rd@www.example.com:6379/0?cache=true",
-  //...
-];
+$ pnpm add @soluble/dsn-parser
 ```
 
 ## Features
 
-- [x] Portable, no assumption on driver (i.e: `redis`, `pgsql`...)
-- [x] Support for optional query params.
-- [x] Validation reasons rather than `try...catch`.
-- [x] Provides `assertParsableDsn` assertion for convenience.
+- [x] Parse individual fields (ie: `driver`, `user`, `password`, `host`...)
+- [x] Handle query string with casting of boolean and numeric values.
+- [x] Handle [special characters like](#why--in-password-matters) `/`, `:`... in the password (some libs won't).
+- [x] Error with indicative message / reasons (discriminative union or throwing).
+- [x] Don't leak passwords in the error message.
+- [x] Assertion and typeguard helpers (ie: [easy integrate with zod](#zod-integration-example)).
 
-## Usage
+## Quick start
+
+### parseDsnOrThrow
+
+Usage with exceptions
+
+```typescript
+import { parseDsnOrThrow } from "@soluble/dsn-parser";
+
+const dsn = "redis://user:p@/ssword@localhost:6379/0?ssl=true";
+
+try {
+  const parsedDsn = parseDsn(dsn);
+  assert.deepEqual(parsedDsn, {
+    driver: "redis",
+    pass: "p@/ssword",
+    host: "localhost",
+    user: "user",
+    port: 6379,
+    db: "0",
+    params: {
+      ssl: true,
+    },
+  });
+} catch (e) {
+  // example:
+  // e -> Error("Can't parse dsn: Invalid port: 12345678 (INVALID_PORT)")
+}
+```
+
+### parseDsn
+
+Usage with discriminated union.
 
 ```typescript
 import { parseDsn } from "@soluble/dsn-parser";
 
-const dsn = "redis://user:p@/ss@localhost:6379/0?ssl=true";
+const dsn = "redis://user:p@/ssword@localhost:6379/0?ssl=true";
 
 const parsed = parseDsn(dsn);
 
 if (parsed.success) {
   assert.deepEqual(parsed.value, {
     driver: "redis",
-    pass: "p@/ss",
+    pass: "p@/ssword",
     host: "localhost",
     user: "user",
     port: 6379,
@@ -127,6 +129,18 @@ try {
 }
 ```
 
+### Typeguard
+
+```typescript
+import { isParsableDsn, type ParsableDsn } from "@soluble/dsn-parser";
+
+const dsn = "postgresql://localhost:6379/db";
+
+if (isParsableDsn(dsn)) {
+  // known to be ParsableDSN
+}
+```
+
 ## DSN parsing
 
 ### Requirements
@@ -146,6 +160,20 @@ export type ParsedDsn = {
   params?: Record<string, number | string | boolean>;
 };
 ```
+
+### DSN support
+
+Things like:
+
+```typescript
+const validExamples = [
+  "postgresql://postgres:@localhost:5432/prisma-db",
+  "redis://us_er-name:P@ass-_:?/ssw/rd@www.example.com:6379/0?cache=true",
+  //...
+];
+```
+
+should work.
 
 ### Query parameters
 
@@ -201,6 +229,23 @@ if (!parsed.success) {
 | `'INVALID_PORT'`     | `Invalid port: ${port}` | [1-65535]       |
 
 ## Faq
+
+### Zod integration example
+
+The `isParsableDsn` can be easily plugged into zod custom validation. Example:
+
+```typescript
+import { z } from "zod";
+
+export const serverEnvSchema = z.object({
+  PRISMA_DATABASE_URL: z.custom(
+    (dsn) => isParsableDsn(dsn),
+    "Invalid DSN format."
+  ),
+});
+
+serverEnvSchema.parse(process.env);
+```
 
 ### Why '/' in password matters
 

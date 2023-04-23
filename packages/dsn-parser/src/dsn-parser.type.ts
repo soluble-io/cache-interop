@@ -1,4 +1,20 @@
-import type { ParsedDsn } from './dsn-parser';
+export type ParsedDsn = {
+  driver: string;
+  host: string;
+  user?: string;
+  pass?: string;
+  port?: number;
+  db?: string;
+  /** Query params */
+  params?: Record<string, number | string | boolean>;
+};
+
+export type ParseDsnOptions = {
+  /** Whether to lowercase parsed driver name, default: false */
+  lowercaseDriver?: boolean;
+  /** Overrides parsed values by those one (except query params) */
+  overrides?: Omit<Partial<ParsedDsn>, 'params'>;
+};
 
 export const errorReasons = {
   EMPTY_DSN: 'DSN cannot be empty',
