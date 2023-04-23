@@ -1,5 +1,12 @@
 # @soluble/cache-redis
 
+## 0.12.8
+
+### Patch Changes
+
+- Updated dependencies [[`c28c5e4`](https://github.com/soluble-io/cache-interop/commit/c28c5e412829e59533256dc52a4f84d513a683a0), [`c28c5e4`](https://github.com/soluble-io/cache-interop/commit/c28c5e412829e59533256dc52a4f84d513a683a0)]:
+  - @soluble/dsn-parser@1.9.0
+
 ## 0.12.7
 
 ### Patch Changes
