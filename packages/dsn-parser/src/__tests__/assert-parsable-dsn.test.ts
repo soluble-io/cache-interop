@@ -1,4 +1,4 @@
-import { assertParsableDsn } from '../parsable-dsn.assert';
+import { assertParsableDsn } from '../assert-parsable-dsn';
 
 describe('assertParsableDsn', () => {
   it.each([
