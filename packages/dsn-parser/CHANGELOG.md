@@ -1,5 +1,13 @@
 # @soluble/dsn-parser
 
+## 1.9.0
+
+### Minor Changes
+
+- [#854](https://github.com/soluble-io/cache-interop/pull/854) [`c28c5e4`](https://github.com/soluble-io/cache-interop/commit/c28c5e412829e59533256dc52a4f84d513a683a0) Thanks [@belgattitude](https://github.com/belgattitude)! - Add parseDsnOrThrow function (when preferred over discriminated unions)
+
+- [#854](https://github.com/soluble-io/cache-interop/pull/854) [`c28c5e4`](https://github.com/soluble-io/cache-interop/commit/c28c5e412829e59533256dc52a4f84d513a683a0) Thanks [@belgattitude](https://github.com/belgattitude)! - Relax parseDsn signature to allow 'unknown' dsn parameter.
+
 ## 1.8.0
 
 ### Minor Changes
