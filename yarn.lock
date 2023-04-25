@@ -1808,7 +1808,7 @@ __metadata:
     ts-jest: "npm:29.1.0"
     tslib: "npm:2.5.0"
     tsup: "npm:6.7.0"
-    typedoc: "npm:0.24.5"
+    typedoc: "npm:0.24.6"
     typedoc-plugin-markdown: "npm:3.15.2"
     typescript: "npm:5.0.4"
   languageName: unknown
@@ -1889,7 +1889,7 @@ __metadata:
     ts-jest: "npm:29.1.0"
     tslib: "npm:2.5.0"
     tsup: "npm:6.7.0"
-    typedoc: "npm:0.24.5"
+    typedoc: "npm:0.24.6"
     typedoc-plugin-markdown: "npm:3.15.2"
     typescript: "npm:5.0.4"
   languageName: unknown
@@ -9718,9 +9718,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typedoc@npm:0.24.5":
-  version: 0.24.5
-  resolution: "typedoc@npm:0.24.5"
+"typedoc@npm:0.24.6":
+  version: 0.24.6
+  resolution: "typedoc@npm:0.24.6"
   dependencies:
     lunr: "npm:^2.3.9"
     marked: "npm:^4.3.0"
@@ -9730,7 +9730,7 @@ __metadata:
     typescript: 4.6.x || 4.7.x || 4.8.x || 4.9.x || 5.0.x
   bin:
     typedoc: bin/typedoc
-  checksum: c9b202791e94f500f4aa889cb1909d1266c1fcf43fb527b3ff91108f5308b864599b634af6a2528b6300a5291be5d90ef03a26454f6dcf63d815273d0723eb18
+  checksum: 812f333df0f8469f7679f2b41ff4b637b3f3ba3fb0ce716ff988b3ede8dfb7675a7cc4d8101f5bf8599c69b898a6577d2ad0087eb3e3ed1d2a01eaffc1ae2f95
   languageName: node
   linkType: hard
 
