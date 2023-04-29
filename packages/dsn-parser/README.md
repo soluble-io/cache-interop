@@ -40,7 +40,7 @@ import { parseDsnOrThrow } from "@soluble/dsn-parser";
 const dsn = "redis://user:p@/ssword@localhost:6379/0?ssl=true";
 
 try {
-  const parsedDsn = parseDsn(dsn);
+  const parsedDsn = parseDsnOrThrow(dsn);
   assert.deepEqual(parsedDsn, {
     driver: "redis",
     pass: "p@/ssword",
