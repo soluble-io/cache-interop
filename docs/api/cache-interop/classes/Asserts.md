@@ -1,4 +1,4 @@
-[@soluble/cache-interop - v0.9.1](../README.md) / Asserts
+[@soluble/cache-interop - v0.12.5](../README.md) / Asserts
 
 # Class: Asserts
 
@@ -26,16 +26,16 @@
 
 #### Type parameters
 
-| Name | Type |
-| :------ | :------ |
-| `K` | extends `string` = `string` |
+| Name | Type                        |
+| :--- | :-------------------------- |
+| `K`  | extends `string` = `string` |
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `key` | `unknown` |
-| `msg?` | `string` |
+| Name   | Type      |
+| :----- | :-------- |
+| `key`  | `unknown` |
+| `msg?` | `string`  |
 
 #### Returns
 

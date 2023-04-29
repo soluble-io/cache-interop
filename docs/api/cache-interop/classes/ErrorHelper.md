@@ -1,4 +1,4 @@
-[@soluble/cache-interop - v0.9.1](../README.md) / ErrorHelper
+[@soluble/cache-interop - v0.12.5](../README.md) / ErrorHelper
 
 # Class: ErrorHelper
 
@@ -25,8 +25,8 @@
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
+| Name          | Type     |
+| :------------ | :------- |
 | `adapterName` | `string` |
 
 ## Methods
@@ -37,17 +37,17 @@
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `method` | `CallerMethod` |
-| `reason` | ``"INVALID_KEY"`` \| ``"WRITE_ERROR"`` \| ``"READ_ERROR"`` \| ``"COMMAND_ERROR"`` \| ``"VALUE_PROVIDER_ERROR"`` \| ``"UNEXPECTED_REPLY"`` \| ``"UNSUPPORTED_VALUE"`` \| ``"UNEXPECTED_ERROR"`` |
-| `detail?` | ``null`` \| `string` |
+| Name      | Type                                                                                                                                                                           |
+| :-------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `method`  | `CallerMethod`                                                                                                                                                                 |
+| `reason`  | `"INVALID_KEY"` \| `"WRITE_ERROR"` \| `"READ_ERROR"` \| `"COMMAND_ERROR"` \| `"VALUE_PROVIDER_ERROR"` \| `"UNEXPECTED_REPLY"` \| `"UNSUPPORTED_VALUE"` \| `"UNEXPECTED_ERROR"` |
+| `detail?` | `null` \| `string`                                                                                                                                                             |
 
 #### Returns
 
 `string`
 
-___
+---
 
 ### getCacheException
 
@@ -55,17 +55,17 @@ ___
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `method` | `CallerMethod` |
-| `reason` | ``"INVALID_KEY"`` \| ``"WRITE_ERROR"`` \| ``"READ_ERROR"`` \| ``"COMMAND_ERROR"`` \| ``"VALUE_PROVIDER_ERROR"`` \| ``"UNEXPECTED_REPLY"`` \| ``"UNSUPPORTED_VALUE"`` \| ``"UNEXPECTED_ERROR"`` |
-| `previous?` | `Error` |
+| Name        | Type                                                                                                                                                                           |
+| :---------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `method`    | `CallerMethod`                                                                                                                                                                 |
+| `reason`    | `"INVALID_KEY"` \| `"WRITE_ERROR"` \| `"READ_ERROR"` \| `"COMMAND_ERROR"` \| `"VALUE_PROVIDER_ERROR"` \| `"UNEXPECTED_REPLY"` \| `"UNSUPPORTED_VALUE"` \| `"UNEXPECTED_ERROR"` |
+| `previous?` | `Error`                                                                                                                                                                        |
 
 #### Returns
 
 [`CacheException`](CacheException.md)
 
-___
+---
 
 ### getCacheProviderException
 
@@ -73,32 +73,32 @@ ___
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `method` | `CallerMethod` |
-| `previous?` | `Error` |
+| Name        | Type           |
+| :---------- | :------------- |
+| `method`    | `CallerMethod` |
+| `previous?` | `Error`        |
 
 #### Returns
 
 [`CacheProviderException`](CacheProviderException.md)
 
-___
+---
 
 ### getInvalidCacheKeyException
 
-▸ **getInvalidCacheKeyException**(`__namedParameters`): [`InvalidCacheKeyException`](InvalidCacheKeyException.md)
+▸ **getInvalidCacheKeyException**(`«destructured»`): [`InvalidCacheKeyException`](InvalidCacheKeyException.md)
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `__namedParameters` | `MethodWithKey` |
+| Name             | Type            |
+| :--------------- | :-------------- |
+| `«destructured»` | `MethodWithKey` |
 
 #### Returns
 
 [`InvalidCacheKeyException`](InvalidCacheKeyException.md)
 
-___
+---
 
 ### getUnexpectedErrorException
 
@@ -106,16 +106,16 @@ ___
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `method` | `CallerMethod` |
-| `previous?` | `Error` |
+| Name        | Type           |
+| :---------- | :------------- |
+| `method`    | `CallerMethod` |
+| `previous?` | `Error`        |
 
 #### Returns
 
 [`UnexpectedErrorException`](UnexpectedErrorException.md)
 
-___
+---
 
 ### getUnsupportedValueException
 
@@ -123,10 +123,10 @@ ___
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
+| Name     | Type           |
+| :------- | :------------- |
 | `method` | `CallerMethod` |
-| `v` | `unknown` |
+| `v`      | `unknown`      |
 
 #### Returns
 

@@ -1,4 +1,4 @@
-[@soluble/cache-interop - v0.9.1](../README.md) / InvalidCacheKeyException
+[@soluble/cache-interop - v0.12.5](../README.md) / InvalidCacheKeyException
 
 # Class: InvalidCacheKeyException
 
@@ -38,7 +38,7 @@
 
 #### Parameters
 
-| Name | Type |
+| Name    | Type    |
 | :------ | :------ |
 | `props` | `Props` |
 
@@ -56,31 +56,31 @@
 
 [InvalidArgumentException](InvalidArgumentException.md).[props](InvalidArgumentException.md#props)
 
-___
+---
 
 ### stackTrace
 
-• `Readonly` **stackTrace**: ``null`` \| `string`
+• `Readonly` **stackTrace**: `null` \| `string`
 
 #### Inherited from
 
 [InvalidArgumentException](InvalidArgumentException.md).[stackTrace](InvalidArgumentException.md#stacktrace)
 
-___
+---
 
 ### defaultMessage
 
-▪ `Static` `Readonly` **defaultMessage**: ``"InvalidArgument for cacheKey"``
+▪ `Static` `Readonly` **defaultMessage**: `"InvalidArgument for cacheKey"`
 
 ## Accessors
 
 ### previous
 
-• `get` **previous**(): ``null`` \| `Error`
+• `get` **previous**(): `null` \| `Error`
 
 #### Returns
 
-``null`` \| `Error`
+`null` \| `Error`
 
 #### Inherited from
 
@@ -90,9 +90,9 @@ InvalidArgumentException.previous
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `previous` | ``null`` \| `Error` |
+| Name       | Type              |
+| :--------- | :---------------- |
+| `previous` | `null` \| `Error` |
 
 #### Returns
 
@@ -116,7 +116,7 @@ InvalidArgumentException.previous
 
 [InvalidArgumentException](InvalidArgumentException.md).[getName](InvalidArgumentException.md#getname)
 
-___
+---
 
 ### getSafeKey
 
@@ -129,7 +129,7 @@ errors when displaying in error messages.
 
 `string`
 
-___
+---
 
 ### toString
 

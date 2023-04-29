@@ -1,6 +1,6 @@
-@soluble/cache-interop - v0.9.1
+@soluble/cache-interop
 
-# @soluble/cache-interop - v0.9.1
+# @soluble/cache-interop - v0.12.5
 
 ## Table of contents
 
@@ -33,7 +33,7 @@
 - [EvictionPolicyInterface](interfaces/EvictionPolicyInterface.md)
 - [SerializerInterface](interfaces/SerializerInterface.md)
 
-### Type aliases
+### Type Aliases
 
 - [CacheExpiresAt](README.md#cacheexpiresat)
 - [CacheItemMetadata](README.md#cacheitemmetadata)
@@ -51,13 +51,13 @@
 
 - [executeValueProviderFn](README.md#executevalueproviderfn)
 
-## Type aliases
+## Type Aliases
 
 ### CacheExpiresAt
 
 Ƭ **CacheExpiresAt**: `number`
 
-___
+---
 
 ### CacheItemMetadata
 
@@ -65,23 +65,23 @@ ___
 
 #### Type parameters
 
-| Name | Type |
-| :------ | :------ |
-| `K` | extends [`CacheKey`](README.md#cachekey) = [`CacheKey`](README.md#cachekey) |
+| Name | Type                                                                        |
+| :--- | :-------------------------------------------------------------------------- |
+| `K`  | extends [`CacheKey`](README.md#cachekey) = [`CacheKey`](README.md#cachekey) |
 
 #### Type declaration
 
-| Name | Type |
-| :------ | :------ |
-| `key` | `K` |
+| Name  | Type |
+| :---- | :--- |
+| `key` | `K`  |
 
-___
+---
 
 ### CacheKey
 
 Ƭ **CacheKey**: `string`
 
-___
+---
 
 ### CacheProviderAsyncFn
 
@@ -90,8 +90,8 @@ ___
 #### Type parameters
 
 | Name |
-| :------ |
-| `T` |
+| :--- |
+| `T`  |
 
 #### Type declaration
 
@@ -99,15 +99,15 @@ ___
 
 ##### Parameters
 
-| Name | Type |
-| :------ | :------ |
+| Name      | Type                       |
+| :-------- | :------------------------- |
 | `params?` | `CacheValueProviderParams` |
 
 ##### Returns
 
 `Promise`<`T`\>
 
-___
+---
 
 ### CacheProviderSyncFn
 
@@ -116,8 +116,8 @@ ___
 #### Type parameters
 
 | Name |
-| :------ |
-| `T` |
+| :--- |
+| `T`  |
 
 #### Type declaration
 
@@ -125,15 +125,15 @@ ___
 
 ##### Parameters
 
-| Name | Type |
-| :------ | :------ |
+| Name      | Type                       |
+| :-------- | :------------------------- |
 | `params?` | `CacheValueProviderParams` |
 
 ##### Returns
 
 `T`
 
-___
+---
 
 ### CacheValueProviderFn
 
@@ -142,10 +142,10 @@ ___
 #### Type parameters
 
 | Name |
-| :------ |
-| `T` |
+| :--- |
+| `T`  |
 
-___
+---
 
 ### DeleteOptions
 
@@ -153,11 +153,11 @@ ___
 
 #### Type declaration
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
+| Name            | Type      | Description                                  |
+| :-------------- | :-------- | :------------------------------------------- |
 | `disableCache?` | `boolean` | Whether to disable caching, by default false |
 
-___
+---
 
 ### GetOptions
 
@@ -166,23 +166,23 @@ ___
 #### Type parameters
 
 | Name |
-| :------ |
-| `T` |
+| :--- |
+| `T`  |
 
 #### Type declaration
 
-| Name | Type |
-| :------ | :------ |
-| `defaultValue?` | `T` |
+| Name            | Type      |
+| :-------------- | :-------- |
+| `defaultValue?` | `T`       |
 | `disableCache?` | `boolean` |
 
-___
+---
 
 ### GetOrSetOptions
 
-Ƭ **GetOrSetOptions**: `Omit`<[`SetOptions`](README.md#setoptions), ``"disableCache"``\> & { `disableCache?`: `boolean` \| { `read`: `boolean` ; `write`: `boolean`  } ; `onError?`: (`errors`: [`CacheException`](classes/CacheException.md)[]) => `void`  }
+Ƭ **GetOrSetOptions**: `Omit`<[`SetOptions`](README.md#setoptions), `"disableCache"`\> & { `disableCache?`: `boolean` \| { `read`: `boolean` ; `write`: `boolean` } ; `onError?`: (`errors`: [`CacheException`](classes/CacheException.md)[]) => `void` }
 
-___
+---
 
 ### HasOptions
 
@@ -190,12 +190,12 @@ ___
 
 #### Type declaration
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `disableCache?` | `boolean` | Whether to disable caching, by default false |
-| `onError?` | (`error`: [`CacheException`](classes/CacheException.md)) => `void` | Callback since Cache.has can't really return CacheException... |
+| Name            | Type                                                               | Description                                                    |
+| :-------------- | :----------------------------------------------------------------- | :------------------------------------------------------------- |
+| `disableCache?` | `boolean`                                                          | Whether to disable caching, by default false                   |
+| `onError?`      | (`error`: [`CacheException`](classes/CacheException.md)) => `void` | Callback since Cache.has can't really return CacheException... |
 
-___
+---
 
 ### SetOptions
 
@@ -203,10 +203,10 @@ ___
 
 #### Type declaration
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `disableCache?` | `boolean` | Whether to disable caching, by default false |
-| `ttl?` | `number` | Time-To-Live expressed in seconds, 0 meaning forever |
+| Name            | Type      | Description                                          |
+| :-------------- | :-------- | :--------------------------------------------------- |
+| `disableCache?` | `boolean` | Whether to disable caching, by default false         |
+| `ttl?`          | `number`  | Time-To-Live expressed in seconds, 0 meaning forever |
 
 ## Functions
 
@@ -217,13 +217,13 @@ ___
 #### Type parameters
 
 | Name |
-| :------ |
-| `T` |
+| :--- |
+| `T`  |
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
+| Name            | Type                                                 |
+| :-------------- | :--------------------------------------------------- |
 | `syncOrAsyncFn` | `AsyncFn`<`T`\> \| `SyncFn`<`T`\> \| `Promise`<`T`\> |
 
 #### Returns

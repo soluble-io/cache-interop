@@ -1,4 +1,4 @@
-[@soluble/cache-interop - v0.9.1](../README.md) / ErrorFormatter
+[@soluble/cache-interop - v0.12.5](../README.md) / ErrorFormatter
 
 # Class: ErrorFormatter
 
@@ -24,10 +24,10 @@
 
 #### Parameters
 
-| Name | Type | Default value |
-| :------ | :------ | :------ |
-| `adapterName` | `string` | `undefined` |
-| `limitDetail` | `number` | `40` |
+| Name          | Type     | Default value |
+| :------------ | :------- | :------------ |
+| `adapterName` | `string` | `undefined`   |
+| `limitDetail` | `number` | `40`          |
 
 ## Properties
 
@@ -43,12 +43,12 @@
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `method` | `CallerMethod` |
-| `reason` | ``"INVALID_KEY"`` \| ``"WRITE_ERROR"`` \| ``"READ_ERROR"`` \| ``"COMMAND_ERROR"`` \| ``"VALUE_PROVIDER_ERROR"`` \| ``"UNEXPECTED_REPLY"`` \| ``"UNSUPPORTED_VALUE"`` \| ``"UNEXPECTED_ERROR"`` |
-| `detail?` | ``null`` \| `string` |
-| `msg?` | `string` |
+| Name      | Type                                                                                                                                                                           |
+| :-------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `method`  | `CallerMethod`                                                                                                                                                                 |
+| `reason`  | `"INVALID_KEY"` \| `"WRITE_ERROR"` \| `"READ_ERROR"` \| `"COMMAND_ERROR"` \| `"VALUE_PROVIDER_ERROR"` \| `"UNEXPECTED_REPLY"` \| `"UNSUPPORTED_VALUE"` \| `"UNEXPECTED_ERROR"` |
+| `detail?` | `null` \| `string`                                                                                                                                                             |
+| `msg?`    | `string`                                                                                                                                                                       |
 
 #### Returns
 

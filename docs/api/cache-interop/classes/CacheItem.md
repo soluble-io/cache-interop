@@ -1,12 +1,12 @@
-[@soluble/cache-interop - v0.9.1](../README.md) / CacheItem
+[@soluble/cache-interop - v0.12.5](../README.md) / CacheItem
 
 # Class: CacheItem<T, KBase\>
 
 ## Type parameters
 
-| Name | Type |
-| :------ | :------ |
-| `T` | `T` |
+| Name    | Type                                                                              |
+| :------ | :-------------------------------------------------------------------------------- |
+| `T`     | `T`                                                                               |
 | `KBase` | extends [`CacheKey`](../README.md#cachekey) = [`CacheKey`](../README.md#cachekey) |
 
 ## Implements
@@ -36,28 +36,28 @@
 
 #### Type parameters
 
-| Name | Type |
-| :------ | :------ |
-| `T` | `T` |
+| Name    | Type                        |
+| :------ | :-------------------------- |
+| `T`     | `T`                         |
 | `KBase` | extends `string` = `string` |
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
+| Name    | Type                            |
+| :------ | :------------------------------ |
 | `props` | `CacheItemProps`<`T`, `KBase`\> |
 
 ## Properties
 
 ### data
 
-• `Readonly` **data**: ``null`` \| `T`
+• `Readonly` **data**: `null` \| `T`
 
 #### Implementation of
 
 [CacheItemInterface](../interfaces/CacheItemInterface.md).[data](../interfaces/CacheItemInterface.md#data)
 
-___
+---
 
 ### error
 
@@ -67,7 +67,7 @@ ___
 
 [CacheItemInterface](../interfaces/CacheItemInterface.md).[error](../interfaces/CacheItemInterface.md#error)
 
-___
+---
 
 ### isHit
 
@@ -77,17 +77,17 @@ ___
 
 [CacheItemInterface](../interfaces/CacheItemInterface.md).[isHit](../interfaces/CacheItemInterface.md#ishit)
 
-___
+---
 
 ### isPersisted
 
-• `Readonly` **isPersisted**: ``null`` \| `boolean`
+• `Readonly` **isPersisted**: `null` \| `boolean`
 
 #### Implementation of
 
 [CacheItemInterface](../interfaces/CacheItemInterface.md).[isPersisted](../interfaces/CacheItemInterface.md#ispersisted)
 
-___
+---
 
 ### isSuccess
 
@@ -97,7 +97,7 @@ ___
 
 [CacheItemInterface](../interfaces/CacheItemInterface.md).[isSuccess](../interfaces/CacheItemInterface.md#issuccess)
 
-___
+---
 
 ### metadata
 

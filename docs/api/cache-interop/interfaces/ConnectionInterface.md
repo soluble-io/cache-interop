@@ -1,12 +1,12 @@
-[@soluble/cache-interop - v0.9.1](../README.md) / ConnectionInterface
+[@soluble/cache-interop - v0.12.5](../README.md) / ConnectionInterface
 
 # Interface: ConnectionInterface<T\>
 
 ## Type parameters
 
 | Name |
-| :------ |
-| `T` |
+| :--- |
+| `T`  |
 
 ## Table of contents
 
@@ -29,7 +29,7 @@ api stability.
 
 `T`
 
-___
+---
 
 ### quit
 

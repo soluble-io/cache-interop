@@ -1,4 +1,4 @@
-[@soluble/cache-interop - v0.9.1](../README.md) / CacheItemFactory
+[@soluble/cache-interop - v0.12.5](../README.md) / CacheItemFactory
 
 # Class: CacheItemFactory
 
@@ -25,64 +25,64 @@
 
 ### fromCacheMiss
 
-▸ `Static` **fromCacheMiss**<`T`, `K`\>(`props`): [`CacheItem`](CacheItem.md)<``null`` \| `T`, `K`\>
+▸ `Static` **fromCacheMiss**<`T`, `K`\>(`props`): [`CacheItem`](CacheItem.md)<`null` \| `T`, `K`\>
 
 #### Type parameters
 
-| Name | Type |
-| :------ | :------ |
-| `T` | `T` |
-| `K` | extends `string` = `string` |
+| Name | Type                        |
+| :--- | :-------------------------- |
+| `T`  | `T`                         |
+| `K`  | extends `string` = `string` |
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `props` | `Omit`<`CacheItemPropsOk`<``null`` \| `T`, `K`\>, ``"success"`` \| ``"isHit"`` \| ``"data"``\> & { `data?`: `undefined` ; `defaultValue`: ``null`` \| `T`  } |
+| Name    | Type                                                                                                                                              |
+| :------ | :------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `props` | `Omit`<`CacheItemPropsOk`<`null` \| `T`, `K`\>, `"success"` \| `"isHit"` \| `"data"`\> & { `data?`: `undefined` ; `defaultValue`: `null` \| `T` } |
 
 #### Returns
 
-[`CacheItem`](CacheItem.md)<``null`` \| `T`, `K`\>
+[`CacheItem`](CacheItem.md)<`null` \| `T`, `K`\>
 
-___
+---
 
 ### fromErr
 
-▸ `Static` **fromErr**<`K`\>(`props`): [`CacheItem`](CacheItem.md)<``null``, `K`\>
+▸ `Static` **fromErr**<`K`\>(`props`): [`CacheItem`](CacheItem.md)<`null`, `K`\>
 
 #### Type parameters
 
-| Name | Type |
-| :------ | :------ |
-| `K` | extends `string` = `string` |
+| Name | Type                        |
+| :--- | :-------------------------- |
+| `K`  | extends `string` = `string` |
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `props` | `Omit`<`CacheItemPropsErr`<`K`\>, ``"success"``\> |
+| Name    | Type                                            |
+| :------ | :---------------------------------------------- |
+| `props` | `Omit`<`CacheItemPropsErr`<`K`\>, `"success"`\> |
 
 #### Returns
 
-[`CacheItem`](CacheItem.md)<``null``, `K`\>
+[`CacheItem`](CacheItem.md)<`null`, `K`\>
 
-___
+---
 
 ### fromInvalidCacheKey
 
-▸ `Static` **fromInvalidCacheKey**(`key`): [`CacheItem`](CacheItem.md)<``null``, `string`\>
+▸ `Static` **fromInvalidCacheKey**(`key`): [`CacheItem`](CacheItem.md)<`null`, `string`\>
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
+| Name  | Type      |
+| :---- | :-------- |
 | `key` | `unknown` |
 
 #### Returns
 
-[`CacheItem`](CacheItem.md)<``null``, `string`\>
+[`CacheItem`](CacheItem.md)<`null`, `string`\>
 
-___
+---
 
 ### fromOk
 
@@ -90,16 +90,16 @@ ___
 
 #### Type parameters
 
-| Name | Type |
-| :------ | :------ |
-| `T` | `T` |
-| `K` | extends `string` = `string` |
+| Name | Type                        |
+| :--- | :-------------------------- |
+| `T`  | `T`                         |
+| `K`  | extends `string` = `string` |
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `props` | `Omit`<`CacheItemPropsOk`<`T`, `K`\>, ``"success"``\> |
+| Name    | Type                                                |
+| :------ | :-------------------------------------------------- |
+| `props` | `Omit`<`CacheItemPropsOk`<`T`, `K`\>, `"success"`\> |
 
 #### Returns
 

@@ -1,4 +1,4 @@
-[@soluble/cache-interop - v0.9.1](../README.md) / UnsupportedValueException
+[@soluble/cache-interop - v0.12.5](../README.md) / UnsupportedValueException
 
 # Class: UnsupportedValueException
 
@@ -36,8 +36,8 @@
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
+| Name    | Type                  |
+| :------ | :-------------------- |
 | `props` | `CacheExceptionProps` |
 
 #### Overrides
@@ -54,11 +54,11 @@
 
 [CacheException](CacheException.md).[props](CacheException.md#props)
 
-___
+---
 
 ### stackTrace
 
-• `Readonly` **stackTrace**: ``null`` \| `string`
+• `Readonly` **stackTrace**: `null` \| `string`
 
 #### Inherited from
 
@@ -68,11 +68,11 @@ ___
 
 ### previous
 
-• `get` **previous**(): ``null`` \| `Error`
+• `get` **previous**(): `null` \| `Error`
 
 #### Returns
 
-``null`` \| `Error`
+`null` \| `Error`
 
 #### Inherited from
 
@@ -82,9 +82,9 @@ CacheException.previous
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `previous` | ``null`` \| `Error` |
+| Name       | Type              |
+| :--------- | :---------------- |
+| `previous` | `null` \| `Error` |
 
 #### Returns
 
@@ -108,7 +108,7 @@ CacheException.previous
 
 [CacheException](CacheException.md).[getName](CacheException.md#getname)
 
-___
+---
 
 ### toString
 
