@@ -1,4 +1,4 @@
-[@soluble/cache-interop - v0.9.1](../README.md) / EvictionPolicyInterface
+[@soluble/cache-interop - v0.12.5](../README.md) / EvictionPolicyInterface
 
 # Interface: EvictionPolicyInterface
 
@@ -18,12 +18,14 @@
 
 ▸ **isExpired**(`expiresAt`): `boolean`
 
-**`throws`** InvalidArgumentException
+**`Throws`**
+
+InvalidArgumentException
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
+| Name        | Type     |
+| :---------- | :------- |
 | `expiresAt` | `number` |
 
 #### Returns

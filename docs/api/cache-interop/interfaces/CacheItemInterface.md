@@ -1,12 +1,12 @@
-[@soluble/cache-interop - v0.9.1](../README.md) / CacheItemInterface
+[@soluble/cache-interop - v0.12.5](../README.md) / CacheItemInterface
 
 # Interface: CacheItemInterface<T, KBase\>
 
 ## Type parameters
 
-| Name | Type |
-| :------ | :------ |
-| `T` | `T` |
+| Name    | Type                                                                              |
+| :------ | :-------------------------------------------------------------------------------- |
+| `T`     | `T`                                                                               |
 | `KBase` | extends [`CacheKey`](../README.md#cachekey) = [`CacheKey`](../README.md#cachekey) |
 
 ## Implemented by
@@ -28,33 +28,33 @@
 
 ### data
 
-• `Readonly` **data**: ``null`` \| `T`
+• `Readonly` **data**: `null` \| `T`
 
-___
+---
 
 ### error
 
 • `Readonly` **error**: `undefined` \| [`CacheException`](../classes/CacheException.md)
 
-___
+---
 
 ### isHit
 
 • `Readonly` **isHit**: `boolean`
 
-___
+---
 
 ### isPersisted
 
-• `Readonly` **isPersisted**: ``null`` \| `boolean`
+• `Readonly` **isPersisted**: `null` \| `boolean`
 
-___
+---
 
 ### isSuccess
 
 • `Readonly` **isSuccess**: `boolean`
 
-___
+---
 
 ### metadata
 

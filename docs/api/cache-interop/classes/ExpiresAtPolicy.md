@@ -1,4 +1,4 @@
-[@soluble/cache-interop - v0.9.1](../README.md) / ExpiresAtPolicy
+[@soluble/cache-interop - v0.12.5](../README.md) / ExpiresAtPolicy
 
 # Class: ExpiresAtPolicy
 
@@ -24,9 +24,9 @@
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `options?` | `Object` |
+| Name                    | Type           |
+| :---------------------- | :------------- |
+| `options?`              | `Object`       |
 | `options.dateProvider?` | `DateProvider` |
 
 ## Methods
@@ -37,12 +37,14 @@
 
 Checks whether a expiration unix time is still valid
 
-**`throws`** InvalidArgumentException
+**`Throws`**
+
+InvalidArgumentException
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
+| Name        | Type     | Description                   |
+| :---------- | :------- | :---------------------------- |
 | `expiresAt` | `number` | UnixTime expressed in seconds |
 
 #### Returns

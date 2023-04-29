@@ -78,6 +78,6 @@
     "not IE 11",
     "not dead",
     "not op_mini all",
-    "node 12.14"
+    "node 14.17"
   ]
 }

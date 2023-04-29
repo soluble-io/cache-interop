@@ -1,4 +1,4 @@
-[@soluble/cache-interop - v0.9.1](../README.md) / SerializerInterface
+[@soluble/cache-interop - v0.12.5](../README.md) / SerializerInterface
 
 # Interface: SerializerInterface
 
@@ -19,42 +19,46 @@
 
 ▸ **decode**<`TOutput`\>(`value`): `TOutput`
 
-**`throws`** SyntaxError
+**`Throws`**
+
+SyntaxError
 
 #### Type parameters
 
-| Name | Type |
-| :------ | :------ |
+| Name      | Type               |
+| :-------- | :----------------- |
 | `TOutput` | extends `JsonType` |
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
+| Name    | Type     |
+| :------ | :------- |
 | `value` | `string` |
 
 #### Returns
 
 `TOutput`
 
-___
+---
 
 ### encode
 
 ▸ **encode**<`TInput`\>(`value`): `string`
 
-**`throws`** TypeError
+**`Throws`**
+
+TypeError
 
 #### Type parameters
 
-| Name | Type |
-| :------ | :------ |
+| Name     | Type               |
+| :------- | :----------------- |
 | `TInput` | extends `JsonType` |
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
+| Name    | Type     |
+| :------ | :------- |
 | `value` | `TInput` |
 
 #### Returns

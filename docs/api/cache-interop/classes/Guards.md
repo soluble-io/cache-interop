@@ -1,4 +1,4 @@
-[@soluble/cache-interop - v0.9.1](../README.md) / Guards
+[@soluble/cache-interop - v0.12.5](../README.md) / Guards
 
 # Class: Guards
 
@@ -31,15 +31,15 @@
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
+| Name  | Type      |
+| :---- | :-------- |
 | `val` | `unknown` |
 
 #### Returns
 
 val is CacheException
 
-___
+---
 
 ### isCacheValueProviderFn
 
@@ -48,20 +48,20 @@ ___
 #### Type parameters
 
 | Name |
-| :------ |
-| `T` |
+| :--- |
+| `T`  |
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
+| Name | Type      |
+| :--- | :-------- |
 | `fn` | `unknown` |
 
 #### Returns
 
 fn is CacheValueProviderFn<T\>
 
-___
+---
 
 ### isConnectedCache
 
@@ -72,21 +72,21 @@ and has a getConnection() method
 
 #### Type parameters
 
-| Name | Type |
-| :------ | :------ |
-| `T` | `unknown` |
+| Name | Type      |
+| :--- | :-------- |
+| `T`  | `unknown` |
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
+| Name      | Type                    |
+| :-------- | :---------------------- |
 | `adapter` | `CacheOrConnectedCache` |
 
 #### Returns
 
 adapter is ConnectedCacheInterface<T\>
 
-___
+---
 
 ### isNonEmptyString
 
@@ -94,16 +94,16 @@ ___
 
 #### Parameters
 
-| Name | Type | Default value |
-| :------ | :------ | :------ |
-| `value` | `unknown` | `undefined` |
-| `trim` | `boolean` | `true` |
+| Name    | Type      | Default value |
+| :------ | :-------- | :------------ |
+| `value` | `unknown` | `undefined`   |
+| `trim`  | `boolean` | `true`        |
 
 #### Returns
 
 value is string
 
-___
+---
 
 ### isValidCacheKey
 
@@ -111,21 +111,21 @@ ___
 
 #### Type parameters
 
-| Name | Type |
-| :------ | :------ |
-| `K` | extends `string` = `string` |
+| Name | Type                        |
+| :--- | :-------------------------- |
+| `K`  | extends `string` = `string` |
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
+| Name  | Type      |
+| :---- | :-------- |
 | `key` | `unknown` |
 
 #### Returns
 
 key is K
 
-___
+---
 
 ### isValidRedisValue
 
@@ -133,8 +133,8 @@ ___
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
+| Name    | Type      |
+| :------ | :-------- |
 | `value` | `unknown` |
 
 #### Returns

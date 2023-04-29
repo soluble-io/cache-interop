@@ -1,4 +1,4 @@
-[@soluble/cache-interop - v0.9.1](../README.md) / CacheException
+[@soluble/cache-interop - v0.12.5](../README.md) / CacheException
 
 # Class: CacheException
 
@@ -46,8 +46,8 @@
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
+| Name    | Type                  |
+| :------ | :-------------------- |
 | `props` | `CacheExceptionProps` |
 
 #### Overrides
@@ -60,29 +60,29 @@ Error.constructor
 
 • `Readonly` **props**: `CacheExceptionProps`
 
-___
+---
 
 ### stackTrace
 
-• `Readonly` **stackTrace**: ``null`` \| `string`
+• `Readonly` **stackTrace**: `null` \| `string`
 
 ## Accessors
 
 ### previous
 
-• `get` **previous**(): ``null`` \| `Error`
+• `get` **previous**(): `null` \| `Error`
 
 #### Returns
 
-``null`` \| `Error`
+`null` \| `Error`
 
 • `set` **previous**(`previous`): `void`
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `previous` | ``null`` \| `Error` |
+| Name       | Type              |
+| :--------- | :---------------- |
+| `previous` | `null` \| `Error` |
 
 #### Returns
 
@@ -98,7 +98,7 @@ ___
 
 `string`
 
-___
+---
 
 ### toString
 

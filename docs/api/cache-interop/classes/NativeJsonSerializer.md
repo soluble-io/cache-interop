@@ -1,4 +1,4 @@
-[@soluble/cache-interop - v0.9.1](../README.md) / NativeJsonSerializer
+[@soluble/cache-interop - v0.12.5](../README.md) / NativeJsonSerializer
 
 # Class: NativeJsonSerializer
 
@@ -29,18 +29,20 @@
 
 ▸ **decode**<`TOutput`\>(`value`): `TOutput`
 
-**`throws`** SyntaxError
+**`Throws`**
+
+SyntaxError
 
 #### Type parameters
 
-| Name | Type |
-| :------ | :------ |
+| Name      | Type               |
+| :-------- | :----------------- |
 | `TOutput` | extends `JsonType` |
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
+| Name    | Type     |
+| :------ | :------- |
 | `value` | `string` |
 
 #### Returns
@@ -51,24 +53,26 @@
 
 [SerializerInterface](../interfaces/SerializerInterface.md).[decode](../interfaces/SerializerInterface.md#decode)
 
-___
+---
 
 ### encode
 
 ▸ **encode**<`TInput`\>(`value`): `string`
 
-**`throws`** TypeError
+**`Throws`**
+
+TypeError
 
 #### Type parameters
 
-| Name | Type |
-| :------ | :------ |
+| Name     | Type               |
+| :------- | :----------------- |
 | `TInput` | extends `JsonType` |
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
+| Name    | Type     |
+| :------ | :------- |
 | `value` | `TInput` |
 
 #### Returns

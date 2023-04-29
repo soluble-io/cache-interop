@@ -1,12 +1,12 @@
-[@soluble/cache-interop - v0.9.1](../README.md) / CacheInterface
+[@soluble/cache-interop - v0.12.5](../README.md) / CacheInterface
 
 # Interface: CacheInterface<TBase, KBase\>
 
 ## Type parameters
 
-| Name | Type |
-| :------ | :------ |
-| `TBase` | `string` |
+| Name    | Type                                |
+| :------ | :---------------------------------- |
+| `TBase` | `string`                            |
 | `KBase` | [`CacheKey`](../README.md#cachekey) |
 
 ## Implemented by
@@ -32,17 +32,17 @@
 
 ### clear
 
-▸ **clear**(): `Promise`<``true`` \| [`CacheException`](../classes/CacheException.md)\>
+▸ **clear**(): `Promise`<`true` \| [`CacheException`](../classes/CacheException.md)\>
 
 Delete the entire cache's keys.
 
 #### Returns
 
-`Promise`<``true`` \| [`CacheException`](../classes/CacheException.md)\>
+`Promise`<`true` \| [`CacheException`](../classes/CacheException.md)\>
 
 bool True on success and CacheException on failure.
 
-___
+---
 
 ### delete
 
@@ -52,25 +52,25 @@ Delete an item from the cache by its unique key.
 
 #### Type parameters
 
-| Name | Type |
-| :------ | :------ |
-| `K` | `KBase` |
+| Name | Type    |
+| :--- | :------ |
+| `K`  | `KBase` |
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `key` | `K` | The unique cache key of the item to delete. |
-| `options?` | [`DeleteOptions`](../README.md#deleteoptions) | - |
+| Name       | Type                                          | Description                                 |
+| :--------- | :-------------------------------------------- | :------------------------------------------ |
+| `key`      | `K`                                           | The unique cache key of the item to delete. |
+| `options?` | [`DeleteOptions`](../README.md#deleteoptions) | -                                           |
 
 #### Returns
 
 `Promise`<`boolean` \| [`CacheException`](../classes/CacheException.md)\>
 
 True if the item was successfully removed, false if it did not exists.
-        CacheException if there was an error.
+CacheException if there was an error.
 
-___
+---
 
 ### deleteMultiple
 
@@ -80,22 +80,22 @@ Delete cache entries from multiple keys
 
 #### Type parameters
 
-| Name | Type |
-| :------ | :------ |
-| `K` | `KBase` |
+| Name | Type    |
+| :--- | :------ |
+| `K`  | `KBase` |
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `keys` | `K`[] | A list of keys that should be deleted. |
-| `options?` | [`DeleteOptions`](../README.md#deleteoptions) | - |
+| Name       | Type                                          | Description                            |
+| :--------- | :-------------------------------------------- | :------------------------------------- |
+| `keys`     | `K`[]                                         | A list of keys that should be deleted. |
+| `options?` | [`DeleteOptions`](../README.md#deleteoptions) | -                                      |
 
 #### Returns
 
 `Promise`<`Map`<`K`, `boolean` \| [`CacheException`](../classes/CacheException.md)\>\>
 
-___
+---
 
 ### get
 
@@ -105,17 +105,17 @@ Fetches a value from the cache
 
 #### Type parameters
 
-| Name | Type |
-| :------ | :------ |
-| `T` | `TBase` |
-| `K` | `KBase` |
+| Name | Type    |
+| :--- | :------ |
+| `T`  | `TBase` |
+| `K`  | `KBase` |
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `key` | `K` | The unique key of this item in the cache. |
-| `options?` | [`GetOptions`](../README.md#getoptions)<`T`\> | An object holding GetOptions |
+| Name       | Type                                          | Description                               |
+| :--------- | :-------------------------------------------- | :---------------------------------------- |
+| `key`      | `K`                                           | The unique key of this item in the cache. |
+| `options?` | [`GetOptions`](../README.md#getoptions)<`T`\> | An object holding GetOptions              |
 
 #### Returns
 
@@ -123,7 +123,7 @@ Fetches a value from the cache
 
 A promise returning a CacheItemInterface, or defaultValue in case of cache miss.
 
-___
+---
 
 ### getMultiple
 
@@ -133,23 +133,23 @@ Obtains multiple cache items by their unique keys.
 
 #### Type parameters
 
-| Name | Type |
-| :------ | :------ |
-| `T` | `TBase` |
-| `K` | `KBase` |
+| Name | Type    |
+| :--- | :------ |
+| `T`  | `TBase` |
+| `K`  | `KBase` |
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `keys` | `K`[] | A list of keys that can obtained in a single operation. |
-| `options?` | [`GetOptions`](../README.md#getoptions)<`T`\> | - |
+| Name       | Type                                          | Description                                             |
+| :--------- | :-------------------------------------------- | :------------------------------------------------------ |
+| `keys`     | `K`[]                                         | A list of keys that can obtained in a single operation. |
+| `options?` | [`GetOptions`](../README.md#getoptions)<`T`\> | -                                                       |
 
 #### Returns
 
 `Promise`<`Map`<`K`, [`CacheItemInterface`](CacheItemInterface.md)<`T`, `string`\>\>\>
 
-___
+---
 
 ### getOrSet
 
@@ -157,24 +157,24 @@ ___
 
 #### Type parameters
 
-| Name | Type |
-| :------ | :------ |
-| `T` | `TBase` |
-| `K` | `KBase` |
+| Name | Type    |
+| :--- | :------ |
+| `T`  | `TBase` |
+| `K`  | `KBase` |
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `key` | `K` |
-| `value` | `T` \| [`CacheValueProviderFn`](../README.md#cachevalueproviderfn)<`T`\> |
-| `options?` | [`GetOrSetOptions`](../README.md#getorsetoptions) |
+| Name       | Type                                                                     |
+| :--------- | :----------------------------------------------------------------------- |
+| `key`      | `K`                                                                      |
+| `value`    | `T` \| [`CacheValueProviderFn`](../README.md#cachevalueproviderfn)<`T`\> |
+| `options?` | [`GetOrSetOptions`](../README.md#getorsetoptions)                        |
 
 #### Returns
 
 `Promise`<[`CacheItemInterface`](CacheItemInterface.md)<`T`, `string`\>\>
 
-___
+---
 
 ### has
 
@@ -189,26 +189,26 @@ another script can remove it, making the state of your app out of date.
 
 #### Type parameters
 
-| Name | Type |
-| :------ | :------ |
-| `K` | `KBase` |
+| Name | Type    |
+| :--- | :------ |
+| `K`  | `KBase` |
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `key` | `K` | The cache item key |
-| `options?` | [`HasOptions`](../README.md#hasoptions) | - |
+| Name       | Type                                    | Description        |
+| :--------- | :-------------------------------------- | :----------------- |
+| `key`      | `K`                                     | The cache item key |
+| `options?` | [`HasOptions`](../README.md#hasoptions) | -                  |
 
 #### Returns
 
 `Promise`<`undefined` \| `boolean`\>
 
 True if the item exists in the cache and was removed, false otherwise.
-        Undefined is used to determine if the operation was successful.
-        If cacheDisabled option is set to true, it will always return false.
+Undefined is used to determine if the operation was successful.
+If cacheDisabled option is set to true, it will always return false.
 
-___
+---
 
 ### set
 
@@ -218,24 +218,24 @@ Persists data in the cache, uniquely referenced by a key.
 
 #### Type parameters
 
-| Name | Type |
-| :------ | :------ |
-| `T` | `TBase` |
-| `K` | `KBase` |
+| Name | Type    |
+| :--- | :------ |
+| `T`  | `TBase` |
+| `K`  | `KBase` |
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `key` | `K` | The key of the item to store. |
-| `value` | `T` \| [`CacheValueProviderFn`](../README.md#cachevalueproviderfn)<`T`\> | The value of the item to store or a function returning the value. Must be serializable. |
-| `options?` | [`SetOptions`](../README.md#setoptions) | An object holding SetOptions |
+| Name       | Type                                                                     | Description                                                                             |
+| :--------- | :----------------------------------------------------------------------- | :-------------------------------------------------------------------------------------- |
+| `key`      | `K`                                                                      | The key of the item to store.                                                           |
+| `value`    | `T` \| [`CacheValueProviderFn`](../README.md#cachevalueproviderfn)<`T`\> | The value of the item to store or a function returning the value. Must be serializable. |
+| `options?` | [`SetOptions`](../README.md#setoptions)                                  | An object holding SetOptions                                                            |
 
 #### Returns
 
 `Promise`<`boolean` \| [`CacheException`](../classes/CacheException.md)\>
 
-___
+---
 
 ### setMultiple
 
@@ -245,17 +245,17 @@ Persists a set of key => value pairs in the cache.
 
 #### Type parameters
 
-| Name | Type |
-| :------ | :------ |
-| `T` | `TBase` |
-| `K` | `KBase` |
+| Name | Type    |
+| :--- | :------ |
+| `T`  | `TBase` |
+| `K`  | `KBase` |
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `keyVals` | readonly [`K`, `T` \| [`CacheValueProviderFn`](../README.md#cachevalueproviderfn)<`T`\>][] | array of tuples container key and value |
-| `options?` | [`SetOptions`](../README.md#setoptions) | - |
+| Name       | Type                                                                                       | Description                             |
+| :--------- | :----------------------------------------------------------------------------------------- | :-------------------------------------- |
+| `keyVals`  | readonly [`K`, `T` \| [`CacheValueProviderFn`](../README.md#cachevalueproviderfn)<`T`\>][] | array of tuples container key and value |
+| `options?` | [`SetOptions`](../README.md#setoptions)                                                    | -                                       |
 
 #### Returns
 
