@@ -1,5 +1,15 @@
 # @examples/nextjs-esm
 
+## 0.1.11
+
+### Patch Changes
+
+- Updated dependencies [[`034673d`](https://github.com/soluble-io/cache-interop/commit/034673d99e4ea41892e0c454121e09d9882accb4), [`8ad1472`](https://github.com/soluble-io/cache-interop/commit/8ad1472246eb4ec6a301b9827a96bbc32870e8d8)]:
+  - @soluble/cache-interop@0.12.6
+  - @soluble/cache-ioredis@0.13.9
+  - @soluble/cache-redis@0.12.9
+  - @soluble/dsn-parser@1.9.1
+
 ## 0.1.10
 
 ### Patch Changes

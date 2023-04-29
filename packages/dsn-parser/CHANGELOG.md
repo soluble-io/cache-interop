@@ -1,5 +1,13 @@
 # @soluble/dsn-parser
 
+## 1.9.1
+
+### Patch Changes
+
+- [#861](https://github.com/soluble-io/cache-interop/pull/861) [`034673d`](https://github.com/soluble-io/cache-interop/commit/034673d99e4ea41892e0c454121e09d9882accb4) Thanks [@belgattitude](https://github.com/belgattitude)! - Add node 20.x in CI
+
+- [#860](https://github.com/soluble-io/cache-interop/pull/860) [`8ad1472`](https://github.com/soluble-io/cache-interop/commit/8ad1472246eb4ec6a301b9827a96bbc32870e8d8) Thanks [@belgattitude](https://github.com/belgattitude)! - Fix parseDsnOrThrow usage in published readme
+
 ## 1.9.0
 
 ### Minor Changes
