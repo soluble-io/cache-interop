@@ -2108,10 +2108,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:*, @types/node@npm:18.16.3":
-  version: 18.16.3
-  resolution: "@types/node@npm:18.16.3"
-  checksum: 65277e1ad412757eef6de209d998ad0fe07030d5c52b290bdab4ae4ea2c423c9933fac6aead4546bee80c80ad4248807d45f247401ee862e46b0f364a06c3966
+"@types/node@npm:*, @types/node@npm:18.16.5":
+  version: 18.16.5
+  resolution: "@types/node@npm:18.16.5"
+  checksum: 0c4ad24cc35669dd6ad8c4e7fcb12362235e8be3a8daf1c095ebe0ab4a2cf35f6b2c041808d3c5743eeddb8756b3aac03427868754c4ed90122c3e646af46fc7
   languageName: node
   linkType: hard
 
@@ -3087,7 +3087,7 @@ __metadata:
     "@changesets/cli": "npm:2.26.1"
     "@commitlint/cli": "npm:17.6.3"
     "@commitlint/config-conventional": "npm:17.6.3"
-    "@types/node": "npm:18.16.3"
+    "@types/node": "npm:18.16.5"
     "@types/prettier": "npm:2.7.2"
     "@types/shell-quote": "npm:1.7.1"
     eslint: "npm:8.39.0"
