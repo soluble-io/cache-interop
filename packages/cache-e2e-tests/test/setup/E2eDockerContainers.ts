@@ -3,8 +3,8 @@ import { GenericContainer } from 'testcontainers';
 
 // Here configure all docker containers you need
 const registeredE2eContainers = {
-  redis6: { image: 'redis:6-alpine3.18', port: 6379 },
-  redis7: { image: 'redis:7-alpine3.18', port: 6379 },
+  redis6: { image: 'redis:6-alpine3.18', port: 6377, containerPort: 6379 },
+  redis7: { image: 'redis:7-alpine3.18', port: 6378, containerPort: 6379 },
   dragonflyLatest: {
     image: 'docker.dragonflydb.io/dragonflydb/dragonfly',
     port: 6379,
