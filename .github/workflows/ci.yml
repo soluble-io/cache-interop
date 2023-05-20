@@ -22,7 +22,7 @@ jobs:
           # This allows yarn workspaces --since to compare with origin/main branch
           fetch-depth: 0
 
-      - name: Use Node.js ${{ matrix.node-version }}
+      - name: ⚙️ Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
@@ -30,7 +30,7 @@ jobs:
       - name: 📥 Monorepo install
         uses: ./.github/actions/yarn-nm-install
 
-      - name: Restore dx caches
+      - name: ♻️ Restore packages cache
         uses: actions/cache@v3
         with:
           path: |
@@ -38,44 +38,49 @@ jobs:
             ${{ github.workspace }}/**/tsconfig.tsbuildinfo
           key: ${{ runner.os }}-dx-${{ hashFiles('**/yarn.lock') }}
 
-      - name: Linter
-        run: |
-          yarn workspaces foreach --exclude '@examples/**' -v run lint
-
-      - name: Typecheck
-        run: |
-          yarn workspaces foreach --exclude '@examples/**' -v run typecheck
-
       - name: List changed workspaces
         run: yarn workspaces list --since --recursive --json
 
-      - name: Build-release
+      - name: 🔬 ESLint checks
+        run: |
+          yarn workspaces foreach --exclude '@examples/**' -v run lint
+
+      - name: 🕵️ Typecheck
+        run: |
+          yarn workspaces foreach --exclude '@examples/**' -v run typecheck
+
+      - name: 🏗 Build packages
         # Till https://github.com/atlassian/changesets/issues/432 has a solution we can remove the
         # build-release and replace with a regular build command
         run: |
           yarn workspaces foreach --exclude '@examples/**' -tv run build-release
 
-      - name: Check generated dist folder
-        run: |
-          yarn workspaces foreach -v run check-dist
-
-      - name: Check for bundle size limits
+      - name: 📐 Check build for size-limits
         run: |
           yarn workspaces foreach -v run size-limit
 
-      - name: E2E tests
+      - name: 🛟 Check build for ecmascript compliance
+        if: matrix.node-version == '18.x'
         run: |
-          yarn g:test-e2e --coverage
-        env:
-          CI: true
+          yarn workspaces foreach -v run check-dist
 
-      - name: Unit tests
+      - name: 🛟 Check publishable dist  (publint)
+        if: matrix.node-version == '18.x'
+        run: yarn workspaces foreach -tv --include '@httpx/*' --no-private run check-pub
+
+      - name: 🧪 Unit tests
         run: |
           yarn workspaces foreach -tv --include '@soluble/*' --exclude '@examples/*' run test-unit --coverage
         env:
           CI: true
 
-      - name: Send coverage to codecov.io
+      - name: 🧪 E2E tests
+        run: |
+          yarn g:test-e2e --coverage
+        env:
+          CI: true
+
+      - name: ☂️ Codecov upload
         working-directory: ${{ github.workspace }}
         if: matrix.node-version == '18.x'
         run: |
