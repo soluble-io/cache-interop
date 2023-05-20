@@ -5,13 +5,13 @@ import { GenericContainer } from 'testcontainers';
 const registeredE2eContainers = {
   redis6: {
     image: 'redis:6-alpine3.18',
-    port: 6377,
+    port: 6379,
     containerPort: 6379,
     env: { REDIS_PORT: '6379' },
   },
   redis7: {
     image: 'redis:7-alpine3.18',
-    port: 6378,
+    port: 6379,
     containerPort: 6379,
     env: { REDIS_PORT: '6379' },
   },
