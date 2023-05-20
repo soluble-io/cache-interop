@@ -1,5 +1,14 @@
 # @examples/nextjs-cjs
 
+## 0.1.12
+
+### Patch Changes
+
+- Updated dependencies [[`00a9cc3`](https://github.com/soluble-io/cache-interop/commit/00a9cc3ad0ef0b580cad2cd2b1fc86831c665b55), [`00a9cc3`](https://github.com/soluble-io/cache-interop/commit/00a9cc3ad0ef0b580cad2cd2b1fc86831c665b55)]:
+  - @soluble/cache-interop@0.12.7
+  - @soluble/cache-ioredis@0.13.10
+  - @soluble/cache-redis@0.12.10
+
 ## 0.1.11
 
 ### Patch Changes

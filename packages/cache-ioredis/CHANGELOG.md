@@ -1,5 +1,16 @@
 # @soluble/cache-ioredis
 
+## 0.13.10
+
+### Patch Changes
+
+- [#883](https://github.com/soluble-io/cache-interop/pull/883) [`00a9cc3`](https://github.com/soluble-io/cache-interop/commit/00a9cc3ad0ef0b580cad2cd2b1fc86831c665b55) Thanks [@belgattitude](https://github.com/belgattitude)! - Fix export types publication
+
+- [#883](https://github.com/soluble-io/cache-interop/pull/883) [`00a9cc3`](https://github.com/soluble-io/cache-interop/commit/00a9cc3ad0ef0b580cad2cd2b1fc86831c665b55) Thanks [@belgattitude](https://github.com/belgattitude)! - Add publint check to prevent publication issues
+
+- Updated dependencies [[`00a9cc3`](https://github.com/soluble-io/cache-interop/commit/00a9cc3ad0ef0b580cad2cd2b1fc86831c665b55), [`00a9cc3`](https://github.com/soluble-io/cache-interop/commit/00a9cc3ad0ef0b580cad2cd2b1fc86831c665b55)]:
+  - @soluble/cache-interop@0.12.7
+
 ## 0.13.9
 
 ### Patch Changes
