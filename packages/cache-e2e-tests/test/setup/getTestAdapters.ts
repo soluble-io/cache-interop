@@ -10,6 +10,9 @@ import { E2eDockerContainers } from './E2eDockerContainers';
 export const getTestAdapters = () => {
   return [
     ['MapCacheAdapter', () => new MapCacheAdapter()],
+    /**
+     * IO-Redis javascript driver
+     */
     [
       'IoRedisCacheAdapter/Redis7',
       async () => {
@@ -28,6 +31,9 @@ export const getTestAdapters = () => {
         });
       },
     ],
+    /**
+     * Node-Redis javascript driver
+     */
     [
       'RedisCacheAdapter/Redis7',
       async () => {
@@ -42,6 +48,21 @@ export const getTestAdapters = () => {
       async () => {
         const { dsn } = await E2eDockerContainers.getContainer('redis6');
         return new RedisCacheAdapter({
+          connection: dsn,
+        });
+      },
+    ],
+    /**
+     * IO Redis javascript driver for dragonfly
+     */
+
+    [
+      'IoRedisCacheAdapter/DragonflyLatest',
+      async () => {
+        const { dsn } = await E2eDockerContainers.getContainer(
+          'dragonflyLatest'
+        );
+        return new IoRedisCacheAdapter({
           connection: dsn,
         });
       },

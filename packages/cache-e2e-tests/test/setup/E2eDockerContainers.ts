@@ -3,11 +3,12 @@ import { GenericContainer } from 'testcontainers';
 
 // Here configure all docker containers you need
 const registeredE2eContainers = {
-  redis6: { image: 'redis:6-alpine', port: 6379 },
-  redis7: { image: 'redis:7-alpine', port: 6379 },
-  dragonfly: {
+  redis6: { image: 'redis:6-alpine', port: 6377, containerPort: 6379 },
+  redis7: { image: 'redis:7-alpine', port: 6378, containerPort: 6379 },
+  dragonflyLatest: {
     image: 'docker.dragonflydb.io/dragonflydb/dragonfly',
-    port: 5379,
+    port: 6379,
+    containerPort: 6379,
   },
 } as const;
 
@@ -21,9 +22,12 @@ export class E2eDockerContainers {
 
   static async getContainer(key: ContainerKey): Promise<E2eContainer> {
     if (!E2eDockerContainers._instances.has(key)) {
-      const { image, port } = registeredE2eContainers[key];
+      const { image, port, containerPort } = registeredE2eContainers[key];
       const container = await new GenericContainer(image)
-        .withExposedPorts(port)
+        .withExposedPorts({
+          container: containerPort,
+          host: port,
+        })
         .start();
       const dsn = `redis://${container.getHost()}:${container.getMappedPort(
         port
