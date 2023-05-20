@@ -25,6 +25,7 @@
     "g:build-release": "yarn workspaces foreach -tv run build-release",
     "g:size-limit": "yarn workspaces foreach -v --no-private run size-limit",
     "g:check-dist": "yarn workspaces foreach -v --no-private run check-dist",
+    "g:check-pub": "yarn workspaces foreach -v --no-private run check-pub",
     "g:clean": "yarn clean:global-cache && yarn workspaces foreach -pv run clean",
     "g:build-api-doc": "yarn workspaces foreach -pv run build-api-doc",
     "g:test": "run-s g:test-unit g:test-e2e",
