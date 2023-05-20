@@ -46,6 +46,17 @@ export const getTestAdapters = () => {
         });
       },
     ],
+    [
+      'RedisCacheAdapter/DragonflyLatest',
+      async () => {
+        const { dsn } = await E2eDockerContainers.getContainer(
+          'dragonflyLatest'
+        );
+        return new RedisCacheAdapter({
+          connection: dsn,
+        });
+      },
+    ],
   ] as [
     name: string,
     factory: () => CacheInterface | Promise<CacheInterface>
