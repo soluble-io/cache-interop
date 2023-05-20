@@ -5,6 +5,10 @@ import { GenericContainer } from 'testcontainers';
 const registeredE2eContainers = {
   redis6: { image: 'redis:6-alpine', port: 6379 },
   redis7: { image: 'redis:7-alpine', port: 6379 },
+  dragonfly: {
+    image: 'docker.dragonflydb.io/dragonflydb/dragonfly',
+    port: 5379,
+  },
 } as const;
 
 type ContainerKey = keyof typeof registeredE2eContainers;
