@@ -5,21 +5,21 @@ import { GenericContainer } from 'testcontainers';
 const registeredE2eContainers = {
   redis6: {
     image: 'redis:6-alpine3.18',
-    port: 6379,
-    containerPort: 6379,
-    env: { REDIS_PORT: '6379' },
+    port: 6377,
+    containerPort: 6377,
+    env: { REDIS_PORT: '6377' },
   },
   redis7: {
     image: 'redis:7-alpine3.18',
-    port: 6379,
-    containerPort: 6379,
-    env: { REDIS_PORT: '6379' },
+    port: 6378,
+    containerPort: 6378,
+    env: { REDIS_PORT: '6378' },
   },
   dragonflyLatest: {
     image: 'docker.dragonflydb.io/dragonflydb/dragonfly',
     port: 6379,
     containerPort: 6379,
-    env: { REDIS_PORT: '6379' },
+    env: {},
   },
 } as const;
 
@@ -35,10 +35,8 @@ export class E2eDockerContainers {
     if (!E2eDockerContainers._instances.has(key)) {
       const { image, port, containerPort, env } = registeredE2eContainers[key];
       const container = await new GenericContainer(image)
-        .withExposedPorts({
-          container: containerPort,
-          host: port,
-        })
+        .withExposedPorts(port)
+        // .withStartupTimeout(10000)
         .withEnvironment(env)
         .start();
       const dsn = `redis://${container.getHost()}:${container.getMappedPort(
