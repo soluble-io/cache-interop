@@ -1876,7 +1876,7 @@ __metadata:
     "@size-limit/file": "npm:8.2.4"
     "@types/jest": "npm:29.5.2"
     cross-env: "npm:7.0.3"
-    dayjs: "npm:1.11.7"
+    dayjs: "npm:1.11.8"
     es-check: "npm:7.1.1"
     eslint: "npm:8.41.0"
     get-tsconfig: "npm:4.6.0"
@@ -3776,10 +3776,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"dayjs@npm:1.11.7":
-  version: 1.11.7
-  resolution: "dayjs@npm:1.11.7"
-  checksum: e4befd8f695eeb2fbe2f887c0f6e2a8a498dfba89eb4b4d87c036167e4ae36871dda584a24c15db9b68fcf19688199f934c38095c629abcc30f8adb60f0723ce
+"dayjs@npm:1.11.8":
+  version: 1.11.8
+  resolution: "dayjs@npm:1.11.8"
+  checksum: 2c7ef83e7ff1b41721bd478f157bbab93d31cbd9e832f4a75b3baf13306ac8aa199505ed083bcc922d19de4f6d2cc6d651bb0ee524fe9b301d50ba3ed8f8a0f7
   languageName: node
   linkType: hard
 
