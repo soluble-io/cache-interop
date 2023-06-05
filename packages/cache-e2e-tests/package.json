@@ -24,7 +24,7 @@
     "ci-coverage-upload": "../../.github/scripts/download/codecov -F e2e --dir ./coverage"
   },
   "devDependencies": {
-    "@belgattitude/eslint-config-bases": "1.32.0",
+    "@belgattitude/eslint-config-bases": "1.33.0",
     "@soluble/cache-interop": "workspace:^",
     "@soluble/cache-ioredis": "workspace:^",
     "@soluble/cache-redis": "workspace:^",
