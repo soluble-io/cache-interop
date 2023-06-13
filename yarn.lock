@@ -1869,7 +1869,7 @@ __metadata:
     ioredis: "npm:5.3.2"
     jest: "npm:29.5.0"
     redis: "npm:3.1.2"
-    testcontainers: "npm:9.8.0"
+    testcontainers: "npm:9.9.0"
     ts-jest: "npm:29.1.0"
     typescript: "npm:5.1.3"
   languageName: unknown
@@ -3963,12 +3963,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"docker-compose@npm:^0.23.19":
-  version: 0.23.19
-  resolution: "docker-compose@npm:0.23.19"
+"docker-compose@npm:^0.24.1":
+  version: 0.24.1
+  resolution: "docker-compose@npm:0.24.1"
   dependencies:
-    yaml: "npm:^1.10.2"
-  checksum: c542222313ce7a655d43d796c8d23e1230d66e10276491f28d2cabe42f661b098f9188d6f81b6eb004673145647792474db185c802b769afef633f1a1a130fe9
+    yaml: "npm:^2.2.2"
+  checksum: 54ad770d0b2c6afcd512df819a7131447ca9963ebfcf2445a9c80757862debcc90b9c2406f2bc172752ed3f9cd840fb8dc0afec2d834cc82565aeeb67175b81e
   languageName: node
   linkType: hard
 
@@ -8707,7 +8707,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"rimraf@npm:^3.0.2":
+"rimraf@npm:^3.0.0, rimraf@npm:^3.0.2":
   version: 3.0.2
   resolution: "rimraf@npm:3.0.2"
   dependencies:
@@ -9559,9 +9559,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"testcontainers@npm:9.8.0":
-  version: 9.8.0
-  resolution: "testcontainers@npm:9.8.0"
+"testcontainers@npm:9.9.0":
+  version: 9.9.0
+  resolution: "testcontainers@npm:9.9.0"
   dependencies:
     "@balena/dockerignore": "npm:^1.0.2"
     "@types/archiver": "npm:^5.3.2"
@@ -9570,14 +9570,15 @@ __metadata:
     async-lock: "npm:^1.4.0"
     byline: "npm:^5.0.0"
     debug: "npm:^4.3.4"
-    docker-compose: "npm:^0.23.19"
+    docker-compose: "npm:^0.24.1"
     dockerode: "npm:^3.3.5"
     get-port: "npm:^5.1.1"
     node-fetch: "npm:^2.6.9"
     properties-reader: "npm:^2.2.0"
     ssh-remote-port-forward: "npm:^1.0.4"
     tar-fs: "npm:^2.1.1"
-  checksum: 43d8931a5b514315e5a07744d6b4001646c645f8824d1478808237eafc7ea08e6117cbcd4f1a976f4b82d4fe81f0055210b44bf1b3de24b9fcf61b5926a724f1
+    tmp: "npm:^0.2.1"
+  checksum: 58086dd4e8ca535ce641cb7d56e5b4f927db34558aad7281cc8092d2bad04d2a24be67b07cc5811cc8a4af3ef7931cccb11265655a5c3bf3f5651ff1041e4842
   languageName: node
   linkType: hard
 
@@ -9652,6 +9653,15 @@ __metadata:
   dependencies:
     os-tmpdir: "npm:~1.0.2"
   checksum: 0800f6e40216bf17e4ecd68f507e4325829723e3db7a1b9ebcfdd28e49d6061a222942265d97251f72c03ced281cf53b42e55f9f9f5135a811fc2294b05a184c
+  languageName: node
+  linkType: hard
+
+"tmp@npm:^0.2.1":
+  version: 0.2.1
+  resolution: "tmp@npm:0.2.1"
+  dependencies:
+    rimraf: "npm:^3.0.0"
+  checksum: 6d7e4d8985fc4b3ee2bc00cd00fb42a9be47d2542d0ebd5fcd9aa69fd9fc337fa949f7a1212cc7d4172559288bef30125787b7b4eca683c2b43c740fcc342a21
   languageName: node
   linkType: hard
 
