@@ -1869,7 +1869,7 @@ __metadata:
     ioredis: "npm:5.3.2"
     jest: "npm:29.5.0"
     redis: "npm:3.1.2"
-    testcontainers: "npm:9.9.0"
+    testcontainers: "npm:9.9.1"
     ts-jest: "npm:29.1.0"
     typescript: "npm:5.1.3"
   languageName: unknown
@@ -2104,13 +2104,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/dockerode@npm:^3.3.16":
-  version: 3.3.16
-  resolution: "@types/dockerode@npm:3.3.16"
+"@types/dockerode@npm:^3.3.19":
+  version: 3.3.19
+  resolution: "@types/dockerode@npm:3.3.19"
   dependencies:
     "@types/docker-modem": "npm:*"
     "@types/node": "npm:*"
-  checksum: a6d7450be4841f3ccafa3d70a29a36db4ff66d2ada8e115eb3c406b4acec8c821963db8b0a56caaad43a45abbba8d1b7607607fd87a80b023780571bfdb3bb3d
+  checksum: b91b557af3b116650f00bb08a0250d2af1db2ec1a79dda676e80f01370be01591e9185a680189707377bc51cc55a0a93635ba06f7635486bb5e0500428accf87
   languageName: node
   linkType: hard
 
@@ -7564,9 +7564,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"node-fetch@npm:^2.5.0, node-fetch@npm:^2.6.9":
-  version: 2.6.9
-  resolution: "node-fetch@npm:2.6.9"
+"node-fetch@npm:^2.5.0, node-fetch@npm:^2.6.11":
+  version: 2.6.11
+  resolution: "node-fetch@npm:2.6.11"
   dependencies:
     whatwg-url: "npm:^5.0.0"
   peerDependencies:
@@ -7574,7 +7574,7 @@ __metadata:
   peerDependenciesMeta:
     encoding:
       optional: true
-  checksum: 8457cf62f599e9d55b01d58f87ed2110c65f83c4fcce8be0e350909995384e96a55e2b810d0e1a67a1fbe7f9930cd0998146d2dcce4843f9ed3ac0b479bd5c64
+  checksum: 3e7af7c0025f4bebd8f14efd0248344a5f0155253762810bf1be70e9e8d669e3ee74794754ca1a53e7d9ad8f4906d774e2b4e9e5209e2fd5d515e5c7299b3280
   languageName: node
   linkType: hard
 
@@ -9559,13 +9559,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"testcontainers@npm:9.9.0":
-  version: 9.9.0
-  resolution: "testcontainers@npm:9.9.0"
+"testcontainers@npm:9.9.1":
+  version: 9.9.1
+  resolution: "testcontainers@npm:9.9.1"
   dependencies:
     "@balena/dockerignore": "npm:^1.0.2"
     "@types/archiver": "npm:^5.3.2"
-    "@types/dockerode": "npm:^3.3.16"
+    "@types/dockerode": "npm:^3.3.19"
     archiver: "npm:^5.3.1"
     async-lock: "npm:^1.4.0"
     byline: "npm:^5.0.0"
@@ -9573,12 +9573,12 @@ __metadata:
     docker-compose: "npm:^0.24.1"
     dockerode: "npm:^3.3.5"
     get-port: "npm:^5.1.1"
-    node-fetch: "npm:^2.6.9"
+    node-fetch: "npm:^2.6.11"
     properties-reader: "npm:^2.2.0"
     ssh-remote-port-forward: "npm:^1.0.4"
     tar-fs: "npm:^2.1.1"
     tmp: "npm:^0.2.1"
-  checksum: 58086dd4e8ca535ce641cb7d56e5b4f927db34558aad7281cc8092d2bad04d2a24be67b07cc5811cc8a4af3ef7931cccb11265655a5c3bf3f5651ff1041e4842
+  checksum: 9c312b880f25d7bfe2b140b3df0a420032dd9c2a4cc8c5fc8c41b37dd5a2717416b54d39b6dc45c3741414ab71bbbcc913d2d7e300aa0868009a25a7360fec83
   languageName: node
   linkType: hard
 
