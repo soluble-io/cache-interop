@@ -2197,7 +2197,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:*, @types/node@npm:20.2.1":
+"@types/node@npm:*, @types/node@npm:20.3.2":
+  version: 20.3.2
+  resolution: "@types/node@npm:20.3.2"
+  checksum: 10/e40a7dbfa00ed34cb46b0b9f96e04f51d676d3a719c2763ead831f7875e6a3411356973e99741821f8857dba5c26c00cad79f5c5b9b62af5c9f5ff7eafb02a21
+  languageName: node
+  linkType: hard
+
+"@types/node@npm:20.2.1":
   version: 20.2.1
   resolution: "@types/node@npm:20.2.1"
   checksum: d8431e663a93580f9b8f87c5f3db3cdaa32d3ffbe806820975d90f8d2c571928b67e35314dc3abe9a6cd590329fd8030ba7295e824262d5604d922bce6750348
@@ -3169,7 +3176,7 @@ __metadata:
     "@changesets/cli": "npm:2.26.1"
     "@commitlint/cli": "npm:17.6.6"
     "@commitlint/config-conventional": "npm:17.6.6"
-    "@types/node": "npm:20.2.1"
+    "@types/node": "npm:20.3.2"
     "@types/prettier": "npm:2.7.3"
     "@types/shell-quote": "npm:1.7.1"
     eslint: "npm:8.43.0"
