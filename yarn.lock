@@ -1870,7 +1870,7 @@ __metadata:
     jest: "npm:29.5.0"
     redis: "npm:3.1.2"
     testcontainers: "npm:9.9.1"
-    ts-jest: "npm:29.1.0"
+    ts-jest: "npm:29.1.1"
     typescript: "npm:5.1.5"
   languageName: unknown
   linkType: soft
@@ -1891,7 +1891,7 @@ __metadata:
     publint: "npm:0.1.12"
     rimraf: "npm:5.0.1"
     size-limit: "npm:8.2.6"
-    ts-jest: "npm:29.1.0"
+    ts-jest: "npm:29.1.1"
     tslib: "npm:2.6.0"
     tsup: "npm:7.1.0"
     typedoc: "npm:0.24.8"
@@ -1918,7 +1918,7 @@ __metadata:
     publint: "npm:0.1.12"
     rimraf: "npm:5.0.1"
     size-limit: "npm:8.2.6"
-    ts-jest: "npm:29.1.0"
+    ts-jest: "npm:29.1.1"
     tslib: "npm:2.6.0"
     tsup: "npm:7.1.0"
     typescript: "npm:5.1.5"
@@ -1944,7 +1944,7 @@ __metadata:
     redis: "npm:3.1.2"
     rimraf: "npm:5.0.1"
     size-limit: "npm:8.2.6"
-    ts-jest: "npm:29.1.0"
+    ts-jest: "npm:29.1.1"
     tslib: "npm:2.6.0"
     tsup: "npm:7.1.0"
     typescript: "npm:5.1.5"
@@ -1975,7 +1975,7 @@ __metadata:
     publint: "npm:0.1.12"
     rimraf: "npm:5.0.1"
     size-limit: "npm:8.2.6"
-    ts-jest: "npm:29.1.0"
+    ts-jest: "npm:29.1.1"
     tslib: "npm:2.6.0"
     tsup: "npm:7.1.0"
     typedoc: "npm:0.24.8"
@@ -8852,7 +8852,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"semver@npm:7.5.3, semver@npm:7.x, semver@npm:^7.3.4, semver@npm:^7.3.5, semver@npm:^7.3.7, semver@npm:^7.5.3":
+"semver@npm:7.5.3, semver@npm:^7.3.4, semver@npm:^7.3.5, semver@npm:^7.3.7, semver@npm:^7.5.3":
   version: 7.5.3
   resolution: "semver@npm:7.5.3"
   dependencies:
@@ -9755,9 +9755,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ts-jest@npm:29.1.0":
-  version: 29.1.0
-  resolution: "ts-jest@npm:29.1.0"
+"ts-jest@npm:29.1.1":
+  version: 29.1.1
+  resolution: "ts-jest@npm:29.1.1"
   dependencies:
     bs-logger: "npm:0.x"
     fast-json-stable-stringify: "npm:2.x"
@@ -9765,7 +9765,7 @@ __metadata:
     json5: "npm:^2.2.3"
     lodash.memoize: "npm:4.x"
     make-error: "npm:1.x"
-    semver: "npm:7.x"
+    semver: "npm:^7.5.3"
     yargs-parser: "npm:^21.0.1"
   peerDependencies:
     "@babel/core": ">=7.0.0-beta.0 <8"
@@ -9784,7 +9784,7 @@ __metadata:
       optional: true
   bin:
     ts-jest: cli.js
-  checksum: 9/0a30822a27a3cafdb40b0473816544b0ae92de7861671e6842080e3baa17cdf9f66a34d52b456043a7417c50abe9110ab26cf681bc8f3b26afc9c5cdb5d8ce9d
+  checksum: 30e8259baba95dd786e64f7c18b864e904598f3ba07911be4d9bd29ca9c3c0024bad4ccf8ec0abd2a2fa14b06622cbbadff1b3be822189c657196442d33ee6ca
   languageName: node
   linkType: hard
 
