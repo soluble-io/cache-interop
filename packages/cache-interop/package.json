@@ -57,7 +57,7 @@
     "@size-limit/file": "8.2.6",
     "@types/jest": "29.5.2",
     "cross-env": "7.0.3",
-    "dayjs": "1.11.8",
+    "dayjs": "1.11.9",
     "es-check": "7.1.1",
     "eslint": "8.43.0",
     "get-tsconfig": "4.6.2",
