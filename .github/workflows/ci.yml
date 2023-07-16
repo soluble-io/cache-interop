@@ -43,17 +43,17 @@ jobs:
 
       - name: 🔬 ESLint checks
         run: |
-          yarn workspaces foreach --exclude '@examples/**' -v run lint
+          yarn workspaces foreach --from 'packages/*' -v run lint
 
       - name: 🕵️ Typecheck
         run: |
-          yarn workspaces foreach --exclude '@examples/**' -v run typecheck
+          yarn workspaces foreach --from 'packages/*' -v run typecheck
 
       - name: 🏗 Build packages
         # Till https://github.com/atlassian/changesets/issues/432 has a solution we can remove the
         # build-release and replace with a regular build command
         run: |
-          yarn workspaces foreach --exclude '@examples/**' -tv run build-release
+          yarn workspaces foreach --from 'packages/*' -tv run build-release
 
       - name: 📐 Check build for size-limits
         run: |
@@ -66,11 +66,11 @@ jobs:
 
       - name: 🛟 Check publishable dist  (publint)
         if: matrix.node-version == '18.x'
-        run: yarn workspaces foreach -tv --include '@httpx/*' --no-private run check-pub
+        run: yarn workspaces foreach -tv --from 'packages/*' --no-private run check-pub
 
       - name: 🧪 Unit tests
         run: |
-          yarn workspaces foreach -tv --include '@soluble/*' --exclude '@examples/*' run test-unit --coverage
+          yarn workspaces foreach -tv --from 'packages/*' run test-unit --coverage
         env:
           CI: true
 
