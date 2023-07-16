@@ -2,9 +2,55 @@
   "name": "@soluble/cache-interop",
   "description": "Async cache interop contracts",
   "version": "0.12.7",
+  "license": "MIT",
   "author": {
     "name": "Vanvelthem Sébastien",
     "url": "https://github.com/belgattitude"
+  },
+  "homepage": "https://github.com/soluble-io/cache-interop/tree/main/packages/cache-interop",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/soluble-io/cache-interop.git",
+    "directory": "packages/cache-interop"
+  },
+  "keywords": [
+    "cache",
+    "contract",
+    "interop"
+  ],
+  "sideEffects": false,
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "require": "./dist/index.cjs",
+      "import": "./dist/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "?build-release": "When https://github.com/atlassian/changesets/issues/432 has a solution we can remove this trick",
+    "build": "yarn clean && yarn tsup",
+    "build-api-doc": "typedoc --githubPages false --plugin typedoc-plugin-markdown",
+    "build-release": "yarn build",
+    "check-dist": "es-check -v",
+    "check-pub": "publint --strict",
+    "check-size": "size-limit",
+    "ci-coverage-upload": "../../.github/scripts/download/codecov -F cacheInteropUnit --dir ./coverage",
+    "clean": "rimraf ./dist ./build ./coverage ./out ./node_modules/.cache",
+    "dev": "tsup --watch",
+    "fix-all-files": "eslint --ext .ts,.tsx,.js,.jsx,.mjs,.cjs,.mts,.cts --fix",
+    "fix-staged": "lint-staged --allow-empty",
+    "lint": "eslint . --ext .ts,.tsx,.js,.jsx,.mjs,.cjs,.mts,.cts --cache --cache-location ../../.cache/eslint/cache-interop.eslintcache",
+    "test-unit": "jest --config jest.config.js --color $@",
+    "typecheck": "tsc --project ./tsconfig.json --noEmit",
+    "typecheck-build": "tsc --project tsconfig.build.json --noEmit"
   },
   "devDependencies": {
     "@belgattitude/eslint-config-bases": "1.36.0",
@@ -28,51 +74,5 @@
   },
   "engines": {
     "node": "^14.13.1 || >=16"
-  },
-  "exports": {
-    ".": {
-      "types": "./dist/index.d.ts",
-      "require": "./dist/index.cjs",
-      "import": "./dist/index.js"
-    },
-    "./package.json": "./package.json"
-  },
-  "files": [
-    "dist"
-  ],
-  "homepage": "https://github.com/soluble-io/cache-interop/tree/main/packages/cache-interop",
-  "keywords": [
-    "cache",
-    "contract",
-    "interop"
-  ],
-  "license": "MIT",
-  "main": "./dist/index.cjs",
-  "module": "./dist/index.js",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/soluble-io/cache-interop.git",
-    "directory": "packages/cache-interop"
-  },
-  "scripts": {
-    "?build-release": "When https://github.com/atlassian/changesets/issues/432 has a solution we can remove this trick",
-    "build": "yarn clean && yarn tsup",
-    "build-api-doc": "typedoc --githubPages false --plugin typedoc-plugin-markdown",
-    "build-release": "yarn build",
-    "check-dist": "es-check -v",
-    "check-pub": "publint --strict",
-    "check-size": "size-limit",
-    "ci-coverage-upload": "../../.github/scripts/download/codecov -F cacheInteropUnit --dir ./coverage",
-    "clean": "rimraf ./dist ./build ./coverage ./out ./node_modules/.cache",
-    "dev": "tsup --watch",
-    "fix-all-files": "eslint --ext .ts,.tsx,.js,.jsx,.mjs,.cjs,.mts,.cts --fix",
-    "fix-staged": "lint-staged --allow-empty",
-    "lint": "eslint . --ext .ts,.tsx,.js,.jsx,.mjs,.cjs,.mts,.cts --cache --cache-location ../../.cache/eslint/cache-interop.eslintcache",
-    "test-unit": "jest --config jest.config.js --color $@",
-    "typecheck": "tsc --project ./tsconfig.json --noEmit",
-    "typecheck-build": "tsc --project tsconfig.build.json --noEmit"
-  },
-  "sideEffects": false,
-  "type": "module",
-  "types": "./dist/index.d.ts"
+  }
 }

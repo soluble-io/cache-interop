@@ -1,6 +1,16 @@
 {
   "name": "@examples/nextjs-cjs",
   "version": "0.1.12",
+  "private": true,
+  "scripts": {
+    "build": "cross-env TSCONFIG=./tsconfig.no-paths.json next build",
+    "clean": "rimraf ./.next ./out ./coverage ./tsconfig.tsbuildinfo ./node_modules/.cache",
+    "dev": "next dev",
+    "fix-staged": "lint-staged --allow-empty",
+    "lint": "eslint . --ext .ts,.tsx,.js,.jsx,.mjs,.cjs,.mts,.cts --cache --cache-location ../../.cache/eslint/nextjs-cjs.eslintcache",
+    "start": "next start",
+    "typecheck": "tsc --project tsconfig.json --noEmit"
+  },
   "dependencies": {
     "@soluble/cache-interop": "workspace:^",
     "@soluble/cache-ioredis": "workspace:^",
@@ -22,15 +32,5 @@
     "eslint-config-next": "13.4.10",
     "rimraf": "5.0.1",
     "typescript": "5.1.6"
-  },
-  "private": true,
-  "scripts": {
-    "build": "cross-env TSCONFIG=./tsconfig.no-paths.json next build",
-    "clean": "rimraf ./.next ./out ./coverage ./tsconfig.tsbuildinfo ./node_modules/.cache",
-    "dev": "next dev",
-    "fix-staged": "lint-staged --allow-empty",
-    "lint": "eslint . --ext .ts,.tsx,.js,.jsx,.mjs,.cjs,.mts,.cts --cache --cache-location ../../.cache/eslint/nextjs-cjs.eslintcache",
-    "start": "next start",
-    "typecheck": "tsc --project tsconfig.json --noEmit"
   }
 }

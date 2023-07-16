@@ -2,9 +2,26 @@
   "name": "@soluble/cache-e2e-tests",
   "description": "E2E tests for cache-interop",
   "version": "0.11.6",
+  "private": true,
+  "license": "MIT",
   "author": {
     "name": "Vanvelthem Sébastien",
     "url": "https://github.com/belgattitude"
+  },
+  "homepage": "https://github.com/soluble-io/cache-interop",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/soluble-io/cache-interop.git",
+    "directory": "packages/cache-e2e-tests"
+  },
+  "scripts": {
+    "ci-coverage-upload": "../../.github/scripts/download/codecov -F e2e --dir ./coverage",
+    "clean": "rimraf ./coverage  ./node_modules/.cache",
+    "fix-all-files": "eslint --ext .ts,.tsx,.js,.jsx,.mjs,.cjs,.mts,.cts --fix",
+    "fix-staged": "lint-staged --allow-empty",
+    "lint": "eslint . --ext .ts,.tsx,.js,.jsx,.mjs,.cjs,.mts,.cts --cache --cache-location ../../.cache/eslint/cache-e2e-tests.eslintcache",
+    "test-e2e": "jest --config jest.config.js --color $@",
+    "typecheck": "tsc --project tsconfig.json --noEmit"
   },
   "devDependencies": {
     "@belgattitude/eslint-config-bases": "1.36.0",
@@ -25,22 +42,5 @@
   },
   "engines": {
     "node": "^14.13.1 || >=16"
-  },
-  "homepage": "https://github.com/soluble-io/cache-interop",
-  "license": "MIT",
-  "private": true,
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/soluble-io/cache-interop.git",
-    "directory": "packages/cache-e2e-tests"
-  },
-  "scripts": {
-    "ci-coverage-upload": "../../.github/scripts/download/codecov -F e2e --dir ./coverage",
-    "clean": "rimraf ./coverage  ./node_modules/.cache",
-    "fix-all-files": "eslint --ext .ts,.tsx,.js,.jsx,.mjs,.cjs,.mts,.cts --fix",
-    "fix-staged": "lint-staged --allow-empty",
-    "lint": "eslint . --ext .ts,.tsx,.js,.jsx,.mjs,.cjs,.mts,.cts --cache --cache-location ../../.cache/eslint/cache-e2e-tests.eslintcache",
-    "test-e2e": "jest --config jest.config.js --color $@",
-    "typecheck": "tsc --project tsconfig.json --noEmit"
   }
 }
