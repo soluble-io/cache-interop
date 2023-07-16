@@ -59,6 +59,6 @@ export const getTestAdapters = () => {
     ],
   ] as [
     name: string,
-    factory: () => CacheInterface | Promise<CacheInterface>
+    factory: () => CacheInterface | Promise<CacheInterface>,
   ][];
 };

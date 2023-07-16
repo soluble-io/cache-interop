@@ -28,7 +28,7 @@ type Options = {
 
 export class IoRedisCacheAdapter<
     TBase = string,
-    KBase extends CacheKey = CacheKey
+    KBase extends CacheKey = CacheKey,
   >
   extends AbstractCacheAdapter<TBase, KBase>
   implements CacheInterface<TBase, KBase>, ConnectedCacheInterface<Redis>

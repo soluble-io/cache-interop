@@ -30,7 +30,7 @@ type Options = {
 
 export class RedisCacheAdapter<
     TBase = string,
-    KBase extends CacheKey = CacheKey
+    KBase extends CacheKey = CacheKey,
   >
   extends AbstractCacheAdapter<TBase, KBase>
   implements CacheInterface<TBase, KBase>, ConnectedCacheInterface<RedisClient>

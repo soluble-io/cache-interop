@@ -25,7 +25,7 @@ const defaultGetOrSetOptions: GetOrSetOptions = {
 
 export abstract class AbstractCacheAdapter<
   TBase = string,
-  KBase extends CacheKey = CacheKey
+  KBase extends CacheKey = CacheKey,
 > implements CacheInterface<TBase, KBase>
 {
   // eslint-disable-next-line @typescript-eslint/naming-convention
@@ -96,7 +96,7 @@ export abstract class AbstractCacheAdapter<
     });
     const responses = (await Promise.all(promises)) as [
       K,
-      boolean | CacheException
+      boolean | CacheException,
     ][];
     return new Map(responses);
   };
