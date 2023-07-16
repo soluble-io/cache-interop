@@ -32,8 +32,8 @@
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
-      "require": "./dist/index.js",
       "module": "./dist/index.mjs",
+      "require": "./dist/index.js",
       "import": "./dist/index.mjs",
       "browser": "./dist/index.mjs",
       "default": "./dist/index.js"
