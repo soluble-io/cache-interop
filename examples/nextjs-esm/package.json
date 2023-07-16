@@ -4,13 +4,13 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "next dev",
     "build": "cross-env TSCONFIG=./tsconfig.no-paths.json next build",
-    "start": "next start",
     "clean": "rimraf ./.next ./coverage ./tsconfig.tsbuildinfo ./node_modules/.cache",
-    "typecheck": "tsc --project tsconfig.json --noEmit",
+    "dev": "next dev",
+    "fix-staged": "lint-staged --allow-empty",
     "lint": "eslint . --ext .ts,.tsx,.js,.jsx,.mjs,.cjs,.mts,.cts --cache --cache-location ../../.cache/eslint/nextjs-esm.eslintcache",
-    "fix-staged": "lint-staged --allow-empty"
+    "start": "next start",
+    "typecheck": "tsc --project tsconfig.json --noEmit"
   },
   "dependencies": {
     "@soluble/cache-interop": "workspace:^",

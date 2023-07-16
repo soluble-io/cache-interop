@@ -3,22 +3,23 @@
   "description": "Node redis cache interop adapter",
   "version": "0.12.10",
   "license": "MIT",
+  "author": {
+    "name": "Vanvelthem Sébastien",
+    "url": "https://github.com/belgattitude"
+  },
   "homepage": "https://github.com/soluble-io/cache-interop/tree/main/packages/cache-redis",
   "repository": {
     "type": "git",
     "url": "https://github.com/soluble-io/cache-interop.git",
     "directory": "packages/cache-redis"
   },
-  "author": {
-    "name": "Vanvelthem Sébastien",
-    "url": "https://github.com/belgattitude"
-  },
   "keywords": [
     "cache",
     "interop",
-    "redis",
-    "node-redis"
+    "node-redis",
+    "redis"
   ],
+  "sideEffects": false,
   "type": "module",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
@@ -34,27 +35,23 @@
   "files": [
     "dist"
   ],
-  "sideEffects": false,
-  "publishConfig": {
-    "directory": "_release/package"
-  },
   "scripts": {
-    "build": "yarn clean && yarn tsup",
-    "dev": "tsup --watch",
     "?build-release": "When https://github.com/atlassian/changesets/issues/432 has a solution we can remove this trick",
+    "build": "yarn clean && yarn tsup",
     "build-release": "yarn build && rimraf ./_release && yarn pack && mkdir ./_release && tar zxvf ./package.tgz --directory ./_release && rm ./package.tgz",
-    "check-size": "size-limit",
     "check-dist": "es-check -v",
     "check-pub": "publint --strict",
+    "check-size": "size-limit",
+    "ci-coverage-upload": "../../.github/scripts/download/codecov -F cacheNodeRedisUnit --dir ./coverage",
     "clean": "rimraf ./dist ./build ./coverage ./out ./_release ./node_modules/.cache",
+    "dev": "tsup --watch",
+    "fix-all-files": "eslint --ext .ts,.tsx,.js,.jsx,.mjs,.cjs,.mts,.cts --fix",
+    "fix-staged": "lint-staged --allow-empty",
+    "lint": "eslint . --ext .ts,.tsx,.js,.jsx,.mjs,.cjs,.mts,.cts --cache --cache-location ../../.cache/eslint/cache-redis.eslintcache",
     "test": "yarn run test-unit",
     "test-unit": "jest --config jest.config.js --color $@",
     "typecheck": "tsc --noEmit",
-    "typecheck-build": "tsc --project tsconfig.build.json --noEmit",
-    "lint": "eslint . --ext .ts,.tsx,.js,.jsx,.mjs,.cjs,.mts,.cts --cache --cache-location ../../.cache/eslint/cache-redis.eslintcache",
-    "fix-all-files": "eslint --ext .ts,.tsx,.js,.jsx,.mjs,.cjs,.mts,.cts --fix",
-    "fix-staged": "lint-staged --allow-empty",
-    "ci-coverage-upload": "../../.github/scripts/download/codecov -F cacheNodeRedisUnit --dir ./coverage"
+    "typecheck-build": "tsc --project tsconfig.build.json --noEmit"
   },
   "dependencies": {
     "@soluble/cache-interop": "workspace:^",
@@ -79,6 +76,9 @@
     "tsup": "7.1.0",
     "typescript": "5.1.6"
   },
+  "engines": {
+    "node": "^14.13.1 || >=16"
+  },
   "peerDependencies": {
     "@types/redis": "^2.8.25",
     "redis": "^3.0.0"
@@ -91,7 +91,7 @@
       "optional": false
     }
   },
-  "engines": {
-    "node": "^14.13.1 || >=16"
+  "publishConfig": {
+    "directory": "_release/package"
   }
 }

@@ -24,14 +24,14 @@ jobs:
       - name: 📥 Monorepo install
         uses: ./.github/actions/yarn-nm-install
 
-      - name: Check for duplicate dependencies in lock file
-        run: |
-          yarn dedupe --check
+      - name: 🦺 Check for duplicate dependencies in lock file
+        run: yarn dedupe --check
 
-      - name: Check for yarn constraints.pro
-        run: |
-          yarn constraints
+      - name: 🦺 Check for yarn constraints.pro
+        run: yarn constraints
 
-      - name: Check monorepo dependency graph
-        run: |
-          yarn check:install
+      - name: 🦺 Check monorepo dependency graph
+        run: yarn check:install
+
+      - name: 🦺 Syncpack - packages - lint-semver-ranges
+        run: yarn syncpack:check || yarn syncpack:list

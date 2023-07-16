@@ -3,21 +3,22 @@
   "description": "Async cache interop contracts",
   "version": "0.12.7",
   "license": "MIT",
+  "author": {
+    "name": "Vanvelthem Sébastien",
+    "url": "https://github.com/belgattitude"
+  },
   "homepage": "https://github.com/soluble-io/cache-interop/tree/main/packages/cache-interop",
   "repository": {
     "type": "git",
     "url": "https://github.com/soluble-io/cache-interop.git",
     "directory": "packages/cache-interop"
   },
-  "author": {
-    "name": "Vanvelthem Sébastien",
-    "url": "https://github.com/belgattitude"
-  },
   "keywords": [
     "cache",
-    "interop",
-    "contract"
+    "contract",
+    "interop"
   ],
+  "sideEffects": false,
   "type": "module",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
@@ -33,24 +34,23 @@
   "files": [
     "dist"
   ],
-  "sideEffects": false,
   "scripts": {
-    "build": "yarn clean && yarn tsup",
-    "dev": "tsup --watch",
     "?build-release": "When https://github.com/atlassian/changesets/issues/432 has a solution we can remove this trick",
+    "build": "yarn clean && yarn tsup",
+    "build-api-doc": "typedoc --githubPages false --plugin typedoc-plugin-markdown",
     "build-release": "yarn build",
-    "check-size": "size-limit",
     "check-dist": "es-check -v",
     "check-pub": "publint --strict",
+    "check-size": "size-limit",
+    "ci-coverage-upload": "../../.github/scripts/download/codecov -F cacheInteropUnit --dir ./coverage",
     "clean": "rimraf ./dist ./build ./coverage ./out ./node_modules/.cache",
-    "test-unit": "jest --config jest.config.js --color $@",
-    "typecheck": "tsc --project ./tsconfig.json --noEmit",
-    "typecheck-build": "tsc --project tsconfig.build.json --noEmit",
-    "lint": "eslint . --ext .ts,.tsx,.js,.jsx,.mjs,.cjs,.mts,.cts --cache --cache-location ../../.cache/eslint/cache-interop.eslintcache",
+    "dev": "tsup --watch",
     "fix-all-files": "eslint --ext .ts,.tsx,.js,.jsx,.mjs,.cjs,.mts,.cts --fix",
     "fix-staged": "lint-staged --allow-empty",
-    "ci-coverage-upload": "../../.github/scripts/download/codecov -F cacheInteropUnit --dir ./coverage",
-    "build-api-doc": "typedoc --githubPages false --plugin typedoc-plugin-markdown"
+    "lint": "eslint . --ext .ts,.tsx,.js,.jsx,.mjs,.cjs,.mts,.cts --cache --cache-location ../../.cache/eslint/cache-interop.eslintcache",
+    "test-unit": "jest --config jest.config.js --color $@",
+    "typecheck": "tsc --project ./tsconfig.json --noEmit",
+    "typecheck-build": "tsc --project tsconfig.build.json --noEmit"
   },
   "devDependencies": {
     "@belgattitude/eslint-config-bases": "1.36.0",

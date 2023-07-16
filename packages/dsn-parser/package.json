@@ -3,24 +3,32 @@
   "description": "Utility parser for DSN",
   "version": "1.9.1",
   "license": "MIT",
+  "author": {
+    "name": "Vanvelthem Sébastien",
+    "url": "https://github.com/belgattitude"
+  },
   "homepage": "https://github.com/soluble-io/cache-interop/tree/main/packages/dsn-parser",
   "repository": {
     "type": "git",
     "url": "https://github.com/soluble-io/cache-interop.git",
     "directory": "packages/dsn-parser"
   },
-  "author": {
-    "name": "Vanvelthem Sébastien",
-    "url": "https://github.com/belgattitude"
-  },
   "keywords": [
     "dsn",
-    "parser",
-    "dsn-parser"
+    "dsn-parser",
+    "parser"
   ],
-  "types": "./dist/index.d.ts",
+  "sideEffects": false,
+  "browserslist": [
+    ">0.5%",
+    "not IE 11",
+    "not dead",
+    "not op_mini all",
+    "node 14.17"
+  ],
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
@@ -35,25 +43,24 @@
   "files": [
     "dist"
   ],
-  "sideEffects": false,
   "scripts": {
-    "build": "yarn clean && yarn tsup",
-    "dev": "tsup --watch",
     "?build-release": "When https://github.com/atlassian/changesets/issues/432 has a solution we can remove this trick",
+    "build": "yarn clean && yarn tsup",
+    "build-api-doc": "typedoc --githubPages false --plugin typedoc-plugin-markdown",
     "build-release": "yarn build",
-    "check-size": "size-limit",
     "check-dist": "run-s check-dist-esm check-dist-cjs",
     "check-dist-cjs": "es-check --not './dist/*.map.js' -v es2017 './dist/**/*.js'",
     "check-dist-esm": "es-check --not './dist/*.map.js' -v es2017 --module './dist/**/*.mjs'",
     "check-pub": "publint --strict",
+    "check-size": "size-limit",
+    "ci-coverage-upload": "../../.github/scripts/download/codecov -F dsnParserUnit --dir ./coverage",
     "clean": "rimraf ./dist ./build ./coverage ./_release",
+    "dev": "tsup --watch",
+    "fix-staged": "lint-staged --allow-empty",
+    "lint": "eslint . --ext .ts,.tsx,.js,.jsx,.mjs,.cjs,.mts,.cts --cache --cache-location ../../.cache/eslint/dsn-parser.eslintcache",
     "test-unit": "jest --config jest.config.mjs --color $@",
     "typecheck": "tsc --project tsconfig.json --noEmit",
-    "typecheck-build": "tsc --project tsconfig.build.json --noEmit",
-    "lint": "eslint . --ext .ts,.tsx,.js,.jsx,.mjs,.cjs,.mts,.cts --cache --cache-location ../../.cache/eslint/dsn-parser.eslintcache",
-    "fix-staged": "lint-staged --allow-empty",
-    "ci-coverage-upload": "../../.github/scripts/download/codecov -F dsnParserUnit --dir ./coverage",
-    "build-api-doc": "typedoc --githubPages false --plugin typedoc-plugin-markdown"
+    "typecheck-build": "tsc --project tsconfig.build.json --noEmit"
   },
   "devDependencies": {
     "@belgattitude/eslint-config-bases": "1.36.0",
@@ -74,12 +81,5 @@
     "typedoc": "0.24.8",
     "typedoc-plugin-markdown": "3.15.3",
     "typescript": "5.1.6"
-  },
-  "browserslist": [
-    ">0.5%",
-    "not IE 11",
-    "not dead",
-    "not op_mini all",
-    "node 14.17"
-  ]
+  }
 }
