@@ -1,5 +1,21 @@
 # @soluble/dsn-parser
 
+## 1.9.2
+
+### Patch Changes
+
+- [#935](https://github.com/soluble-io/cache-interop/pull/935) [`7848937`](https://github.com/soluble-io/cache-interop/commit/7848937b4351f66136b9652506217773d8db0916) Thanks [@belgattitude](https://github.com/belgattitude)! - Give precedence to esm
+
+  Ensure the "module" condition comes before the "require" condition. Due to the way conditions are matched top-to-bottom,
+  the "module" condition (used in bundler contexts only) must come before a "require" condition,
+  so it has the opportunity to take precedence.
+
+  See [publint](https://publint.dev/rules#exports_module_should_precede_require)
+
+- [#932](https://github.com/soluble-io/cache-interop/pull/932) [`7983793`](https://github.com/soluble-io/cache-interop/commit/798379316dd073bbaa047aadbba1515047ec5a5e) Thanks [@belgattitude](https://github.com/belgattitude)! - To latest dependencies
+
+- [#934](https://github.com/soluble-io/cache-interop/pull/934) [`ed234ea`](https://github.com/soluble-io/cache-interop/commit/ed234eab01e3059abf861a2edeb5c324be33ec2a) Thanks [@belgattitude](https://github.com/belgattitude)! - Add syncpack to ensure consistence in package.json(s)
+
 ## 1.9.1
 
 ### Patch Changes
