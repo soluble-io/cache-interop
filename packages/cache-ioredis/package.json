@@ -2,58 +2,9 @@
   "name": "@soluble/cache-ioredis",
   "description": "IORedis cache interop adapter",
   "version": "0.13.10",
-  "license": "MIT",
-  "homepage": "https://github.com/soluble-io/cache-interop/tree/main/packages/cache-ioredis",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/soluble-io/cache-interop.git",
-    "directory": "packages/cache-ioredis"
-  },
   "author": {
     "name": "Vanvelthem Sébastien",
     "url": "https://github.com/belgattitude"
-  },
-  "keywords": [
-    "cache",
-    "interop",
-    "ioredis"
-  ],
-  "type": "module",
-  "main": "./dist/index.cjs",
-  "module": "./dist/index.js",
-  "types": "./dist/index.d.ts",
-  "exports": {
-    ".": {
-      "types": "./dist/index.d.ts",
-      "require": "./dist/index.cjs",
-      "import": "./dist/index.js"
-    },
-    "./package.json": "./package.json"
-  },
-  "files": [
-    "dist"
-  ],
-  "sideEffects": false,
-  "publishConfig": {
-    "directory": "_release/package"
-  },
-  "scripts": {
-    "build": "yarn clean && yarn tsup",
-    "dev": "tsup --watch",
-    "?build-release": "When https://github.com/atlassian/changesets/issues/432 has a solution we can remove this trick",
-    "build-release": "yarn build && rimraf ./_release && yarn pack && mkdir ./_release && tar zxvf ./package.tgz --directory ./_release && rm ./package.tgz",
-    "check-size": "size-limit",
-    "check-dist": "es-check -v",
-    "check-pub": "publint --strict",
-    "clean": "rimraf ./dist ./build ./coverage ./out ./_release ./node_modules/.cache",
-    "test": "run-s test-unit",
-    "test-unit": "jest --config jest.config.js --color $@",
-    "typecheck": "tsc --project tsconfig.json --noEmit",
-    "typecheck-build": "tsc --project tsconfig.build.json --noEmit",
-    "lint": "eslint . --ext .ts,.tsx,.js,.jsx,.mjs,.cjs,.mts,.cts --cache --cache-location ../../.cache/eslint/cache-ioredis.eslintcache",
-    "fix-staged": "lint-staged --allow-empty",
-    "fix-all-files": "eslint --ext .ts,.tsx,.js,.jsx,.mjs,.cjs,.mts,.cts --fix",
-    "ci-coverage-upload": "../../.github/scripts/download/codecov -F cacheIORedisUnit --dir ./coverage"
   },
   "dependencies": {
     "@soluble/cache-interop": "workspace:^",
@@ -79,5 +30,54 @@
   },
   "engines": {
     "node": "^14.13.1 || >=16"
-  }
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "require": "./dist/index.cjs",
+      "import": "./dist/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist"
+  ],
+  "homepage": "https://github.com/soluble-io/cache-interop/tree/main/packages/cache-ioredis",
+  "keywords": [
+    "cache",
+    "interop",
+    "ioredis"
+  ],
+  "license": "MIT",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "publishConfig": {
+    "directory": "_release/package"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/soluble-io/cache-interop.git",
+    "directory": "packages/cache-ioredis"
+  },
+  "scripts": {
+    "?build-release": "When https://github.com/atlassian/changesets/issues/432 has a solution we can remove this trick",
+    "build": "yarn clean && yarn tsup",
+    "build-release": "yarn build && rimraf ./_release && yarn pack && mkdir ./_release && tar zxvf ./package.tgz --directory ./_release && rm ./package.tgz",
+    "check-dist": "es-check -v",
+    "check-pub": "publint --strict",
+    "check-size": "size-limit",
+    "ci-coverage-upload": "../../.github/scripts/download/codecov -F cacheIORedisUnit --dir ./coverage",
+    "clean": "rimraf ./dist ./build ./coverage ./out ./_release ./node_modules/.cache",
+    "dev": "tsup --watch",
+    "fix-all-files": "eslint --ext .ts,.tsx,.js,.jsx,.mjs,.cjs,.mts,.cts --fix",
+    "fix-staged": "lint-staged --allow-empty",
+    "lint": "eslint . --ext .ts,.tsx,.js,.jsx,.mjs,.cjs,.mts,.cts --cache --cache-location ../../.cache/eslint/cache-ioredis.eslintcache",
+    "test": "run-s test-unit",
+    "test-unit": "jest --config jest.config.js --color $@",
+    "typecheck": "tsc --project tsconfig.json --noEmit",
+    "typecheck-build": "tsc --project tsconfig.build.json --noEmit"
+  },
+  "sideEffects": false,
+  "type": "module",
+  "types": "./dist/index.d.ts"
 }
