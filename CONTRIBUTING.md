@@ -13,7 +13,7 @@ Contributions are welcome.
 ## Scripts
 
 | Name                         | Description                                                      |
-|------------------------------|------------------------------------------------------------------|
+| ---------------------------- | ---------------------------------------------------------------- |
 | `yarn g:changeset`           | Add a changeset to declare version bumps.                        |
 | `yarn g:typecheck`           | Run typechecks all packages.                                     |
 | `yarn g:lint`                | Display linter issues in all packages.                           |
@@ -62,4 +62,3 @@ This repo adheres to the [conventional commit](https://www.conventionalcommits.o
 - **test**: Adding missing tests or correcting existing tests
 - **translation**: Adding missing translations or correcting existing ones
 - **revert**: When reverting a commit
-
