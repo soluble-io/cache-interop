@@ -1885,7 +1885,7 @@ __metadata:
     ioredis: "npm:5.3.2"
     jest: "npm:29.6.1"
     redis: "npm:3.1.2"
-    testcontainers: "npm:9.10.1"
+    testcontainers: "npm:9.11.0"
     ts-jest: "npm:29.1.1"
     typescript: "npm:5.1.6"
   languageName: unknown
@@ -8308,6 +8308,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"proper-lockfile@npm:^4.1.2":
+  version: 4.1.2
+  resolution: "proper-lockfile@npm:4.1.2"
+  dependencies:
+    graceful-fs: "npm:^4.2.4"
+    retry: "npm:^0.12.0"
+    signal-exit: "npm:^3.0.2"
+  checksum: 000a4875f543f591872b36ca94531af8a6463ddb0174f41c0b004d19e231d7445268b422ff1ea595e43d238655c702250cd3d27f408e7b9d97b56f1533ba26bf
+  languageName: node
+  linkType: hard
+
 "properties-reader@npm:^2.2.0":
   version: 2.2.0
   resolution: "properties-reader@npm:2.2.0"
@@ -9655,9 +9666,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"testcontainers@npm:9.10.1":
-  version: 9.10.1
-  resolution: "testcontainers@npm:9.10.1"
+"testcontainers@npm:9.11.0":
+  version: 9.11.0
+  resolution: "testcontainers@npm:9.11.0"
   dependencies:
     "@balena/dockerignore": "npm:^1.0.2"
     "@types/archiver": "npm:^5.3.2"
@@ -9670,11 +9681,12 @@ __metadata:
     dockerode: "npm:^3.3.5"
     get-port: "npm:^5.1.1"
     node-fetch: "npm:^2.6.12"
+    proper-lockfile: "npm:^4.1.2"
     properties-reader: "npm:^2.2.0"
     ssh-remote-port-forward: "npm:^1.0.4"
     tar-fs: "npm:^2.1.1"
     tmp: "npm:^0.2.1"
-  checksum: 48f5b5256434717a030bcda40c464d6ff83954b2db7a5ea9ef44a94f28661ded618fccca01d0c367d9eaac17600811ef32b7127551ced0779c635d93b7780a35
+  checksum: d6edba7f8d6edf015f9bddd8c3d3c84fb52ace1dae011f4fd475d20a00ad20092bd3c6ba1f0226b7478c21797d859dc348487b2c8350fe54e028baee8cd6467f
   languageName: node
   linkType: hard
 
