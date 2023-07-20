@@ -1885,7 +1885,7 @@ __metadata:
     ioredis: "npm:5.3.2"
     jest: "npm:29.6.1"
     redis: "npm:3.1.2"
-    testcontainers: "npm:9.11.0"
+    testcontainers: "npm:9.12.0"
     ts-jest: "npm:29.1.1"
     typescript: "npm:5.1.6"
   languageName: unknown
@@ -9666,9 +9666,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"testcontainers@npm:9.11.0":
-  version: 9.11.0
-  resolution: "testcontainers@npm:9.11.0"
+"testcontainers@npm:9.12.0":
+  version: 9.12.0
+  resolution: "testcontainers@npm:9.12.0"
   dependencies:
     "@balena/dockerignore": "npm:^1.0.2"
     "@types/archiver": "npm:^5.3.2"
@@ -9686,7 +9686,7 @@ __metadata:
     ssh-remote-port-forward: "npm:^1.0.4"
     tar-fs: "npm:^2.1.1"
     tmp: "npm:^0.2.1"
-  checksum: d6edba7f8d6edf015f9bddd8c3d3c84fb52ace1dae011f4fd475d20a00ad20092bd3c6ba1f0226b7478c21797d859dc348487b2c8350fe54e028baee8cd6467f
+  checksum: 124d7b911a39983847e12c8fa455546e1fc111e4d62c76a44313bae6415cf89cbb487e068c34de81ff3414aecfd44164eaaff0111f451270399ada02e2e50977
   languageName: node
   linkType: hard
 
