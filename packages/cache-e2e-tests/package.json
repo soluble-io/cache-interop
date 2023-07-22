@@ -24,7 +24,7 @@
     "typecheck": "tsc --project tsconfig.json --noEmit"
   },
   "devDependencies": {
-    "@belgattitude/eslint-config-bases": "1.36.0",
+    "@belgattitude/eslint-config-bases": "1.37.0",
     "@soluble/cache-interop": "workspace:^",
     "@soluble/cache-ioredis": "workspace:^",
     "@soluble/cache-redis": "workspace:^",
