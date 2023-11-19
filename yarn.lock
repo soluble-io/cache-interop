@@ -1964,7 +1964,7 @@ __metadata:
     size-limit: "npm:8.2.6"
     ts-jest: "npm:29.1.1"
     tslib: "npm:2.6.1"
-    tsup: "npm:7.1.0"
+    tsup: "npm:7.2.0"
     typedoc: "npm:0.24.8"
     typedoc-plugin-markdown: "npm:3.15.3"
     typescript: "npm:5.1.6"
@@ -1991,7 +1991,7 @@ __metadata:
     size-limit: "npm:8.2.6"
     ts-jest: "npm:29.1.1"
     tslib: "npm:2.6.1"
-    tsup: "npm:7.1.0"
+    tsup: "npm:7.2.0"
     typescript: "npm:5.1.6"
   languageName: unknown
   linkType: soft
@@ -2017,7 +2017,7 @@ __metadata:
     size-limit: "npm:8.2.6"
     ts-jest: "npm:29.1.1"
     tslib: "npm:2.6.1"
-    tsup: "npm:7.1.0"
+    tsup: "npm:7.2.0"
     typescript: "npm:5.1.6"
   peerDependencies:
     "@types/redis": ^2.8.25
@@ -2048,7 +2048,7 @@ __metadata:
     size-limit: "npm:8.2.6"
     ts-jest: "npm:29.1.1"
     tslib: "npm:2.6.1"
-    tsup: "npm:7.1.0"
+    tsup: "npm:7.2.0"
     typedoc: "npm:0.24.8"
     typedoc-plugin-markdown: "npm:3.15.3"
     typescript: "npm:5.1.6"
@@ -10022,9 +10022,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tsup@npm:7.1.0":
-  version: 7.1.0
-  resolution: "tsup@npm:7.1.0"
+"tsup@npm:7.2.0":
+  version: 7.2.0
+  resolution: "tsup@npm:7.2.0"
   dependencies:
     bundle-require: "npm:^4.0.0"
     cac: "npm:^6.7.12"
@@ -10054,7 +10054,7 @@ __metadata:
   bin:
     tsup: dist/cli-default.js
     tsup-node: dist/cli-node.js
-  checksum: 3216bbb514e4bd2a2bf4b4f357d0687966fc7384749a22e1cbfd4fa5a70c433e052fd13529d6cf540b459709cad82692a8a2d6bfdcdc7c07b4518ca14e9175a9
+  checksum: dea55a1a8911643f2c040527737c2b9982c03d39311c734fe3675680ad89b390784b9973fa890f1c5c816463930c70be9552801b0e5a58d2aa75b5375936cc8c
   languageName: node
   linkType: hard
 
