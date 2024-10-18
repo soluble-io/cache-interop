@@ -52,7 +52,7 @@
       "packages/*"
     ]
   },
-  "packageManager": "yarn@4.0.0-rc.46",
+  "packageManager": "yarn@4.5.1",
   "dependenciesMeta": {
     "cpu-features": {
       "built": false
