@@ -2362,10 +2362,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/shell-quote@npm:1.7.1":
-  version: 1.7.1
-  resolution: "@types/shell-quote@npm:1.7.1"
-  checksum: 51e58326b8c6dcb72846b94cebe3dc4c84f3514469a8e52bd29c52c601e784b427b851d7477acbeef47bfcccf25d2a5768684d27e7fc95fdd003393c1bbb7bc3
+"@types/shell-quote@npm:1.7.5":
+  version: 1.7.5
+  resolution: "@types/shell-quote@npm:1.7.5"
+  checksum: 32b4d697c7d23dbadf40713692c47f1595f083a3b3deea76cb18e30a05d197aa9205d2b87f6d92edb60cda120b51e35d32bda96ed9b0a7e32921eed2deb4559e
   languageName: node
   linkType: hard
 
@@ -3251,7 +3251,7 @@ __metadata:
     "@commitlint/config-conventional": "npm:17.6.7"
     "@types/node": "npm:20.4.4"
     "@types/prettier": "npm:2.7.3"
-    "@types/shell-quote": "npm:1.7.1"
+    "@types/shell-quote": "npm:1.7.5"
     eslint: "npm:8.45.0"
     husky: "npm:8.0.3"
     is-ci: "npm:3.0.1"
@@ -3259,7 +3259,7 @@ __metadata:
     npm-run-all: "npm:4.1.5"
     prettier: "npm:3.0.0"
     rimraf: "npm:5.0.1"
-    shell-quote: "npm:1.8.1"
+    shell-quote: "npm:1.10.0"
     syncpack: "npm:10.7.3"
   dependenciesMeta:
     cpu-features:
@@ -9030,10 +9030,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"shell-quote@npm:1.8.1, shell-quote@npm:^1.6.1":
-  version: 1.8.1
-  resolution: "shell-quote@npm:1.8.1"
-  checksum: af19ab5a1ec30cb4b2f91fd6df49a7442d5c4825a2e269b3712eded10eedd7f9efeaab96d57829880733fc55bcdd8e9b1d8589b4befb06667c731d08145e274d
+"shell-quote@npm:1.10.0, shell-quote@npm:^1.6.1":
+  version: 1.10.0
+  resolution: "shell-quote@npm:1.10.0"
+  checksum: d4a22aeefe64919290af753ac6098239d7ffee52a5db62c20edef69794bd10b5f86e298f68be26af9606ac435e890dd391994a5405a90bb8aebef1ff1dde839b
   languageName: node
   linkType: hard
 
